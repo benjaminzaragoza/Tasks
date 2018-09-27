@@ -13,21 +13,22 @@
 
 //TDD
 
-Route::get('/tasks','TasksControllersindex');
 
-Route::get('/tasks',function() {
-    return view('tasks');
-});
-
-Route::get('/about',function (){
-    return view('about');
-});
-
-Route::view('/contact','contact');
-
+//Route::get('/tasks','TasksControllersindex');
+//
+//Route::get('/about',function () {
+//    return view('about');
+//});
+//Route::view('/contact', 'contact');
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::get('/prova','ProvaController@show');
+//Route::get('/prova',function() {
+//    $prova = 'asdasdasd';
+//    dd($prova);
+//});
+//Route::redirect('/hola','/prova');
 
 //Route::get('/prova','ProvaController@show');
 //Route::get('/prova',function (){
