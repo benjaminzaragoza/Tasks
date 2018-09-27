@@ -14,21 +14,21 @@
 //TDD
 
 
-Route::get('/about',function (){
-    return view('about');
-});
-Route::view('/contact');
+//Route::get('/about',function (){
+//    return view('about');
+//});
+//Route::view('/contact');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 //Route::get('/prova','ProvaController@show');
-Route::get('/prova',function (){
-
-   $prova ='asda';
-    dd($prova);
-
-});
+//Route::get('/prova',function (){
+//
+//   $prova ='asda';
+//    dd($prova);
+//
+//});
 
 //Route::redirect('/hola','/prova');
