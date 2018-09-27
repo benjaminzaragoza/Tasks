@@ -13,11 +13,17 @@
 
 //TDD
 
+Route::get('/tasks','TasksControllersindex');
 
-//Route::get('/about',function (){
-//    return view('about');
-//});
-//Route::view('/contact');
+Route::get('/tasks',function() {
+    return view('tasks');
+});
+
+Route::get('/about',function (){
+    return view('about');
+});
+
+Route::view('/contact','contact');
 
 Route::get('/', function () {
     return view('welcome');
