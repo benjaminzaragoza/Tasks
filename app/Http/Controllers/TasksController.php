@@ -18,10 +18,12 @@ class TasksController extends Controller
         return view('tasks', ['tasks' => $tasks]);
     }
 
-    public function create()
-    {
-        //
-    }
+//    public function destroy(Request $request){
+//        $task = Task::findOrFail($request->id);
+//        $task->destroy($request->id);
+//        return redirect('/tasks');
+//    }
+
     public function store(Request $request)
     {
 //        dd(Request::input());
@@ -34,21 +36,37 @@ class TasksController extends Controller
         // Retornar a /tasks
         return redirect('/tasks');
     }
-
+    public function complete(Request $request){
+        $task = Task::findOrFail($request->id);
+        $task->status = true;
+        $task->save();
+        return redirect('/tasks');
+    }
 
     public function show($id)
     {
         //
     }
 
-    public function edit($id)
+    public function update(Request $request)
     {
-        //
+//        dd($request->id);
+        // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
+//        dd(Task::find($request->id));
+//        if (!Task::find($request->id)) return response(404,'No he trobat');
+        $task = Task::findOrFail($request->id);
+        $task->name = $request->name;
+        $task->completed = true;
+        $task->save();
+        return redirect('/tasks');
     }
-    public function update(Request $request, $id)
+    public function edit(Request $request)
     {
-        //
+        $task = Task::findOrFail($request->id);
+        return view('task_edit',[ 'task' => $task]);
+//        return view('task_edit',compact('task'));
     }
+
 
     public function destroy(Request $request)
     {
@@ -58,4 +76,5 @@ class TasksController extends Controller
         // Retornar a /tasks
         return redirect()->back();
     }
+
 }
