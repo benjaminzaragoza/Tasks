@@ -136,7 +136,7 @@ class TasksTest extends TestCase
     public function cannot_edit_an_unexisting_task()
     {
 //        $this->withoutExceptionHandling();
-        // TDD Test Driven Development ->
+        // TDD CompletedTaskControllerTest Driven Development ->
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
         $response = $this->put('/tasks/1',[]);
 //        dd($response->getContent());
@@ -167,6 +167,7 @@ class TasksTest extends TestCase
         $response->assertStatus(404);
     }
 
+
 //    /**
 //     * @test
 //     */
@@ -175,4 +176,16 @@ class TasksTest extends TestCase
 //        $response = $this->delete('/task/1');
 //        $response->assertStatus(404);
 //    }
+}
+Class CompletedTaskController{
+    public function store()
+    {
+
+    }
+
+    public function delete()
+    {
+
+    }
+
 }
