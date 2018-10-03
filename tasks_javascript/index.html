@@ -9,19 +9,55 @@
 </head>
 <body>
 <div id="app">
-    <!--ul>li*5-->
 
+    <input type="text" placeholder="Nova tasca">
+    <!--ul>li*5-->
+    <!--<ul>-->
+        <!--<li @foreach="task in tasks">{{{$}}</li>-->
+    <!--</ul>-->
 </div>
 
 <script>
     //MVC   ->  No tenim base de dades
     //Model -> varibales/objectes Javascript
 
+    //TODO CONECTASE ALA SERVIDOR I OMITIR LES VARIABLES AMB INFOR DE LA BASE DE DADES
+    //Apis
+
     var tasks = ["Comprar pa","Comprar llet","Estudiar Php"]
+
+    var app = document.getElementById('app');
+    var ul=document.createElement('ul')
+    tasks.forEach(function(tasks){
+        console.log(tasks);
+        var li = document.createElement('li')
+        var text=document.createTextNode(tasks)
+        li.appendChild(text)
+        ul.appendChild(li);
+    })
+    app.appendChild(ul);
 
     //Codi Java Script que agafan el model crei el html que toca ul>li
 
-    
+     //llibreria dom
+    //
+    // var app = document.getElementById('app');
+    // console.log(app);
+    // var ul=document.createElement('ul')
+    // var li = document.createElement('li')
+    // var text=document.createTextNode('Comprar pa')
+    // li.appendChild(text)
+    ul.appendChild(li);
+    // var li3 = document.createElement('li')
+    // var text3=document.createTextNode('Comprar pa')
+    // li.appendChild(text3)
+    // ul.appendChild(li3);
+    // var li3 = document.createElement('li')
+    // var text3=document.createTextNode('Comprar pa')
+    // li.appendChild(text3)
+    // ul.appendChild(li3);
+    app.appendChild(ul);
+
 </script>
 
 </body>
