@@ -9,9 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 
 </head>
-<body class="bg-grey-light font-sans">
+<body class="bg-grey-lighter font-sans">
 
-<div id="app" class="flex justify-center">
+<div id="app" class="container flex justify-center">
     <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques</h1>
         <div class="flex-row">
@@ -20,17 +20,17 @@
             <svg onclick="addTask()" class="h-3 w-3"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
         </div>
 
-        <!--ul>li*5-->
+        <!--Aniria la llista-->
+        <!--<ul></ul>-->
         <!--<ul>-->
-        <!--<li @foreach="task in tasks">{{{$}}</li>-->
+        <!--<li @foreach="task in tasks">{{ $task.name }} class="asdasd"></li>-->
         <!--</ul>-->
         <div id="tasks"></div>
     </div>
 </div>
 
 <script>
-    var tasks = ["Comprar pa","Comprar llet","Estudiar Php"]
-
+    var tasks = ["Comprar tomates","Comprar llet","Estudiar PHP","Fucking hostile"] // HARDCODED
     function addTask() {
         // Afegir la tasca al vector tasks
         // Manipulació d'arrays
@@ -51,40 +51,23 @@
             li.appendChild(text)
             ul.appendChild(li)
         })
-        //buscar appendchild
         divtasks.appendChild(ul)
     }
     draw_list()
-    //MVC   ->  No tenim base de dades
-    //Model -> varibales/objectes Javascript
-
-    //TODO CONECTASE ALA SERVIDOR I OMITIR LES VARIABLES AMB INFOR DE LA BASE DE DADES
-    //Apis
-
-    //foreach ul i li
-
-
-    //Codi Java Script que agafan el model crei el html que toca ul>li
-
-     //llibreria dom
+    // MVC --> MODEL???? --> no tenim base de dades
+    // Model -> variables/objectes Javascript
+    // TODO -> Connectar-se al servidor i omplir les variables amb info de la base de dades
+    // APIs?
+    // Codi Javascript que agafan este model generi HTML que toca ul>li
+    // CREAR DOCUMENTS HTML DE FORMA IMPERATIVA (SENSE PLANTILLA)
+    // PLANTILLA en canvi és forma declarative
+    // DOM -> Document Object Model HTML -> Document
+    // Llibreria DOM
+    // crearli = function () {
     //
-    // var app = document.getElementById('app');
-    // console.log(app);
-    // var ul=document.createElement('ul')
-    // var li = document.createElement('li')
-    // var text=document.createTextNode('Comprar pa')
-    // li.appendChild(text)
-    ul.appendChild(li);
-    // var li3 = document.createElement('li')
-    // var text3=document.createTextNode('Comprar pa')
-    // li.appendChild(text3)
-    // ul.appendChild(li3);
-    // var li3 = document.createElement('li')
-    // var text3=document.createTextNode('Comprar pa')
-    // li.appendChild(text3)
-    // ul.appendChild(li3);
-    app.appendChild(ul);
-
+    // }
+    // tasks.forEach(crearLi)
+    // SVG --> SVG
 </script>
 
 </body>
