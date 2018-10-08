@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/v1/tasks',function (){
+    //Connectar base de dades
+//    return [
+//     {
+//         name: 'Comprar pa',
+//         completed: false
+//         },
+//         {
+//         name: 'Comprar llet',
+//         completed: false
+//         },
+//         {
+//         name: 'Estudiar PHP',
+//         completed: true
+//     },
+//    ];
+return App\Task::all();
+});
