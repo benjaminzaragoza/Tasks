@@ -10,28 +10,28 @@
         <button @click="add" class="text-center text-red"  >Afegir</button>
         </div>
             <!-- -->
-        <ul>
-            <li v-for="task in filteredTasks" :key="task.id">
+        <div>
+            <div v-for="task in filteredTasks" :key="task.id">
                 <span :class="{ strike: task.completed == '1'}">
                     <editable-text
                             :text="task.name" @edited="editName(task, $event)"
                     ></editable-text>
                 </span>
                 <span @click="remove(task)">&#215;</span>
-            </li>
-        </ul>
+            </div>
+        </div>
 <!-- -->
 <br>
             <h3>Filtros:</h3>
             <br>
             Filtre emprat -> {{ filter }}
 
-            <ul>
+            <div>
                 <br>
-                <li><button @click="setFilter('all')">Totes</button></li>
-                <li><button @click="setFilter('completed')">Completades</button></li>
-                <li><button @click="setFilter('active')">Pendents</button></li>
-            </ul>
+                <div><button @click="setFilter('all')">Totes</button></div>
+                <div><button @click="setFilter('completed')">Completades</button></div>
+                <div><button @click="setFilter('active')">Pendents</button></div>
+            </div>
         </div>
     </div>
 </template>

@@ -20,7 +20,8 @@
         name: 'app',
         data(){
             return{
-                tasks:[]
+                tasks:[],
+                error:null
             }
         },
         components: {
@@ -46,16 +47,11 @@
             //     console.log(file);
             // })
             // promises then.catch
-            axios.get('http://localhost:8050/api/v1/tasks'),then(
-                ()=>{
-                    console.log('TOT VA BA');
-                    this.tasks = response.data
-                }
-            ).catch(
-                (error)=>{
-                    console.log('tot mal');
-                }
-            )
+            axios.get('http://localhost:8050/api/v1/tasks').then((response) => {
+                this.tasks = response.data
+            }).catch((error) => {
+                this.error = error
+            })
             //ASYNC WAIT
             // async function f() {
             //     // let result= await axios.get('http://localhost:8050/api/v1/tasks')
