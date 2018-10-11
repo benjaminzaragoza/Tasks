@@ -31,7 +31,7 @@ class TasksController extends Controller
 //        if (!Task::find($request->id)) return response (404,'No ho he provat');
         $task = Task::findOrFail($request->id);
         $task->name = $request->name;
-        $task->completed = true;
+        $task->completed = false;
         $task->save();
         return redirect('tasks');
     }
