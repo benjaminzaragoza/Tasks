@@ -29,7 +29,21 @@ Vue.component('tasks', require('./components/Tasks.vue'));
 const app = new Vue({
     el: '#app',
     data: () => ({
-        drawer: null
+        drawer: null,
+        items: [
+            {
+                src: 'https://conceptodefinicion.de/wp-content/uploads/2016/10/Programaci%C3%B3n-Inform%C3%A1tica.jpg'
+            },
+            {
+                src: 'https://http2.mlstatic.com/phpstorm-20182-jetbrains-winmaclinux-lancamento-D_NQ_NP_823880-MLB27128236374_042018-F.jpg'
+            },
+            {
+                src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+            },
+            {
+                src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+            }
+        ]
     }),
     props: {
         source: String

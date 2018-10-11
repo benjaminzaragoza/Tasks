@@ -46,7 +46,7 @@
                         </v-btn>
                     </form>
 
-                    <v-btn color="info" href="/task_edit/{{ $task->id }}">
+                    <v-btn color="warning" href="/task_edit/{{ $task->id }}">
                         <button>Modificar</button>
                     </v-btn>
                     <form action="/tasks/{{ $task->id }}" method="POST">
