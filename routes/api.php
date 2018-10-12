@@ -17,11 +17,11 @@ use App\Task;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/v1/tasks/{task}','Api\TasksController@index');
-Route::get('/v1/tasks/','Api\TasksController@show');
-Route::delete('/v1/tasks/{task}','Api\TasksController@destroy');
-Route::post('/v1/tasks/','Api\TasksController@store');
-Route::put('/v1/tasks/{task}','Api\TasksController@edit');
+Route::get('/v1/tasks','Api\TasksController@index');                // BROWSE
+Route::get('/v1/tasks/{task}','Api\TasksController@show');          // READ
+Route::delete('/v1/tasks/{task}','Api\TasksController@destroy');    // DELETE
+Route::post('/v1/tasks','Api\TasksController@store');               // CREATE
+Route::put('/v1/tasks/{task}','Api\TasksController@edit');         // EDIT
 
 //Route::get('/v1/tasks',function (){
 //

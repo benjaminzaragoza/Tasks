@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <title>@yield('title')</title>
@@ -27,7 +28,8 @@
             </v-list-tile>
             <v-list-tile href="/tasks_vue">
                 <v-list-tile-action>
-                    <v-icon>assignment</v-icon>
+                    <v-icon>format_list_bulleted
+                    </v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                     <v-list-tile-title>Tasques en Vue</v-list-tile-title>
@@ -35,7 +37,7 @@
             </v-list-tile>
             <v-list-tile href="/about">
                 <v-list-tile-action>
-                    <v-icon>account_box</v-icon>
+                    <v-icon>info</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                     <v-list-tile-title>Qui som?</v-list-tile-title>
@@ -43,7 +45,8 @@
             </v-list-tile>
             <v-list-tile href="/contact">
                 <v-list-tile-action>
-                    <v-icon>account_box</v-icon>
+                    <v-icon>photo_camera
+                    </v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                     <v-list-tile-title>Imatges</v-list-tile-title>

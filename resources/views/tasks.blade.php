@@ -14,11 +14,22 @@
 
             <form action="/tasks" method="POST">
                 @csrf
-                <input name="name" type="text" placeholder="Crear tasca" required>
-                <v-btn color="success">
-                    <button>Afegir</button>
-                </v-btn>
+
+                <v-layout row right xs10>
+                    <v-flex p>
+                        <v-btn  fab dark color="green accent-2" >
+                            <v-icon dark>add</v-icon>
+                            <button>Afegir</button>
+                        </v-btn>
+                    </v-flex>
+                    <v-flex x1 class="pt-3">
+                        <v-text-field  name="name" type="text" placeholder="Crear tasca" required
+                         label="Tasques" name="Services" hint="Ex. Consultation" type="text" ></v-text-field>
+                    </v-flex>
+                </v-layout>
+
             </form>
+            <br>
             <?php foreach ($tasks as $task) : ?>
             <v-list-tile>
                 <v-list-tile-avatar>
@@ -33,7 +44,9 @@
                         <v-btn color="error">
                             <button>Eliminar</button>
                         </v-btn>
+
                     </form>
+
                 @else
                     {{ $task->name }}
 
@@ -53,11 +66,12 @@
                         @csrf
                         {{ method_field('DELETE') }}
                         <v-btn color="error">
-                            <button>Eliminar</button>
+                            <button >Eliminar</button>
                         </v-btn>
                     </form>
                 @endif
             </v-list-tile>
+            <br>
             <?php endforeach;?>
 
 

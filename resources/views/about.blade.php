@@ -11,7 +11,9 @@
 
                 <v-card-title primary-title>
                     <div>
-                        <h3 class="headline mb-1" >Qui som i que fem ?</h3>
+                        <h3  style="float: left;" class="headline mb-1 " >Qui som i que fem ?</h3>
+                        <br>
+                        <br>
                         <div>Estem desarrollan una web de taskes per la administracio i el control de taskes ...</div>
                     </div>
                 </v-card-title>
