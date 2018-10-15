@@ -7,7 +7,8 @@ class TasksVueController extends Controller
 {
     public function index(){
 //        return view('tasks_vue');
-        $tasks= Task::all();
+        Task::orderBy('created_at','desc')->get();
+
         return view('tasks_vue',compact('tasks'));
         compact('tasks');
     }

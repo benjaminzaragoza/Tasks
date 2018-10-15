@@ -73,32 +73,23 @@
     </v-content>
     <v-footer
             app
-            dark
+            class="indigo lighten-1 white--text text-xs-center"
             height="auto"
     >
         <v-card
-                class="flex"
                 flat
                 tile
+                class="indigo lighten-1 white--text text-xs-center"
         >
-            <v-card-title class="teal">
-                <strong class="subheading">Created by Benjamin Zaragoza, &copy; 2018 All rights reserved</strong>
+            <v-divider></v-divider>
 
-                <v-spacer></v-spacer>
 
-                <v-btn
-                        v-for="icon in icons"
-                        :key="icon"
-                        class="mx-3"
-                        dark
-                        icon
-                >
-                </v-btn>
-            </v-card-title>
-
-            <v-card-actions class="grey darken-3 justify-center">
-                &copy;2018 — <strong>Vuetify</strong>
-            </v-card-actions>
+            {{--<v-card-actions style="text-align: center!important;" class="grey darken-3 justify-center">--}}
+                {{--&copy;2018 — <strong>Created by Benjamin Zaragoza, &copy; 2018 All rights reserved</strong>--}}
+            {{--</v-card-actions>--}}
+            <v-card-text class="white--text">
+                &copy;2018 — <strong>Created by Benjamin Zaragoza, &copy; 2018 All rights reserved                                                                                              </strong>
+            </v-card-text>
         </v-card>
     </v-footer>
 </v-app>

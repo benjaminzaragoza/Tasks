@@ -34,13 +34,13 @@
             </form>
             <br>
             <?php foreach ($tasks as $task) : ?>
-            <v-list-tile>
+
+            <v-list-tile >
                 <v-list-tile-avatar>
                     <img src="http://www.iconarchive.com/download/i78247/igh0zt/ios7-style-metro-ui/MetroUI-Other-Task.ico">
                 </v-list-tile-avatar>
                 @if($task->completed)
                     <del>{{ $task->name}}</del>
-
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
@@ -55,11 +55,11 @@
 
                     <form action="" method="POST">
                         @csrf
+
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn dark color="cyan
-">
-                            <button>Completar</button>
+">                            <button>Completar</button>
                         </v-btn>
                     </form>
 

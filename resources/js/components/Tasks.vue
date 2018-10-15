@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center">
+    <div id="tasks" class=" tasks flex justify-center">
         <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques({{total}}) </h1>
             <div class="flex-row"  >
@@ -7,7 +7,8 @@
         <input type="text" placeholder="Nova Tasca"
                v-model="newTask" @keyup.enter="add"
                class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
-        <button @click="add" class="text-center text-red"  >Afegir</button>
+
+                <button @click="add" class="text-center text-red"  >Afegir</button>
         </div>
             <!-- -->
         <div>
@@ -102,8 +103,16 @@
                 this.filter = newFilter
             },
             add() {
-                this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
-                this.newTask=''
+                // this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
+                // this.newTask=''
+                axios.post('/api/v1/tasks',{
+                    name: this.newTask
+                }).then((response)=>{
+                this.dataTasks.splice(0,0,{id:response.data.id, name: this.newTask, completed: false } )
+                    this.newTask=''
+                }).catch((error)=>{
+
+                })
             },
             remove(task) {
                 this.dataTasks.splice(this.dataTasks.indexOf(task),1)
@@ -111,6 +120,20 @@
             // edit(task){
             //
             // }
+        },
+        created(){
+            //si tinc propietat taskes no fer res, i sino vull fer peticio
+            //ala api per obtenir les taskes
+
+            if (this.tasks.length === 0){
+                // axios.get('/api/v1/task')
+                axios.get('/api/v1/tasks').then((response) => {
+                    this.dataTasks=response.data
+                }).catch((error)=>{
+                    console.log(error)
+                })
+
+            }
         }
     }
 </script>

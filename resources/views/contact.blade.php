@@ -3,7 +3,7 @@
 @section('content')
     <br>
     <br>
-        <v-carousel>
+        <v-carousel style="width: 90%; margin-left: 5%;height: 80%;margin-top: -2%;">
             <v-carousel-item
                     v-for="(item,i) in items"
                     :key="i"
@@ -43,7 +43,7 @@
             </v-avatar>
 
             <v-avatar color="red">
-                <span class="white--text headline">Z</span>
+                <span  class="white--text headline">Z</span>
             </v-avatar>
         </v-layout>
 @endsection

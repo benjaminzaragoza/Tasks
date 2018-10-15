@@ -6,7 +6,7 @@ class TasksController extends Controller
 {
     public function index()
     {
-        $tasks = Task::all();
+        return Task::orderBy('created_at','desc')->get();
         return view ('tasks',['tasks' => $tasks]);
     }
     public function store(Request $request)

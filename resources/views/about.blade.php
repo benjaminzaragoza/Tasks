@@ -2,9 +2,10 @@
 
 @section('content')
     <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
-            <v-card>
+        <v-flex xs12 sm6 offset-sm3 >
+            <v-card >
                 <v-img
+                        style="margin-top: 5%;"
                         src="https://www.icot.es/wp-content/uploads/2016/12/informatica-profesional.jpg"
                         aspect-ratio="1.75"
                 ></v-img>
