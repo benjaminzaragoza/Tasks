@@ -115,7 +115,11 @@
                 })
             },
             remove(task) {
-                this.dataTasks.splice(this.dataTasks.indexOf(task),1)
+                axios.delete('/api/v1/tasks/'+ task.id).then((response)=>{
+                    this.dataTasks.splice(this.dataTasks.indexOf(task),1)
+                }).catch((error)=>{
+
+                })
             }
             // edit(task){
             //
