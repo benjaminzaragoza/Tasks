@@ -45,14 +45,14 @@
                     @csrf
                     {{ method_field('PUT') }}
                     <input type="hidden" name="id" value="{{ $task->id  }}">
-                    <v-btn dark color="cyan
-">                            <button>Descompletar</button>
+                    <v-btn type="submit" dark color="cyan">
+                        <button>Descompletar</button>
                     </v-btn>
                     </form>
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <v-btn color="error">
+                        <v-btn  color="error">
                             <button>Eliminar</button>
                         </v-btn>
 
@@ -66,19 +66,19 @@
 
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <v-btn dark color="cyan
-">                            <button>Completar</button>
+                        <v-btn type="submit" dark color="cyan">
+                            <button>Completar</button>
                         </v-btn>
                     </form>
 
-                    <v-btn dark color="pink lighten-1" href="/task_edit/{{ $task->id }}">
+                    <v-btn  type="submit" dark color="pink lighten-1" href="/task_edit/{{ $task->id }}">
                         <button>Modificar</button>
                     </v-btn>
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <v-btn dark color="red darken-1">
-                            <button >Eliminar</button>
+                        <v-btn type="submit" dark color="red darken-1">
+                            <button>Eliminar</button>
                         </v-btn>
                     </form>
                 @endif
