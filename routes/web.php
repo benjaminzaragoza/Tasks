@@ -15,7 +15,6 @@ Route::get('/tasks','TasksController@index');
 Route::post('/tasks','TasksController@store');
 Route::delete('/tasks/{id}','TasksController@destroy');
 Route::put('/tasks/{id}','TasksController@update');
-Route::put('/tasks','TasksController@complete');
 //Route::get('/task_edit',function(){
 //    return view('about');
 //});
@@ -40,3 +39,7 @@ Route::redirect('/hola','/prova');
 //Route::post('/completed_task','CompletedTaskController@store');
 //Route::delete('/uncompleted_task','CompletedTaskController@destroy');
 Route::get('/tasks_vue','TasksVueController@index');
+
+Route::put('/tasks_completed','TasksCompletedController@store');
+Route::put('/tasks_uncompleted','TasksCompletedController@destroy');
+

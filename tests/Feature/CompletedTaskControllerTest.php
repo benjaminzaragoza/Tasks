@@ -1,5 +1,6 @@
 <?php
 namespace Tests\Feature;
+use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,6 +11,8 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function can_complete_a_task()
     {
+        $this->withoutExceptionHandling();
+
         //1
         $task= Task::create([
             'name' => 'comprar pa',
