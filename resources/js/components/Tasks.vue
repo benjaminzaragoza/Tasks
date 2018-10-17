@@ -8,12 +8,15 @@
                v-model="newTask" @keyup.enter="add"
                class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
 
+                <div v-if="errorMessage">
+                    Ha succeit un error {{errorMessage}}
+                </div>
                 <button @click="add" class="text-center text-red"  >Afegir</button>
         </div>
             <!-- -->
         <div>
             <div v-for="task in filteredTasks" :key="task.id">
-                <span :class="{ strike: task.completed == '1'}">
+                <span :id="'task'+ task.id" :class="{ strike: task.completed == '1'}">
                     <editable-text
                             :text="task.name" @edited="editName(task, $event)"
                     ></editable-text>
@@ -69,7 +72,8 @@ export default {
     return {
       filter: 'all', // All Completed Active
       newTask: '',
-      dataTasks: this.tasks
+      dataTasks: this.tasks,
+      errorMessage: null
     }
   },
   props: {
@@ -105,13 +109,13 @@ export default {
     add () {
       // this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
       // this.newTask=''
-      axios.post('/api/v1/tasks', {
+      window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
         this.newTask = ''
       }).catch((error) => {
-
+        console.log(error)
       })
     },
     remove (task) {
@@ -126,20 +130,17 @@ export default {
     // }
   },
   created () {
-    // si tinc propietat taskes no fer res, i sino vull fer peticio
-    // ala api per obtenir les taskes
-    console.log('CREATED IS EXECUTED')
-
     if (this.tasks.length === 0) {
-
-      // axios.get('/api/v1/task')
       window.axios.get('/api/v1/tasks').then((response) => {
         this.dataTasks = response.data
       }).catch((error) => {
-        console.log(error)
+        this.errorMessage = error.data.message
+        console.log('ERROR EXECUTED')
+        console.log(error.response.data)
       })
     }
   }
+
 }
 </script>
 

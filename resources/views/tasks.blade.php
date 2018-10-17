@@ -45,7 +45,7 @@
                     @csrf
                     {{ method_field('PUT') }}
                     <input type="hidden" name="id" value="{{ $task->id  }}">
-                    <v-btn type="submit" dark color="cyan">
+                    <v-btn type="submit" dark color="orange">
                         <button>Descompletar</button>
                     </v-btn>
                     </form>
