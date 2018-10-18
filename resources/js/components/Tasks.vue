@@ -131,12 +131,12 @@ export default {
   },
   created () {
     if (this.tasks.length === 0) {
+      console.log('entra')
       window.axios.get('/api/v1/tasks').then((response) => {
+        console.log('ok')
         this.dataTasks = response.data
       }).catch((error) => {
-        this.errorMessage = error.data.message
-        console.log('ERROR EXECUTED')
-        console.log(error.response.data)
+        this.errorMessage = error.response.data
       })
     }
   }

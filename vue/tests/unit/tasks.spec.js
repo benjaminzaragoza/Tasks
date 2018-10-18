@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { expect } from 'chai'
 import { mount } from '@vue/test-utils'
 import Tasks from '../../../resources/js/components/Tasks.vue'
@@ -12,27 +13,35 @@ describe('Tasks.vue', () => {
     moxios.uninstall(global.axios)
   })
 
-  it.only('shows_error', () => {
+  it.only('shows_error', (done) => {
     // 2 execute
+
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 500,
+      response: 'caca de vaca'
+    })
     const wrapper = mount(Tasks)
 
-    wrapper.vm.errorMessage = 'Ui que mal!'
-    // Assertion
+    // expect(wrapper.text()).not.contains('Ui que mal!')
 
-    expect(wrapper.text()).contains('Ui que mal!')
+    // Assertion
+    moxios.wait(() => {
+      expect(wrapper.text()).contains('Ha succeit un error caca de vaca')
+      done()
+    })
   })
 
   it('not_shows_filters_when_no_tasks', () => {
     // 2 execute
     const wrapper = mount(Tasks)
 
-    wrapper.vm.errorMessage = 'Ui que mal!'
+    wrapper.vm.errorMessage = 'caca de vaca'
     // Assertion
 
     expect(wrapper.text()).contains('Filtros:').to.be.false
   })
 
-  it.only('shows_filters_when_is_more_than_0_tasks', () => {
+  it('shows_filters_when_is_more_than_0_tasks', () => {
     // 2 execute
     const wrapper = mount(Tasks, {
       propsData: {
