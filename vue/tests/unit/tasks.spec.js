@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import Tasks from '../../../resources/js/components/Tasks.vue'
 import moxios from 'moxios'
 
-let exampletask = [
+let exampletasks = [
   {
     id: 1,
     name: 'Comprar pa',
@@ -22,7 +22,7 @@ let exampletask = [
   }
 ]
 
-describe('Tasks.vue', () => {
+describe.only('Tasks.vue', () => {
   beforeEach(function () {
     moxios.install(global.axios)
   })
@@ -32,37 +32,39 @@ describe('Tasks.vue', () => {
   })
 
   it('shows_error', (done) => {
-    // 2 execute
-
+    // 1 Prepare
     moxios.stubRequest('/api/v1/tasks', {
       status: 500,
-      response: 'caca de vaca'
+      response: 'Error Caca de vaca'
     })
+
+    // 2 execute
     const wrapper = mount(Tasks)
 
-    // expect(wrapper.text()).not.contains('Ui que mal!')
-
+    // wrapper.vm.errorMessage = 'Ui que mal!'
     // Assertion
     moxios.wait(() => {
-      expect(wrapper.text()).contains('Ha succeit un error caca de vaca')
+      expect(wrapper.text()).contains('Ha succeit un error: Error Caca de vaca')
       done()
     })
   })
 
   it.skip('not_shows_filters_when_no_tasks', (done) => {
-    // prepare
-
+    // 1 Prepare
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
       response: []
     })
+
     // 2 execute
     const wrapper = mount(Tasks)
 
-    // 3
+    // 3 Assertion
     moxios.wait(() => {
-      expect(wrapper.text()).not.contains('Filtros:')
-      done()
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.text()).not.contains('Filtros:')
+        done()
+      })
     })
   })
 
@@ -70,7 +72,7 @@ describe('Tasks.vue', () => {
     // 2 execute
     const wrapper = mount(Tasks, {
       propsData: {
-        tasks: exampletask
+        tasks: exampletasks
       }
     })
 
@@ -86,14 +88,10 @@ describe('Tasks.vue', () => {
     // 2 EXECUTE
     const wrapper = mount(Tasks, {
       propsData: {
-        tasks: exampletask
+        tasks: exampletasks
       }
     }) // <tasks tasks="[{},{},{}]"></tasks>
 
-    // console.log('AQUI TEXT:')
-    // console.log(wrapper.text())
-    // console.log('AQUI HTML:')
-    // console.log(wrapper.html())
     // 3 EXPECT
 
     expect(wrapper.text()).contains('Comprar pa')
@@ -121,7 +119,7 @@ describe('Tasks.vue', () => {
     // 1 Prepare (opcional)
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
-      response: exampletask
+      response: exampletasks
     })
 
     // 2 Execució
@@ -139,30 +137,27 @@ describe('Tasks.vue', () => {
       done()
     })
   })
-  it.skip('adds_a_task_with_enter', () => {
 
+  it.skip('adds_a_task_with_enter', () => {
+    // https://vue-test-utils.vuejs.org/guides/#testing-key-mouse-and-other-dom-events
   })
+
   it.only('delete_a_task', (done) => {
-    // 1
-    moxios.stubRequest('/api/v1/tasks', {
-      status: 200,
-      response: {
-        id: 1,
-        name: 'Comprar pa',
-        completed: false
-      }
-    })
-    // 2
+    // 1 Prepare
+    //     moxios.stubRequest('/api/v1/tasks', { TODO
+
+    // 2 execute
     const wrapper = mount(Tasks, {
       propsData: {
-        tasks: exampletask
+        tasks: exampletasks
       }
     })
     let deleteIcon = wrapper.find('span#delete_task_1')
     deleteIcon.trigger('click')
-    // 3
-    done()
+    // 3 Expects
+    // Moxios wait
   })
+
   it.only('adds_a_task', (done) => {
     // 1
     moxios.stubRequest('/api/v1/tasks', {
@@ -173,23 +168,25 @@ describe('Tasks.vue', () => {
         completed: false
       }
     })
+
     // 2
     const wrapper = mount(Tasks, {
       propsData: {
-        tasks: exampletask
+        tasks: exampletasks
       }
     })
     // input name tasks
-    // console.log(wrapper.find("input[name='name']").html())
     let inputName = wrapper.find("input[name='name']")
     inputName.element.value = 'Comprar lejia'
     inputName.trigger('input')
     let button = wrapper.find('button#button_add_task')
     button.trigger('click')
+
+    // 3 expectations
     moxios.wait(() => {
       expect(wrapper.text()).contains('Comprar lejia')
       done()
     })
-    // 3
   })
+})
 })

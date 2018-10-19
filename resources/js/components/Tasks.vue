@@ -2,9 +2,10 @@
     <div id="tasks" class=" tasks flex justify-center">
         <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques({{total}}) </h1>
-            <div class="flex-row"  >
 
-        <input type="text" placeholder="Nova Tasca" name='name'
+            <div class="flex-row"  >
+<form>
+        <input required type="text" placeholder="Nova Tasca" name='name'
                v-model="newTask" @keyup.enter="add"
                class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
 
@@ -12,7 +13,8 @@
                     Ha succeit un error {{errorMessage}}
                 </div>
                 <button id="button_add_task" @click="add" class="text-center text-red"  >Afegir</button>
-        </div>
+</form>
+            </div>
             <!-- -->
         <div>
             <div v-for="task in filteredTasks" :key="task.id">
