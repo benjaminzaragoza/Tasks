@@ -14,7 +14,7 @@ class TasksTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         //1 Prepare
-        create_exaple_tasks();
+        create_example_tasks();
 //        dd(Task::find(1));
         // 2 execute
         $response = $this->get('/tasks');
@@ -28,6 +28,7 @@ class TasksTest extends TestCase
         // Comprovar que es veuen les tasques que hi ha a la
         // base dades
     }
+
     /**
      * @test
      */
@@ -74,26 +75,29 @@ class TasksTest extends TestCase
     /**
      * @test
      */
-    public function can_edit_a_task()
+    public function can_edit_task()
     {
         // 1
-        $task = Task::create([
-            'name' => 'asdasdasd',
-            'completed' => false
+        $oldTask = factory(Task::class)->create([
+            'name' => 'Comprar llet'
         ]);
-        //2
-        $response = $this->put('/tasks/' . $task->id,$newTask = [
-            'name' => 'Comprar pa',
-            'completed' => true
+
+        // 2
+        $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
+            'name' => 'Comprar pa'
         ]);
+
+        // 3
+        $result = json_decode($response->getContent());
         $response->assertSuccessful();
-//            $response->assertStatus(200);
-        // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
-        $task = $task->fresh();
-        $this->assertEquals($task->name,'Comprar pa');
-        $this->assertEquals($task->completed,true);
+
+//        $this->assertDatabaseMissing('tasks', $oldTask);
+//        $this->assertDatabaseHas('tasks', $newtask);
+
+        $newTask = $oldTask->refresh();
+        $this->assertNotNull($newTask);
+        $this->assertEquals('Comprar pa',$result->name);
+        $this->assertFalse((boolean) $newTask->completed);
     }
     /**
      * @test
@@ -111,10 +115,7 @@ class TasksTest extends TestCase
             'completed' => true
         ]);
         $response->assertSuccessful();
-//            $response->assertStatus(200);
-        // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
+
         $task = $task->fresh();
         $this->assertEquals($task->name,'Comprar pa');
         $this->assertEquals($task->completed,true);
@@ -156,15 +157,6 @@ class TasksTest extends TestCase
         $response->assertStatus(404);
     }
 
-
-//    /**
-//     * @test
-//     */
-//    public function cannot_delete_task_an_unexisting()
-//    {
-//        $response = $this->delete('/task/1');
-//        $response->assertStatus(404);
-//    }
 }
 Class CompletedTaskController{
     public function store()
