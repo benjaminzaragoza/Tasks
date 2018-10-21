@@ -61,7 +61,7 @@
                 @else
                     {{ $task->name }}
 
-                    <form action="/tasks_completed" method="POST">
+                    <form action="/tasks_completed/{{$task->id}}" method="POST">
                         @csrf
 
                         {{ method_field('PUT') }}

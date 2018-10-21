@@ -11,19 +11,17 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function can_complete_a_task()
     {
-        $this->withoutExceptionHandling();
-
         //1
         $task= Task::create([
             'name' => 'comprar pa',
             'completed' => false
         ]);
         //2
-        $response = $this->post('/completed_task/' . $task->id);
+        $response = $this->put('/tasks_completed/' . $task->id);
 
+        //3
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $response->assertStatus('302');
         $this->assertEquals($task->completed, true);
     }
     /**
@@ -38,6 +36,7 @@ class CompletedTaskControllerTest extends TestCase {
     /**
      * @test
      */
+
     public function can_uncomplete_a_task()
     {
         //1
@@ -46,13 +45,12 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => true
         ]);
         //2
-        $response = $this->delete('/completed_task/' . $task->id);
-
+        $response = $this->put('/tasks_completed/' . $task->id);
+//        $this->assertEquals($task->completed, 1);
 
         $task = $task->fresh();
-        $this->assertEquals($task->completed, false);
         $response->assertRedirect('/tasks');
-        $response->assertStatus('302');
+        $this->assertEquals($task->completed, 1);
     }
     /**
      * @test

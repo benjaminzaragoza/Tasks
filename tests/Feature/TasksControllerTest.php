@@ -28,7 +28,6 @@ class TasksTest extends TestCase
         // Comprovar que es veuen les tasques que hi ha a la
         // base dades
     }
-
     /**
      * @test
      */
