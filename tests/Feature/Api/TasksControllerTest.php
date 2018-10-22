@@ -101,27 +101,26 @@ class TasksControllerTest extends TestCase
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-//        $this->assertDatabaseMissing('tasks', $oldTask);
-//        $this->assertDatabaseHas('tasks', $newtask);
         $newTask = $oldTask->refresh();
         $this->assertNotNull($newTask);
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse((boolean) $newTask->completed);
     }
+
     /**
      * @test
      */
-    public function cannot_edit_tasks_without_name()
+    public function cannot_edit_task_without_name()
     {
-
         // 1
         $oldTask = factory(Task::class)->create();
-
-        $response = $this->put('/api/v1/tasks/' . $oldTask->id, [
+        // 2
+        $response = $this->json('PUT', '/api/v1/tasks/' . $oldTask->id, [
             'name' => ''
         ]);
         // 3
         $response->assertStatus(422);
     }
+
 
 }

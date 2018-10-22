@@ -18,7 +18,7 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => false
         ]);
         //2
-        $response = $this->json('put','/tasks_completed/' . $task->id);
+        $response = $this->json('put','/v1/tasks/' . $task);
 
         $task = $task->fresh();
 //        $response->assertRedirect('/tasks');
@@ -58,7 +58,6 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function cannot_uncomplete_a_unexisting_task()
     {
-
         $response= $this->delete('/completed_task/1');
         $response->assertStatus(404);
     }
