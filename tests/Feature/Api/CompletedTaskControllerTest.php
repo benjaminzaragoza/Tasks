@@ -18,19 +18,19 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => false
         ]);
         //2
-        $response = $this->post('/completed_task/' . $task->id);
+        $response = $this->json('put','/tasks_completed/' . $task->id);
 
         $task = $task->fresh();
-        $response->assertRedirect('/tasks');
-        $response->assertStatus('302');
-        $this->assertEquals($task->completed, true);
+//        $response->assertRedirect('/tasks');
+//        $response->assertStatus('302');
+        $this->assertEquals($task->completed, 1);
     }
     /**
      * @test
      */
     public function cannot_complete_a_unexisting_task()
     {
-        $response = $this->post('/completed_task/1');
+        $response = $this->json('post','/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
     }
@@ -45,13 +45,13 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => true
         ]);
         //2
-        $response = $this->delete('/completed_task/' . $task->id);
+        $response = $this->json('delete','/tasks_uncompleted/' . $task->id);
 
 
         $task = $task->fresh();
-        $this->assertEquals($task->completed, false);
-        $response->assertRedirect('/tasks');
-        $response->assertStatus('302');
+        $this->assertEquals($task->completed, 0);
+//        $response->assertRedirect('/tasks');
+//        $response->assertStatus('302');
     }
     /**
      * @test
