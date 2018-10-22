@@ -39,7 +39,6 @@ class Task extends Model
     public function assignUser(User $user)
     {
         $this->user()->associate($user);
-
         $this->save();
     }
 
