@@ -5,7 +5,7 @@ export default
   name: 'App',
   data: () => ({
     drawer: null,
-    items: [
+    photos: [
       {
         src: 'https://conceptodefinicion.de/wp-content/uploads/2016/10/Programaci%C3%B3n-Inform%C3%A1tica.jpg'
       },
@@ -18,6 +18,21 @@ export default
       {
         src: 'http://flagshipstore.telefonica.es/WebRoot/acens/Shops/3591595/5AD2/94FF/DFA5/2870/822D/7F00/0001/C558/php_1920x1080.jpg'
       }
+    ],
+    items: [
+      { icon: 'home', text: 'Tasques', url: '/tasks' },
+      {
+        icon: 'keyboard_arrow_up',
+        'icon-alt': 'keyboard_arrow_down',
+        text: 'Tasques segons tipus',
+        model: true,
+        children: [
+          { icon: 'build', text: 'Tasques amb PHP', url: '/tasks' },
+          { icon: 'build', text: 'Tasques amb Vue', url: '/tasks_vue' }
+        ]
+      },
+      { icon: 'help', text: 'Sabem mes', url: '/about' },
+      { icon: 'photo', text: 'Imatges', url: '/contact' }
     ]
   }),
   props: {

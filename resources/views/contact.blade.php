@@ -5,7 +5,7 @@
     <br>
         <v-carousel style="width: 90%; margin-left: 5%;height: 80%;margin-top: -2%;">
             <v-carousel-item
-                    v-for="(item,i) in items"
+                    v-for="(item,i) in photos"
                     :key="i"
                     :src="item.src"
             ></v-carousel-item>
