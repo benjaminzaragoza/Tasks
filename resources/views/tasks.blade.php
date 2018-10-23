@@ -19,9 +19,9 @@
 
                 <v-layout row right xs10>
                     <v-flex p>
-                        <v-btn  fab dark color="light-green accent-4
+                        <v-btn fab dark color="light-green accent-4
 " >
-                            <v-icon dark>add</v-icon>
+                            <v-icon style="margin-top: -11px" dark>add</v-icon>
                             <button>Afegir</button>
                         </v-btn>
                     </v-flex>
