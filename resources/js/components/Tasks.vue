@@ -1,49 +1,111 @@
 <template>
-    <div id="tasks" class=" tasks flex justify-center">
-        <div class="flex flex-col">
-        <h1 class="text-center text-red-light">Tasques({{total}}) </h1>
+    <v-container grid-list-md text-xs-center id="tasks" class="tasks">
+        <v-layout row wrap>
+            <v-flex xs12 justify-center>
+                <v-card>
+                    <v-toolbar  dark color="red dark">
+                        <v-toolbar-title>Tasques ({{total}})</v-toolbar-title>
+                    </v-toolbar>
 
-            <div class="flex-row"  >
-        <form>
-        <input required type="text" placeholder="Nova Tasca" name='name'
-               v-model="newTask" @keyup.enter="add"
-               class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
+                    <v-card-text class="px-0">
+                        <form>
+                            <v-text-field
+                                    label=" Tasca a afeguir"
+                                    type="text"
+                                    v-model="newTask" @keyup.enter="add"
+                                    name="name"
+                                    required>
+                            </v-text-field>
+                            <input type="text"
+                                   v-model="newTask" @keyup.enter="add"
+                                   name="name"
+                                   required
 
-                <div v-if="errorMessage">
-                    Ha succeit un error {{errorMessage}}
-                </div>
-                <button id="button_add_task" @click="add" class="text-center text-red"  >Afegir</button>
-        </form>
-            </div>
-            <!-- -->
-        <div>
-            <div v-for="task in filteredTasks" :key="task.id">
-                <span :id="'task'+ task.id" :class="{ strike: task.completed == '1'}">
-                    <editable-text
-                            :text="task.name" @edited="editName(task, $event)"
-                    ></editable-text>
-                </span>
-                <span :id="'delete_task_' + tasks.id" @click="remove(task)">&#215;</span>
-            </div>
-        </div>
-<!-- -->
-<br>
-            <span id="filters" v-show="total > 0">
-            <h3>Filtros:</h3>
-            <br>
-            Filtre emprat -> {{ filter }}
+                            >
+                            <v-btn id="button_add_task" dark color="green dark" @click="add">Afegir</v-btn>
+                        </form>
 
-            <div>
-                <br>
-                <div><button @click="setFilter('all')">Totes</button></div>
-                <div><button @click="setFilter('completed')">Completades</button></div>
-                <div><button @click="setFilter('active')">Pendents</button></div>
-            </div>
-            </span>
-        </div>
-    </div>
+                        <div v-if="errorMessage">
+                            Ha succeit un error: {{ errorMessage }}
+                        </div>
+                        <v-list dense>
+                            <v-list-tile v-for="task in filteredTasks" :key="task.id">
+                                <v-list-tile-content>
+                                    <v-list-tile-title>
+                                        <span :id="'task' + task.id" :class="{ strike: task.completed }">
+                                        </span>
+                                        <editable-text
+                                                :text="task.name"
+                                                @edited="editName(task, $event)"
+                                        ></editable-text>
+                                    </v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+
+                        <span id="filters" v-show="total > 0">
+                        <h3>Filtros:</h3>
+                        Active filter: {{ filter }}
+                        <ul>
+                            <li><button @click="setFilter('all')">Totes</button></li>
+                            <li><button @click="setFilter('completed')">Completades</button></li>
+                            <li><button @click="setFilter('active')">Pendents</button></li>
+                        </ul>
+    </span>
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
+
 <script>
+// <template>
+//     <div id="tasks" class=" tasks flex justify-center">
+//         <div class="flex flex-col">
+//         <h1 class="text-center text-red-light">Tasques({{total}}) </h1>
+//
+//             <div class="flex-row"  >
+//         <form>
+//         <input required type="text" placeholder="Nova Tasca" name='name'
+//                v-model="newTask" @keyup.enter="add"
+//                class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
+//
+//                 <div v-if="errorMessage">
+//                     Ha succeit un error {{errorMessage}}
+//                 </div>
+//                 <button id="button_add_task" @click="add" class="text-center text-red"  >Afegir</button>
+//         </form>
+//             </div>
+//             <!-- -->
+//         <div>
+//             <div v-for="task in filteredTasks" :key="task.id">
+//                 <span :id="'task'+ task.id" :class="{ strike: task.completed == '1'}">
+//                     <editable-text
+//                             :text="task.name" @edited="editName(task, $event)"
+//                     ></editable-text>
+//                 </span>
+//                 <span :id="'delete_task_' + tasks.id" @click="remove(task)">&#215;</span>
+//             </div>
+//         </div>
+// <!-- -->
+// <br>
+//             <span id="filters" v-show="total > 0">
+//             <h3>Filtros:</h3>
+//             <br>
+//             Filtre emprat -> {{ filter }}
+//
+//             <div>
+//                 <br>
+//                 <div><button @click="setFilter('all')">Totes</button></div>
+//                 <div><button @click="setFilter('completed')">Completades</button></div>
+//                 <div><button @click="setFilter('active')">Pendents</button></div>
+//             </div>
+//             </span>
+//         </div>
+//     </div>
+// </template>
+// <script>
 // <!--Rquire en php -->
 import EditableText from './EditableText'
 var filters = {

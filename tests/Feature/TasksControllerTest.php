@@ -74,7 +74,7 @@ class TasksTest extends TestCase
     /**
      * @test
      */
-    public function can_edit_task()
+    public function can_edit_a_task()
     {
         // 1
         $task = Task::create([
@@ -90,18 +90,16 @@ class TasksTest extends TestCase
 //            $response->assertStatus(200);
         // 2 opcions
 //        $this->assertDatabaseHas('tasks',$newTask);
+//        $this->assertDatabaseMissing('tasks',$task);
         $task = $task->fresh();
         $this->assertEquals($task->name,'Comprar pa');
-        $this->assertEquals($task->completed,1);
-//        $this->assertFalse((boolean) $newTask->completed);
-
+        $this->assertEquals($task->completed,true);
     }
     /**
      * @test
      */
     public function can_edit_a_task_todo_validation()
     {
-        $this->markTestSkipped();
         $this->withoutExceptionHandling();
         // 1
         $task = Task::create([
@@ -113,11 +111,15 @@ class TasksTest extends TestCase
             'completed' => true
         ]);
         $response->assertSuccessful();
-
+//            $response->assertStatus(200);
+        // 2 opcions
+//        $this->assertDatabaseHas('tasks',$newTask);
+//        $this->assertDatabaseMissing('tasks',$task);
         $task = $task->fresh();
         $this->assertEquals($task->name,'Comprar pa');
         $this->assertEquals($task->completed,true);
     }
+
     /**
      * @test
      */

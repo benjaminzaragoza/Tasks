@@ -23,6 +23,10 @@ Route::delete('/v1/tasks/{task}','Api\TasksController@destroy');    // DELETE
 Route::post('/v1/tasks','Api\TasksController@store');               // CREATE
 Route::put('/v1/tasks/{task}','Api\TasksController@update');         // EDIT
 
+// completed tasks
+Route::delete('/v1/completed_task/{task}','Api\CompletedTasksController@destroy');         // EDIT
+Route::post('/v1/completed_task/{task}','Api\CompletedTasksController@store');         // EDIT
+
 //Route::get('/v1/tasks',function (){
 //
 //return App\Task::all();
