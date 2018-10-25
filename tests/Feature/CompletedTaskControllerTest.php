@@ -3,26 +3,27 @@ namespace Tests\Feature;
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-
-class CompletedTaskControllerTest extends TestCase {
+class CompletedTaskControllerTest extends TestCase
+{
     use RefreshDatabase;
     /**
      * @test
      */
     public function can_complete_a_task()
     {
+        $this->withoutExceptionHandling();
         //1
         $task= Task::create([
             'name' => 'comprar pa',
             'completed' => false
         ]);
         //2
-        $response = $this->put('/tasks_completed/' . $task->id);
-
-        //3
+        $response = $this->post('/completed_task/' . $task->id);
+        //3 Dos opcions: 1) Comprovar base de dades directament
+        // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $this->assertEquals($task->completed, true);
+        $this->assertEquals((boolean)$task->completed, true);
     }
     /**
      * @test
@@ -36,29 +37,32 @@ class CompletedTaskControllerTest extends TestCase {
     /**
      * @test
      */
-
     public function can_uncomplete_a_task()
     {
         //1
-        $task= Task::create([
+        $task = Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
         //2
-        $response = $this->put('/tasks_completed/' . $task->id);
-//        $this->assertEquals($task->completed, 1);
-
+        $response = $this->delete('/completed_task/' . $task->id);
+        //3 Dos opcions: 1) Comprovar base de dades directament
+        // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $this->assertEquals($task->completed, 1);
+        $response->assertStatus(302);
+        $this->assertEquals((boolean)$task->completed, false);
     }
     /**
      * @test
      */
     public function cannot_uncomplete_a_unexisting_task()
     {
-
-        $response= $this->delete('/completed_task/1');
+        // 1 -> no cal fer res
+        // 2 Execute
+        $response = $this->delete('/completed_task/1');
+        //3 Assert
         $response->assertStatus(404);
     }
+
 }

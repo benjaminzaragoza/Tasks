@@ -14,14 +14,14 @@ class TasksCompletedController
 {
     public function store(Request $request)
     {
-        $task = Task::findOrFail($request->id);
+        $task = Task::findOrFail($request->task);
         if (!$task->completed = true) $task->completed = true; $task->save();
 //        if (!$task->completed = false) $task->completed = false; $task->save();
         return redirect ('/tasks');
     }
     public function destroy(Request $request)
     {
-        $task = Task::findOrFail($request->id);
+        $task = Task::findOrFail($request->task);
         if (!$task->completed = false) $task->completed = false; $task->save();
         return redirect ('/tasks');
     }

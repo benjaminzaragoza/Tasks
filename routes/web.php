@@ -40,6 +40,6 @@ Route::redirect('/hola','/prova');
 //Route::delete('/uncompleted_task','CompletedTaskController@destroy');
 Route::get('/tasks_vue','TasksVueController@index');
 
-Route::put('/tasks_completed/{id}','TasksCompletedController@store');
-Route::delete('/tasks_uncompleted/{id}','TasksCompletedController@destroy');
+Route::post('/completed_task/{task}','TasksCompletedController@store');
+Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
 
