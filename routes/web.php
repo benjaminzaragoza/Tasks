@@ -1,5 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
+Auth::routes();
+
+//TODO
+Route::post('login_alt','Auth\LoginAltController@login');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +17,7 @@
 |
 */
 // TDD -> TEST DRIVEN DEVELOPMENT
+
 Route::get('/tasks','TasksController@index');
 Route::post('/tasks','TasksController@store');
 Route::delete('/tasks/{id}','TasksController@destroy');
