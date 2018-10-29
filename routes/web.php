@@ -46,7 +46,9 @@ Route::redirect('/hola','/prova');
 //Route::post('/completed_task','CompletedTaskController@store');
 //Route::delete('/uncompleted_task','CompletedTaskController@destroy');
 Route::get('/tasks_vue','TasksVueController@index');
+Route::get('/home','TasksVueController@index');
 
+//Auth::logout();
 Route::post('/completed_task/{task}','TasksCompletedController@store');
 Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
 
