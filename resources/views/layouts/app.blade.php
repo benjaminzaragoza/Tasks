@@ -89,8 +89,8 @@
         </v-avatar>
         <v-form action="logout" method="POST" >
             @csrf
-            <v-btn color="cyan" type="submit">
-                Logout
+            <v-btn color="cyan" type="submit" fab small dark>
+                <v-icon >exit_to_app</v-icon>
             </v-btn>
         </v-form>
     </v-toolbar>

@@ -6,6 +6,7 @@ import './bootstrap'
 import AppComponent from './components/App.vue'
 import ExempleComponent from './components/ExampleComponent.vue'
 import tasks from './components/Tasks.vue'
+import LoginForm from './components/LoginForm.vue'
 window.Vue = Vue
 window.Vue.use(Vuetify)
 
@@ -18,6 +19,8 @@ window.Vue.use(Vuetify)
 
 window.Vue.component('example-component', ExempleComponent)
 window.Vue.component('tasks', tasks)
+window.Vue.component('login-form', LoginForm)
+
 
 // const app = new Vue({
 //     el: '#app'
