@@ -21,7 +21,6 @@ window.Vue.component('example-component', ExempleComponent)
 window.Vue.component('tasks', tasks)
 window.Vue.component('login-form', LoginForm)
 
-
 // const app = new Vue({
 //     el: '#app'
 
