@@ -6,6 +6,8 @@ Auth::routes();
 
 //TODO
 Route::post('login_alt','Auth\LoginAltController@login');
+Route::post('/register_alt', 'Auth\RegisterAltController@store');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,3 +56,5 @@ Route::post('/completed_task/{task}','TasksCompletedController@store');
 Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
 
 Route::get('/tags', 'TagController@index');
+
+
