@@ -27,6 +27,12 @@ Route::put('/v1/tasks/{task}','Api\TasksController@update');         // EDIT
 Route::delete('/v1/completed_task/{task}','Api\CompletedTasksController@destroy');         // EDIT
 Route::post('/v1/completed_task/{task}','Api\CompletedTasksController@store');         // EDIT
 
+Route::get('/v1/tags', 'Api\TagController@index');
+Route::post('/v1/tags', 'Api\TagController@store');
+Route::get('/v1/tags/{tag}', 'Api\TagController@show');
+Route::put('/v1/tags/{tag}', 'Api\TagController@update');
+Route::delete('/v1/tags/{tag}', 'Api\TagController@destroy');
+
 //Route::get('/v1/tasks',function (){
 //
 //return App\Task::all();

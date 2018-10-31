@@ -32,7 +32,8 @@ export default
         ]
       },
       { icon: 'help', text: 'Sabem mes', url: '/about' },
-      { icon: 'photo', text: 'Imatges', url: '/contact' }
+      { icon: 'photo', text: 'Imatges', url: '/contact' },
+      { icon: 'tag', text: 'tags', url: '/tags' }
     ]
   }),
   props: {

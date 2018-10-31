@@ -33,6 +33,7 @@ Route::get('/about',function(){
     return view('/about');
 });
 Route::view('/contact','contact');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -52,3 +53,4 @@ Route::get('/home','TasksVueController@index');
 Route::post('/completed_task/{task}','TasksCompletedController@store');
 Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
 
+Route::get('/tags', 'TagController@index');
