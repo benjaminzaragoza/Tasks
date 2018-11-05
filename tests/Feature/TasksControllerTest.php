@@ -2,11 +2,13 @@
 // PSR-4
 namespace Tests\Feature;
 use App\Task;
+use App\User;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase,CanLogin;
     /**
      * @test
      */
@@ -15,6 +17,9 @@ class TasksTest extends TestCase
 //        $this->withoutExceptionHandling();
         //1 Prepare
         create_example_tasks();
+        $this->login();
+//        $this->actingAs($user,'api');
+
 //        dd(Task::find(1));
         // 2 execute
         $response = $this->get('/tasks');
@@ -33,6 +38,8 @@ class TasksTest extends TestCase
      */
     public function can_store_task()
     {
+        $this->login();
+
         $response = $this->post('/tasks',[
             'name' => 'Comprar llet'
         ]);
@@ -44,6 +51,8 @@ class TasksTest extends TestCase
      */
     public function cannnot_delete_an_unexisting_task()
     {
+        $this->login();
+
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
     }
@@ -62,6 +71,8 @@ class TasksTest extends TestCase
     {
         $this->withoutExceptionHandling();
         // 1
+        $this->login();
+
         $task = Task::create([
             'name' => 'Comprar llet'
         ]);
@@ -77,6 +88,8 @@ class TasksTest extends TestCase
     public function can_edit_a_task()
     {
         // 1
+        $this->login();
+
         $task = Task::create([
             'name' => 'asdasdasd',
             'completed' => '0'
@@ -100,6 +113,8 @@ class TasksTest extends TestCase
      */
     public function can_edit_a_task_todo_validation()
     {
+        $this->login();
+
         $this->markTestSkipped('TODO');
         $this->withoutExceptionHandling();
         // 1
@@ -126,6 +141,8 @@ class TasksTest extends TestCase
      */
     public function cannot_edit_an_unexisting_task()
     {
+        $this->login();
+
 //        $this->withoutExceptionHandling();
         // TDD CompletedTaskControllerTest Driven Development ->
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
@@ -140,6 +157,8 @@ class TasksTest extends TestCase
     public function can_show_edit_form()
     {
         // 1
+        $this->login();
+
         $task = Task::create([
             'name' => 'Comprar pa',
             'completed' => false
@@ -153,10 +172,13 @@ class TasksTest extends TestCase
      */
     public function cannot_show_edit_form_unexisting_task()
     {
+        $this->login();
+
 //        $this->withoutExceptionHandling();
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }
+
 
 }
 //Class CompletedTaskController{

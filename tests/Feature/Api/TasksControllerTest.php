@@ -3,10 +3,11 @@
 namespace Tests\Feature\Api;
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 class TasksControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase,CanLogin;
     // CRUD -> CRU -> CREATE RETRIEVE UPDATE DELETE
     // BREAD -> PA -> BROWSE READ EDIT ADD DELETE
     /**
@@ -14,6 +15,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_show_a_task()
     {
+        $this->login('api');
+
         // 1
         $task = factory(Task::class)->create();
         // 2
@@ -29,6 +32,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_delete_task()
     {
+        $this->login('api');
+
         // 1
         $task = factory(Task::class)->create();
         // 2
@@ -45,6 +50,8 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_create_tasks_without_name()
     {
+        $this->login('api');
+
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => ''
         ]);
@@ -57,6 +64,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_create_task()
     {
+        $this->login('api');
+
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa'
         ]);
@@ -72,6 +81,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_list_tasks()
     {
+        $this->login('api');
+
         //1
         create_example_tasks();
         $response = $this->json('GET','/api/v1/tasks');
@@ -90,6 +101,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_edit_task()
     {
+        $this->login('api');
+
         // 1
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
@@ -112,6 +125,8 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_edit_task_without_name()
     {
+        $this->login('api');
+
         // 1
         $oldTask = factory(Task::class)->create();
         // 2

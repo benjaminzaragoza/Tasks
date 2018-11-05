@@ -1,4 +1,7 @@
 <?php
+
+use App\Task;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 class TasksVueControllerTest extends TestCase{
@@ -8,18 +11,22 @@ class TasksVueControllerTest extends TestCase{
      */
     public function can_show_vue_tasks ()
     {
-        create_example_tasks();
-        $this->withoutExceptionHandling();
-        //1 prepare
-        create_example_tasks();
-        //2 execute
-        $response = $this->get('/tasks_vue');
-        //3 assert
-        $response->assertSuccessful();
+        $this->login();
 
+        // Prepare
+        create_example_tasks();
+        // Execute
+        $response = $this->get('/tasks_vue');
+        // Assert
+        $response->assertSuccessful();
         $response->assertViewIs('tasks_vue');
-        $response->assertViewHas('tasks',[]);
+        $response->assertViewHas('tasks',Task::all());
 
 //        $this->assertSee('comprar pa');
+    }
+    public function login(): void
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
     }
 }
