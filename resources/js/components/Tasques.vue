@@ -1,5 +1,18 @@
 <template>
 <span>
+    <v-dialog v-model="deleteDialog">
+        <v-card>TODO DELETE DIALOG</v-card>
+    </v-dialog>
+        <v-dialog v-model="createDialog" fullscreen>
+            <v-card>TODO CREATE DIALOG</v-card>
+        </v-dialog>
+
+    <v-snackbar :timeout="3000" color="success" v-model="snackbar">
+        Aixo es un snack
+        <v-btn dark flat @click="snackbar=false">
+            <v-icon>close</v-icon>
+        </v-btn>
+    </v-snackbar>
     <v-toolbar color="pink darken-2">
         <v-menu>
             <v-btn icon slot="activator" class="white--text">
@@ -23,19 +36,43 @@
             <v-icon>refresh</v-icon>
         </v-btn>
     </v-toolbar>
-    <v-card>
+        <v-card>
         <v-card-title>
-            TODO FILTRES
+            <v-layout>
+                <v-flex xs7 class="mr-2">
+                    <v-select
+                            label="Filtres"
+                            :items="filters"
+                            v-models="filter"
+                    ></v-select>
+                </v-flex>
+                <v-flex xs7 class="mr-2">
+                    <v-select
+                            label="User"
+                            :items="users"
+                            v-models="user"
+                            clearable
+                    ></v-select>
+                </v-flex>
+                <v-flex xs5>
+                    <v-text-field
+                            append-icon="search"
+                            label="Buscar"
+                            v-model="search"
+                    ></v-text-field>
+                </v-flex>
+            </v-layout>
         </v-card-title>
-        CONTENT
         <v-data-table
                 :headers="headers"
                 :items="dataTasks"
+                :search="search"
                 no-results-text="No s'ha trobat cap registre"
                 no-data-text="No hiha dades disponibles"
                 rows-per-page-text="Tasques per pagina"
                 :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
                 :loading="loading"
+                :pagination.sync="pagination"
         >
             <v-progress-linear slot="progress" color="pink" indeterminate></v-progress-linear>
             <template slot="items" slot-scope="{item: task}">
@@ -47,16 +84,20 @@
                     <td v-text="task.created_at"></td>
                     <td v-text="task.updated_at"></td>
                     <td>
-                        <v-btn icon  title="Mostrar la tasca"
+                        <v-btn icon title="Mostrar la snackbar"
+                               @click="snackbar=true">
+                            <v-icon color="orange">verified_user</v-icon>
+                        </v-btn>
+                        <v-btn icon title="Mostrar la tasca"
                                @click="show(task)">
                             <v-icon color="cyan">remove_red_eye</v-icon>
                         </v-btn>
-                        <v-btn icon  title="Actualizar la tasca"
+                        <v-btn icon title="Actualizar la tasca"
                                @click="update(task)">
                             <v-icon color="green">autorenew</v-icon>
                         </v-btn>
-                        <v-btn icon  title="Eliminar la tasca"
-                        @click="destroy(task)">
+                        <v-btn icon title="Eliminar la tasca"
+                               @click="showDestroy(task)">
                             <v-icon color="red">delete</v-icon>
                         </v-btn>
                     </td>
@@ -64,14 +105,14 @@
             </template>
         </v-data-table>
         <v-btn
-        @click="showCreateDialog"
-        fab
-        bottom
-        right
-        fixed
-        large
-        color="orange"
-        class="white--text"
+                @click="showCreate"
+                fab
+                bottom
+                right
+                fixed
+                large
+                color="pink accent-3"
+                class="white--text"
         >
             <v-icon>add</v-icon>
         </v-btn>
@@ -84,6 +125,25 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      createDialog: false,
+      deleteDialog: false,
+      snackbar: 'true',
+      user: '',
+      users: [
+        'Sergi Tur',
+        'Benjamin Zaragoza',
+        'Paco'
+      ],
+      filter: 'Totes',
+      filters: [
+        'Totes',
+        'Completades',
+        'Pendets'
+      ],
+      search: '',
+      pagination: {
+        rowsPerPage: 25
+      },
       loading: false,
       dataTasks: [
         {
@@ -126,8 +186,14 @@ export default {
     opcio1 () {
       console.log('todo')
     },
+    showDestroy (task) {
+      this.deleteDialog = true
+    },
     destroy (task) {
       console.log('todo delete' + task.id)
+    },
+    showCreate (task) {
+      this.createDialog=true
     },
     create (task) {
       console.log('todo create')
@@ -140,12 +206,11 @@ export default {
     },
     refresh () {
       this.loading = true
-      setTimeout(() => { this.loading = false }, 5000)
+      setTimeout(() => {
+        this.loading = false
+      }, 5000)
       // todo axios
       console.log('todo refresh')
-    },
-    showCreateDialog () {
-      console.log('todo create dialog')
     }
 
   }
