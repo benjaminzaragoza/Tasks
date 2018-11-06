@@ -22,6 +22,8 @@ Route::view('/contact','contact');
 Route::post('/completed_task/{task}','TasksCompletedController@store');
 Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
 Route::get('/tasks_vue','TasksVueController@index');
+Route::get('/tasques','TasquesController@index');
+
 Route::get('/home','TasksVueController@index');
 });
 

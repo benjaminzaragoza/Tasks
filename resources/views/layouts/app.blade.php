@@ -134,27 +134,3 @@
 
 </body>
 </html>
-<script>
-  import VList from "vuetify/lib/components/VList/VList"
-  export default {
-    components: {VList}
-  }
-</script>
-<script>
-  import VListTile from "vuetify/lib/components/VList/VListTile"
-  export default {
-    components: {VListTile}
-  }
-</script>
-<script>
-  import VListTile from "vuetify/lib/components/VList/VListTile"
-  export default {
-    components: {VListTile}
-  }
-</script>
-<script>
-  import VListTileAction from "vuetify/src/components/VList/VListTileAction"
-  export default {
-    components: {VListTileAction}
-  }
-</script>

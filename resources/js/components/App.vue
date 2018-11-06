@@ -28,12 +28,13 @@ export default
         model: true,
         children: [
           { icon: 'build', text: 'Tasques amb PHP', url: '/tasks' },
-          { icon: 'build', text: 'Tasques amb Vue', url: '/tasks_vue' }
+          { icon: 'build', text: 'Tasques  tailwind', url: '/tasks_vue' },
+          { icon: 'build', text: 'Tasques', url: '/tasques' }
         ]
       },
       { icon: 'help', text: 'Sabem mes', url: '/about' },
       { icon: 'photo', text: 'Imatges', url: '/contact' },
-      { icon: 'tag', text: 'tags', url: '/tags' }
+      { icon: 'build', text: 'tags', url: '/tags' }
     ]
   }),
   props: {
