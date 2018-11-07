@@ -37,7 +37,9 @@ class TaskTest extends TestCase
             'name' => 'Comprar pa'
         ]);
         $tag = Tag::create([
-            'name' => 'home'
+            'name' => 'home',
+            'description' => 'hola2',
+            'color' => 'blau'
         ]);
         // execució
         $task->addTag($tag);
@@ -56,13 +58,19 @@ class TaskTest extends TestCase
             'name' => 'Comprar pa'
         ]);
         $tag1 = Tag::create([
-            'name' => 'home'
+            'name' => 'home',
+            'description' => 'hola2',
+            'color' => 'blau'
         ]);
         $tag2 = Tag::create([
-            'name' => 'work'
+            'name' => 'work',
+            'description' => 'work2',
+            'color' => 'blau'
         ]);
         $tag3 = Tag::create([
-            'name' => 'studies'
+            'name' => 'studies',
+            'description' => 'w2',
+            'color' => 'blau'
         ]);
         $tags = [$tag1, $tag2, $tag3];
         // execució
@@ -134,15 +142,20 @@ class TaskTest extends TestCase
     public function map()
     {
         //preparar
-        $task = factory(Task::class)->create([
-       ]);
+        $user = factory(User::class)->create();
+        $task=Task::create([
+            'name'=>'Comprar pa',
+            'completed'=>false,
+            'user_id'=>$user->id
+        ]);
         //executar
-        $newTask = $task->map();
-        $this->assertEquals($task->id,$newTask['id']);
-        $this->assertEquals($task->name,$newTask['name']);
-        $this->assertEquals($task->completed,$newTask['completed']);
-        $this->assertEquals($task->user_id,$newTask['user_id']);
-        $this->assertEquals($task->user_name,$newTask['user_name']);
-
+        $mappedTask = $task->map();
+        $this->assertEquals($mappedTask['id'],1);
+        $this->assertEquals($mappedTask['name'],'Comprar pa');
+        $this->assertEquals($mappedTask['completed'],false);
+        $this->assertEquals($mappedTask['user_id'],$user->id);
+        $this->assertEquals($mappedTask['user_name'],$user->name);
+        $this->assertEquals($mappedTask['user_email'],$user->email);
+        $this->assertTrue($user->is($mappedTask['user']));
     }
 }

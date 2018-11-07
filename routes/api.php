@@ -29,11 +29,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 
-Route::get('/v1/tags', 'Api\TagController@index');
-Route::post('/v1/tags', 'Api\TagController@store');
-Route::get('/v1/tags/{tag}', 'Api\TagController@show');
-Route::put('/v1/tags/{tag}', 'Api\TagController@update');
-Route::delete('/v1/tags/{tag}', 'Api\TagController@destroy');
+Route::get('/v1/tags', 'Api\TagsController@index');
+Route::post('/v1/tags', 'Api\TagsController@store');
+Route::get('/v1/tags/{tag}', 'Api\TagsController@show');
+Route::put('/v1/tags/{tag}', 'Api\TagsController@update');
+Route::delete('/v1/tags/{tag}', 'Api\TagsController@destroy');
 
 //Route::get('/v1/tasks',function (){
 //

@@ -37,6 +37,6 @@ Route::get('/', function () {
 
 
 
-Route::get('/tags', 'TagController@index');
+Route::get('/tags', 'TagsController@index');
 
 

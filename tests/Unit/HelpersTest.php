@@ -24,9 +24,9 @@ class HelpersTest extends TestCase
     public function create_primary_user()
     {
         create_primary_user();
-        $user = User::where('email','benjaminzaragoza@gmail.com')->first();
+        $user = User::where('email','benjaminzaragoza@iesebre.com')->first();
         $this->assertEquals($user->name, 'Benjamin Zaragoza Pla');
-        $this->assertEquals($user->email, 'benjaminzaragoza@gmail.com');
+        $this->assertEquals($user->email, 'benjaminzaragoza@iesebre.com');
         $this->assertTrue(Hash::check(env('PRIMARY_USER_PASSWORD','123456'), $user->password));
     }
 

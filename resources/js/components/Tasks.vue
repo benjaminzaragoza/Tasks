@@ -7,7 +7,7 @@
                         <v-toolbar-title>Tasques ({{total}})</v-toolbar-title>
                     </v-toolbar>
 
-                    <v-card-text class="px-0">
+                    <v-card-text class="px-0" style="width: 502px;">
                         <form>
                             <v-text-field
                                     label=" Tasca a afeguir"
@@ -16,13 +16,8 @@
                                     name="name"
                                     required>
                             </v-text-field>
-                            <input type="text"
-                                   v-model="newTask" @keyup.enter="add"
-                                   name="name"
-                                   required
 
-                            >
-                            <v-btn id="button_add_task" dark color="green dark" @click="add">Afegir</v-btn>
+                            <v-btn id="button_add_task" style="margin-right: -70%;" dark color="green dark" @click="add">Afegir</v-btn>
                         </form>
 
                         <div v-if="errorMessage">
@@ -47,9 +42,9 @@
                         <h3>Filtros:</h3>
                         Active filter: {{ filter }}
                         <ul>
-                            <li><button @click="setFilter('all')">Totes</button></li>
-                            <li><button @click="setFilter('completed')">Completades</button></li>
-                            <li><button @click="setFilter('active')">Pendents</button></li>
+                            <li style=" text-align: left; "><button @click="setFilter('all')">Totes</button></li>
+                            <li style=" text-align: left; "><button @click="setFilter('completed')">Completades</button></li>
+                            <li style=" text-align: left; "><button @click="setFilter('active')">Pendents</button></li>
                         </ul>
     </span>
                     </v-card-text>
