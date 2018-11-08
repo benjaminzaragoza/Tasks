@@ -4,7 +4,6 @@
 
     <v-app light>
     <v-toolbar class="white">
-        <v-toolbar-title>title</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn href="/login" color="primary" small>login</v-btn>
         <v-btn href="/register" color="primary" small>Register</v-btn>
