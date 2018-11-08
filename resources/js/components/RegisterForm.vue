@@ -1,6 +1,6 @@
 <template>
     <v-form action="/register" method="post">
-        <v-toolbar dark color="blue">
+        <v-toolbar dark color="primary">
             <v-toolbar-title>Register Form</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
@@ -14,7 +14,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn dark color="blue" type="submit" :disabled="$v.$invalid" >Register</v-btn>
+            <v-btn dark color="primary" type="submit" :disabled="$v.$invalid" >Register</v-btn>
         </v-card-actions>
     </v-form>
 </template>

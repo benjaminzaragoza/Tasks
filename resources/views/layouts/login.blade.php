@@ -11,9 +11,9 @@
 </head>
 <body>
 <div id="app">
-    <v.app>
+    <v-app>
 @yield('content')
-        </v.app>
+        </v-app>
 </div>
 <script src="{{mix('/js/app.js')}}"></script>
 </body>
