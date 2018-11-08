@@ -8,6 +8,8 @@ import ExempleComponent from './components/ExampleComponent.vue'
 import tasks from './components/Tasks.vue'
 import Tasques from './components/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
+
 window.Vue = Vue
 window.Vue.use(Vuetify)
 
@@ -21,6 +23,7 @@ window.Vue.use(Vuetify)
 window.Vue.component('example-component', ExempleComponent)
 window.Vue.component('tasks', tasks)
 window.Vue.component('tasques', Tasques)
+window.Vue.component('register-form', RegisterForm)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))

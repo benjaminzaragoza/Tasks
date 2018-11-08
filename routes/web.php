@@ -6,7 +6,8 @@ Auth::routes();
 
 //TODO
 Route::post('login_alt','Auth\LoginAltController@login');
-Route::post('/register_alt', 'Auth\RegisterAltController@store');
+//Route::post('/register_alt', 'Auth\RegisterAltController@store');
+Route::post('/register_alt','Auth\RegisterAltController@register');
 
 //middleware
 Route::middleware(['auth'])->group(function (){

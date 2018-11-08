@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginAltController
 {
-//    public function login(LoginRequest)
-//    {
-//
-//    }
     public function login(Request $request)
     {
 //       $request->email
