@@ -30,7 +30,7 @@ export default {
     password: { required, minLength: minLength(6) },
     password_confirmation: { sameAsPassword: sameAs('password') }
   },
-  name: 'LoginForm',
+  name: 'RegisterForm',
   data () {
     return {
       dataEmail: this.email,
