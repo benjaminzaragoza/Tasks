@@ -70,7 +70,7 @@ if(!function_exists('drop_mysql_database')){
     }
 }
 if(!function_exists('create_mysql_user')){
-    function create_mysql_database($name,$password=null,$host='localhost'){
+    function create_mysql_user($name,$password=null,$host='localhost'){
         if(!$password)$password=str_random();
         $statement="CREATE USER IF NOT EXISTS {$name}@{$host}";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
