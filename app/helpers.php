@@ -3,6 +3,8 @@
 use App\Tag;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\DB;
+
 if (!function_exists('create_primary_user')) {
     function create_primary_user() {
         $user = User::where('email', 'sergiturbadenas@gmail.com')->first();
@@ -49,5 +51,13 @@ if (!function_exists('create_example_tags')) {
             'description'=>'hola que fatal',
             'color'=>'roig'
         ]);
+    }
+}
+if(!function_exists('create_mysql_database')){
+    function create_mysql_database($name){
+        //PDO
+        //MYSQL: create database if not exists $name
+        $statement="CREATE DATABASE IF NOT EXISTS $name";
+        DB::connection('mysqlroot')->getPdo()->exec($statement);
     }
 }

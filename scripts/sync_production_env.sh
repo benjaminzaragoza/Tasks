@@ -1,0 +1,1 @@
+scp /home/benjamin/Code/benjaminzaragoza/tasks/.env.production tasks2DAM:/home/forge/tasks.benjaminzaragoza.scool.cat/.env
