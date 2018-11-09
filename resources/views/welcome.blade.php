@@ -14,7 +14,7 @@
                 <v-layout column align-center justify-center class="white--text">
 
                     <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                    <h1 class="white--text mb-2 display-1 text-xs-center">Benjamin Template</h1>
+                    <h1 class="white--text mb-2 display-1 text-xs-center">Paco Template</h1>
                     <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
                     <v-btn
                             class="blue lighten-2 mt-5"
