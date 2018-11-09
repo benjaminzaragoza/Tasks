@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoggedUserTasksController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 //        return Task::where('user_id',Auth::user()->id);
         return Auth::user()->tasks;

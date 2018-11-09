@@ -43,14 +43,14 @@
                     <v-select
                             label="Filtres"
                             :items="filters"
-                            v-models="filter"
+                            v-model="filter"
                     ></v-select>
                 </v-flex>
                 <v-flex xs7 class="mr-2">
                     <v-select
                             label="User"
                             :items="users"
-                            v-models="user"
+                            v-model="user"
                             clearable
                     ></v-select>
                 </v-flex>
@@ -145,32 +145,7 @@ export default {
         rowsPerPage: 25
       },
       loading: false,
-      dataTasks: [
-        {
-          id: 1,
-          name: 'Comprar pa',
-          completed: false,
-          user_id: 1,
-          created_at: 'fa 1 minut',
-          updated_at: 'fa 1 minut'
-        },
-        {
-          id: 2,
-          name: 'Comprar llet',
-          completed: false,
-          user_id: 1,
-          created_at: 'fa 1 minut',
-          updated_at: 'fa 1 minut'
-        },
-        {
-          id: 3,
-          name: 'Estudiar PHP',
-          completed: true,
-          user_id: 2,
-          created_at: 'fa 1 minut',
-          updated_at: 'fa 1 minut'
-        }
-      ],
+      dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
@@ -182,37 +157,49 @@ export default {
       ]
     }
   },
+  props: {
+    tasks: {
+      type: Array,
+      required: true
+    }
+  },
   methods: {
     opcio1 () {
-      console.log('todo')
+      console.log('Todo Opcio')
     },
     showDestroy (task) {
       this.deleteDialog = true
+      console.log('Todo delete task' + task.id)
     },
     destroy (task) {
-      console.log('todo delete' + task.id)
+      console.log('Todo delete task' + task.id)
     },
     showCreate (task) {
-      this.createDialog=true
+      this.deleteDialog = true
+      this.deleteDialog = true
+      console.log('Todo delete task')
     },
     create (task) {
-      console.log('todo create')
+      console.log('Todo delete task')
     },
     update (task) {
-      console.log('todo update' + task.id)
+      console.log('Todo update task' + task.id)
     },
     show (task) {
-      console.log('todo show' + task.id)
+      console.log('Todo show task' + task.id)
     },
     refresh () {
       this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 5000)
-      // todo axios
-      console.log('todo refresh')
+      // setTimeout(() => { this.loading = false }, 5000)
+      window.axios.get('/api/v1/user/tasks').then(response => {
+        //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
+        this.dataTasks = response.data
+      }).catch(error => {
+        console.log(error)
+        // SHOW SNACKBAR ERROR TODO
+      })
     }
-
   }
 }
+
 </script>
