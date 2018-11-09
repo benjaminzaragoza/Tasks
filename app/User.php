@@ -38,4 +38,8 @@ class User extends Authenticatable
     {
         $this->tasks()->save($task);
     }
+    public function addTasks($tasks)
+    {
+        $this->tasks()->saveMany($tasks);
+    }
 }

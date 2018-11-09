@@ -26,6 +26,7 @@ Route::get('/tasks_vue','TasksVueController@index');
 Route::get('/tasques','TasquesController@index');
 
 Route::get('/home','TasksVueController@index');
+Route::get('/user/tasks','LoggedUserTasksController@index');
 });
 
 

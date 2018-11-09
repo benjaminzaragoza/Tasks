@@ -35,7 +35,7 @@ Route::get('/v1/tags/{tag}', 'Api\TagsController@show');
 Route::put('/v1/tags/{tag}', 'Api\TagsController@update');
 Route::delete('/v1/tags/{tag}', 'Api\TagsController@destroy');
 
-//Route::get('/v1/tasks',function (){
+Route::get('/v1/user/tasks','Api\LoggedUserTasksController@index');//Route::get('/v1/tasks',function (){
 //
 //return App\Task::all();
 //});
