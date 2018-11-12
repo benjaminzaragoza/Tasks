@@ -3,8 +3,10 @@
 namespace Tests\Feature\Api;
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Gate;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
+
 class TasksControllerTest extends TestCase
 {
     use RefreshDatabase,CanLogin;
@@ -64,8 +66,15 @@ class TasksControllerTest extends TestCase
      */
     public function can_create_task()
     {
-        $this->login('api');
+        $user = $this->login('api');
 
+        //todo assing permisions to user
+        $user->givePermissionTo('task.store');
+
+//        Gate::define('task.store',function($user){
+////            return$user->name=== 'Benjamin zaragoza';
+//
+//        });
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa'
         ]);

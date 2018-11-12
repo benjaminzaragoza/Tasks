@@ -4,7 +4,7 @@
             <v-flex xs12 justify-center>
                 <v-card>
                     <v-toolbar  dark color="red dark">
-                        <v-toolbar-title>Tasques ({{total}})</v-toolbar-title>
+                        <v-toolbar-title style="margin-left: 40%">Tasques ({{total}})</v-toolbar-title>
                     </v-toolbar>
 
                     <v-card-text class="px-0" style="width: 502px;">
@@ -33,6 +33,12 @@
                                                 :text="task.name"
                                                 @edited="editName(task, $event)"
                                         ></editable-text>
+                                        <svg :id="'deleteTask' + task.id" xmlns="http://www.w3.org/2000/svg"
+                                             @click="remove(task)"
+                                             class="h-3 w-3 cursor-pointer ml-2 fill-current text-red"
+                                             viewBox="0 0 20 20">
+                                            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z"/>
+                                        </svg>
                                     </v-list-tile-title>
                                 </v-list-tile-content>
                             </v-list-tile>

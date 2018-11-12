@@ -27,6 +27,9 @@ Route::get('/tasques','TasquesController@index');
 
 Route::get('/home','TasksVueController@index');
 Route::get('/user/tasks','LoggedUserTasksController@index');
+
+    Route::get('/tags', 'TagsVueController@index');
+
 });
 
 
@@ -35,6 +38,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tags', 'Api\TagsController@index');
 
 
