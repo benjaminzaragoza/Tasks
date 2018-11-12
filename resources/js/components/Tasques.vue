@@ -1,8 +1,29 @@
 <template>
 <span>
-    <v-dialog v-model="deleteDialog">
-        <v-card>TODO DELETE DIALOG</v-card>
-    </v-dialog>
+            <v-dialog v-model="deleteDialog" width="500">
+                <v-card>
+                    <v-card-title class="headline">Esteu segurs?</v-card-title>
+
+                <v-card-text>
+                    Aquesta operació no es pot desfer.
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                      <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
+                        Cancel·lar
+                      </v-btn>
+
+                      <v-btn
+                              color="error darken-1"
+                              flat="flat"
+                              @click="destroy"
+                      >
+                        Confirmar
+                      </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
         <v-dialog v-model="createDialog" fullscreen>
             <v-card>TODO CREATE DIALOG</v-card>
         </v-dialog>
@@ -84,19 +105,19 @@
                     <td v-text="task.created_at"></td>
                     <td v-text="task.updated_at"></td>
                     <td>
-                        <v-btn icon title="Mostrar la snackbar"
+                        <v-btn icon flat title="Mostrar la snackbar"
                                @click="snackbar=true">
                             <v-icon color="orange">verified_user</v-icon>
                         </v-btn>
-                        <v-btn icon title="Mostrar la tasca"
+                        <v-btn icon flat title="Mostrar la tasca"
                                @click="show(task)">
                             <v-icon color="cyan">remove_red_eye</v-icon>
                         </v-btn>
-                        <v-btn icon title="Actualizar la tasca"
+                        <v-btn icon flat title="Actualizar la tasca"
                                @click="update(task)">
                             <v-icon color="green">autorenew</v-icon>
                         </v-btn>
-                        <v-btn icon title="Eliminar la tasca"
+                        <v-btn icon flat title="Eliminar la tasca"
                                @click="showDestroy(task)">
                             <v-icon color="red">delete</v-icon>
                         </v-btn>
@@ -160,7 +181,7 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: true
+      required: false
     }
   },
   methods: {
@@ -175,8 +196,7 @@ export default {
       console.log('Todo delete task' + task.id)
     },
     showCreate (task) {
-      this.deleteDialog = true
-      this.deleteDialog = true
+      this.createDialog = true
       console.log('Todo delete task')
     },
     create (task) {

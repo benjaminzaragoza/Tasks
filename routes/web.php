@@ -35,10 +35,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
-
-Route::get('/tags', 'TagsController@index');
+Route::get('/tags', 'Api\TagsController@index');
 
 
