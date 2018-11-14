@@ -27,14 +27,14 @@ export default
         text: 'Tasques segons tipus',
         model: true,
         children: [
-          { icon: 'build', text: 'Tasques amb PHP', url: '/tasks' },
-          { icon: 'build', text: 'Tasques  tailwind', url: '/tasks_vue' },
-          { icon: 'build', text: 'Tasques', url: '/tasques' }
+          { icon: 'assignment_turned_in', text: 'Tasques amb PHP', url: '/tasks' },
+          { icon: 'assignment', text: 'Tasques tamb Tailwind', url: '/tasks_vue' },
+          { icon: 'insert_chart', text: 'Tasques amb Vue', url: '/tasques' }
         ]
       },
+      { icon: 'local_offer', text: 'Tags', url: '/tags' },
       { icon: 'help', text: 'Sabem mes', url: '/about' },
-      { icon: 'photo', text: 'Imatges', url: '/contact' },
-      { icon: 'build', text: 'tags', url: '/tags' }
+      { icon: 'photo', text: 'Imatges', url: '/contact' }
     ]
   }),
   props: {

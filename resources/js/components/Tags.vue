@@ -2,28 +2,142 @@
     <v-container grid-list-md text-xs-center id="tags" class="tags">
         <v-layout row wrap>
             <v-flex xs12 justify-center>
-                <v-dialog v-model="createDialog" fullscreen>
+                <v-dialog v-model="deleteDialog" width="400">
                     <v-card>
-                        <v-toolbar>
-                        </v-toolbar>
+                        <v-card-title class="headline">Voleu borrar el tag {{this.tagToDelete.name}}?</v-card-title>
                         <v-card-text>
-                            <v-container>
-                                <v-layout row>
-                                    <v-flex>
-                                        <v-text-field v-model="newTag.name" label="Name"></v-text-field>
-                                        <v-text-field v-model="newTag.description" label="Description"></v-text-field>
-                                        <v-text-field v-model="newTag.color" label="Color"></v-text-field>
+                            Aquesta operació no es pot desfer.
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
+                                Cancel·lar
+                            </v-btn>
+                            <v-btn color="red darken-1" dark @click="destroy()">
+                            Confirmar
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="createDialog" max-width="600px">
+                    <v-card>
+                        <v-toolbar dark color="pink">
+                            <v-icon>local_offer</v-icon>
+                            <v-toolbar-title>NOU TAG</v-toolbar-title>
 
-                                        <v-btn id="button_add_task" style="margin-right: -70%;" dark color="green dark" @click="add" >Afegir</v-btn>
+                        </v-toolbar>
+                        <v-spacer></v-spacer>
 
+                        <v-card-text>
+                            <v-container grid-list-md>
+                                <v-layout wrap>
+                                    <v-flex xs12>
+                                        <v-text-field prepend-icon="local_offer" v-model="newTag.name" label="Nom"></v-text-field>
                                     </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field prepend-icon="color_lens" v-model="newTag.color" label="Color"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+
+                                        <v-textarea prepend-icon="description" v-model="newTag.description" label="Descripcio"></v-textarea>
+                                    </v-flex>
+
                                 </v-layout>
                             </v-container>
                         </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" flat @click="createDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
+                                Close</v-btn>
+                            <v-btn id="button_add_task" dark color="green dark" flat @click="add">
+                                <v-icon class="mr-2">save</v-icon>
+                                Save</v-btn>
+                        </v-card-actions>
                     </v-card>
                 </v-dialog>
+                <v-dialog v-model="showDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="showDialog=false">
+                    <v-toolbar color="green" class="white--text">
+                        <v-btn flat icon class="white--text" @click="showDialog=false">
+                            <v-icon >close</v-icon>
+                        </v-btn>
+                        <v-card-title class="headline">Mostrar tag</v-card-title>
+                        <v-icon class="white--text">local_offer</v-icon>
+
+                        <v-spacer></v-spacer>
+                        <v-btn flat class="white--text" @click="showDialog=false">
+                            <v-icon class="mr-2">exit_to_app</v-icon>
+                            Sortir
+                        </v-btn>
+                        <v-btn flat class="white--text">
+                            <v-icon class="mr-2">save</v-icon>
+                            Guardar
+                        </v-btn>
+                    </v-toolbar>
+                    <v-card>
+                        <v-card-text>
+                            <v-form>
+                                <v-text-field prepend-icon="local_offer" v-model="name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
+                                <v-text-field prepend-icon="color_lens" v-model="name" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                <v-textarea prepend-icon="description" v-model="description" label="Descripció"></v-textarea>
+                                <div class="text-xs-center">
+                                    <v-btn @click="showDialog=false">
+                                        <v-icon class="mr-2">exit_to_app</v-icon>
+                                        Cancel·lar
+                                    </v-btn>
+                                    <v-btn color="success">
+                                        <v-icon class="mr-2">save</v-icon>
+                                        Guardar
+                                    </v-btn>
+                                </div>
+                            </v-form>
+                        </v-card-text>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
+                        <v-toolbar color="blue" class="white--text">
+                            <v-btn flat icon class="white--text" @click="editDialog=false">
+                                <v-icon>close</v-icon>
+                            </v-btn>
+
+                            <v-card-title class="headline">Editar Tag</v-card-title>
+                            <v-icon class="white--text">local_offer</v-icon>
+
+                            <v-spacer></v-spacer>
+                            <v-btn flat class="white--text" @click="editDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
+                                Sortir
+                            </v-btn>
+                            <v-btn flat class="white--text">
+                                <v-icon class="mr-2">save</v-icon>
+                                Guardar
+                            </v-btn>
+                        </v-toolbar>
+                        <v-card>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field prepend-icon="local_offer" v-model="name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
+                                    <v-text-field prepend-icon="color_lens" v-model="name" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                    <v-textarea prepend-icon="description" v-model="description" label="Descripció"></v-textarea>
+                                    <div class="text-xs-center">
+                                        <v-btn @click="editDialog=false">
+                                            <v-icon class="mr-2">exit_to_app</v-icon>
+                                            Cancel·lar
+                                        </v-btn>
+                                        <v-btn color="success">
+                                            <v-icon class="mr-2">save</v-icon>
+                                            Guardar
+                                        </v-btn>
+                                    </div>
+                                </v-form>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+
                 <v-card>
                     <v-toolbar  dark color="red dark">
+                        <v-icon>local_offer</v-icon>
+
                         <v-toolbar-title>Tags ({{total}})</v-toolbar-title>
                     </v-toolbar>
 
@@ -34,36 +148,34 @@
                                 :search="search"
                                 no-results-text="No s'ha trobat cap registre"
                                 no-data-text="No hiha dades disponibles"
-                                rows-per-page-text="Tasques per pagina"
+                                rows-per-page-text="Tags per pagina"
                                 :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
                                 :loading="loading"
                         >
                             <v-progress-linear slot="progress" color="pink" indeterminate></v-progress-linear>
-                            <template slot="items" slot-scope="{item: task}">
-                                <tr>
-                                    <td v-text="task.id"></td>
-                                    <td v-text="task.name"></td>
-                                    <td v-text="task.description">Col 6</td>
-                                    <td v-text="task.color"></td>
-                                    <td>
-                                        <v-btn icon flat title="Mostrar la snackbar"
-                                               @click="snackbar=true">
-                                            <v-icon color="orange">verified_user</v-icon>
+                            <template slot="items" slot-scope="props">
+                                <td>{{ props.item.id }}</td>
+                                <td class="text-xs-left">{{ props.item.name }}</td>
+                                <td class="text-xs-left">{{ props.item.description }}</td>
+                                <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + props.item.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
+                                <td class="text-xs-center">
+                                        <!--<v-btn icon flat title="Mostrar la snackbar"-->
+                                               <!--@click="snackbar=true">-->
+                                            <!--<v-icon color="orange">verified_user</v-icon>-->
+                                        <!--</v-btn>-->
+                                        <v-btn :loading="showing" :disabled="showing" icon flat title="Mostrar la tagg"
+                                               @click="showTag()">
+                                            <v-icon color="green">visibility</v-icon>
                                         </v-btn>
-                                        <v-btn icon flat title="Mostrar la tasca"
-                                               @click="show(task)">
-                                            <v-icon color="cyan">remove_red_eye</v-icon>
+                                        <v-btn :loading="editing" :disabled="editing" icon flat title="Editar la tag"
+                                               @click="showUpdate">
+                                            <v-icon color="blue">edit</v-icon>
                                         </v-btn>
-                                        <v-btn icon flat title="Actualizar la tasca"
-                                               @click="update(task)">
-                                            <v-icon color="green">autorenew</v-icon>
-                                        </v-btn>
-                                        <v-btn icon flat title="Eliminar la tasca"
-                                               @click="showDestroy(task)">
-                                            <v-icon color="red">delete</v-icon>
+                                        <v-btn icon flat title="Eliminar la tag"
+                                               @click="showDestroy(props.item)">
+                                            <v-icon title="Delete tag" color="red">delete</v-icon>
                                         </v-btn>
                                     </td>
-                                </tr>
                             </template>
                         </v-data-table>
                     </v-card-text>
@@ -106,17 +218,26 @@ export default {
         color: ''
       },
       dataTags: this.tags,
+      name: '',
+      description: '',
       errorMessage: null,
       headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'Description', value: 'user_id' },
-        { text: 'Color', value: 'completed' },
-        { text: 'Actions', sortable: false }
+        { text: 'Id', value: 'id', align: 'left', sortable: true },
+        { text: 'Name', value: 'name', align: 'left', sortable: true },
+        { text: 'Description', value: 'description', align: 'left', sortable: true },
+        { text: 'Color', value: 'color', align: 'left', sortable: true },
+        { text: 'Actions', align: 'center', sortable: false }
       ],
       loading: false,
       search: '',
-      createDialog:false
+      createDialog: false,
+      showDialog: false,
+      editDialog: false,
+      deleteDialog: false,
+      tagToDelete: '',
+      editing: false,
+      showing: false,
+
     }
   },
   props: {
@@ -132,8 +253,6 @@ export default {
       return this.dataTags.length
     },
     filteredtags () {
-      // Segons el filtre actiu
-      // Alternativa switch/case -> array associatiu
       return filters[this.filter](this.dataTags)
     }
   },
@@ -150,8 +269,6 @@ export default {
       this.filter = newFilter
     },
     add () {
-      // this.datatags.splice(0,0,{ name: this.newtag, completed: false } )
-      // this.newtag=''
       window.axios.post('/api/v1/tags', this.newTag).then((response) => {
         console.log('responde')
         console.log(response.data)
@@ -163,38 +280,55 @@ export default {
         console.log(error)
       })
     },
-    remove (tag) {
-      axios.delete('/api/v1/tags/' + tag.id).then((response) => {
-        this.dataTags.splice(this.dataTags.indexOf(tag), 1)
+    destroy () {
+      window.axios.delete('/api/v1/tags/' + this.tagToDelete.id).then((response) => {
+        this.deleteDialog = false
+        this.snacktype = 'success'
+        this.snackMsg = 'Tag ' + this.tagToDelete.name + ' successfully deleted!'
+        this.snackbar = true
+        this.dataTags.splice(this.dataTags.indexOf(this.tagToDelete), 1)
       }).catch((error) => {
-
+        this.errorMsg = error.message
       })
     },
+    // remove (tag) {
+    //   axios.delete('/api/v1/tags/' + tag.id).then((response) => {
+    //     this.dataTags.splice(this.dataTags.indexOf(tag), 1)
+    //   }).catch((error) => {
+    //
+    //   })
+    // },
     refresh () {
       this.loading = true
-      // setTimeout(() => { this.loading = false }, 5000)
       window.axios.get('/api/v1/tags').then(response => {
-        //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
         this.dataTags = response.data
       }).catch(error => {
         console.log(error)
-        // SHOW SNACKBAR ERROR TODO
       })
+    },
+    showTag () {
+      this.showDialog = true
     },
     showCreate (task) {
       this.createDialog = true
-      console.log('Todo delete task')
     },
-    // edit(tag){
-    //
-    // }
+    showUpdate () {
+      this.editDialog = true
+    },
+    show (tag) {
+      this.showing = true
+      setTimeout(() => { this.showing = false }, 5000)
+      console.log('TODO MOSTRAR tag ' + tag.id)
+    },
+    showDestroy (tag) {
+      this.tagToDelete = tag
+      this.deleteDialog = true
+    }
   },
   created () {
     if (this.tags.length === 0) {
       console.log('entra')
       window.axios.get('/api/v1/tags').then((response) => {
-        console.log('ok')
-        console.log(response.data)
         this.dataTags = response.data
       }).catch((error) => {
         this.errorMessage = error.response.data

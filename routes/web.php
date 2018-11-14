@@ -32,8 +32,6 @@ Route::get('/user/tasks','LoggedUserTasksController@index');
 
 });
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });

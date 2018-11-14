@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
-
 class TasquesController extends Controller
 {
     public function index()
     {
-        //        return view('tasks_vue');
-        $tasks = Task::orderBy('created_at','desc')->get();
-        return view('tasques',
-            compact('tasks'));
+        // Agafa de la base de dades i ho passa a la vista
+        $tasks = Task::orderBy('created_at', 'desc')->get();
+        $users = User::all();
+        return view('tasques', compact('tasks','users'));
     }
 }
