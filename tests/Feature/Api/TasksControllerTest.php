@@ -69,7 +69,7 @@ class TasksControllerTest extends TestCase
         $user = $this->login('api');
 
         //todo assing permisions to user
-        $user->givePermissionTo('task.store');
+        //$user->givePermissionTo('task.store');
 
 //        Gate::define('task.store',function($user){
 ////            return$user->name=== 'Benjamin zaragoza';

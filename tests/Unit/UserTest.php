@@ -98,18 +98,16 @@ class UserTest extends TestCase
         $this->assertTrue($tasks[2]->is($task3));
     }
 
-    /**
-     * @test
-     */
+
     public function haveTask()
     {
+        $user = factory(User::class)->create();
         $user->haveTask();
     }
-    /**
-     * @test
-    */
+
     public function removeTask()
     {
+        $user = factory(User::class)->create();
         $user->removeTask();
     }
 }

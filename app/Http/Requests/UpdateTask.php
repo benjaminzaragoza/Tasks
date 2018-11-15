@@ -14,7 +14,8 @@ class UpdateTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('task.update');
+        return true;
+        //return Auth::user()->can('task.update');
 
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasROle('TaskManager') ||
 //            Auth::user()->id===$this->task->user_id || today_is_happy_day;

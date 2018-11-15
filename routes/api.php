@@ -34,7 +34,10 @@ Route::put('/v1/tags/{tag}', 'Api\TagsController@update');
 Route::delete('/v1/tags/{tag}', 'Api\TagsController@destroy');
 
 Route::get('/v1/user/tasks','Api\LoggedUserTasksController@index');//Route::get('/v1/tasks',function (){
+Route::get('/v1/user/tasks/{task}','Api\LoggedUserTasksController@show');//Route::get('/v1/tasks',function (){
+Route::post('/v1/user/tasks','Api\LoggedUserTasksController@store');//Route::get('/v1/tasks',function (){
 Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');//Route::get('/v1/tasks',function (){
+Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');//Route::get('/v1/tasks',function (){
 });
 //
 //return App\Task::all();

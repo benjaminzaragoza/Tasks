@@ -11,7 +11,9 @@
                       <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
                         Cancel·lar
                       </v-btn>
-                      <v-btn color="error darken-1" flat="flat" @click="destroy">
+                      <v-btn color="error darken-1" flat="flat" @click="destroy"
+                             :loading="removing"
+                             :disabled="removing">
                         Confirmar
                       </v-btn>
                 </v-card-actions>
@@ -212,13 +214,13 @@
                             <v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">
                                 <v-icon>info</v-icon>
                             </v-btn>
-                            <v-btn :loading="showing" :disabled="showing" icon color="cyan" flat title="Mostrar la tasca" @click="showTask(task)">
+                            <v-btn icon color="cyan" flat title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
+                            <v-btn icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn :loading="deleting" :disabled="deleting" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -280,19 +282,21 @@ export default {
   data () {
     return {
       dataUsers: this.users,
-      description: '',
       completed: false,
       name: '',
+      description: '',
       createDialog: false,
       deleteDialog: false,
       editDialog: false,
+      taskBeingRemoved: null,
       showDialog: false,
       snackbar: true,
       user: '',
       usersold: [
+        'Marc Mestre',
+        'Cristian Marin',
         'Sergi Baucells',
-        'Jordi baucells',
-        'Carmen Rodríguez'
+        'Benjamin Zaragoza'
       ],
       filter: 'Totes',
       filters: [
@@ -305,13 +309,13 @@ export default {
         rowsPerPage: 25
       },
       loading: false,
-      deleting: false,
-      showing: false,
+      creating: false,
       editing: false,
+      removing: false,
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
-        { text: 'Nom', value: 'name' },
+        { text: 'Name', value: 'name' },
         { text: 'Usuari', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
         { text: 'Creat', value: 'created_at' },
@@ -331,53 +335,62 @@ export default {
     }
   },
   methods: {
+    showUpdate () {
+      this.editDialog = true
+    },
+    showShow () {
+      this.showDialog = true
+    },
+    opcio1 () {
+      console.log('Todo Opcio')
+    },
+    showDestroy (task) {
+      this.deleteDialog = true
+      this.taskBeingRemoved = task
+    },
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    destroy (task) {
+      this.removing = true
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+        // this.refresh()
+        this.removeTask(this.taskBeingRemoved)
+        this.deleteDialog = false
+        this.taskBeingRemoved = null
+        // TODO showSnackbar
+        this.removing = false
+      }).catch(error => {
+        console.log(error)
+        // TODO showSnackbar
+        this.removing = false
+      })
+    },
+    showCreate (task) {
+      this.createDialog = true
+      console.log('Todo delete task')
+    },
+    create (task) {
+      console.log('Todo delete task')
+    },
+    update (task) {
+      console.log('Todo update task' + task.id)
+    },
+    show (task) {
+      console.log('Todo show task' + task.id)
+    },
     refresh () {
       this.loading = true
       // setTimeout(() => { this.loading = false }, 5000)
-      // OCO!! URL CANVIA SEGONS EL CAS
-      // window.axios.get('/api/v1/tasks').then().catch()
       window.axios.get('/api/v1/user/tasks').then(response => {
-        // SHOW SNACKBAR MISSATGE OK
+        //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
         this.dataTasks = response.data
         this.loading = false
       }).catch(error => {
         console.log(error)
         this.loading = false
-        // SHOW SNACKBAR ERROR
+        // SHOW SNACKBAR ERROR TODO
       })
-    },
-    opcio1 () {
-      console.log('TODO OPCIÓ 1')
-    },
-    destroy (task) {
-      this.deleting = false
-      setTimeout(() => { this.deleting = false }, 5000)
-      console.log('TODO ESBORRAR TASCA ' + task.id)
-    },
-    create (task) {
-      console.log('TODO CREAR TASCA')
-    },
-    update (task) {
-      this.editing = true
-      setTimeout(() => { this.editing = false }, 5000)
-      console.log('TODO ACTUALITZAR TASCA ' + task.id)
-    },
-    show (task) {
-      this.showing = true
-      setTimeout(() => { this.showing = false }, 5000)
-      console.log('TODO MOSTRAR TASCA ' + task.id)
-    },
-    showUpdate () {
-      this.editDialog = true
-    },
-    showTask () {
-      this.showDialog = true
-    },
-    showCreate () {
-      this.createDialog = true
-    },
-    showDestroy () {
-      this.deleteDialog = true
     }
   }
 }
