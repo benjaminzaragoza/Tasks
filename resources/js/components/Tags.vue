@@ -276,6 +276,7 @@ export default {
         this.newTag.name = ''
         this.newTag.description = ''
         this.newTag.color = ''
+        this.loading=false
       }).catch((error) => {
         console.log(error)
       })
