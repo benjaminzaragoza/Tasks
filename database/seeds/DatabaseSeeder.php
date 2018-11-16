@@ -13,5 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         create_primary_user();
         create_example_tasks();
+        create_example_tags();
+        initialize_roles();
+
+        //Crear usuaris de proves
+        sample_users();
+        //todo -> com fer-ho en el registre
     }
 }
