@@ -29,6 +29,7 @@ Route::get('/home','TasksVueController@index');
 Route::get('/user/tasks','LoggedUserTasksController@index');
 
     Route::get('/tags', 'TagsVueController@index');
+    Route::impersonate();
 
 });
 

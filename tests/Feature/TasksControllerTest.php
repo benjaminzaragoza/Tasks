@@ -69,7 +69,6 @@ class TasksTest extends TestCase
      */
     public function can_delete_task()
     {
-        $this->withoutExceptionHandling();
         // 1
         $this->login();
 

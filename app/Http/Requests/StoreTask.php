@@ -14,7 +14,7 @@ class StoreTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('task.store');
+        return Auth::user()->can('tasks.store');
 
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasROle('TaskManager') ||
 //            Auth::user()->id===$task->user_id;
@@ -28,7 +28,8 @@ class StoreTask extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required'
+            'name'=>'required',
+            'description'=>'string'
         ];
     }
 }

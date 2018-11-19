@@ -14,7 +14,7 @@ class CompleteTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('task.store');
+        return Auth::user()->can('tasks.complete');
 
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasROle('TaskManager') ||
 //            Auth::user()->id===$task->user_id;

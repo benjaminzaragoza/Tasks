@@ -53,4 +53,12 @@ class User extends Authenticatable
     {
         $this->tasks()->delete();
     }
+
+    /**
+     * @return mixed
+     */
+    public function isSuperAdmin()
+    {
+        return $this->admin;
+    }
 }

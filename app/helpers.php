@@ -14,11 +14,13 @@ if (!function_exists('create_primary_user')) {
     function create_primary_user() {
         $user = User::where('email', 'sergiturbadenas@gmail.com')->first();
         if (!$user) {
-            User::firstOrCreate([
+           $user= User::firstOrCreate([
                 'name' => 'Benjamin Zaragoza Pla',
                 'email' => 'benjaminzaragoza@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
+           $user->admin=true;
+           $user->save();
         }
     }
 }
@@ -235,7 +237,7 @@ if (!function_exists('sample_users')) {
             ]);
         }catch (Exception $e){}
         try {
-            $sergi->assignRole('TasksManager');
+            $sergi->assignRole('TaskManager');
         }catch (Exception $e){}
     }
 }

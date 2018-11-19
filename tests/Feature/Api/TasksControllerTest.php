@@ -15,10 +15,11 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_show_a_task()
+    public function task_manager_can_show_a_task()
     {
-        $this->login('api');
-
+        initialize_roles();
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
         // 1
         $task = factory(Task::class)->create();
         // 2
@@ -29,12 +30,64 @@ class TasksControllerTest extends TestCase
         $this->assertEquals($task->name, $result->name);
         $this->assertEquals($task->completed, (boolean) $result->completed);
     }
+
     /**
      * @test
      */
-    public function can_delete_task()
+    public function regular_user_can_show_a_task()
     {
         $this->login('api');
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        // 3
+        $response->assertStatus(403);
+
+    }
+
+    /**
+     * @test
+     */
+    public function superadmin_can_show_a_task()
+    {
+        $user=$this->login('api');
+
+        $user->admin=true;
+        $user->save();
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals($task->name, $result->name);
+        $this->assertEquals($task->completed, (boolean) $result->completed);
+    }
+
+    /**
+     * @test
+     */
+    public function regular_user_connot_show_a_task()
+    {
+        $this->login('api');
+
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        // 3
+        $response->assertStatus(403);
+    }
+    /**
+     * @test
+     */
+    public function task_manager_can_delete_task()
+    {
+        initialize_roles();
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
 
         // 1
         $task = factory(Task::class)->create();
@@ -50,9 +103,45 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_create_tasks_without_name()
+    public function regular_user_can_delete_task()
     {
-        $this->login('api');
+        $user=$this->login('api');
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
+        // 3
+        $response->assertStatus(403);
+
+    }
+    /**
+     * @test
+     */
+    public function superadmin_can_delete_task()
+    {
+        $user=$this->login('api');
+        $user->admin=true;
+        $user->save();
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals('', $result);
+//        $this->assertDatabaseMissing('tasks', $task);
+        $this->assertNull(Task::find($task->id));
+    }
+    /**
+     * @test
+     */
+    public function tasks_manager_cannot_create_tasks_without_name()
+    {
+        initialize_roles();
+
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
 
 
         $response = $this->json('POST','/api/v1/tasks/',[
@@ -65,19 +154,50 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_create_task()
+    public function tasks_manager_can_create_task()
     {
+        initialize_roles();
         $user = $this->login('api');
+        $user->assignRole('TaskManager');
 
         //todo assing permisions to user
-        //$user->givePermissionTo('task.store');
-
-//        Gate::define('task.store',function($user){
-////            return$user->name=== 'Benjamin zaragoza';
-//
-//        });
         $response = $this->json('POST','/api/v1/tasks/',[
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+        ]);
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+//        $this->assertDatabaseHas('tasks', [ 'name' => 'Comprar pa' ]);
+        $this->assertNotNull($task = Task::find($result->id));
+        $this->assertEquals('Comprar pa',$result->name);
+        $this->assertFalse($result->completed);
+    }
+    /**
+     * @test
+     */
+    public function regular_manager_can_create_task()
+    {
+        $this->login('api');
+
+        //todo assing permisions to user
+        $response = $this->json('POST','/api/v1/tasks/',[
+            'name' => 'Comprar pa',
+        ]);
+        $result = json_decode($response->getContent());
+        $response->assertStatus(403);
+
+    }
+    /**
+     * @test
+     */
+    public function superadmin_can_create_task()
+    {
+        $user=$this->login('api');
+        $user->admin=true;
+        $user->save();
+
+        //todo assing permisions to user
+        $response = $this->json('POST','/api/v1/tasks/',[
+            'name' => 'Comprar pa',
         ]);
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
@@ -91,7 +211,9 @@ class TasksControllerTest extends TestCase
      */
     public function can_list_tasks()
     {
-        $this->login('api');
+        initialize_roles();
+        $user =$this->login('api');
+        $user->assignRole('TaskManager');
 
         //1
         create_example_tasks();
@@ -109,9 +231,11 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_edit_task()
+    public function task_manager_can_edit_task()
     {
-        $this->login('api');
+        initialize_roles();
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
 
         // 1
         $oldTask = factory(Task::class)->create([
@@ -129,13 +253,60 @@ class TasksControllerTest extends TestCase
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse((boolean) $newTask->completed);
     }
-
     /**
      * @test
      */
-    public function cannot_edit_task_without_name()
+    public function super_admin_can_edit_task()
+    {
+        $user=$this->login('api');
+        $user->admin=true;
+        $user->save();
+
+        // 1
+        $oldTask = factory(Task::class)->create([
+            'name' => 'Comprar llet'
+        ]);
+        // 2
+        $response = $this->put('/api/v1/tasks/' . $oldTask->id, [
+            'name' => 'Comprar pa'
+        ]);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $newTask = $oldTask->refresh();
+        $this->assertNotNull($newTask);
+        $this->assertEquals('Comprar pa',$result->name);
+        $this->assertFalse((boolean) $newTask->completed);
+    }
+    /**
+     * @test
+     */
+    public function regular_manager_can_edit_task()
     {
         $this->login('api');
+
+        // 1
+        $oldTask = factory(Task::class)->create([
+            'name' => 'Comprar llet'
+        ]);
+        // 2
+        $response = $this->put('/api/v1/tasks/' . $oldTask->id, [
+            'name' => 'Comprar pa'
+        ]);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertStatus(403);
+
+
+    }
+    /**
+     * @test
+     */
+    public function task_manager_cannot_edit_task_without_name()
+    {
+        initialize_roles();
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
 
         // 1
         $oldTask = factory(Task::class)->create();
@@ -146,6 +317,4 @@ class TasksControllerTest extends TestCase
         // 3
         $response->assertStatus(422);
     }
-
-
 }
