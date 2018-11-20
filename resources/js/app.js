@@ -9,11 +9,12 @@ import tasks from './components/Tasks.vue'
 import Tasques from './components/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
+import UserList from './components/UserList'
+import UserSelect from './components/UserSelect'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
 
-// Window en browser (objecte global)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -24,11 +25,9 @@ window.Vue.component('example-component', ExempleComponent)
 window.Vue.component('tasks', tasks)
 window.Vue.component('tasques', Tasques)
 window.Vue.component('register-form', RegisterForm)
+window.Vue.component('user-list', UserList)
+window.Vue.component('user-select', UserSelect)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
-
-// const app = new Vue({
-//     el: '#app'
-
 const app = new window.Vue(AppComponent)

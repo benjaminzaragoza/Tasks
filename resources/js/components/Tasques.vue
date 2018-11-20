@@ -19,7 +19,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
@@ -132,8 +131,8 @@
             </v-card>
         </v-dialog>
 
-        <v-snackbar :timeout="3000" color="success" v-model="snackbar">
-        Aixo es un snack
+        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
+        {{snackbarMessage}}
         <v-btn dark flat @click="snackbar=false">
             <v-icon>close</v-icon>
         </v-btn>
@@ -211,9 +210,9 @@
                         <td v-text="task.create_at"></td>
                         <td v-text="task.updated_at"></td>
                         <td>
-                            <v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">
-                                <v-icon>info</v-icon>
-                            </v-btn>
+                            <!--<v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">-->
+                                <!--<v-icon>info</v-icon>-->
+                            <!--</v-btn>-->
                             <v-btn icon color="cyan" flat title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
@@ -281,6 +280,9 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      snackbarMessage: '',
+      snackbarTimeout: 3000,
+      snackbarColor: 'success',
       dataUsers: this.users,
       completed: false,
       name: '',
@@ -290,7 +292,7 @@ export default {
       editDialog: false,
       taskBeingRemoved: null,
       showDialog: false,
-      snackbar: true,
+      snackbar: false,
       user: '',
       usersold: [
         'Marc Mestre',
@@ -358,13 +360,23 @@ export default {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
-        // TODO showSnackbar
+        this.showMessage('Sha esborrat correctament')
         this.removing = false
       }).catch(error => {
         console.log(error)
-        // TODO showSnackbar
+        this.showError(error)
         this.removing = false
       })
+    },
+    showMessage (message) {
+      this.snackbarMessage = message
+      this.snackbarColor = 'success'
+      this.snackbar = true
+    },
+    showError (error) {
+      this.snackbarMessage = error.message
+      this.snackbarColor = 'error'
+      this.snackbar = true
     },
     showCreate (task) {
       this.createDialog = true

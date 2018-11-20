@@ -240,6 +240,15 @@ if (!function_exists('sample_users')) {
             $sergi->assignRole('TaskManager');
         }catch (Exception $e){}
     }
+
+}
+if (!function_exists('map_collection')) {
+    function map_collection($collection)
+    {
+        return $collection->map(function ($item) {
+            return $item->map();
+        });
+    }
 }
 //todo: crear multiples usuaris en diferents rols
 //todo:com gestionar el superadmin

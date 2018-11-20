@@ -38,6 +38,8 @@ Route::get('/v1/user/tasks/{task}','Api\LoggedUserTasksController@show');//Route
 Route::post('/v1/user/tasks','Api\LoggedUserTasksController@store');//Route::get('/v1/tasks',function (){
 Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');//Route::get('/v1/tasks',function (){
 Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');//Route::get('/v1/tasks',function (){
+
+Route::get('/v1/users','Api\UsersController@index');
 });
 //
 //return App\Task::all();

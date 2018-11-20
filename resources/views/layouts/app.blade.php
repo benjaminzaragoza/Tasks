@@ -79,18 +79,36 @@
             </template>
         </v-list>
     </v-navigation-drawer>
+    <v-navigation-drawer
+            v-model="drawerRight"
+            fixed
+            right
+            clipped
+            app
+    >
+        <v-card>
+
+            TODO PERFIL
+
+            Administrador:
+
+            Llista de tots els usuaris
+            <user-select></user-select>
+        </v-card>
+    </v-navigation-drawer>
+
     <v-toolbar color="dark" dark fixed app>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
 
-        <v-avatar title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+        <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
         <v-form action="logout" method="POST" >
             @csrf
-            <v-btn color="cyan" type="submit" fab small dark>
-                <v-icon >exit_to_app</v-icon>
+            <v-btn type="submit" medium dark>
+                <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
     </v-toolbar>
@@ -134,3 +152,9 @@
 
 </body>
 </html>
+<script>
+  import VList from "vuetify/lib/components/VList/VList"
+  export default {
+    components: {VList}
+  }
+</script>
