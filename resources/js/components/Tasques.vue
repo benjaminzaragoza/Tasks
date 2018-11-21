@@ -30,7 +30,7 @@
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <v-btn flat class="white--text">
+                <v-btn flat class="white--text" @click="add">
                     <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
@@ -38,15 +38,16 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="newTask.description" label="Descripció"></v-textarea>
+                        <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success">
+                            <v-btn color="success" @click="add" >
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -75,10 +76,10 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
+                        <v-text-field v-model="taskBeingEdit.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="taskBeingEdit.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="taskBeingEdit.description" label="Descripció"></v-textarea>
+                        <v-autocomplete v-model="taskBeingEdit.user_id"  :items="dataUsers" :label="taskBeingEdit.user_id" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -280,6 +281,12 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      newTask: {
+        name: '',
+        completed: false,
+        user_id: '',
+        description: ''
+      },
       snackbarMessage: '',
       snackbarTimeout: 3000,
       snackbarColor: 'success',
@@ -290,7 +297,8 @@ export default {
       createDialog: false,
       deleteDialog: false,
       editDialog: false,
-      taskBeingRemoved: null,
+      taskBeingRemoved: '',
+      taskBeingEdit: '',
       showDialog: false,
       snackbar: false,
       user: '',
@@ -337,8 +345,9 @@ export default {
     }
   },
   methods: {
-    showUpdate () {
+    showUpdate (task) {
       this.editDialog = true
+      this.taskBeingEdit = task
     },
     showShow () {
       this.showDialog = true
@@ -352,6 +361,23 @@ export default {
     },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    add () {
+      window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
+        console.log(response.data)
+        this.refresh()
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    update (task) {
+      this.editing = true
+      window.axios.edit('/api/v1/user/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
+        this.refresh()
+        this.editTask(this.taskBeingEdit)
+      }).catch((error) => {
+        this.editing = false
+      })
     },
     destroy (task) {
       this.removing = true
@@ -394,7 +420,7 @@ export default {
     refresh () {
       this.loading = true
       // setTimeout(() => { this.loading = false }, 5000)
-      window.axios.get('/api/v1/user/tasks').then(response => {
+      window.axios.get('/api/v1/tasks').then(response => {
         //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
         this.dataTasks = response.data
         this.loading = false

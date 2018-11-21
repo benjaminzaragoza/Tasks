@@ -236,7 +236,7 @@ export default {
       deleteDialog: false,
       tagToDelete: '',
       editing: false,
-      showing: false,
+      showing: false
 
     }
   },
