@@ -24,6 +24,7 @@ Route::middleware('auth:api')->group(function (){
     Route::delete('/v1/tasks/{task}','Api\TasksController@destroy');    // DELETE
     Route::post('/v1/tasks','Api\TasksController@store');               // CREATE
     Route::put('/v1/tasks/{task}','Api\TasksController@update');         // EDIT
+
     Route::delete('/v1/completed_task/{task}','Api\CompletedTasksController@destroy');         // EDIT
     Route::post('/v1/completed_task/{task}','Api\CompletedTasksController@store');         // EDIT
 
@@ -40,6 +41,8 @@ Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');//Rou
 Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');//Route::get('/v1/tasks',function (){
 
 Route::get('/v1/users','Api\UsersController@index');
+Route::get('/v1/regular_users','Api\RegularUsersController@index');
+
 });
 //
 //return App\Task::all();

@@ -38,6 +38,16 @@ export default
       { icon: 'photo', text: 'Imatges', url: '/contact' }
     ]
   }),
+  methods: {
+    impersonate(user) {
+      console.log(user)
+      if (user) {
+        window.location.href = '/impersonate/take/' + user
+      } else {
+        console.log('sadsfa')
+      }
+    }
+  },
   props: {
     source: String
   }
