@@ -151,6 +151,8 @@ class TaskTest extends TestCase
             'user_id'=>$user->id
         ]);
         //executar
+        $task->assignUser($user);
+
         $mappedTask = $task->map();
         $this->assertEquals($mappedTask['id'],1);
         $this->assertEquals($mappedTask['name'],'Comprar pa');
@@ -167,6 +169,7 @@ class TaskTest extends TestCase
         $this->assertNotNull($mappedTask['updated_at_formatted']);
         $this->assertNotNull($mappedTask['updated_at_timestamp']);
         $this->assertEquals($mappedTask['user_gravatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
+        $this->assertEquals($mappedTask['full_search'],'1 Comprar pa Bla bla bla Pendent Pepe Pardo Jeans pepepardo@jeans.com');
 
         $this->assertTrue($user->is($mappedTask['user']));
     }
