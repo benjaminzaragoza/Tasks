@@ -214,7 +214,7 @@
                             </v-avatar>
                         </td>
                         <td>
-                          <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
+                          <v-switch v-model="completed.id" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -232,7 +232,7 @@
                             <v-btn icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn v-can="task.destroy" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -393,7 +393,7 @@ export default {
     },
     destroy (task) {
       this.removing = true
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
@@ -441,6 +441,10 @@ export default {
         // SHOW SNACKBAR ERROR TODO
       })
     }
+  },
+  created () {
+    console.log('Usuari logat')
+    console.log(window.laravel_user)
   }
 }
 </script>

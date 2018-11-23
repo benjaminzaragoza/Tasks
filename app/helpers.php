@@ -250,5 +250,11 @@ if (!function_exists('map_collection')) {
         });
     }
 }
+if (!function_exists('logged_user')) {
+    function logged_user()
+    {
+        return json_encode(optional(Auth::user())->map());
+    }
+}
 //todo: crear multiples usuaris en diferents rols
 //todo:com gestionar el superadmin

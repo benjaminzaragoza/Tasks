@@ -11,9 +11,11 @@ import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
+import permissions from './plugins/permissions'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
+window.Vue.use(permissions)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

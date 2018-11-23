@@ -132,11 +132,33 @@ class UserTest extends TestCase
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
         ]);
+
         $mappedUser = $user->map();
+
         $this->assertEquals($mappedUser['id'],1);
         $this->assertEquals($mappedUser['name'],'Pepe Pardo Jeans');
         $this->assertEquals($mappedUser['email'],'pepepardo@jeans.com');
         $this->assertEquals($mappedUser['gravatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
+        $this->assertEquals($mappedUser['admin'],0);
+        $this->assertCount(0,$mappedUser['roles']);
+        $this->assertCount(0,$mappedUser['permissions']);
+
+        $user->admin=true;
+        $user->save();
+
+        $user=$user->fresh();
+        $mappedUser=$user->map();
+        $this->assertEquals($mappedUser['admin'],true);
+
+        $user->givePermissionTo($permission1);
+        $user->givePermissionTo($permission2);
+
+        $user->assingRole($rol1);
+        $user->assingRole($rol2);
+
+        $this->assertEquals($mappedUser);
+
+
     }
     /**
      * @test
