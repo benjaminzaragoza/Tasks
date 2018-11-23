@@ -43,7 +43,7 @@ if (user) {
   // TODO
   window.laravel_user = JSON.parse(user.content)
 } else {
-  console.error('Caution!: User not found at HTML meta')
+  console.error('CAUTION!: user not found at HTML meta')
 }
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

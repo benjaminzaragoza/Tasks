@@ -1,7 +1,5 @@
 import Confirm from './Confirm.vue'
-
 // Taken from https://github.com/yariksav/vuetify-confirm
-
 function Install (Vue, options) {
   const property = (options && options.property) || '$confirm'
   function createDialogCmp (options) {
@@ -16,18 +14,14 @@ function Install (Vue, options) {
       document.body.appendChild(cmp.$mount().$el)
     })
   }
-
   function show (message, options = {}) {
     options.message = message
     return createDialogCmp(options)
   }
-
   Vue.prototype[property] = show
   Vue.prototype[property].options = options || {}
 }
-
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(Install)
 }
-
 export default Install

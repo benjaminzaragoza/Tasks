@@ -72,8 +72,8 @@ class User extends Authenticatable
             'email' => $this->email,
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
-            'roles' => $this->roles,
-            'permissions' => $this->getaAllper
+            'roles' => $this->roles()->pluck('name')->unique()->toArray(),
+            'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray()
         ];
     }
     /**

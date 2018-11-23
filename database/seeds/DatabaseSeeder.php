@@ -11,10 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        initialize_roles();
         create_primary_user();
         create_example_tasks();
         create_example_tags();
-        initialize_roles();
 
         //Crear usuaris de proves
         sample_users();

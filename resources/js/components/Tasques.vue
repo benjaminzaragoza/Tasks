@@ -56,7 +56,6 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
         <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="editDialog=false">
@@ -79,13 +78,13 @@
                         <v-text-field v-model="taskBeingEdit.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingEdit.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdit.description" label="Descripció"></v-textarea>
-                        <v-autocomplete v-model="taskBeingEdit.user_id"  :items="dataUsers" :label="taskBeingEdit.user_id" item-text="name" item-value="id"></v-autocomplete>
+                        <v-autocomplete v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success">
+                            <v-btn color="success" @click="update">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -94,39 +93,30 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
-        <v-dialog v-model="showDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="showDialog=false">
-            <v-toolbar color="primary" class="white--text">
-                <v-btn flat icon class="white--text" @click="showDialog=false">
-                    <v-icon class="mr-2">close</v-icon>
+        <v-dialog v-model="showDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+                  @keydown.esc="showDialog=false">
+            <v-toolbar color="blue darken-3" class="white--text">
+                <v-btn icon flat class="white--text">
+                    <v-icon class="mr-1" @click="showDialog=false">close</v-icon>
                 </v-btn>
-                <v-card-title class="headline">Mostrar tasca</v-card-title>
+                <v-toolbar-title class="white--text">Mostrar tasca</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="showDialog=false">
-                    <v-icon class="mr-2">exit_to_app</v-icon>
-                    Sortir
+                    <v-icon class="mr-1" >exit_to_app</v-icon>
+                    SORTIR
                 </v-btn>
                 <v-btn flat class="white--text">
-                    <v-icon class="mr-2">save</v-icon>
+                    <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
             </v-toolbar>
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" readonly></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'" readonly></v-switch>
-                        <v-textarea v-model="description" label="Descripció" readonly></v-textarea>
-                        <div class="text-xs-center">
-                            <v-btn @click="showDialog=false">
-                                <v-icon class="mr-2">exit_to_app</v-icon>
-                                Cancel·lar
-                            </v-btn>
-                            <v-btn color="success">
-                                <v-icon class="mr-2">save</v-icon>
-                                Guardar
-                            </v-btn>
-                        </div>
+                        <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch disabled v-model="taskBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
+                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -226,13 +216,14 @@
                             <!--<v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">-->
                                 <!--<v-icon>info</v-icon>-->
                             <!--</v-btn>-->
-                            <v-btn icon color="cyan" flat title="Mostrar la tasca" @click="showTask(task)">
+                            <v-btn v-can="tasks.show" icon color="cyan" flat title="Mostrar la tasca" @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
+
+                            <v-btn v-can="tasks.update" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-can="task.destroy" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -282,6 +273,7 @@
                 large
                 color="pink accent-3"
                 class="white--text"
+                v-can="tasks.add"
         >
             <v-icon>add</v-icon>
         </v-btn>
@@ -293,6 +285,7 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      taskBeingShown: '',
       newTask: {
         name: '',
         completed: false,
@@ -361,8 +354,9 @@ export default {
       this.editDialog = true
       this.taskBeingEdit = task
     },
-    showShow () {
+    showShow (task) {
       this.showDialog = true
+      this.taskBeingShown = task
     },
     opcio1 () {
       console.log('Todo Opcio')
@@ -382,11 +376,10 @@ export default {
         console.log(error)
       })
     },
-    update (task) {
+    update () {
       this.editing = true
-      window.axios.edit('/api/v1/user/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
-        this.refresh()
-        this.editTask(this.taskBeingEdit)
+      window.axios.put('/api/v1/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
+        this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
       }).catch((error) => {
         this.editing = false
       })
@@ -422,9 +415,6 @@ export default {
     },
     create (task) {
       console.log('Todo delete task')
-    },
-    update (task) {
-      console.log('Todo update task' + task.id)
     },
     show (task) {
       console.log('Todo show task' + task.id)

@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/tasks_vue','TasksVueController@index');
     Route::get('/tasques','TasquesController@index');
 
-    Route::get('/home','TasksVueController@index');
+    Route::get('/home','TasquesController@index');
     Route::get('/user/tasks','LoggedUserTasksController@index');
 
     Route::get('/tags', 'TagsVueController@index');

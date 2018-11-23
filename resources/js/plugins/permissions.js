@@ -9,9 +9,9 @@ const disappear = (el, modifiers) => {
     el.firstElementChild.disabled = true
     return true
   }
-  el.innerHTML = ''
+  // el.innerHTML = ''
+  el.remove()
 }
-
 const haveRole = (role) => {
   if (role == null) return true
   if (window.laravel_user && window.laravel_user.admin) return true
@@ -22,16 +22,13 @@ const haveRole = (role) => {
   }
   return false
 }
-
 const hasRole = (role) => {
   return haveRole(role)
 }
-
 const can = (permission, resource = null) => {
   const user = window.laravel_user
   if (user && user.admin) return true
   const userPermissions = user && user.permissions
-
   if (resource instanceof Object) {
     if (user.id === resource.user_id) {
       return true
@@ -42,18 +39,15 @@ const can = (permission, resource = null) => {
     return true
   } else return false
 }
-
 const cannot = (permission, resource = null) => {
   return !can(permission, resource)
 }
-
 export default {
   install (Vue, options) {
     // <delete-task-button v-can:delete="task"></delete-task-icon>
     // <delete-task-button v-can="delete.task"></delete-task-icon>
     // <delete-task-button v-can.disabled="delete.task"></delete-task-icon>
     // <delete-task-button v-can.hidden="delete.task"></delete-task-icon>
-
     Vue.directive('can', {
       bind (el, binding, vnode, oldVnode) {
         const action = binding.arg

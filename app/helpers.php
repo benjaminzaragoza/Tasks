@@ -3,6 +3,7 @@
 use App\Tag;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
@@ -12,14 +13,16 @@ use Spatie\Permission\Models\Role;
 
 if (!function_exists('create_primary_user')) {
     function create_primary_user() {
-        $user = User::where('email', 'sergiturbadenas@gmail.com')->first();
+        $user = User::where('email', 'benjaminzaragoza@iesebre.com')->first();
         if (!$user) {
            $user= User::firstOrCreate([
                 'name' => 'Benjamin Zaragoza Pla',
                 'email' => 'benjaminzaragoza@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
-           $user->admin=true;
+           $user->assignRole('TaskManager');
+           $user->assignRole('Tasks');
+            $user->admin=true;
            $user->save();
         }
     }
@@ -235,6 +238,8 @@ if (!function_exists('sample_users')) {
                 'email'=>'sergiturbadenas@gmail.com',
                 'password'=>'secret'
             ]);
+            $sergi->admin=true;
+            $sergi->save();
         }catch (Exception $e){}
         try {
             $sergi->assignRole('TaskManager');

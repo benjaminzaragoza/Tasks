@@ -1,6 +1,5 @@
 import * as mutations from '../store/mutation-types'
 import store from '../store'
-
 export default {
   install (Vue, options) {
     // Add Vue instance methods by attaching them to Vue.prototype.
