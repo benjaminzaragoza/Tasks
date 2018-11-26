@@ -11,6 +11,7 @@ namespace Tests\Unit;
 
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -24,6 +25,7 @@ class HelpersTest extends TestCase
     public function create_primary_user()
     {
         create_primary_user();
+
         $user = User::where('email','benjaminzaragoza@iesebre.com')->first();
         $this->assertEquals($user->name, 'Benjamin Zaragoza Pla');
         $this->assertEquals($user->email, 'benjaminzaragoza@iesebre.com');

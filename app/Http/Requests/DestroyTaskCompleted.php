@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreTask extends FormRequest
+class DestroyTaskCompleted extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,8 +14,10 @@ class StoreTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.store');
+        return Auth::user()->can('tasks.uncomplete');
 
+//        return Auth::user()->isSuperAdmin() || Auth::user()->hasROle('TaskManager') ||
+//            Auth::user()->id===$task->user_id;
     }
 
     /**
@@ -26,8 +28,7 @@ class StoreTask extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'description'=>'string'
+            'name'=>'required'
         ];
     }
 }

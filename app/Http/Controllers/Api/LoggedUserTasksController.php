@@ -8,20 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class LoggedUserTasksController extends Controller
 {
-    public function index(Request $request)
+    public function index(IndexLoggedUserTask $request)
     {
 //        return Auth::user()->tasks;
         return map_collection($request->user()->tasks);
 
     }
-    public function store(Request $request)
+    public function store(StoreLoggedUserTask $request)
     {
         $task=Request::create($request->only(['name','completed']));
         return Auth::user()->addTask($task);
 
     }
 
-    public function update(Request $request,Task $task)
+    public function update(UpdateLoggedUserTask $request,Task $task)
     {
 //        findOrFail
         Auth::user()->tasks()->findOrFail($task->id);
@@ -32,7 +32,7 @@ class LoggedUserTasksController extends Controller
         return $task;
 
     }
-    public function destroy(Request $request,Task $task)
+    public function destroy(DestroyLoggedUserTask $request,Task $task)
     {
         Auth::user()->tasks()->findOrFail($task->id);
         $task->delete();

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Http\Requests\StoreTask;
-use App\Http\Requests\TaskShow;
+use App\Http\Requests\ShowTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
 use App\User;

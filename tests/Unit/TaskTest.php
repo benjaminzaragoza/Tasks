@@ -145,10 +145,11 @@ class TaskTest extends TestCase
         $user = factory(User::class)->create([
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
-        ]);        $task=Task::create([
-            'name'=>'Comprar pa',
-            'completed'=>false,
-            'user_id'=>$user->id
+        ]);
+        $task = Task::create([
+            'name' => 'Comprar pa',
+            'description' => 'Bla bla bla',
+            'completed' => false,
         ]);
         //executar
         $task->assignUser($user);

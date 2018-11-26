@@ -3,26 +3,24 @@
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 class TasksVueControllerTest extends TestCase{
-    use RefreshDatabase;
+    use RefreshDatabase,CanLogin;
     /**
      * @test
      */
-    public function can_show_vue_tasks ()
+    public function can_show_vue_tasks()
     {
-        $this->login();
-
-        // Prepare
         create_example_tasks();
-        // Execute
+
+        $this->login();
+        // 2 EXECUTE
         $response = $this->get('/tasks_vue');
-        // Assert
+        // 3 ASSERT
         $response->assertSuccessful();
         $response->assertViewIs('tasks_vue');
         $response->assertViewHas('tasks',Task::all());
-
-//        $this->assertSee('comprar pa');
     }
     public function login(): void
     {

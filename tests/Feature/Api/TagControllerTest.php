@@ -112,6 +112,7 @@ class TagControllerTest extends TestCase
      */
     public function can_edit_tag()
     {
+
         $this->login('api');
 
         // 1

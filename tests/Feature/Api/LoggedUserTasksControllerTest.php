@@ -12,7 +12,9 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_list_logged_user_tasks()
     {
-        $user = $this->login('api');
+        initialize_roles();
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
 
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
@@ -78,6 +80,7 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function cannot_delete_not_owned_tasks()
     {
+
         $user=$this->login('api');
         $task = factory(Task::class)->create([
             'name' => 'Comprar llet',

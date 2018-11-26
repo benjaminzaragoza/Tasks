@@ -20,8 +20,6 @@ if (!function_exists('create_primary_user')) {
                 'email' => 'benjaminzaragoza@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
-           $user->assignRole('TaskManager');
-           $user->assignRole('Tasks');
             $user->admin=true;
            $user->save();
         }
@@ -229,7 +227,7 @@ if (!function_exists('sample_users')) {
         }catch (Exception $e){}
 
         try {
-        $homersimpson->assignRole('TasksManager');
+        $homersimpson->assignRole('TaskManager');
         }catch (Exception $e){}
 
         try {
