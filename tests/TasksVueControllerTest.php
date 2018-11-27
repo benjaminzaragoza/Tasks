@@ -12,10 +12,8 @@ class TasksVueControllerTest extends TestCase{
      */
     public function can_show_vue_tasks()
     {
-        create_example_tasks();
 
-        $this->login();
-        // 2 EXECUTE
+        $this->loginAsTaskManager('api');        // 2 EXECUTE
         $response = $this->get('/tasks_vue');
         // 3 ASSERT
         $response->assertSuccessful();

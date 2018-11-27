@@ -15,18 +15,15 @@ class TagControllerTest extends TestCase
      */
     public function can_show_a_tag()
     {
-        $this->login('api');
-
-        // 1
+        $this->withoutExceptionHandling();
+        $this->loginAsTagsManager('api');
         $tag = factory(Tag::class)->create();
-        // 2
         $response = $this->json('GET','/api/v1/tags/' . $tag->id);
-        // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $this->assertEquals($tag->name, $result->name);
-        $this->assertEquals($tag->description,$result->description);
-        $this->assertEquals($tag->color,$result->color);
+        $this->assertEquals($tag->description, $result->description);
+        $this->assertEquals($tag->color, $result->color);
     }
     /**
      * @test
@@ -113,8 +110,7 @@ class TagControllerTest extends TestCase
     public function can_edit_tag()
     {
 
-        $this->login('api');
-
+        $this->loginAsTaskManager('api');
         // 1
         $oldTag = factory(Tag::class)->create([
             'name' => 'Comprar llet',
@@ -143,8 +139,7 @@ class TagControllerTest extends TestCase
      */
     public function cannot_edit_tag_without_name()
     {
-        $this->login('api');
-
+        $this->loginAsTaskManager('api');
         // 1
         $oldTag = factory(Tag::class)->create();
         // 2

@@ -12,6 +12,8 @@ import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
 import permissions from './plugins/permissions'
+import Tags from './components/Tags.vue'
+
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
@@ -29,6 +31,7 @@ window.Vue.component('tasques', Tasques)
 window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
+window.Vue.component('tags', Tags)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))

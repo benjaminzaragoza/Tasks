@@ -107,33 +107,32 @@ class TasksTest extends TestCase
         $this->assertEquals($task->name, $newTask['name']);
         $this->assertEquals($task->completed, $newTask['completed']);
     }
-    /**
-     * @test
-     */
-    public function can_edit_a_task_todo_validation()
-    {
-        $this->login();
-
-        $this->markTestSkipped('TODO');
-        $this->withoutExceptionHandling();
-        // 1
-        $task = Task::create([
-            'name' => 'asdasdasd',
-            'completed' => false
-        ]);
-        //2
-        $response = $this->put('/tasks/' . $task->id, $newTask = [
-            'completed' => true
-        ]);
-        $response->assertSuccessful();
-//            $response->assertStatus(200);
-        // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
-        $task = $task->fresh();
-        $this->assertEquals($task->name, 'Comprar pa');
-        $this->assertEquals((boolean)$task->completed, true);
-    }
+//    /**
+//     * @test
+//     */
+//    public function can_edit_a_task_todo_validation()
+//    {
+//        $this->loginAsTaskManager('api');
+//
+//        $this->withoutExceptionHandling();
+//        // 1
+//        $task = Task::create([
+//            'name' => 'asdasdasd',
+//            'completed' => false
+//        ]);
+//        //2
+//        $response = $this->put('/tasks/' . $task->id, $newTask = [
+//            'completed' => true
+//        ]);
+//        $response->assertSuccessful();
+////            $response->assertStatus(200);
+//        // 2 opcions
+////        $this->assertDatabaseHas('tasks',$newTask);
+////        $this->assertDatabaseMissing('tasks',$task);
+//        $task = $task->fresh();
+//        $this->assertEquals($task->name, 'Comprar pa');
+//        $this->assertEquals((boolean)$task->completed, true);
+//    }
 
     /**
      * @test

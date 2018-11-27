@@ -12,31 +12,16 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_list_logged_user_tasks()
     {
-        initialize_roles();
-        $user=$this->login('api');
-        $user->assignRole('TaskManager');
-
+        $user=$this->loginAsTaskManager('api');
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
-
-        $tasks = [$task1,$task2,$task3];
+        $tasks = collect([$task1, $task2, $task3]);
         $user->addTasks($tasks);
-
-        // 2 execute
-
-        $response = $this->json('GET','/api/v1/user/tasks');
+        $response = $this->get('/user/tasks');
         $response->assertSuccessful();
-
-        $result = json_decode($response->getContent());
-
-        $this->assertCount(3,$result);
-        $this->assertEquals($result[0]->id,$task1->id);
-        $this->assertEquals($result[1]->id,$task2->id);
-        $this->assertEquals($result[2]->id,$task3->id);
-
-//        $this->assertEquals($result[1]->is($task2));
-//        $this->assertEquals($result[2]->is($task3));
+        $response->assertViewIs('tasks.user.index');
+        $response->assertViewHas('tasks', $user->tasks);
     }
     /**
      * @test
@@ -47,85 +32,4 @@ class LoggedUserTasksControllerTest extends TestCase
         $response->assertStatus(401);
     }
 
-    /**
-     * @test
-     */
-    public function can_edit_task()
-    {
-        $user = $this->login('api');
-
-        // 1
-        $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet',
-            'description'=>'asdasfadf'
-        ]);
-        // 2
-        $user->addTask($oldTask);
-        $response = $this->json('PUT','/api/v1/user/tasks/' . $oldTask->id, [
-            'name' => 'Comprar pa',
-            'description'=>'asdasdad'
-        ]);
-        // 3
-        $result = json_decode($response->getContent());
-        $response->assertSuccessful();
-        $newTask = $oldTask->refresh();
-        $this->assertNotNull($newTask);
-        $this->assertEquals($oldTask->id,$result->id);
-        $this->assertEquals('Comprar pa',$result->name);
-        $this->assertEquals('asdasdad',$result->description);
-        $this->assertFalse((boolean) $newTask->completed);
-    }
-    /**
-     * @test
-     */
-    public function cannot_delete_not_owned_tasks()
-    {
-
-        $user=$this->login('api');
-        $task = factory(Task::class)->create([
-            'name' => 'Comprar llet',
-            'description'=>'asdasfadf'
-        ]);
-        $response=$this->json('DELETE','/api/v1/user/tasks/'.$task->id);
-        $response->assertStatus(404);
-
-    }
-    /**
-     * @test
-     */
-    public function can_delete_tasks()
-    {
-        $user=$this->login('api');
-        $task = factory(Task::class)->create([
-            'name' => 'Comprar llet',
-            'description'=>'asdasfadf'
-        ]);
-        $user->addTask($task);
-        $response=$this->json('DELETE','/api/v1/user/tasks/'.$task->id);
-        $response->assertSuccessful();
-        $this->assertCount(0,$user->tasks);
-        $task=$task->fresh();
-        $this->assertNull($task);
-
-
-    }
-
-    /**
-     * @test
-     */
-    public function cannot_edit_task_not_associated_to_user()
-    {
-        $user = $this->login('api');
-
-        // 1
-        $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet'
-        ]);
-        // 2
-        $response = $this->json('PUT','/api/v1/user/tasks/' . $oldTask->id, [
-            'name' => 'Comprar pa'
-        ]);
-        // 3
-        $response->assertStatus(404);
-    }
 }

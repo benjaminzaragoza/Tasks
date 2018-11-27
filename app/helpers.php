@@ -110,141 +110,144 @@ if (!function_exists('create_database')) {
         grant_mysql_privileges(env('DB_USERNAME'), env('DB_DATABASE'));
     }
 }
-if (!function_exists('initialize_roles')) {
-    function initialize_roles()
+if (!function_exists('create_role')) {
+    function create_role($role)
     {
-        //crear rols
-        try{
-            $taskManager=Role::create([
-                'name'=>'TaskManager'
+        try {
+            return Role::create([
+                'name' => $role
             ]);
-        }catch (Exception $e) {}
-        try{
-            $tasks=Role::create([
-                'name'=>'Tasks'
+        } catch(Exception $e) {
+            return Role::findByName($role);
+        }
+    }
+}
+if (!function_exists('create_permission')) {
+    function create_permission($permission)
+    {
+        try {
+            return Permission::create([
+                'name' => $permission
             ]);
-        }catch (Exception $e) {}
-        try{
-            Permission::create([
-                'name'=>'tasks.index'
-            ]);
-            Permission::create([
-                'name'=>'tasks.show'
-            ]);
-            Permission::create([
-                'name'=>'tasks.store'
-            ]);
-            Permission::create([
-                'name'=>'tasks.update'
-            ]);
-            Permission::create([
-                'name'=>'tasks.complete'
-            ]);
-            Permission::create([
-                'name'=>'tasks.uncomplete'
-            ]);
-            Permission::create([
-                'name'=>'tasks.destroy'
-            ]);
-        }catch (Exception $e) {}
-
-        try{
-            //crud tasques dun usuari concret
-            Permission::create([
-                'name'=>'user.tasks.index'
-            ]);
-            Permission::create([
-                'name'=>'user.tasks.show'
-            ]);
-            Permission::create([
-                'name'=>'user.tasks.store'
-            ]);
-            Permission::create([
-                'name'=>'user.tasks.update'
-            ]);
-            Permission::create([
-                'name'=>'user.tasks.destroy'
-            ]);
-            Permission::create([
-                'name'=>'user.tasks.complete'
-            ]);
-            Permission::create([
-                'name'=>'user.tasks.uncomplete'
-            ]);
-
-        }catch (Exception $e) {}
-
-        try{
-            $taskManager->givePermissionTo('tasks.index');
-            $taskManager->givePermissionTo('tasks.show');
-            $taskManager->givePermissionTo('tasks.store');
-            $taskManager->givePermissionTo('tasks.update');
-            $taskManager->givePermissionTo('tasks.complete');
-            $taskManager->givePermissionTo('tasks.uncomplete');
-            $taskManager->givePermissionTo('tasks.destroy');
-        }catch (Exception $e){}
-
-        try{
-            $tasks->givePermissionTo('user.tasks.index');
-            $tasks->givePermissionTo('user.tasks.show');
-            $tasks->givePermissionTo('user.tasks.store');
-            $tasks->givePermissionTo('user.tasks.update');
-            $tasks->givePermissionTo('user.tasks.complete');
-            $tasks->givePermissionTo('user.tasks.uncomplete');
-            $tasks->givePermissionTo('user.tasks.destroy');
-        }catch (Exception $e){}
-
+        } catch(Exception $e) {
+            return Permission::findByName($permission);
+        }
+    }
+}
+if (!function_exists('initialize_roles')) {
+    function initialize_roles() {
+        $roles = [
+            'TaskManager',
+            'Tasks',
+            'TagsManager',
+            'Tags'
+        ];
+        foreach ($roles as $role) {
+            create_role($role);
+        }
+        $taskManagerPermissions = [
+            'tasks.index',
+            'tasks.show',
+            'tasks.store',
+            'tasks.update',
+            'tasks.complete',
+            'tasks.uncomplete',
+            'tasks.destroy'
+        ];
+        $tagsManagerPermissions = [
+            'tags.index',
+            'tags.show',
+            'tags.store',
+            'tags.update',
+            'tags.complete',
+            'tags.uncomplete',
+            'tags.destroy'
+        ];
+        $userTaskPermissions = [
+            'user.tasks.index',
+            'user.tasks.show',
+            'user.tasks.store',
+            'user.tasks.update',
+            'user.tasks.complete',
+            'user.tasks.uncomplete',
+            'user.tasks.destroy'
+        ];
+        $userTagsPermissions = [
+            'user.tags.index',
+            'user.tags.show',
+            'user.tags.store',
+            'user.tags.update',
+            'user.tags.complete',
+            'user.tags.uncomplete',
+            'user.tags.destroy'
+        ];
+        $permissions = array_merge($taskManagerPermissions, $userTaskPermissions, $tagsManagerPermissions, $userTagsPermissions);
+        foreach ($permissions as $permission) {
+            create_permission($permission);
+        }
+        $rolePermissions = [
+            'TaskManager' => $taskManagerPermissions,
+            'Tasks' => $userTaskPermissions,
+            'TagsManager' => $tagsManagerPermissions,
+            'Tags' => $userTagsPermissions,
+        ];
+        foreach ($rolePermissions as $role => $rolePermission) {
+            $role = Role::findByName($role);
+            foreach ($rolePermission as $permission) {
+                $role->givePermissionTo($permission);
+            }
+        }
     }
 }
 if (!function_exists('sample_users')) {
     function sample_users()
     {
-        //Pepe
+        //superadmin no cal -> jo mateix
         try {
-            $pepepringao = factory(User::class)->create([
+            factory(User::class)->create([
                 'name' => 'Pepe Pringao',
-                'email' => 'pepe@hotmail.com'
-
+                'email' => 'pepepringao@hotmail.com'
             ]);
-        }catch (Exception $e){}
-
+        } catch (exception $e) {
+        }
         try {
-        $bartsimpson=factory(User::class)->create([
-            'name'=>'Bart Simpson',
-            'email'=>'bart@simpson.com'
-        ]);
-        }catch (Exception $e){}
-
-        try {
-        $bartsimpson->assignRole('Tasks');
-        }catch (Exception $e){}
-
-        try {
-        $homersimpson=factory(User::class)->create([
-            'name'=>'Homer Simpson',
-            'email'=>'homer@simpson.com'
-        ]);
-        }catch (Exception $e){}
-
-        try {
-        $homersimpson->assignRole('TaskManager');
-        }catch (Exception $e){}
-
-        try {
-            $sergi=factory(User::class)->create([
-                'name'=>'Sergi Tur',
-                'email'=>'sergiturbadenas@gmail.com',
-                'password'=>'secret'
+            $bartsimpson = factory(User::class)->create([
+                'name' => 'Bart Simpson',
+                'email' => 'bartsimpson@hotmail.com'
             ]);
-            $sergi->admin=true;
-            $sergi->save();
-        }catch (Exception $e){}
+        } catch (exception $e) {
+        }
         try {
-            $sergi->assignRole('TaskManager');
-        }catch (Exception $e){}
+            $bartsimpson->assignRole('Tasks');
+        } catch (exception $e) {
+        }
+        try {
+            $homersimpson = factory(User::class)->create([
+                'name' => 'Homer Simpson',
+                'email' => 'homersimpson@hotmail.com'
+            ]);
+        } catch (exception $e) {
+        }
+        try {
+            $homersimpson->assignRole('TaskManager');
+        } catch (exception $e) {
+        }
+        try {
+            $sergitur = factory(User::class)->create([
+                'name' => 'Sergi Tur',
+                'email' => 'sergiturbadenas@gmail.com',
+                'password' => 'secret'
+            ]);
+            $sergitur->admin = true;
+            $sergitur->save();
+        } catch (exception $e) {
+        }
+        try {
+            $sergitur->assignRole('TaskManager');
+        } catch (exception $e) {
+        }
     }
-
-}
+};
 if (!function_exists('map_collection')) {
     function map_collection($collection)
     {

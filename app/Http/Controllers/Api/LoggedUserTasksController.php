@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyLoggedUserTask;
+use App\Http\Requests\IndexLoggedUserTask;
+use App\Http\Requests\StoreLoggedUserTask;
+use App\Http\Requests\UpdateLoggedUserTask;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
