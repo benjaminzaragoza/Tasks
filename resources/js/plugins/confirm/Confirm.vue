@@ -1,3 +1,4 @@
+<!-- // Taken from https://github.com/yariksav/vuetify-confirm -->
 <template>
     <v-dialog @input="change" value="true" :max-width="width">
         <v-toolbar v-if="!!title" dark :color="color" dense>
@@ -14,6 +15,7 @@
         </v-card>
     </v-dialog>
 </template>
+
 <script>
   export default {
     props: {

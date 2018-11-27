@@ -39,7 +39,7 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-switch v-model="newTask.completed" :label="newTask.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="newTask.description" label="Descripció"></v-textarea>
                         <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
@@ -76,7 +76,7 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="taskBeingEdit.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="taskBeingEdit.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-switch v-model="taskBeingEdit.completed" :label="taskBeingEdit.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdit.description" label="Descripció"></v-textarea>
                         <v-autocomplete v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
@@ -114,7 +114,7 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch disabled v-model="taskBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-switch disabled v-model="taskBeingShown.completed" :label="taskBeingShown.completed ? 'Completada':'Pendent'" ></v-switch>
                         <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
                         <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
@@ -197,7 +197,7 @@
                             </v-avatar>
                         </td>
                         <td>
-                          <v-switch v-model="completed.id" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
+                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -350,6 +350,9 @@ export default {
     opcio1 () {
       console.log('Todo Opcio')
     },
+    createTask (task) {
+      this.dataTasks.splice(0, 0, task)
+    },
     showDestroy (task) {
       this.deleteDialog = true
       this.taskBeingRemoved = task
@@ -359,18 +362,20 @@ export default {
     },
     add () {
       window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
-        console.log(response.data)
-        this.refresh()
+        this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
-
+        this.createDialog = false
       }).catch((error) => {
-        console.log(error)
+        this.$snackbar.showError(error)
       })
     },
     update () {
       this.editing = true
       window.axios.put('/api/v1/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
+        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
+        this.editDialog = false
+
       }).catch((error) => {
         this.editing = false
       })
@@ -385,8 +390,7 @@ export default {
         this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
         this.removing = false
       }).catch(error => {
-        console.log(error)
-        this.$snackbar.showError(error.message)
+        this.$snackbar.showError(error)
         this.removing = false
       })
     },
@@ -397,6 +401,10 @@ export default {
     create (task) {
       console.log('Todo delete task')
     },
+    complete (task) {
+      this.taskBeingEdit = task
+      this.update()
+    },
     show (task) {
       console.log('Todo show task' + task.id)
     },
@@ -406,9 +414,9 @@ export default {
       window.axios.get('/api/v1/tasks').then(response => {
         this.dataTasks = response.data
         this.loading = false
-        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
+        this.$snackbar.showMessage("S'han actualitzat correctament les tasques")
       }).catch(error => {
-        console.log(error)
+        this.$snackbar.showError(error)
         this.loading = false
       })
     }
