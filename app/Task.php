@@ -1,9 +1,11 @@
 <?php
 
 namespace App;
+use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
+    use FormattedDates;
     protected $guarded = [];
     /**
      * The attributes that should be hidden for arrays.
@@ -53,13 +55,30 @@ class Task extends Model
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'completed' => $this->completed,
+            'description' => $this->description,
+            'completed' => (boolean) $this->completed,
             'user_id' => $this->user_id,
             'user_name' => optional($this->user)->name,
             'user_email' => optional($this->user)->email,
-            'user'=>$this->user
-//            'tags' => $this->tags
-//            'file' => $this->file
+            'user_gravatar' => optional($this->user)->gravatar,
+            'created_at' => $this->created_at,
+            'created_at_formatted' => $this->created_at_formatted,
+            'created_at_human' => $this->created_at_human,
+            'created_at_timestamp' => $this->created_at_timestamp,
+            'updated_at' => $this->updated_at,
+            'updated_at_formatted' => $this->updated_at_formatted,
+            'updated_at_human' => $this->updated_at_human,
+            'updated_at_timestamp' => $this->updated_at_timestamp,
+            'user' => $this->user,
+            'full_search' => $this->full_search
         ];
+
+    }
+    public function getFullSearchAttribute()
+    {
+        $state = $this->completed ? 'Completada' : 'Pendent';
+        $username = optional($this->user)->name;
+        $useremail = optional($this->user)->email;
+        return "$this->id $this->name $this->description $state $username $useremail";
     }
 }

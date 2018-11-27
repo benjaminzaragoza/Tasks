@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user" content="{{ logged_user() }}">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {{--<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">--}}
     {{--<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">--}}
@@ -16,6 +18,7 @@
             v-model="drawer"
             fixed
             app
+            clipped
     >
         <v-list dense>
             <template v-for="item in items">
@@ -79,18 +82,64 @@
             </template>
         </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="dark" dark fixed app>
+    <v-navigation-drawer
+            v-model="drawerRight"
+            fixed
+            right
+            clipped
+            app
+    >
+        <v-card>
+            <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+            <v-layout row wrap>
+                <v-flex xs12>
+                    <ul>
+                        <li>Nom : {{ Auth::user()->name }}</li>
+                        <li>Email : {{ Auth::user()->email }}</li>
+                        <li>Admin : {{ Auth::user()->admin }}</li>
+                        <li>Roles : {{ implode(',',Auth::user()->map()['roles']) }}</li>
+                        <li>Permissions : {{ implode(', ',Auth::user()->map()['permissions']) }}</li>
+                    </ul>
+                </v-flex>
+            </v-layout>
+        </v-card>
+        <v-card>
+            <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+
+            <v-layout row wrap>
+                @impersonating
+                <v-flex xs12>
+                    <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
+                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
+                    </v-avatar>
+                </v-flex>
+                @endImpersonating
+                <v-flex xs12>
+                    @canImpersonate
+                    <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
+                    @endCanImpersonate
+                    @impersonating
+                    {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
+                    <a href="impersonate/leave">Abandonar la suplantació</a>
+                    @endImpersonating
+                </v-flex>
+            </v-layout>
+        </v-card>
+
+    </v-navigation-drawer>
+
+        <v-toolbar color="dark" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
 
-        <v-avatar title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+        <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
         <v-form action="logout" method="POST" >
             @csrf
-            <v-btn color="cyan" type="submit" fab small dark>
-                <v-icon >exit_to_app</v-icon>
+            <v-btn type="submit" medium dark>
+                <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
     </v-toolbar>

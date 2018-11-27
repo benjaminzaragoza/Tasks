@@ -142,13 +142,18 @@ class TaskTest extends TestCase
     public function map()
     {
         //preparar
-        $user = factory(User::class)->create();
-        $task=Task::create([
-            'name'=>'Comprar pa',
-            'completed'=>false,
-            'user_id'=>$user->id
+        $user = factory(User::class)->create([
+            'name' => 'Pepe Pardo Jeans',
+            'email' => 'pepepardo@jeans.com'
+        ]);
+        $task = Task::create([
+            'name' => 'Comprar pa',
+            'description' => 'Bla bla bla',
+            'completed' => false,
         ]);
         //executar
+        $task->assignUser($user);
+
         $mappedTask = $task->map();
         $this->assertEquals($mappedTask['id'],1);
         $this->assertEquals($mappedTask['name'],'Comprar pa');
@@ -156,6 +161,17 @@ class TaskTest extends TestCase
         $this->assertEquals($mappedTask['user_id'],$user->id);
         $this->assertEquals($mappedTask['user_name'],$user->name);
         $this->assertEquals($mappedTask['user_email'],$user->email);
+        $this->assertNotNull($mappedTask['created_at']);
+        $this->assertNotNull($mappedTask['created_at_formatted']);
+        $this->assertNotNull($mappedTask['created_at_human']);
+        $this->assertNotNull($mappedTask['created_at_timestamp']);
+        $this->assertNotNull($mappedTask['updated_at']);
+        $this->assertNotNull($mappedTask['updated_at_human']);
+        $this->assertNotNull($mappedTask['updated_at_formatted']);
+        $this->assertNotNull($mappedTask['updated_at_timestamp']);
+        $this->assertEquals($mappedTask['user_gravatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
+        $this->assertEquals($mappedTask['full_search'],'1 Comprar pa Bla bla bla Pendent Pepe Pardo Jeans pepepardo@jeans.com');
+
         $this->assertTrue($user->is($mappedTask['user']));
     }
 }

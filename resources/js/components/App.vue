@@ -5,6 +5,7 @@ export default
   name: 'App',
   data: () => ({
     drawer: null,
+    drawerRight: false,
     photos: [
       {
         src: 'https://conceptodefinicion.de/wp-content/uploads/2016/10/Programaci%C3%B3n-Inform%C3%A1tica.jpg'
@@ -37,6 +38,16 @@ export default
       { icon: 'photo', text: 'Imatges', url: '/contact' }
     ]
   }),
+  methods: {
+    impersonate(user) {
+      console.log(user)
+      if (user) {
+        window.location.href = '/impersonate/take/' + user
+      } else {
+        console.log('sadsfa')
+      }
+    }
+  },
   props: {
     source: String
   }

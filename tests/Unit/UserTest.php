@@ -9,6 +9,8 @@
 namespace Tests\Unit;
 use App\Task;
 use App\User;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
@@ -98,18 +100,97 @@ class UserTest extends TestCase
         $this->assertTrue($tasks[2]->is($task3));
     }
 
-    /**
-     * @test
-     */
+
     public function haveTask()
     {
+        $user = factory(User::class)->create();
         $user->haveTask();
+    }
+
+    public function removeTask()
+    {
+        $user = factory(User::class)->create();
+        $user->removeTask();
     }
     /**
      * @test
-    */
-    public function removeTask()
+     */
+    public function isSuperAdmin()
     {
-        $user->removeTask();
+        $user = factory(User::class)->create();
+
+        $this->assertFalse($user->isSuperAdmin());
+        $user->admin=true;
+        $user->save();
+        $this->assertTrue($user->isSuperAdmin());
+
+    }
+    /**
+     * @test
+     */
+    public function map()
+    {
+        $user = factory(User::class)->create([
+            'name' => 'Pepe Pardo Jeans',
+            'email' => 'pepepardo@jeans.com',
+        ]);
+        $mappedUser = $user->map();
+        $this->assertEquals($mappedUser['id'],1);
+        $this->assertEquals($mappedUser['name'],'Pepe Pardo Jeans');
+        $this->assertEquals($mappedUser['email'],'pepepardo@jeans.com');
+        $this->assertEquals($mappedUser['gravatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
+        $this->assertEquals($mappedUser['admin'],0);
+        $this->assertCount(0,$mappedUser['permissions']);
+        $user->admin = true;
+        $user->save();
+        $rol1 = Role::create([
+            'name' => 'Rol1'
+        ]);
+        $rol2 = Role::create([
+            'name' => 'Rol2'
+        ]);
+        $permission1 = Permission::create([
+            'name' => 'Permission1'
+        ]);
+        $permission2 = Permission::create([
+            'name' => 'Permission2'
+        ]);
+        $user->givePermissionTo($permission1);
+        $user->givePermissionTo($permission2);
+        $user->assignRole($rol1);
+        $user->assignRole($rol2);
+        $user = $user->fresh();
+        $mappedUser = $user->map();
+        $this->assertCount(2,$mappedUser['roles']);
+        $this->assertCount(2,$mappedUser['permissions']);
+        $this->assertEquals($mappedUser['admin'],true);
+        $this->assertEquals($mappedUser['roles'][0],'Rol1');
+        $this->assertEquals($mappedUser['roles'][1],'Rol2');
+        $this->assertEquals($mappedUser['permissions'][0],'Permission1');
+        $this->assertEquals($mappedUser['permissions'][1],'Permission2');
+    }
+    /**
+     * @test
+     */
+    public function regulars()
+    {
+        $this->assertCount(0,User::regular()->get());
+        $user1 = factory(User::class)->create([
+            'name' => 'Pepe Pardo Jeans',
+            'email' => 'pepepardo@jeans.com'
+        ]);
+        $user2 = factory(User::class)->create([
+            'name' => 'Pepa Parda Jeans',
+            'email' => 'pepaparda@jeans.com'
+        ]);
+        $user3 = factory(User::class)->create([
+            'name' => 'Pepa Pig',
+            'email' => 'pepapig@dibus.com'
+        ]);
+        $user3->admin = true;
+        $user3->save();
+        $this->assertCount(2,$regularusers = User::regular()->get());
+        $this->assertEquals($regularusers[0]->name,'Pepe Pardo Jeans');
+        $this->assertEquals($regularusers[1]->name, 'Pepa Parda Jeans');
     }
 }

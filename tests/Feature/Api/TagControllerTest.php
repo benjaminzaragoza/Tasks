@@ -15,18 +15,15 @@ class TagControllerTest extends TestCase
      */
     public function can_show_a_tag()
     {
-        $this->login('api');
-
-        // 1
+        $this->withoutExceptionHandling();
+        $this->loginAsTagsManager('api');
         $tag = factory(Tag::class)->create();
-        // 2
         $response = $this->json('GET','/api/v1/tags/' . $tag->id);
-        // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $this->assertEquals($tag->name, $result->name);
-        $this->assertEquals($tag->description,$result->description);
-        $this->assertEquals($tag->color,$result->color);
+        $this->assertEquals($tag->description, $result->description);
+        $this->assertEquals($tag->color, $result->color);
     }
     /**
      * @test
@@ -99,21 +96,21 @@ class TagControllerTest extends TestCase
         $this->assertCount(3,$result);
         $this->assertEquals('comprar pa', $result[0]->name);
         $this->assertEquals('hola que tal', $result[0]->description);
-        $this->assertEquals('blau', $result[0]->color);
+        $this->assertEquals('blue', $result[0]->color);
         $this->assertEquals('comprar llet', $result[1]->name);
         $this->assertEquals('hola que mal', $result[1]->description);
-        $this->assertEquals('verd', $result[1]->color);
+        $this->assertEquals('green', $result[1]->color);
         $this->assertEquals('Estudiar PHP', $result[2]->name);
         $this->assertEquals('hola que fatal', $result[2]->description);
-        $this->assertEquals('roig', $result[2]->color);
+        $this->assertEquals('red', $result[2]->color);
     }
     /**
      * @test
      */
     public function can_edit_tag()
     {
-        $this->login('api');
 
+        $this->loginAsTaskManager('api');
         // 1
         $oldTag = factory(Tag::class)->create([
             'name' => 'Comprar llet',
@@ -142,8 +139,7 @@ class TagControllerTest extends TestCase
      */
     public function cannot_edit_tag_without_name()
     {
-        $this->login('api');
-
+        $this->loginAsTaskManager('api');
         // 1
         $oldTag = factory(Tag::class)->create();
         // 2

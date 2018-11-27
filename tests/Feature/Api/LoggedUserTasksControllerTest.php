@@ -12,38 +12,24 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_list_logged_user_tasks()
     {
-        $user = $this->login('api');
-
+        $user=$this->loginAsTaskManager('api');
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
-
-        $tasks = [$task1,$task2,$task3];
+        $tasks = collect([$task1, $task2, $task3]);
         $user->addTasks($tasks);
-
-        // 2 execute
-
-        $response = $this->json('GET','/api/v1/user/tasks');
+        $response = $this->get('/user/tasks');
         $response->assertSuccessful();
-
-        $result = json_decode($response->getContent());
-
-        $this->assertCount(3,$result);
-        $this->assertEquals($result[0]->id,$task1->id);
-        $this->assertEquals($result[1]->id,$task2->id);
-        $this->assertEquals($result[2]->id,$task3->id);
-
-//        $this->assertEquals($result[1]->is($task2));
-//        $this->assertEquals($result[2]->is($task3));
+        $response->assertViewIs('tasks.user.index');
+        $response->assertViewHas('tasks', $user->tasks);
     }
     /**
      * @test
      */
     public function cannot_list_logged_user_tasks_if_user_is_not_logged()
     {
-        $this->markTestSkipped('TODO');
-        $this->login();
         $response = $this->json('GET','/user/tasks');
         $response->assertStatus(401);
     }
+
 }

@@ -1,22 +1,25 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Http\Requests\StoreTask;
+use App\Http\Requests\DestroyTask;
+use App\Http\Requests\IndexTask;
+use App\Http\Requests\ShowTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class TasksController extends Controller
 {
-    public function index(Request $request)
+    public function index(IndexTask $request)
     {
-        return Task::orderBy('created_at','desc')->get();
+        return map_collection(Task::orderBy('created_at','desc')->get());
     }
-    public function show(Request $request, Task $task) // Route Model Binding
+    public function show(ShowTask $request, Task $task) // Route Model Binding
     {
         return $task->map();
 //        return Task::findOrFail($request->task);
     }
-    public function destroy(Request $request, Task $task)
+    public function destroy(DestroyTask $request, Task $task)
     {
         $task->delete();
     }
@@ -25,12 +28,17 @@ class TasksController extends Controller
         $task = new Task();
         $task->name = $request->name;
         $task->completed = false;
+        $task->user_id = $request->user_id;
+        $task->description = $request->description;
         $task->save();
         return $task->map();
     }
     public function update(UpdateTask $request, Task $task)
     {
-        $task->update($request->all());
+        $task->name = $request->name;
+        $task->completed = $request->completed;
+        $task->user_id = $request->user_id;
+        $task->description = $request->description;
         $task->save();
         return $task->map();
     }

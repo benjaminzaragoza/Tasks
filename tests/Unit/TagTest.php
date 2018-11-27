@@ -26,9 +26,9 @@ class TagTest extends TestCase
         ]);
         //executar
         $mappedTask = $tag->map();
-        $this->assertEquals($mappedTask['id'],1);
-        $this->assertEquals($mappedTask['name'],'Comprar pa');
-        $this->assertEquals($mappedTask['description'],'comprar pa');
-        $this->assertEquals($mappedTask['color'],'blau');
+        $this->assertEquals($mappedTask['id'],$tag->id);
+        $this->assertEquals($mappedTask['name'],$tag->name);
+        $this->assertEquals($mappedTask['description'],$tag->description);
+        $this->assertEquals($mappedTask['color'],$tag->color);
     }
 }

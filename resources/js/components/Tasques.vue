@@ -11,13 +11,14 @@
                       <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
                         Cancel·lar
                       </v-btn>
-                      <v-btn color="error darken-1" flat="flat" @click="destroy">
+                      <v-btn color="error darken-1" flat="flat" @click="destroy"
+                             :loading="removing"
+                             :disabled="removing">
                         Confirmar
                       </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
-
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
@@ -29,7 +30,7 @@
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <v-btn flat class="white--text">
+                <v-btn flat class="white--text" @click="add">
                     <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
@@ -37,15 +38,16 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="newTask.description" label="Descripció"></v-textarea>
+                        <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success">
+                            <v-btn color="success" @click="add" >
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -54,7 +56,6 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
         <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="editDialog=false">
@@ -74,16 +75,16 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
+                        <v-text-field v-model="taskBeingEdit.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="taskBeingEdit.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="taskBeingEdit.description" label="Descripció"></v-textarea>
+                        <v-autocomplete v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success">
+                            <v-btn color="success" @click="update">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -92,46 +93,37 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
-        <v-dialog v-model="showDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="showDialog=false">
-            <v-toolbar color="primary" class="white--text">
-                <v-btn flat icon class="white--text" @click="showDialog=false">
-                    <v-icon class="mr-2">close</v-icon>
+        <v-dialog v-model="showDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+                  @keydown.esc="showDialog=false">
+            <v-toolbar color="blue darken-3" class="white--text">
+                <v-btn icon flat class="white--text">
+                    <v-icon class="mr-1" @click="showDialog=false">close</v-icon>
                 </v-btn>
-                <v-card-title class="headline">Mostrar tasca</v-card-title>
+                <v-toolbar-title class="white--text">Mostrar tasca</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="showDialog=false">
-                    <v-icon class="mr-2">exit_to_app</v-icon>
-                    Sortir
+                    <v-icon class="mr-1" >exit_to_app</v-icon>
+                    SORTIR
                 </v-btn>
                 <v-btn flat class="white--text">
-                    <v-icon class="mr-2">save</v-icon>
+                    <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
             </v-toolbar>
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" readonly></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'" readonly></v-switch>
-                        <v-textarea v-model="description" label="Descripció" readonly></v-textarea>
-                        <div class="text-xs-center">
-                            <v-btn @click="showDialog=false">
-                                <v-icon class="mr-2">exit_to_app</v-icon>
-                                Cancel·lar
-                            </v-btn>
-                            <v-btn color="success">
-                                <v-icon class="mr-2">save</v-icon>
-                                Guardar
-                            </v-btn>
-                        </div>
+                        <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch disabled v-model="taskBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
+                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
 
-        <v-snackbar :timeout="3000" color="success" v-model="snackbar">
-        Aixo es un snack
+        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
+        {{snackbarMessage}}
         <v-btn dark flat @click="snackbar=false">
             <v-icon>close</v-icon>
         </v-btn>
@@ -203,22 +195,35 @@
                 <template slot="items" slot-scope="{item:task}">
                     <tr>
                         <td>{{task.id}}</td>
-                        <td v-text="task.name"></td>
-                        <td v-text="task.user_id"></td>
-                        <td v-text="task.completed"></td>
-                        <td v-text="task.create_at"></td>
-                        <td v-text="task.updated_at"></td>
                         <td>
-                            <v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">
-                                <v-icon>info</v-icon>
-                            </v-btn>
-                            <v-btn :loading="showing" :disabled="showing" icon color="cyan" flat title="Mostrar la tasca" @click="showTask(task)">
+                            <span :title="task.description">{{ task.name }}</span>
+                        </td>
+                        <td>
+                            <v-avatar :title="task.user_name">
+                                <img :src="task.user_gravatar" alt="avatar">
+                            </v-avatar>
+                        </td>
+                        <td>
+                          <v-switch v-model="completed.id" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
+                        </td>
+                        <td>
+                            <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
+                        </td>
+                        <td>
+                            <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
+                        </td>
+                        <td>
+                            <!--<v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">-->
+                                <!--<v-icon>info</v-icon>-->
+                            <!--</v-btn>-->
+                            <v-btn v-can="tasks.show" icon color="cyan" flat title="Mostrar la tasca" @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
+
+                            <v-btn v-can="tasks.update" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn :loading="deleting" :disabled="deleting" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -268,6 +273,7 @@
                 large
                 color="pink accent-3"
                 class="white--text"
+                v-can="tasks.add"
         >
             <v-icon>add</v-icon>
         </v-btn>
@@ -279,20 +285,33 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      taskBeingShown: '',
+      newTask: {
+        name: '',
+        completed: false,
+        user_id: '',
+        description: ''
+      },
+      snackbarMessage: '',
+      snackbarTimeout: 3000,
+      snackbarColor: 'success',
       dataUsers: this.users,
-      description: '',
       completed: false,
       name: '',
+      description: '',
       createDialog: false,
       deleteDialog: false,
       editDialog: false,
+      taskBeingRemoved: '',
+      taskBeingEdit: '',
       showDialog: false,
-      snackbar: true,
+      snackbar: false,
       user: '',
       usersold: [
+        'Marc Mestre',
+        'Cristian Marin',
         'Sergi Baucells',
-        'Jordi baucells',
-        'Carmen Rodríguez'
+        'Benjamin Zaragoza'
       ],
       filter: 'Totes',
       filters: [
@@ -305,18 +324,18 @@ export default {
         rowsPerPage: 25
       },
       loading: false,
-      deleting: false,
-      showing: false,
+      creating: false,
       editing: false,
+      removing: false,
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
-        { text: 'Nom', value: 'name' },
+        { text: 'Name', value: 'name' },
         { text: 'Usuari', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
-        { text: 'Creat', value: 'created_at' },
-        { text: 'Modificat', value: 'updated_at' },
-        { text: 'Accions', sortable: false }
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
       ]
     }
   },
@@ -331,54 +350,91 @@ export default {
     }
   },
   methods: {
+    showUpdate (task) {
+      this.editDialog = true
+      this.taskBeingEdit = task
+    },
+    showShow (task) {
+      this.showDialog = true
+      this.taskBeingShown = task
+    },
+    opcio1 () {
+      console.log('Todo Opcio')
+    },
+    showDestroy (task) {
+      this.deleteDialog = true
+      this.taskBeingRemoved = task
+    },
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    add () {
+      window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
+        console.log(response.data)
+        this.refresh()
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    update () {
+      this.editing = true
+      window.axios.put('/api/v1/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
+        this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
+      }).catch((error) => {
+        this.editing = false
+      })
+    },
+    destroy (task) {
+      this.removing = true
+      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
+        // this.refresh()
+        this.removeTask(this.taskBeingRemoved)
+        this.deleteDialog = false
+        this.taskBeingRemoved = null
+        this.showMessage('Sha esborrat correctament')
+        this.removing = false
+      }).catch(error => {
+        console.log(error)
+        this.showError(error)
+        this.removing = false
+      })
+    },
+    showMessage (message) {
+      this.snackbarMessage = message
+      this.snackbarColor = 'success'
+      this.snackbar = true
+    },
+    showError (error) {
+      this.snackbarMessage = error.message
+      this.snackbarColor = 'error'
+      this.snackbar = true
+    },
+    showCreate (task) {
+      this.createDialog = true
+      console.log('Todo delete task')
+    },
+    create (task) {
+      console.log('Todo delete task')
+    },
+    show (task) {
+      console.log('Todo show task' + task.id)
+    },
     refresh () {
       this.loading = true
       // setTimeout(() => { this.loading = false }, 5000)
-      // OCO!! URL CANVIA SEGONS EL CAS
-      // window.axios.get('/api/v1/tasks').then().catch()
-      window.axios.get('/api/v1/user/tasks').then(response => {
-        // SHOW SNACKBAR MISSATGE OK
+      window.axios.get('/api/v1/tasks').then(response => {
         this.dataTasks = response.data
         this.loading = false
       }).catch(error => {
         console.log(error)
         this.loading = false
-        // SHOW SNACKBAR ERROR
+        // SHOW SNACKBAR ERROR TODO
       })
-    },
-    opcio1 () {
-      console.log('TODO OPCIÓ 1')
-    },
-    destroy (task) {
-      this.deleting = false
-      setTimeout(() => { this.deleting = false }, 5000)
-      console.log('TODO ESBORRAR TASCA ' + task.id)
-    },
-    create (task) {
-      console.log('TODO CREAR TASCA')
-    },
-    update (task) {
-      this.editing = true
-      setTimeout(() => { this.editing = false }, 5000)
-      console.log('TODO ACTUALITZAR TASCA ' + task.id)
-    },
-    show (task) {
-      this.showing = true
-      setTimeout(() => { this.showing = false }, 5000)
-      console.log('TODO MOSTRAR TASCA ' + task.id)
-    },
-    showUpdate () {
-      this.editDialog = true
-    },
-    showTask () {
-      this.showDialog = true
-    },
-    showCreate () {
-      this.createDialog = true
-    },
-    showDestroy () {
-      this.deleteDialog = true
     }
+  },
+  created () {
+    console.log('Usuari logat')
+    console.log(window.laravel_user)
   }
 }
 </script>
