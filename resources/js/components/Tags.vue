@@ -133,14 +133,6 @@
                             </v-card-text>
                         </v-card>
                     </v-dialog>
-
-                <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
-                    {{snackbarMessage}}
-                    <v-btn dark flat @click="snackbar=false">
-                        <v-icon>close</v-icon>
-                    </v-btn>
-                </v-snackbar>
-
                 <v-card>
                     <v-toolbar  dark color="red dark">
                         <v-icon>local_offer</v-icon>

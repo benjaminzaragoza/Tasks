@@ -22,7 +22,7 @@
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
-                    <v-icon class="mr-2">close</v-icon>
+                    <v-icon>close</v-icon>
                 </v-btn>
                 <v-card-title class="headline">Crear tasca</v-card-title>
                 <v-spacer></v-spacer>
@@ -59,7 +59,7 @@
         <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="editDialog=false">
-                    <v-icon class="mr-2">close</v-icon>
+                    <v-icon>close</v-icon>
                 </v-btn>
                 <v-card-title class="headline">Editar tasca</v-card-title>
                 <v-spacer></v-spacer>
@@ -97,7 +97,7 @@
                   @keydown.esc="showDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
                 <v-btn icon flat class="white--text">
-                    <v-icon class="mr-1" @click="showDialog=false">close</v-icon>
+                    <v-icon @click="showDialog=false">close</v-icon>
                 </v-btn>
                 <v-toolbar-title class="white--text">Mostrar tasca</v-toolbar-title>
                 <v-spacer></v-spacer>
