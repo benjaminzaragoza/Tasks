@@ -121,13 +121,6 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
-        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
-        {{snackbarMessage}}
-        <v-btn dark flat @click="snackbar=false">
-            <v-icon>close</v-icon>
-        </v-btn>
-    </v-snackbar>
         <v-toolbar color="pink darken-2">
             <v-menu>
                 <v-btn slot="activator" icon dark>
@@ -292,9 +285,6 @@ export default {
         user_id: '',
         description: ''
       },
-      snackbarMessage: '',
-      snackbarTimeout: 3000,
-      snackbarColor: 'success',
       dataUsers: this.users,
       completed: false,
       name: '',
@@ -305,7 +295,6 @@ export default {
       taskBeingRemoved: '',
       taskBeingEdit: '',
       showDialog: false,
-      snackbar: false,
       user: '',
       usersold: [
         'Marc Mestre',
@@ -372,6 +361,8 @@ export default {
       window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
         console.log(response.data)
         this.refresh()
+        this.$snackbar.showMessage("S'ha creat correctament la tasca")
+
       }).catch((error) => {
         console.log(error)
       })
@@ -391,23 +382,13 @@ export default {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
-        this.showMessage('Sha esborrat correctament')
+        this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
         this.removing = false
       }).catch(error => {
         console.log(error)
-        this.showError(error)
+        this.$snackbar.showError(error.message)
         this.removing = false
       })
-    },
-    showMessage (message) {
-      this.snackbarMessage = message
-      this.snackbarColor = 'success'
-      this.snackbar = true
-    },
-    showError (error) {
-      this.snackbarMessage = error.message
-      this.snackbarColor = 'error'
-      this.snackbar = true
     },
     showCreate (task) {
       this.createDialog = true
@@ -425,10 +406,10 @@ export default {
       window.axios.get('/api/v1/tasks').then(response => {
         this.dataTasks = response.data
         this.loading = false
+        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
       }).catch(error => {
         console.log(error)
         this.loading = false
-        // SHOW SNACKBAR ERROR TODO
       })
     }
   },

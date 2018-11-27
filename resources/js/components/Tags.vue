@@ -134,6 +134,13 @@
                         </v-card>
                     </v-dialog>
 
+                <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
+                    {{snackbarMessage}}
+                    <v-btn dark flat @click="snackbar=false">
+                        <v-icon>close</v-icon>
+                    </v-btn>
+                </v-snackbar>
+
                 <v-card>
                     <v-toolbar  dark color="red dark">
                         <v-icon>local_offer</v-icon>
@@ -276,7 +283,7 @@ export default {
         this.newTag.name = ''
         this.newTag.description = ''
         this.newTag.color = ''
-        this.loading=false
+        this.loading = false
       }).catch((error) => {
         console.log(error)
       })
