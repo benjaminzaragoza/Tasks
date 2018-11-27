@@ -5,11 +5,49 @@ use App\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
-class TagControllerTest extends TestCase
+class TagsControllerTest extends TestCase
 {
     use RefreshDatabase,CanLogin;
     // CRUD -> CRU -> CREATE RETRIEVE UPDATE DELETE
     // BREAD -> PA -> BROWSE READ EDIT ADD DELETE
+    /**
+     * @test
+     */
+    public function guest_user_cannot_show_tags()
+    {
+        $response = $this->json('GET','/tags/');
+        $response->assertRedirect('/login');
+    }
+    public function tags_manager_user_connot_show_tags()
+    {
+
+    }
+    public function regular_user_connot_show_tags()
+    {
+
+    }
+    public function superadmin_con_show_tags()
+    {
+    $this->loginAsSuperAdmin();
+
+    }
+    public function con_not_show_tags_regular_user()
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @test
      */

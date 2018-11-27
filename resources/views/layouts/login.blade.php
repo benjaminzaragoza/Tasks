@@ -8,10 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
+    <style>
+        [v-cloak] {display: none}
+    </style>
 </head>
 <body>
 <div id="app">
-    <v-app>
+    <v-app v-cloak>
 @yield('content')
         </v-app>
 </div>
