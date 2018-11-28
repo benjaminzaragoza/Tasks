@@ -39,10 +39,8 @@ class TasksTest extends TestCase
         $response->assertSuccessful();
         $response->assertViewIs('tasques');
         $response->assertViewHas('tasks',function ($tasks){
-            return count($tasks)===3 &&
-                $tasks[0]['name']==='comprar pa'&&
-                $tasks[1]['name']==='comprar llet'&&
-                $tasks[2]['name']==='Estudiar PHP';
+            return count($tasks)===1 &&
+                $tasks[0]['name']==='comprar pa';
         });
     }
     /**
