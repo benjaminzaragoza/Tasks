@@ -18,7 +18,10 @@ trait CanLogin
     {
         initialize_roles();
         $user = factory(User::class)->create();
-        $user->assignRole($role);
+        $roles=is_array($role)?$role:[$role];
+        foreach ($roles as $role) {
+            $user->assignRole($role);
+        }
         $this->actingAs($user,$guard);
         return $user;
     }
@@ -28,7 +31,15 @@ trait CanLogin
      */
     protected function loginAsTaskManager($guard = null)
     {
-    return $this->loginAsUsingRole($guard,'TaskManager');
+    return $this->loginAsUsingRole($guard,['TaskManager','Tasks']);
+    }
+    /**
+     * @param null $guard
+     * @return mixed
+     */
+    protected function loginAsTasksUser($guard = null)
+    {
+        return $this->loginAsUsingRole($guard,'Tasks');
     }
     /**
      * @param null $guard

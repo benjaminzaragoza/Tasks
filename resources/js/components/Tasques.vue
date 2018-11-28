@@ -375,7 +375,6 @@ export default {
         this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
         this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
         this.editDialog = false
-
       }).catch((error) => {
         this.editing = false
       })
