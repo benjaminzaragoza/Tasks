@@ -55,7 +55,33 @@ class User extends Authenticatable
     {
         $this->tasks()->delete();
     }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+    /**
+     * @param Tag $tag
+     */
+    public function addTag(Tag $tag){
+        $this->tags()->save($tag);
+    }
+    /**
+     * @param $tags
+     */
+    public function addTags($tags){
+        $this->tags()->saveMany($tags);
+    }
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\HasMany|null|object
+     */
+    public function haveTag(Tag $tag)
+    {
+        return $this->tags()->where('id',$tag->id)->first();
+    }
     /**
      * @return mixed
      */

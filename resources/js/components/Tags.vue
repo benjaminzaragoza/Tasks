@@ -4,7 +4,7 @@
             <v-flex xs12 justify-center>
                 <v-dialog v-model="deleteDialog" width="400">
                     <v-card>
-                        <v-card-title class="headline">Voleu borrar el tag <strong>{{ this.newTag.name }}</strong>?</v-card-title>
+                        <v-card-title class="headline">Voleu borrar el tag <strong>{{this.newTag.name}}</strong> ?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
                         </v-card-text>
@@ -161,6 +161,17 @@
                                 <td class="text-xs-left">{{ tag.name }}</td>
                                 <td class="text-xs-left">{{ tag.description }}</td>
                                 <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
+                                <td>
+                                    <v-avatar :title="tag.user_name">
+                                        <img :src="tag.user_gravatar" alt="avatar">
+                                    </v-avatar>
+                                </td>
+                                <td>
+                                    <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
+                                </td>
+                                <td>
+                                    <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
+                                </td>
                                 <td class="text-xs-center">
                                         <!--<v-btn icon flat title="Mostrar la snackbar"-->
                                                <!--@click="snackbar=true">-->
@@ -248,6 +259,9 @@ export default {
         { text: 'Name', value: 'name', align: 'left', sortable: true },
         { text: 'Description', value: 'description', align: 'left', sortable: true },
         { text: 'Color', value: 'color', align: 'left', sortable: true },
+        { text: 'Usuari', value: 'user_id' },
+        { text: 'Creat', value: 'created_at', align: 'center', sortable: true },
+        { text: 'Modificat', value: 'update_at', align: 'center', sortable: true },
         { text: 'Actions', align: 'center', sortable: false }
       ]
     }
@@ -264,8 +278,11 @@ export default {
   },
 
   computed: {
-    total() {
+    total () {
       return this.dataTags.length
+    },
+    eliminar () {
+      return this.newTag.name
     }
   },
   methods: {
@@ -329,10 +346,6 @@ export default {
     },
     create (tag) {
       console.log('Todo delete tag')
-    },
-    complete (tag) {
-      this.tagBeingEdit = tag
-      this.update()
     },
     show (tag) {
       console.log('Todo show tag' + tag.id)

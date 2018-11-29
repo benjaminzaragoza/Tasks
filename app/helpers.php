@@ -54,17 +54,21 @@ if (!function_exists('create_example_tags')) {
         Tag::create([
             'name' => 'comprar pa',
             'description'=>'hola que tal',
-            'color'=>'blue'
+            'color'=>'blue',
+             'user_id' => 1
+
         ]);
         Tag::create([
             'name' => 'comprar llet',
             'description'=>'hola que mal',
-            'color'=>'green'
+            'color'=>'green',
+            'user_id' => 1
         ]);
         Tag::create([
             'name' => 'Estudiar PHP',
             'description'=>'hola que fatal',
-            'color'=>'red'
+            'color'=>'red',
+            'user_id' => 1
         ]);
     }
 }
