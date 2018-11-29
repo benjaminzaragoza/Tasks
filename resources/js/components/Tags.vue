@@ -4,7 +4,7 @@
             <v-flex xs12 justify-center>
                 <v-dialog v-model="deleteDialog" width="400">
                     <v-card>
-                        <v-card-title class="headline">Voleu borrar el tag <strong>{{ this.selectedTag.name }}</strong>?</v-card-title>
+                        <v-card-title class="headline">Voleu borrar el tag <strong>{{ this.newTag.name }}</strong>?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
                         </v-card-text>
