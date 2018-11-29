@@ -14,7 +14,7 @@ class DestroyLoggedUserTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.destroy');
+        return Auth::user()->can('user.tasks.destroy');
 
     }
 

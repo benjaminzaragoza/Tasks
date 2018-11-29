@@ -87,39 +87,24 @@ class TagsControllerTest extends TestCase
         $this->assertEquals($tag->description, $result->description);
         $this->assertEquals($tag->color, $result->color);
     }
-//    /**
-//     * @test
-//     */
-//    public function can_delete_tag()
-//    {
-//        $this->login('api');
-//
-//        // 1
-//        $tag = factory(Tag::class)->create();
-//        // 2
-//        $response = $this->json('DELETE','/api/v1/tags/' . $tag->id);
-//        // 3
-//        $result = json_decode($response->getContent());
-//        $response->assertSuccessful();
-//        $this->assertEquals('', $result);
-////        $this->assertDatabaseMissing('tags', $tag);
-//        $this->assertNull(Tag::find($tag->id));
-//    }
     /**
      * @test
      */
-    public function cannot_create_tags_without_name()
+    public function can_delete_tag()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
-        $this->login('api');
-
-        $response = $this->json('POST','/api/v1/tags/',[
-            'name' => ''
-        ]);
+        $this->loginAsTagsManager('api');
+        // 1
+        $tag = factory(Tag::class)->create();
+        // 2
+        $response = $this->delete('/api/v1/tags/' . $tag->id);
+        // 3
         $result = json_decode($response->getContent());
-
-        $response->assertStatus(422);
+        $response->assertSuccessful();
+        $this->assertEquals('', $result);
+//        $this->assertDatabaseMissing('tags', $tag);
+        $this->assertNull(Tag::find($tag->id));
     }
     /**
      * @test
@@ -128,7 +113,7 @@ class TagsControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->login('api');
+        $this->loginAsTagsManager('api');
 
         $response = $this->json('POST','/api/v1/tags/',[
             'name' => 'Comprar pa',
@@ -148,7 +133,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_list_tags()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
 
         //1
         create_example_tags();
@@ -165,6 +150,50 @@ class TagsControllerTest extends TestCase
         $this->assertEquals('Estudiar PHP', $result[2]->name);
         $this->assertEquals('hola que fatal', $result[2]->description);
         $this->assertEquals('red', $result[2]->color);
+    }
+    /**
+     * @test
+     */
+    public function can_edit_tag()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->loginAsTagsManager('api');
+
+        $oldTag = factory(Tag::class)->create([
+            'name' => 'feina',
+            'description' => "blablab",
+            'color' => '#04B404'
+        ]);
+        // 2
+        $response = $this->put('/api/v1/tags/'.$oldTag->id, [
+            'name' => 'classe',
+            'description' => 'classethings',
+            'color' => '#05C202'
+        ]);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $newTag = $oldTag->refresh();
+        $this->assertNotNull($newTag);
+        $this->assertEquals('classe',$result->name);
+        $this->assertEquals('classethings',$result->description);
+        $this->assertEquals('#05C202',$result->color);
+    }
+    /**
+     * @test
+     */
+    public function cannot_edit_tag_without_name()
+    {
+        $this->loginAsTagsManager('api');
+        // 1
+        $oldTag = factory(Tag::class)->create();
+        // 2
+        $response = $this->json('PUT', '/api/v1/tags/' . $oldTag->id, [
+            'name' => ''
+        ]);
+        // 3
+        $response->assertStatus(422);
     }
 
 }

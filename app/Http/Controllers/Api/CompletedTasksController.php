@@ -22,21 +22,15 @@ class CompletedTasksController
         $task->save();
 
     }
-    //controller = new Completed
     public function destroy(DestroyTaskCompleted $request, Task $task)
     {
         $task->completed=false;
         $task->save();
-//        Task::findOrFail();
-        //dump($request->header('User-Agent'));
-
     }
     public function store(ShowTaskCompleted $request, Task $task)
     {
         $task->completed=true;
         $task->save();
-//        Task::findOrFail();
-        //dump($request->header('User-Agent'));
 
     }
 }

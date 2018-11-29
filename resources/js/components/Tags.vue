@@ -38,7 +38,9 @@
                                         <v-text-field prepend-icon="color_lens" v-model="newTag.color" label="Color"></v-text-field>
                                     </v-flex>
                                     <v-flex xs12>
-
+                                        <v-autocomplete prepend-icon="face" v-model="newTag.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
+                                    </v-flex>
+                                    <v-flex xs12>
                                         <v-textarea prepend-icon="description" v-model="newTag.description" label="Descripcio"></v-textarea>
                                     </v-flex>
 
@@ -79,6 +81,7 @@
                             <v-form>
                                 <v-text-field  disabled prepend-icon="local_offer" v-model="tagBeingShown.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
                                 <v-text-field disabled prepend-icon="color_lens" v-model="tagBeingShown.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                <v-autocomplete prepend-icon="face" disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                                 <v-textarea disabled prepend-icon="description" v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                                 <div class="text-xs-center">
                                     <v-btn @click="showDialog=false">
@@ -119,6 +122,7 @@
                                     <v-text-field prepend-icon="local_offer" v-model="tagBeingEdit.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
                                     <v-text-field prepend-icon="color_lens" v-model="tagBeingEdit.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
                                     <v-textarea prepend-icon="description" v-model="tagBeingEdit.description" label="Descripció"></v-textarea>
+                                    <v-autocomplete prepend-icon="face" v-model="tagBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                                     <div class="text-xs-center">
                                         <v-btn @click="editDialog=false">
                                             <v-icon class="mr-2">exit_to_app</v-icon>
@@ -173,10 +177,6 @@
                                     <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
                                 </td>
                                 <td class="text-xs-center">
-                                        <!--<v-btn icon flat title="Mostrar la snackbar"-->
-                                               <!--@click="snackbar=true">-->
-                                            <!--<v-icon color="orange">verified_user</v-icon>-->
-                                        <!--</v-btn>-->
                                         <v-btn icon flat title="Mostrar la tag"
                                                @click="showShow(tag)">
                                             <v-icon color="green">visibility</v-icon>
@@ -220,22 +220,23 @@ export default {
       newTag: {
         name: '',
         description: '',
-        color: ''
+        color: '',
+        user_id: ''
       },
-      // dataUsers: this.users,
+      dataUsers: this.users,
       dataTags: this.tags,
       name: '',
       color: '',
       description: '',
       createDialog: false,
       deleteDialog: false,
-      // user: '',
-      // usersold: [
-      //   'Marc Mestre',
-      //   'Cristian Marin',
-      //   'Sergi Baucells',
-      //   'Benjamin Zaragoza'
-      // ],
+      user: '',
+      usersold: [
+        'Marc Mestre',
+        'Cristian Marin',
+        'Sergi Baucells',
+        'Benjamin Zaragoza'
+      ],
       editDialog: false,
       tagBeingRemoved: '',
       tagBeingEdit: '',
@@ -260,8 +261,8 @@ export default {
         { text: 'Description', value: 'description', align: 'left', sortable: true },
         { text: 'Color', value: 'color', align: 'left', sortable: true },
         { text: 'Usuari', value: 'user_id' },
-        { text: 'Creat', value: 'created_at', align: 'center', sortable: true },
-        { text: 'Modificat', value: 'update_at', align: 'center', sortable: true },
+        { text: 'Creat', value: 'created_at_timestamp', align: 'center', sortable: true },
+        { text: 'Modificat', value: 'updated_at_timestamp', align: 'center', sortable: true },
         { text: 'Actions', align: 'center', sortable: false }
       ]
     }
@@ -270,13 +271,12 @@ export default {
     tags: {
       type: Array,
       required: true
+    },
+    users: {
+      type: Array,
+      required: true
     }
-    // users: {
-    //   type: Array,
-    //   required: true
-    // }
   },
-
   computed: {
     total () {
       return this.dataTags.length
@@ -362,11 +362,11 @@ export default {
         this.loading = false
       })
     }
+  },
+  created () {
+    console.log('Usuari logat')
+    console.log(window.laravel_user)
   }
-  // created () {
-  //   console.log('Usuari logat')
-  //   console.log(window.laravel_user)
-  // }
 }
 </script>
 

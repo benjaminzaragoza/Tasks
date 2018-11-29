@@ -37,9 +37,5 @@ class TagsController extends Controller
         $tag->update($request->only(['name','description','color','user_id']));
         $tag->save();
         return $tag->map();
-
-//        $tag->update($request->all());
-//        $tag->save();
-//        return $tag->map();
     }
 }

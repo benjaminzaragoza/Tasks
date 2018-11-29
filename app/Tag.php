@@ -2,34 +2,20 @@
 
 namespace App;
 
+use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $guarded = [];
-    protected $hidden = [
-        'created_at'
-    ];
-    public function file()
+    use FormattedDates;
+    protected $fillable = ['name','description','color'];
+    public function user()
     {
-        return $this->hasOne(File::class);
+        return $this->belongsTo(User::class);
     }
-    public function assignFile(File $file)
+    public function assignUser(User $user)
     {
-        $file->task_id = $this->id;
-        $file->save();
-    }
-    public function addTags($tags)
-    {
-        $this->tags()->saveMany($tags);
-    }
-    public function addTag($tag)
-    {
-        $this->tags()->save($tag);
-    }
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
+        $this->user()->associate($user);
     }
     public function map()
     {
@@ -44,10 +30,11 @@ class Tag extends Model
             'updated_at' => $this->updated_at,
             'updated_at_formatted' => $this->updated_at_formatted,
             'updated_at_human' => $this->updated_at_human,
+            'updated_at_timestamp' => $this->updated_at_timestamp,
             'user_id' => $this->user_id,
             'user_name' => optional($this->user)->name,
             'user_email' => optional($this->user)->email,
-            'user_avatar' => optional($this->user)->avatar,
+            'user_gravatar' => optional($this->user)->gravatar,
             'user' => $this->user
         ];
     }

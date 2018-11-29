@@ -43,7 +43,7 @@ trait CanLogin
     }
     /**
      * @param null $guard
-     * @return mixed
+     * @return mixedF
      */
     protected function loginAsTagsManager($guard = null)
     {
