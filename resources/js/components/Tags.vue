@@ -4,7 +4,7 @@
             <v-flex xs12 justify-center>
                 <v-dialog v-model="deleteDialog" width="400">
                     <v-card>
-                        <v-card-title class="headline">Voleu borrar el tag {{this.tagToDelete.name}}?</v-card-title>
+                        <v-card-title class="headline">Voleu borrar el tag <strong>{{ this.selectedTag.name }}</strong>?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
                         </v-card-text>
@@ -13,7 +13,7 @@
                             <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="red darken-1" dark @click="destroy()">
+                            <v-btn color="red darken-1" dark @click="destroy">
                             Confirmar
                             </v-btn>
                         </v-card-actions>
@@ -50,13 +50,13 @@
                             <v-btn color="blue darken-1" flat @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Close</v-btn>
-                            <v-btn id="button_add_task" dark color="green dark" flat @click="add">
+                            <v-btn id="button_add_tag" dark color="green dark" flat @click="add">
                                 <v-icon class="mr-2">save</v-icon>
                                 Save</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
-                <v-dialog v-model="showDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="showDialog=false">
+                <v-dialog v-model="showDialog" hide-overlay fullscreen transition="dialog-bottom-transition" @keydown.esc="showDialog=false">
                     <v-toolbar color="green" class="white--text">
                         <v-btn flat icon class="white--text" @click="showDialog=false">
                             <v-icon >close</v-icon>
@@ -77,9 +77,9 @@
                     <v-card>
                         <v-card-text>
                             <v-form>
-                                <v-text-field prepend-icon="local_offer" v-model="name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
-                                <v-text-field prepend-icon="color_lens" v-model="name" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
-                                <v-textarea prepend-icon="description" v-model="description" label="Descripció"></v-textarea>
+                                <v-text-field  disabled prepend-icon="local_offer" v-model="tagBeingShown.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
+                                <v-text-field disabled prepend-icon="color_lens" v-model="tagBeingShown.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                <v-textarea disabled prepend-icon="description" v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                                 <div class="text-xs-center">
                                     <v-btn @click="showDialog=false">
                                         <v-icon class="mr-2">exit_to_app</v-icon>
@@ -116,15 +116,15 @@
                         <v-card>
                             <v-card-text>
                                 <v-form>
-                                    <v-text-field prepend-icon="local_offer" v-model="name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
-                                    <v-text-field prepend-icon="color_lens" v-model="name" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
-                                    <v-textarea prepend-icon="description" v-model="description" label="Descripció"></v-textarea>
+                                    <v-text-field prepend-icon="local_offer" v-model="tagBeingEdit.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
+                                    <v-text-field prepend-icon="color_lens" v-model="tagBeingEdit.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                    <v-textarea prepend-icon="description" v-model="tagBeingEdit.description" label="Descripció"></v-textarea>
                                     <div class="text-xs-center">
                                         <v-btn @click="editDialog=false">
                                             <v-icon class="mr-2">exit_to_app</v-icon>
                                             Cancel·lar
                                         </v-btn>
-                                        <v-btn color="success">
+                                        <v-btn color="success" @click="update" >
                                             <v-icon class="mr-2">save</v-icon>
                                             Guardar
                                         </v-btn>
@@ -138,6 +138,10 @@
                         <v-icon>local_offer</v-icon>
 
                         <v-toolbar-title>Tags ({{total}})</v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-btn icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
+                            <v-icon>refresh</v-icon>
+                        </v-btn>
                     </v-toolbar>
 
                     <v-card-text class="px-0">
@@ -152,26 +156,26 @@
                                 :loading="loading"
                         >
                             <v-progress-linear slot="progress" color="pink" indeterminate></v-progress-linear>
-                            <template slot="items" slot-scope="props">
-                                <td>{{ props.item.id }}</td>
-                                <td class="text-xs-left">{{ props.item.name }}</td>
-                                <td class="text-xs-left">{{ props.item.description }}</td>
-                                <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + props.item.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
+                            <template slot="items" slot-scope="{item: tag}">
+                                <td>{{ tag.id}}</td>
+                                <td class="text-xs-left">{{ tag.name }}</td>
+                                <td class="text-xs-left">{{ tag.description }}</td>
+                                <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
                                 <td class="text-xs-center">
                                         <!--<v-btn icon flat title="Mostrar la snackbar"-->
                                                <!--@click="snackbar=true">-->
                                             <!--<v-icon color="orange">verified_user</v-icon>-->
                                         <!--</v-btn>-->
-                                        <v-btn :loading="showing" :disabled="showing" icon flat title="Mostrar la tagg"
-                                               @click="showTag()">
+                                        <v-btn icon flat title="Mostrar la tag"
+                                               @click="showShow(tag)">
                                             <v-icon color="green">visibility</v-icon>
                                         </v-btn>
-                                        <v-btn :loading="editing" :disabled="editing" icon flat title="Editar la tag"
-                                               @click="showUpdate">
+                                        <v-btn icon flat title="Editar la tag"
+                                               @click="showUpdate(tag)">
                                             <v-icon color="blue">edit</v-icon>
                                         </v-btn>
                                         <v-btn icon flat title="Eliminar la tag"
-                                               @click="showDestroy(props.item)">
+                                               @click="showDestroy(tag)">
                                             <v-icon title="Delete tag" color="red">delete</v-icon>
                                         </v-btn>
                                     </td>
@@ -197,145 +201,159 @@
 </template>
 
 <script>
-import EditableText from './EditableText'
-var filters = {
-  all: function (tags) {
-    return tags
-  }
-}
 export default {
-  name: 'tags',
-  components: {
-    'editable-text': EditableText
-  },
+  name: 'Tags',
   data () {
     return {
-      filter: 'all', // All Completed Active
+      tagBeingShown: '',
       newTag: {
         name: '',
         description: '',
         color: ''
       },
+      // dataUsers: this.users,
       dataTags: this.tags,
       name: '',
+      color: '',
       description: '',
-      errorMessage: null,
+      createDialog: false,
+      deleteDialog: false,
+      // user: '',
+      // usersold: [
+      //   'Marc Mestre',
+      //   'Cristian Marin',
+      //   'Sergi Baucells',
+      //   'Benjamin Zaragoza'
+      // ],
+      editDialog: false,
+      tagBeingRemoved: '',
+      tagBeingEdit: '',
+      showDialog: false,
+      filter: 'Totes',
+      // filters: [
+      //   'Totes',
+      //   'Completades',
+      //   'Pendents'
+      // ],
+      search: '',
+      pagination: {
+        rowsPerPage: 25
+      },
+      loading: false,
+      creating: false,
+      editing: false,
+      removing: false,
       headers: [
         { text: 'Id', value: 'id', align: 'left', sortable: true },
         { text: 'Name', value: 'name', align: 'left', sortable: true },
         { text: 'Description', value: 'description', align: 'left', sortable: true },
         { text: 'Color', value: 'color', align: 'left', sortable: true },
         { text: 'Actions', align: 'center', sortable: false }
-      ],
-      loading: false,
-      search: '',
-      createDialog: false,
-      showDialog: false,
-      editDialog: false,
-      deleteDialog: false,
-      tagToDelete: '',
-      editing: false,
-      showing: false
-
+      ]
     }
   },
   props: {
-    'tags': {
+    tags: {
       type: Array,
-      default: function () {
-        return []
-      }
+      required: true
     }
+    // users: {
+    //   type: Array,
+    //   required: true
+    // }
   },
+
   computed: {
-    total () {
+    total() {
       return this.dataTags.length
-    },
-    filteredtags () {
-      return filters[this.filter](this.dataTags)
-    }
-  },
-  watch: {
-    tags (newTags) {
-      this.dataTags = newTags
     }
   },
   methods: {
-    editName (tag, text) {
-      tag.name = text
+    showUpdate (tag) {
+      this.editDialog = true
+      this.tagBeingEdit = tag
     },
-    setFilter (newFilter) {
-      this.filter = newFilter
+    showShow (tag) {
+      this.showDialog = true
+      this.tagBeingShown = tag
+    },
+    opcio1 () {
+      console.log('Todo Opcio')
+    },
+    createTag (tag) {
+      this.dataTags.splice(0, 0, tag)
+    },
+    showDestroy (tag) {
+      this.deleteDialog = true
+      this.tagBeingRemoved = tag
+    },
+    removeTag (tag) {
+      this.dataTags.splice(this.dataTags.indexOf(tag), 1)
     },
     add () {
       window.axios.post('/api/v1/tags', this.newTag).then((response) => {
-        console.log('responde')
-        console.log(response.data)
-        this.refresh()
-        this.newTag.name = ''
-        this.newTag.description = ''
-        this.newTag.color = ''
-        this.loading = false
+        this.createTag(response.data)
+        this.$snackbar.showMessage("S'ha creat correctament la tasca")
+        this.createDialog = false
       }).catch((error) => {
-        console.log(error)
+        this.$snackbar.showError(error)
       })
     },
-    destroy () {
-      window.axios.delete('/api/v1/tags/' + this.tagToDelete.id).then((response) => {
+    update () {
+      this.editing = true
+      window.axios.put('/api/v1/tags/' + this.tagBeingEdit.id, this.tagBeingEdit).then((response) => {
+        this.dataTags.splice(this.dataTags.indexOf(this.tagBeingEdit), 1, response.data)
+        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
+        this.editDialog = false
+      }).catch((error) => {
+        this.editing = false
+      })
+    },
+    destroy (tag) {
+      this.removing = true
+      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(() => {
+        // this.refresh()
+        this.removeTag(this.tagBeingRemoved)
         this.deleteDialog = false
-        this.snacktype = 'success'
-        this.snackMsg = 'Tag ' + this.tagToDelete.name + ' successfully deleted!'
-        this.snackbar = true
-        this.dataTags.splice(this.dataTags.indexOf(this.tagToDelete), 1)
-      }).catch((error) => {
-        this.errorMsg = error.message
-      })
-    },
-    // remove (tag) {
-    //   axios.delete('/api/v1/tags/' + tag.id).then((response) => {
-    //     this.dataTags.splice(this.dataTags.indexOf(tag), 1)
-    //   }).catch((error) => {
-    //
-    //   })
-    // },
-    refresh () {
-      this.loading = true
-      window.axios.get('/api/v1/tags').then(response => {
-        this.dataTags = response.data
+        this.tagBeingRemoved = null
+        this.$snackbar.showMessage("S'ha esborrat correctament el tag")
+        this.removing = false
       }).catch(error => {
-        console.log(error)
+        this.$snackbar.showError(error)
+        this.removing = false
       })
     },
-    showTag () {
-      this.showDialog = true
-    },
-    showCreate (task) {
+    showCreate (tag) {
       this.createDialog = true
+      console.log('Todo delete tag')
     },
-    showUpdate () {
-      this.editDialog = true
+    create (tag) {
+      console.log('Todo delete tag')
+    },
+    complete (tag) {
+      this.tagBeingEdit = tag
+      this.update()
     },
     show (tag) {
-      this.showing = true
-      setTimeout(() => { this.showing = false }, 5000)
-      console.log('TODO MOSTRAR tag ' + tag.id)
+      console.log('Todo show tag' + tag.id)
     },
-    showDestroy (tag) {
-      this.tagToDelete = tag
-      this.deleteDialog = true
-    }
-  },
-  created () {
-    if (this.tags.length === 0) {
-      console.log('entra')
-      window.axios.get('/api/v1/tags').then((response) => {
+    refresh () {
+      this.loading = true
+      // setTimeout(() => { this.loading = false }, 5000)
+      window.axios.get('/api/v1/tags').then(response => {
         this.dataTags = response.data
-      }).catch((error) => {
-        this.errorMessage = error.response.data
+        this.loading = false
+        this.$snackbar.showMessage("S'han actualitzat correctament els tags ")
+      }).catch(error => {
+        this.$snackbar.showError(error)
+        this.loading = false
       })
     }
   }
-
+  // created () {
+  //   console.log('Usuari logat')
+  //   console.log(window.laravel_user)
+  // }
 }
 </script>
 
