@@ -224,6 +224,8 @@ if (!function_exists('sample_users')) {
         }
         try {
             $bartsimpson->assignRole('Tasks');
+            $bartsimpson->assignRole('Tags');
+
         } catch (exception $e) {
         }
         try {
@@ -235,10 +237,12 @@ if (!function_exists('sample_users')) {
         }
         try {
             $homersimpson->assignRole('TaskManager');
+            $homersimpson->assignRole('TagsManager');
         } catch (exception $e) {
         }try {
             $homersimpson->assignRole('Task');
-        } catch (exception $e) {
+            $homersimpson->assignRole('Tags');
+    } catch (exception $e) {
         }
         try {
             $sergitur = factory(User::class)->create([
@@ -252,6 +256,7 @@ if (!function_exists('sample_users')) {
         }
         try {
             $sergitur->assignRole('TaskManager');
+            $sergitur->assignRole('TagsManager');
         } catch (exception $e) {
         }
     }

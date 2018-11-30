@@ -116,7 +116,7 @@
                         <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch disabled v-model="taskBeingShown.completed" :label="taskBeingShown.completed ? 'Completada':'Pendent'" ></v-switch>
                         <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-autocomplete disabled v-model="taskBeingShown.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>

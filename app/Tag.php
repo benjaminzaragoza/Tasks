@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use FormattedDates;
-    protected $fillable = ['name','description','color'];
+    protected $fillable = ['name','description','color','user_id'];
     public function user()
     {
         return $this->belongsTo(User::class);

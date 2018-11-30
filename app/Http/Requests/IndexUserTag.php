@@ -14,7 +14,7 @@ class IndexUserTag extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('user.tag.index');
+        return Auth::user()->can('user.tags.index');
     }
 
     /**

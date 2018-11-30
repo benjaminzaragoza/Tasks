@@ -39,7 +39,7 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-    public function addTask($task)
+    public function addTask(Task $task)
     {
         $this->tasks()->save($task);
     }
@@ -48,8 +48,9 @@ class User extends Authenticatable
         $this->tasks()->saveMany($tasks);
     }
 
-    public function haveTask()
+    public function haveTask(Task $task)
     {
+        return $this->tasks()->where('id',$task->id)->first();
     }
     public function removeTask()
     {
@@ -81,6 +82,15 @@ class User extends Authenticatable
     public function haveTag(Tag $tag)
     {
         return $this->tags()->where('id',$tag->id)->first();
+    }
+    /**
+     * @param Tag $tag
+     * @return bool|mixed|null
+     * @throws \Exception
+     */
+    public function removeTag()
+    {
+        $this->tags()->delete();
     }
     /**
      * @return mixed

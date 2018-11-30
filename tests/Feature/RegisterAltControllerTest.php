@@ -17,14 +17,6 @@ class RegisterAltControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    //Afegir register_alt al fitxer routers/web.php
-    //afeguir controller register alt controller i mode store
-    //dins el store
-    //objecte request per la validacio
-    //user:create
-    //login
-    //redirect
-
     /**
      * @test
      */

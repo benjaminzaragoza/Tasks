@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class IndexLoggedUserTask extends FormRequest
+class DestroyUserTag extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,8 @@ class IndexLoggedUserTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('user.tasks.index');
+        return Auth::user()->can('user.tags.destroy');
+
     }
 
     /**
