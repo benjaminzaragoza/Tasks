@@ -33,7 +33,7 @@ class LoggedUserTasksController extends Controller
         $task->description = $request->description;
         $task->completed = $request->completed;
         $task->save();
-        return $task;
+        return $task->map();
 
     }
     public function destroy(DestroyUserTask $request, Task $task)

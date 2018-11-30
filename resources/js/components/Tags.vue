@@ -4,7 +4,8 @@
             <v-flex xs12 justify-center>
                 <v-dialog v-model="deleteDialog" width="400">
                     <v-card>
-                        <v-card-title class="headline">Voleu borrar el tag <strong>{{this.newTag.name}}</strong> ?</v-card-title>
+                        <!--<strong>{{this.newTag.name}}</strong>-->
+                        <v-card-title class="headline">Voleu borrar el tag  ?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
                         </v-card-text>
@@ -78,6 +79,7 @@
                             <v-form>
                                 <v-text-field  disabled prepend-icon="local_offer" v-model="tagBeingShown.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
                                 <v-text-field disabled prepend-icon="color_lens" v-model="tagBeingShown.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                <!--<v-autocomplete prepend-icon="face" disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>-->
                                 <v-textarea disabled prepend-icon="description" v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                                 <div class="text-xs-center">
                                     <v-btn @click="showDialog=false">
@@ -268,6 +270,7 @@ export default {
       type: Array,
       required: true
     }
+
   },
   computed: {
     total () {

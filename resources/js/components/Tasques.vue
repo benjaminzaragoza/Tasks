@@ -189,37 +189,34 @@
             >
                 <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item:task}">
-                    <tr>
-                        <td>{{task.id}}</td>
-                        <td>
-                            <span :title="task.description">{{ task.name }}</span>
+                    <tr class="text-xs-left">
+                        <td class="text-xs-left" >{{task.id}}</td>
+                        <td class="text-xs-left">
+                            <span  :title="task.description">{{ task.name }}</span>
                         </td>
-                        <td>
+                        <td class="text-xs-left">
                             <v-avatar :title="task.user_name">
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
                         </td>
-                        <td>
+                        <td class="text-xs-left">
                           <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
                         </td>
-                        <td>
-                            <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
+                        <td class="text-xs-left">
+                            <span  :title="task.created_at_formatted">{{ task.created_at_human}}</span>
                         </td>
-                        <td>
+                        <td class="text-xs-left" >
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
-                        <td>
-                            <!--<v-btn icon color="orange" flat title="Mostrar snackbar" @click="snackbar=true">-->
-                                <!--<v-icon>info</v-icon>-->
-                            <!--</v-btn>-->
-                            <v-btn v-can="tasks.show" icon color="cyan" flat title="Mostrar la tasca" @click="showShow(task)">
+                        <td class="text-xs-left">
+                            <v-btn v-if="$can('user.tasks.show',tasks)" icon color="cyan" flat title="Mostrar la tasca" @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
 
-                            <v-btn v-can="tasks.update" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
+                            <v-btn v-if="$can('user.tasks.update',tasks)" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -368,17 +365,18 @@ export default {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     add () {
-      window.axios.post(this.uri, this.newTask).then((response) => {
+      window.axios.post(this.uri + '/', this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
+        this.newTask = ''
       }).catch((error) => {
         this.$snackbar.showError(error)
       })
     },
     update () {
       this.editing = true
-      window.axios.put(this.uri + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
+      window.axios.put(this.uri + '/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
         this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
         this.editDialog = false
@@ -388,7 +386,7 @@ export default {
     },
     destroy (task) {
       this.removing = true
-      window.axios.delete(this.uri + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
