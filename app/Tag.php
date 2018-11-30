@@ -8,15 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use FormattedDates;
-    protected $fillable = ['name','description','color','user_id'];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function assignUser(User $user)
-    {
-        $this->user()->associate($user);
-    }
+    protected $fillable = ['name','description','color'];
     public function map()
     {
         return [
@@ -31,11 +23,6 @@ class Tag extends Model
             'updated_at_formatted' => $this->updated_at_formatted,
             'updated_at_human' => $this->updated_at_human,
             'updated_at_timestamp' => $this->updated_at_timestamp,
-            'user_id' => $this->user_id,
-            'user_name' => optional($this->user)->name,
-            'user_email' => optional($this->user)->email,
-            'user_gravatar' => optional($this->user)->gravatar,
-            'user' => $this->user
         ];
     }
 

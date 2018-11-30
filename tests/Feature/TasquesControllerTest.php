@@ -79,6 +79,8 @@ class TasquesControllerTest extends TestCase
             return count($tasks)===1 &&
                 $tasks[0]['name']==='comprar pa';
         });
+        $response->assertViewHas('users');
+        $response->assertViewHas('uri');
     }
 
 }

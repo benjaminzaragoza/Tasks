@@ -5,6 +5,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
@@ -55,20 +56,17 @@ if (!function_exists('create_example_tags')) {
             'name' => 'comprar pa',
             'description'=>'hola que tal',
             'color'=>'blue',
-             'user_id' => 1
 
         ]);
         Tag::create([
             'name' => 'comprar llet',
             'description'=>'hola que mal',
             'color'=>'green',
-            'user_id' => 2
         ]);
         Tag::create([
             'name' => 'Estudiar PHP',
             'description'=>'hola que fatal',
             'color'=>'red',
-            'user_id' => 1
         ]);
     }
 }
@@ -137,6 +135,14 @@ if (!function_exists('create_permission')) {
         } catch(Exception $e) {
             return Permission::findByName($permission);
         }
+    }
+}
+if (!function_exists('initialize_gates')) {
+    function initialize_gates()
+    {
+        Gate::define('tasks.manage',function($user) {
+            return $user->isSuperAdmin() || $user->hasRole('TaskManager');
+        });
     }
 }
 if (!function_exists('initialize_roles')) {

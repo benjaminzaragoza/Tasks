@@ -34,7 +34,7 @@ class TagsController extends Controller
     }
     public function update(UpdateTag $request, Tag $tag)
     {
-        $tag->update($request->only(['name','description','color','user_id']));
+        $tag->update($request->only(['name','description','color']));
         $tag->save();
         return $tag->map();
     }

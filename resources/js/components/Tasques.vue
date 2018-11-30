@@ -269,7 +269,7 @@
                 large
                 color="pink accent-3"
                 class="white--text"
-                v-can="tasks.add"
+                v-if="$can('tasks.store')"
         >
             <v-icon>add</v-icon>
         </v-btn>
@@ -339,6 +339,10 @@ export default {
     users: {
       type: Array,
       required: true
+    },
+    uri: {
+      type: String,
+      required: true
     }
   },
   methods: {
@@ -364,7 +368,7 @@ export default {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     add () {
-      window.axios.post('/api/v1/tasks/', this.newTask).then((response) => {
+      window.axios.post(this.uri, this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -374,7 +378,7 @@ export default {
     },
     update () {
       this.editing = true
-      window.axios.put('/api/v1/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
+      window.axios.put(this.uri + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
         this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
         this.editDialog = false
@@ -384,7 +388,7 @@ export default {
     },
     destroy (task) {
       this.removing = true
-      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete(this.uri + this.taskBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
@@ -413,7 +417,7 @@ export default {
     refresh () {
       this.loading = true
       // setTimeout(() => { this.loading = false }, 5000)
-      window.axios.get('/api/v1/tasks').then(response => {
+      window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
         this.loading = false
         this.$snackbar.showMessage("S'han actualitzat correctament les tasques")
