@@ -143,6 +143,15 @@
 
                         <v-toolbar-title>Tags ({{total}})</v-toolbar-title>
                         <v-spacer></v-spacer>
+                        <v-flex lg3 style="margin-top: 1%;">
+                            <v-text-field
+                                    append-icon="search"
+                                    v-model="search"
+                                    label="Buscar"
+                                    color="white"
+
+                            ></v-text-field>
+                        </v-flex>
                         <v-btn icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
                             <v-icon>refresh</v-icon>
                         </v-btn>
@@ -177,15 +186,15 @@
                                     <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
                                 </td>
                                 <td class="text-xs-center">
-                                        <v-btn icon flat title="Mostrar la tag"
+                                        <v-btn v-can="tags.show" icon flat title="Mostrar la tag"
                                                @click="showShow(tag)">
                                             <v-icon color="green">visibility</v-icon>
                                         </v-btn>
-                                        <v-btn icon flat title="Editar la tag"
+                                        <v-btn v-can="tags.update" icon flat title="Editar la tag"
                                                @click="showUpdate(tag)">
                                             <v-icon color="blue">edit</v-icon>
                                         </v-btn>
-                                        <v-btn icon flat title="Eliminar la tag"
+                                        <v-btn v-can="tags.destroy" icon flat title="Eliminar la tag"
                                                @click="showDestroy(tag)">
                                             <v-icon title="Delete tag" color="red">delete</v-icon>
                                         </v-btn>
@@ -203,6 +212,7 @@
                         large
                         color="pink accent-3"
                         class="white--text"
+                        v-can="tags.add"
                 >
                     <v-icon>add</v-icon>
                 </v-btn>

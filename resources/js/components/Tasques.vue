@@ -152,6 +152,8 @@
                                 label="Filtres"
                                 :items="filters"
                                 v-model="filter"
+                                item-text="name"
+                                :return-object="true"
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
@@ -160,14 +162,15 @@
                                 :items="dataUsers"
                                 v-model="user"
                                 item-text="name"
+                                :return-object="true"
                                 clearable
                         ></v-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
                                 append-icon="search"
-                                label="Buscar"
                                 v-model="search"
+                                label="Buscar"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -296,7 +299,7 @@ export default {
       taskBeingEdit: '',
       showDialog: false,
       user: '',
-      usersold: [
+      userso: [
         'Marc Mestre',
         'Cristian Marin',
         'Sergi Baucells',
@@ -361,7 +364,7 @@ export default {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     add () {
-      window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
+      window.axios.post('/api/v1/tasks/', this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false

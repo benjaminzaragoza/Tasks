@@ -62,7 +62,7 @@ if (!function_exists('create_example_tags')) {
             'name' => 'comprar llet',
             'description'=>'hola que mal',
             'color'=>'green',
-            'user_id' => 1
+            'user_id' => 2
         ]);
         Tag::create([
             'name' => 'Estudiar PHP',
@@ -240,7 +240,7 @@ if (!function_exists('sample_users')) {
             $homersimpson->assignRole('TagsManager');
         } catch (exception $e) {
         }try {
-            $homersimpson->assignRole('Task');
+            $homersimpson->assignRole('Tasks');
             $homersimpson->assignRole('Tags');
     } catch (exception $e) {
         }

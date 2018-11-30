@@ -51,9 +51,10 @@ class TagsControllerTest extends TestCase
      */
     public function tags_manager_can_show_tags()
     {
-        $this->withoutExceptionHandling();
         create_example_tags();
+
         $this->loginAsTagsManager();
+        $this->withoutExceptionHandling();
         $response = $this->get('/tags');
         $response->assertSuccessful();
         $response->assertSee('comprar pa');
