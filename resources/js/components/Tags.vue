@@ -1,11 +1,10 @@
 <template>
-    <v-container grid-list-md text-xs-center id="tags" class="tags">
-        <v-layout row wrap>
+    <span>
             <v-flex xs12 justify-center>
                 <v-dialog v-model="deleteDialog" width="400">
                     <v-card>
                         <!--<strong>{{this.newTag.name}}</strong>-->
-                        <v-card-title class="headline">Voleu borrar el tag  ?</v-card-title>
+                        <v-card-title class="headline">Voleu borrar el tag  <strong> &nbsp;{{borrat}}</strong>?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
                         </v-card-text>
@@ -209,8 +208,8 @@
                     <v-icon>add</v-icon>
                 </v-btn>
             </v-flex>
-        </v-layout>
-    </v-container>
+        </span>
+
 </template>
 
 <script>
@@ -240,6 +239,7 @@ export default {
       tagBeingRemoved: '',
       tagBeingEdit: '',
       showDialog: false,
+      borrat: '',
       filter: 'Totes',
       // filters: [
       //   'Totes',
@@ -298,6 +298,7 @@ export default {
     showDestroy (tag) {
       this.deleteDialog = true
       this.tagBeingRemoved = tag
+      this.borrat = this.tagBeingRemoved.name
     },
     removeTag (tag) {
       this.dataTags.splice(this.dataTags.indexOf(tag), 1)
