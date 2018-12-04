@@ -73256,7 +73256,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73267,7 +73267,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -73560,12 +73559,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       description: '',
       createDialog: false,
       deleteDialog: false,
+      eliminat: '',
       editDialog: false,
       taskBeingRemoved: '',
       taskBeingEdit: '',
       showDialog: false,
       user: '',
-      usersold: ['Marc Mestre', 'Cristian Marin', 'Sergi Baucells', 'Benjamin Zaragoza'],
+      userso: ['Marc Mestre', 'Cristian Marin', 'Sergi Baucells', 'Benjamin Zaragoza'],
       filter: 'Totes',
       filters: ['Totes', 'Completades', 'Pendents'],
       search: '',
@@ -73589,6 +73589,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     users: {
       type: Array,
       required: true
+    },
+    uri: {
+      type: String,
+      required: true
     }
   },
   methods: {
@@ -73609,6 +73613,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showDestroy: function showDestroy(task) {
       this.deleteDialog = true;
       this.taskBeingRemoved = task;
+      this.eliminat = this.taskBeingRemoved.name;
     },
     removeTask: function removeTask(task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
@@ -73616,10 +73621,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     add: function add() {
       var _this = this;
 
-      window.axios.post('/api/v1/tasks', this.newTask).then(function (response) {
+      window.axios.post(this.uri + '/', this.newTask).then(function (response) {
         _this.createTask(response.data);
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
         _this.createDialog = false;
+        // this.dataTasks = ''
       }).catch(function (error) {
         _this.$snackbar.showError(error);
       });
@@ -73628,7 +73634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.editing = true;
-      window.axios.put('/api/v1/tasks/' + this.taskBeingEdit.id, this.taskBeingEdit).then(function (response) {
+      window.axios.put(this.uri + '/' + this.taskBeingEdit.id, this.taskBeingEdit).then(function (response) {
         _this2.dataTasks.splice(_this2.dataTasks.indexOf(_this2.taskBeingEdit), 1, response.data);
         _this2.$snackbar.showMessage("S'ha actualitzat correctament la tasca");
         _this2.editDialog = false;
@@ -73640,7 +73646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       this.removing = true;
-      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(function () {
+      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(function () {
         // this.refresh()
         _this3.removeTask(_this3.taskBeingRemoved);
         _this3.deleteDialog = false;
@@ -73671,7 +73677,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = true;
       // setTimeout(() => { this.loading = false }, 5000)
-      window.axios.get('/api/v1/tasks').then(function (response) {
+      window.axios.get(this.uri).then(function (response) {
         _this4.dataTasks = response.data;
         _this4.loading = false;
         _this4.$snackbar.showMessage("S'han actualitzat correctament les tasques");
@@ -73701,7 +73707,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { width: "400" },
+          attrs: { width: "550" },
           model: {
             value: _vm.deleteDialog,
             callback: function($$v) {
@@ -73715,7 +73721,15 @@ var render = function() {
             "v-card",
             [
               _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Esteu segurs?")
+                _vm._v("Esteu segurs voleu elimnar "),
+                _c(
+                  "strong",
+                  {
+                    staticStyle: { color: "red", "text-transform": "uppercase" }
+                  },
+                  [_vm._v(" " + _vm._s(_vm.eliminat))]
+                ),
+                _vm._v(" ?")
               ]),
               _vm._v(" "),
               _c("v-card-text", [
@@ -73818,6 +73832,10 @@ var render = function() {
               _vm._v(" "),
               _c("v-card-title", { staticClass: "headline" }, [
                 _vm._v("Crear tasca")
+              ]),
+              _vm._v(" "),
+              _c("v-icon", { staticClass: "white--text" }, [
+                _vm._v("assignment_turned_in")
               ]),
               _vm._v(" "),
               _c("v-spacer"),
@@ -74026,6 +74044,10 @@ var render = function() {
               _vm._v(" "),
               _c("v-card-title", { staticClass: "headline" }, [
                 _vm._v("Editar tasca")
+              ]),
+              _vm._v(" "),
+              _c("v-icon", { staticClass: "white--text" }, [
+                _vm._v("description")
               ]),
               _vm._v(" "),
               _c("v-spacer"),
@@ -74260,16 +74282,6 @@ var render = function() {
                   _vm._v("\n                SORTIR\n            ")
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                { staticClass: "white--text", attrs: { flat: "" } },
-                [
-                  _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
-                  _vm._v("\n                Guardar\n            ")
-                ],
-                1
               )
             ],
             1
@@ -74334,6 +74346,13 @@ var render = function() {
                           label: "Usuari",
                           "item-value": "id",
                           "item-text": "name"
+                        },
+                        model: {
+                          value: _vm.taskBeingShown.user_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.taskBeingShown, "user_id", $$v)
+                          },
+                          expression: "taskBeingShown.user_id"
                         }
                       })
                     ],
@@ -74389,6 +74408,8 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("v-icon", { staticClass: "white--text" }, [_vm._v("assignment")]),
+          _vm._v(" "),
           _c("v-toolbar-title", { staticClass: "white--text" }, [
             _vm._v("Tasques")
           ]),
@@ -74431,7 +74452,12 @@ var render = function() {
                     { staticClass: "pr-2", attrs: { lg3: "" } },
                     [
                       _c("v-select", {
-                        attrs: { label: "Filtres", items: _vm.filters },
+                        attrs: {
+                          label: "Filtres",
+                          items: _vm.filters,
+                          "item-text": "name",
+                          "return-object": true
+                        },
                         model: {
                           value: _vm.filter,
                           callback: function($$v) {
@@ -74453,6 +74479,7 @@ var render = function() {
                           label: "Usuari",
                           items: _vm.dataUsers,
                           "item-text": "name",
+                          "return-object": true,
                           clearable: ""
                         },
                         model: {
@@ -74524,10 +74551,12 @@ var render = function() {
                   fn: function(ref) {
                     var task = ref.item
                     return [
-                      _c("tr", [
-                        _c("td", [_vm._v(_vm._s(task.id))]),
+                      _c("tr", { staticClass: "text-xs-left" }, [
+                        _c("td", { staticClass: "text-xs-left" }, [
+                          _vm._v(_vm._s(task.id))
+                        ]),
                         _vm._v(" "),
-                        _c("td", [
+                        _c("td", { staticClass: "text-xs-left" }, [
                           _c("span", { attrs: { title: task.description } }, [
                             _vm._v(_vm._s(task.name))
                           ])
@@ -74535,6 +74564,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "td",
+                          { staticClass: "text-xs-left" },
                           [
                             _c(
                               "v-avatar",
@@ -74554,6 +74584,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "td",
+                          { staticClass: "text-xs-left" },
                           [
                             _c("v-switch", {
                               attrs: {
@@ -74576,7 +74607,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c("td", [
+                        _c("td", { staticClass: "text-xs-left" }, [
                           _c(
                             "span",
                             { attrs: { title: task.created_at_formatted } },
@@ -74584,7 +74615,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [
+                        _c("td", { staticClass: "text-xs-left" }, [
                           _c(
                             "span",
                             { attrs: { title: task.updated_at_formatted } },
@@ -74594,87 +74625,70 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "td",
+                          { staticClass: "text-xs-left" },
                           [
-                            _c(
-                              "v-btn",
-                              {
-                                directives: [
+                            _vm.$can("user.tasks.show", _vm.tasks)
+                              ? _c(
+                                  "v-btn",
                                   {
-                                    name: "can",
-                                    rawName: "v-can",
-                                    value: _vm.tasks.show,
-                                    expression: "tasks.show"
-                                  }
-                                ],
-                                attrs: {
-                                  icon: "",
-                                  color: "cyan",
-                                  flat: "",
-                                  title: "Mostrar la tasca"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.showShow(task)
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v("visibility")])],
-                              1
-                            ),
+                                    attrs: {
+                                      icon: "",
+                                      color: "cyan",
+                                      flat: "",
+                                      title: "Mostrar la tasca"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showShow(task)
+                                      }
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v("visibility")])],
+                                  1
+                                )
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                directives: [
+                            _vm.$can("user.tasks.update", _vm.tasks)
+                              ? _c(
+                                  "v-btn",
                                   {
-                                    name: "can",
-                                    rawName: "v-can",
-                                    value: _vm.tasks.update,
-                                    expression: "tasks.update"
-                                  }
-                                ],
-                                attrs: {
-                                  icon: "",
-                                  color: "success",
-                                  flat: "",
-                                  title: "Actualitzar la tasca"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.showUpdate(task)
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v("edit")])],
-                              1
-                            ),
+                                    attrs: {
+                                      icon: "",
+                                      color: "success",
+                                      flat: "",
+                                      title: "Actualitzar la tasca"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showUpdate(task)
+                                      }
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v("edit")])],
+                                  1
+                                )
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                directives: [
+                            _vm.$can("user.tasks.destroy", _vm.tasks)
+                              ? _c(
+                                  "v-btn",
                                   {
-                                    name: "can",
-                                    rawName: "v-can",
-                                    value: _vm.tasks.destroy,
-                                    expression: "tasks.destroy"
-                                  }
-                                ],
-                                attrs: {
-                                  icon: "",
-                                  color: "error",
-                                  flat: "",
-                                  title: "Eliminar la tasca"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.showDestroy(task)
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v("delete")])],
-                              1
-                            )
+                                    attrs: {
+                                      icon: "",
+                                      color: "error",
+                                      flat: "",
+                                      title: "Eliminar la tasca"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showDestroy(task)
+                                      }
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v("delete")])],
+                                  1
+                                )
+                              : _vm._e()
                           ],
                           1
                         )
@@ -74784,31 +74798,25 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-btn",
-        {
-          directives: [
+      _vm.$can("tasks.store")
+        ? _c(
+            "v-btn",
             {
-              name: "can",
-              rawName: "v-can",
-              value: _vm.tasks.add,
-              expression: "tasks.add"
-            }
-          ],
-          staticClass: "white--text",
-          attrs: {
-            fab: "",
-            bottom: "",
-            right: "",
-            fixed: "",
-            large: "",
-            color: "pink accent-3"
-          },
-          on: { click: _vm.showCreate }
-        },
-        [_c("v-icon", [_vm._v("add")])],
-        1
-      )
+              staticClass: "white--text",
+              attrs: {
+                fab: "",
+                bottom: "",
+                right: "",
+                fixed: "",
+                large: "",
+                color: "pink accent-3"
+              },
+              on: { click: _vm.showCreate }
+            },
+            [_c("v-icon", [_vm._v("add")])],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -75995,7 +76003,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-text-field", {
             attrs: {
-              "prepend-icon": "person",
+              "prepend-icon": "email",
               name: "email",
               label: "E-mail",
               type: "text",
@@ -76747,6 +76755,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tags',
@@ -76756,22 +76787,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       newTag: {
         name: '',
         description: '',
-        color: '',
-        user_id: ''
+        color: ''
       },
-      dataUsers: this.users,
       dataTags: this.tags,
       name: '',
       color: '',
       description: '',
       createDialog: false,
       deleteDialog: false,
-      user: '',
       usersold: ['Marc Mestre', 'Cristian Marin', 'Sergi Baucells', 'Benjamin Zaragoza'],
       editDialog: false,
       tagBeingRemoved: '',
       tagBeingEdit: '',
       showDialog: false,
+      borrat: '',
+      actualitzat: '',
       filter: 'Totes',
       // filters: [
       //   'Totes',
@@ -76786,7 +76816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       creating: false,
       editing: false,
       removing: false,
-      headers: [{ text: 'Id', value: 'id', align: 'left', sortable: true }, { text: 'Name', value: 'name', align: 'left', sortable: true }, { text: 'Description', value: 'description', align: 'left', sortable: true }, { text: 'Color', value: 'color', align: 'left', sortable: true }, { text: 'Usuari', value: 'user_id' }, { text: 'Creat', value: 'created_at', align: 'center', sortable: true }, { text: 'Modificat', value: 'update_at', align: 'center', sortable: true }, { text: 'Actions', align: 'center', sortable: false }]
+      headers: [{ text: 'Id', value: 'id', align: 'left', sortable: true }, { text: 'Name', value: 'name', align: 'left', sortable: true }, { text: 'Description', value: 'description', align: 'left', sortable: true }, { text: 'Color', value: 'color', align: 'left', sortable: true }, { text: 'Creat', value: 'created_at_timestamp', align: 'center', sortable: true }, { text: 'Modificat', value: 'updated_at_timestamp', align: 'center', sortable: true }, { text: 'Actions', align: 'center', sortable: false }]
     };
   },
 
@@ -76794,11 +76824,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     tags: {
       type: Array,
       required: true
-    },
-    users: {
-      type: Array,
-      required: true
     }
+
   },
   computed: {
     total: function total() {
@@ -76812,6 +76839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showUpdate: function showUpdate(tag) {
       this.editDialog = true;
       this.tagBeingEdit = tag;
+      this.actualitzat = this.tagBeingEdit.name;
     },
     showShow: function showShow(tag) {
       this.showDialog = true;
@@ -76826,6 +76854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showDestroy: function showDestroy(tag) {
       this.deleteDialog = true;
       this.tagBeingRemoved = tag;
+      this.borrat = this.tagBeingRemoved.name;
     },
     removeTag: function removeTag(tag) {
       this.dataTags.splice(this.dataTags.indexOf(tag), 1);
@@ -76893,11 +76922,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this4.loading = false;
       });
     }
-  },
-  created: function created() {
-    console.log('Usuari logat');
-    console.log(window.laravel_user);
   }
+  // created () {
+  //   console.log('Usuari logat')
+  //   console.log(window.laravel_user)
+  // }
 });
 
 /***/ }),
@@ -76909,372 +76938,204 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
-    {
-      staticClass: "tags",
-      attrs: { "grid-list-md": "", "text-xs-center": "", id: "tags" }
-    },
+    "span",
     [
       _c(
-        "v-layout",
-        { attrs: { row: "", wrap: "" } },
+        "v-flex",
+        { attrs: { xs12: "", "justify-center": "" } },
         [
           _c(
-            "v-flex",
-            { attrs: { xs12: "", "justify-center": "" } },
+            "v-dialog",
+            {
+              attrs: { width: "550" },
+              model: {
+                value: _vm.deleteDialog,
+                callback: function($$v) {
+                  _vm.deleteDialog = $$v
+                },
+                expression: "deleteDialog"
+              }
+            },
             [
               _c(
-                "v-dialog",
-                {
-                  attrs: { width: "400" },
-                  model: {
-                    value: _vm.deleteDialog,
-                    callback: function($$v) {
-                      _vm.deleteDialog = $$v
-                    },
-                    expression: "deleteDialog"
-                  }
-                },
+                "v-card",
                 [
                   _c(
-                    "v-card",
+                    "v-card-title",
+                    {
+                      staticClass: "headline",
+                      staticStyle: { "text-align": "center" }
+                    },
                     [
-                      _c("v-card-title", { staticClass: "headline" }, [
-                        _vm._v("Voleu borrar el tag "),
-                        _c("strong", [_vm._v(_vm._s(this.newTag.name))]),
-                        _vm._v(" ?")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-card-text", [
-                        _vm._v(
-                          "\n                        Aquesta operació no es pot desfer.\n                    "
-                        )
-                      ]),
+                      _vm._v("Voleu borrar el tag  "),
+                      _c(
+                        "strong",
+                        {
+                          staticStyle: {
+                            color: "red",
+                            "text-transform": "uppercase"
+                          }
+                        },
+                        [_vm._v(" " + _vm._s(_vm.borrat))]
+                      ),
+                      _vm._v("?")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("v-card-text", [
+                    _vm._v(
+                      "\n                        Aquesta operació no es pot desfer.\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
                       _vm._v(" "),
                       _c(
-                        "v-card-actions",
+                        "v-btn",
+                        {
+                          attrs: { color: "green darken-1", flat: "flat" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteDialog = false
+                            }
+                          }
+                        },
                         [
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "green darken-1", flat: "flat" },
-                              on: {
-                                click: function($event) {
-                                  _vm.deleteDialog = false
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            Cancel·lar\n                        "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "red darken-1", dark: "" },
-                              on: { click: _vm.destroy }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Confirmar\n                        "
-                              )
-                            ]
+                          _vm._v(
+                            "\n                            Cancel·lar\n                        "
                           )
-                        ],
-                        1
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "red darken-1", dark: "" },
+                          on: { click: _vm.destroy }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Confirmar\n                        "
+                          )
+                        ]
                       )
                     ],
                     1
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-dialog",
-                {
-                  attrs: { "max-width": "600px" },
-                  model: {
-                    value: _vm.createDialog,
-                    callback: function($$v) {
-                      _vm.createDialog = $$v
-                    },
-                    expression: "createDialog"
-                  }
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: { "max-width": "600px" },
+              model: {
+                value: _vm.createDialog,
+                callback: function($$v) {
+                  _vm.createDialog = $$v
                 },
+                expression: "createDialog"
+              }
+            },
+            [
+              _c(
+                "v-card",
                 [
                   _c(
-                    "v-card",
+                    "v-toolbar",
+                    { attrs: { dark: "", color: "pink" } },
+                    [
+                      _c("v-icon", [_vm._v("local_offer")]),
+                      _vm._v(" "),
+                      _c("v-toolbar-title", [_vm._v("NOU TAG")])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
                     [
                       _c(
-                        "v-toolbar",
-                        { attrs: { dark: "", color: "pink" } },
-                        [
-                          _c("v-icon", [_vm._v("local_offer")]),
-                          _vm._v(" "),
-                          _c("v-toolbar-title", [_vm._v("NOU TAG")])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-text",
+                        "v-container",
+                        { attrs: { "grid-list-md": "" } },
                         [
                           _c(
-                            "v-container",
-                            { attrs: { "grid-list-md": "" } },
+                            "v-layout",
+                            { attrs: { wrap: "" } },
                             [
                               _c(
-                                "v-layout",
-                                { attrs: { wrap: "" } },
+                                "v-flex",
+                                { attrs: { xs12: "" } },
                                 [
-                                  _c(
-                                    "v-flex",
-                                    { attrs: { xs12: "" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          "prepend-icon": "local_offer",
-                                          label: "Nom"
-                                        },
-                                        model: {
-                                          value: _vm.newTag.name,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.newTag, "name", $$v)
-                                          },
-                                          expression: "newTag.name"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-flex",
-                                    { attrs: { xs12: "" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          "prepend-icon": "color_lens",
-                                          label: "Color"
-                                        },
-                                        model: {
-                                          value: _vm.newTag.color,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.newTag, "color", $$v)
-                                          },
-                                          expression: "newTag.color"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-flex",
-                                    { attrs: { xs12: "" } },
-                                    [
-                                      _c("v-autocomplete", {
-                                        attrs: {
-                                          items: _vm.dataUsers,
-                                          label: "Usuari",
-                                          "item-text": "name",
-                                          "item-value": "id"
-                                        },
-                                        model: {
-                                          value: _vm.newTag.user_id,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.newTag, "user_id", $$v)
-                                          },
-                                          expression: "newTag.user_id"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-flex",
-                                    { attrs: { xs12: "" } },
-                                    [
-                                      _c("v-textarea", {
-                                        attrs: {
-                                          "prepend-icon": "description",
-                                          label: "Descripcio"
-                                        },
-                                        model: {
-                                          value: _vm.newTag.description,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.newTag,
-                                              "description",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "newTag.description"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      "prepend-icon": "local_offer",
+                                      label: "Nom"
+                                    },
+                                    model: {
+                                      value: _vm.newTag.name,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.newTag, "name", $$v)
+                                      },
+                                      expression: "newTag.name"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      "prepend-icon": "color_lens",
+                                      label: "Color"
+                                    },
+                                    model: {
+                                      value: _vm.newTag.color,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.newTag, "color", $$v)
+                                      },
+                                      expression: "newTag.color"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "" } },
+                                [
+                                  _c("v-textarea", {
+                                    attrs: {
+                                      "prepend-icon": "description",
+                                      label: "Descripcio"
+                                    },
+                                    model: {
+                                      value: _vm.newTag.description,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.newTag, "description", $$v)
+                                      },
+                                      expression: "newTag.description"
+                                    }
+                                  })
                                 ],
                                 1
                               )
                             ],
                             1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-actions",
-                        [
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "blue darken-1", flat: "" },
-                              on: {
-                                click: function($event) {
-                                  _vm.createDialog = false
-                                }
-                              }
-                            },
-                            [
-                              _c("v-icon", { staticClass: "mr-2" }, [
-                                _vm._v("exit_to_app")
-                              ]),
-                              _vm._v("\n                            Close")
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                id: "button_add_tag",
-                                dark: "",
-                                color: "green dark",
-                                flat: ""
-                              },
-                              on: { click: _vm.add }
-                            },
-                            [
-                              _c("v-icon", { staticClass: "mr-2" }, [
-                                _vm._v("save")
-                              ]),
-                              _vm._v("\n                            Save")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-dialog",
-                {
-                  attrs: {
-                    "hide-overlay": "",
-                    fullscreen: "",
-                    transition: "dialog-bottom-transition"
-                  },
-                  on: {
-                    keydown: function($event) {
-                      if (
-                        !("button" in $event) &&
-                        _vm._k($event.keyCode, "esc", 27, $event.key, "Escape")
-                      ) {
-                        return null
-                      }
-                      _vm.showDialog = false
-                    }
-                  },
-                  model: {
-                    value: _vm.showDialog,
-                    callback: function($$v) {
-                      _vm.showDialog = $$v
-                    },
-                    expression: "showDialog"
-                  }
-                },
-                [
-                  _c(
-                    "v-toolbar",
-                    { staticClass: "white--text", attrs: { color: "green" } },
-                    [
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: { flat: "", icon: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.showDialog = false
-                            }
-                          }
-                        },
-                        [_c("v-icon", [_vm._v("close")])],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-card-title", { staticClass: "headline" }, [
-                        _vm._v("Mostrar tag")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-icon", { staticClass: "white--text" }, [
-                        _vm._v("local_offer")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: { flat: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.showDialog = false
-                            }
-                          }
-                        },
-                        [
-                          _c("v-icon", { staticClass: "mr-2" }, [
-                            _vm._v("exit_to_app")
-                          ]),
-                          _vm._v(
-                            "\n                        Sortir\n                    "
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        { staticClass: "white--text", attrs: { flat: "" } },
-                        [
-                          _c("v-icon", { staticClass: "mr-2" }, [
-                            _vm._v("save")
-                          ]),
-                          _vm._v(
-                            "\n                        Guardar\n                    "
                           )
                         ],
                         1
@@ -77284,120 +77145,45 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-card",
+                    "v-card-actions",
                     [
+                      _c("v-spacer"),
+                      _vm._v(" "),
                       _c(
-                        "v-card-text",
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", flat: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.createDialog = false
+                            }
+                          }
+                        },
                         [
-                          _c(
-                            "v-form",
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  disabled: "",
-                                  "prepend-icon": "local_offer",
-                                  label: "Nom",
-                                  hint: "Nom del tag ",
-                                  placeholder: "Nom del tag"
-                                },
-                                model: {
-                                  value: _vm.tagBeingShown.name,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.tagBeingShown, "name", $$v)
-                                  },
-                                  expression: "tagBeingShown.name"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                attrs: {
-                                  disabled: "",
-                                  "prepend-icon": "color_lens",
-                                  label: "Color",
-                                  hint: "Color del tag ",
-                                  placeholder: "Color del tag"
-                                },
-                                model: {
-                                  value: _vm.tagBeingShown.color,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.tagBeingShown, "color", $$v)
-                                  },
-                                  expression: "tagBeingShown.color"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  disabled: "",
-                                  items: _vm.dataUsers,
-                                  label: "Usuari",
-                                  "item-value": "id",
-                                  "item-text": "name"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-textarea", {
-                                attrs: {
-                                  disabled: "",
-                                  "prepend-icon": "description",
-                                  label: "Descripció"
-                                },
-                                model: {
-                                  value: _vm.tagBeingShown.description,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.tagBeingShown,
-                                      "description",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "tagBeingShown.description"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "text-xs-center" },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      on: {
-                                        click: function($event) {
-                                          _vm.showDialog = false
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("v-icon", { staticClass: "mr-2" }, [
-                                        _vm._v("exit_to_app")
-                                      ]),
-                                      _vm._v(
-                                        "\n                                    Cancel·lar\n                                "
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    { attrs: { color: "success" } },
-                                    [
-                                      _c("v-icon", { staticClass: "mr-2" }, [
-                                        _vm._v("save")
-                                      ]),
-                                      _vm._v(
-                                        "\n                                    Guardar\n                                "
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
+                          _c("v-icon", { staticClass: "mr-2" }, [
+                            _vm._v("exit_to_app")
+                          ]),
+                          _vm._v("\n                            Close")
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            id: "button_add_tag",
+                            dark: "",
+                            color: "green dark",
+                            flat: ""
+                          },
+                          on: { click: _vm.add }
+                        },
+                        [
+                          _c("v-icon", { staticClass: "mr-2" }, [
+                            _vm._v("save")
+                          ]),
+                          _vm._v("\n                            Save")
                         ],
                         1
                       )
@@ -77406,226 +77192,85 @@ var render = function() {
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-dialog",
-                {
-                  attrs: {
-                    fullscreen: "",
-                    transition: "dialog-bottom-transition"
-                  },
-                  on: {
-                    keydown: function($event) {
-                      if (
-                        !("button" in $event) &&
-                        _vm._k($event.keyCode, "esc", 27, $event.key, "Escape")
-                      ) {
-                        return null
-                      }
-                      _vm.editDialog = false
-                    }
-                  },
-                  model: {
-                    value: _vm.editDialog,
-                    callback: function($$v) {
-                      _vm.editDialog = $$v
-                    },
-                    expression: "editDialog"
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: {
+                "hide-overlay": "",
+                fullscreen: "",
+                transition: "dialog-bottom-transition"
+              },
+              on: {
+                keydown: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "esc", 27, $event.key, "Escape")
+                  ) {
+                    return null
                   }
+                  _vm.showDialog = false
+                }
+              },
+              model: {
+                value: _vm.showDialog,
+                callback: function($$v) {
+                  _vm.showDialog = $$v
                 },
+                expression: "showDialog"
+              }
+            },
+            [
+              _c(
+                "v-toolbar",
+                { staticClass: "white--text", attrs: { color: "green" } },
                 [
                   _c(
-                    "v-toolbar",
-                    { staticClass: "white--text", attrs: { color: "blue" } },
-                    [
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: { flat: "", icon: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.editDialog = false
-                            }
-                          }
-                        },
-                        [_c("v-icon", [_vm._v("close")])],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-card-title", { staticClass: "headline" }, [
-                        _vm._v("Editar Tag")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-icon", { staticClass: "white--text" }, [
-                        _vm._v("local_offer")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: { flat: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.editDialog = false
-                            }
-                          }
-                        },
-                        [
-                          _c("v-icon", { staticClass: "mr-2" }, [
-                            _vm._v("exit_to_app")
-                          ]),
-                          _vm._v(
-                            "\n                            Sortir\n                        "
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        { staticClass: "white--text", attrs: { flat: "" } },
-                        [
-                          _c("v-icon", { staticClass: "mr-2" }, [
-                            _vm._v("save")
-                          ]),
-                          _vm._v(
-                            "\n                            Guardar\n                        "
-                          )
-                        ],
-                        1
-                      )
-                    ],
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { flat: "", icon: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.showDialog = false
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("close")])],
                     1
                   ),
                   _vm._v(" "),
+                  _c("v-card-title", { staticClass: "headline" }, [
+                    _vm._v("Mostrar tag")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-icon", { staticClass: "white--text" }, [
+                    _vm._v("local_offer")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
                   _c(
-                    "v-card",
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { flat: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.showDialog = false
+                        }
+                      }
+                    },
                     [
-                      _c(
-                        "v-card-text",
-                        [
-                          _c(
-                            "v-form",
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  "prepend-icon": "local_offer",
-                                  label: "Nom",
-                                  hint: "Nom del tag ",
-                                  placeholder: "Nom del tag"
-                                },
-                                model: {
-                                  value: _vm.tagBeingEdit.name,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.tagBeingEdit, "name", $$v)
-                                  },
-                                  expression: "tagBeingEdit.name"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                attrs: {
-                                  "prepend-icon": "color_lens",
-                                  label: "Color",
-                                  hint: "Color del tag ",
-                                  placeholder: "Color del tag"
-                                },
-                                model: {
-                                  value: _vm.tagBeingEdit.color,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.tagBeingEdit, "color", $$v)
-                                  },
-                                  expression: "tagBeingEdit.color"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  items: _vm.dataUsers,
-                                  label: "Usuari",
-                                  "item-text": "name",
-                                  "item-value": "id"
-                                },
-                                model: {
-                                  value: _vm.tagBeingEdit.user_id,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.tagBeingEdit, "user_id", $$v)
-                                  },
-                                  expression: "tagBeingEdit.user_id"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-textarea", {
-                                attrs: {
-                                  "prepend-icon": "description",
-                                  label: "Descripció"
-                                },
-                                model: {
-                                  value: _vm.tagBeingEdit.description,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.tagBeingEdit,
-                                      "description",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "tagBeingEdit.description"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "text-xs-center" },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      on: {
-                                        click: function($event) {
-                                          _vm.editDialog = false
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("v-icon", { staticClass: "mr-2" }, [
-                                        _vm._v("exit_to_app")
-                                      ]),
-                                      _vm._v(
-                                        "\n                                        Cancel·lar\n                                    "
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { color: "success" },
-                                      on: { click: _vm.update }
-                                    },
-                                    [
-                                      _c("v-icon", { staticClass: "mr-2" }, [
-                                        _vm._v("save")
-                                      ]),
-                                      _vm._v(
-                                        "\n                                        Guardar\n                                    "
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
+                      _c("v-icon", { staticClass: "mr-2" }, [
+                        _vm._v("exit_to_app")
+                      ]),
+                      _vm._v(
+                        "\n                        Sortir\n                    "
                       )
                     ],
                     1
@@ -77638,225 +77283,58 @@ var render = function() {
                 "v-card",
                 [
                   _c(
-                    "v-toolbar",
-                    { attrs: { dark: "", color: "red dark" } },
-                    [
-                      _c("v-icon", [_vm._v("local_offer")]),
-                      _vm._v(" "),
-                      _c("v-toolbar-title", [
-                        _vm._v("Tags (" + _vm._s(_vm.total) + ")")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: {
-                            icon: "",
-                            loading: _vm.loading,
-                            disabled: _vm.loading
-                          },
-                          on: { click: _vm.refresh }
-                        },
-                        [_c("v-icon", [_vm._v("refresh")])],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
                     "v-card-text",
-                    { staticClass: "px-0" },
                     [
                       _c(
-                        "v-data-table",
-                        {
-                          attrs: {
-                            headers: _vm.headers,
-                            items: _vm.dataTags,
-                            search: _vm.search,
-                            "no-results-text": "No s'ha trobat cap registre",
-                            "no-data-text": "No hiha dades disponibles",
-                            "rows-per-page-text": "Tags per pagina",
-                            "rows-per-page-items": [
-                              5,
-                              10,
-                              25,
-                              50,
-                              100,
-                              200,
-                              { text: "tots", value: -1 }
-                            ],
-                            loading: _vm.loading
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "items",
-                              fn: function(ref) {
-                                var tag = ref.item
-                                return [
-                                  _c("td", [_vm._v(_vm._s(tag.id))]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-xs-left" }, [
-                                    _vm._v(_vm._s(tag.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-xs-left" }, [
-                                    _vm._v(_vm._s(tag.description))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-xs-left" }, [
-                                    _c("div", {
-                                      staticClass: "elevation-2",
-                                      style:
-                                        "background-color:" +
-                                        tag.color +
-                                        ";border-radius: 4px;height: 15px;width: 15px;"
-                                    })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        { attrs: { title: tag.user_name } },
-                                        [
-                                          _c("img", {
-                                            attrs: {
-                                              src: tag.user_gravatar,
-                                              alt: "avatar"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "span",
-                                      {
-                                        attrs: {
-                                          title: tag.created_at_formatted
-                                        }
-                                      },
-                                      [_vm._v(_vm._s(tag.created_at_human))]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "span",
-                                      {
-                                        attrs: {
-                                          title: tag.updated_at_formatted
-                                        }
-                                      },
-                                      [_vm._v(_vm._s(tag.updated_at_human))]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "text-xs-center" },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            icon: "",
-                                            flat: "",
-                                            title: "Mostrar la tag"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.showShow(tag)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            { attrs: { color: "green" } },
-                                            [_vm._v("visibility")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            icon: "",
-                                            flat: "",
-                                            title: "Editar la tag"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.showUpdate(tag)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            { attrs: { color: "blue" } },
-                                            [_vm._v("edit")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            icon: "",
-                                            flat: "",
-                                            title: "Eliminar la tag"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.showDestroy(tag)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                title: "Delete tag",
-                                                color: "red"
-                                              }
-                                            },
-                                            [_vm._v("delete")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]
-                              }
-                            }
-                          ])
-                        },
+                        "v-form",
                         [
-                          _c("v-progress-linear", {
+                          _c("v-text-field", {
                             attrs: {
-                              slot: "progress",
-                              color: "pink",
-                              indeterminate: ""
+                              disabled: "",
+                              "prepend-icon": "local_offer",
+                              label: "Nom",
+                              hint: "Nom del tag ",
+                              placeholder: "Nom del tag"
                             },
-                            slot: "progress"
+                            model: {
+                              value: _vm.tagBeingShown.name,
+                              callback: function($$v) {
+                                _vm.$set(_vm.tagBeingShown, "name", $$v)
+                              },
+                              expression: "tagBeingShown.name"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: "",
+                              "prepend-icon": "color_lens",
+                              label: "Color",
+                              hint: "Color del tag ",
+                              placeholder: "Color del tag"
+                            },
+                            model: {
+                              value: _vm.tagBeingShown.color,
+                              callback: function($$v) {
+                                _vm.$set(_vm.tagBeingShown, "color", $$v)
+                              },
+                              expression: "tagBeingShown.color"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-textarea", {
+                            attrs: {
+                              disabled: "",
+                              "prepend-icon": "description",
+                              label: "Descripció"
+                            },
+                            model: {
+                              value: _vm.tagBeingShown.description,
+                              callback: function($$v) {
+                                _vm.$set(_vm.tagBeingShown, "description", $$v)
+                              },
+                              expression: "tagBeingShown.description"
+                            }
                           })
                         ],
                         1
@@ -77866,26 +77344,620 @@ var render = function() {
                   )
                 ],
                 1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: { fullscreen: "", transition: "dialog-bottom-transition" },
+              on: {
+                keydown: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "esc", 27, $event.key, "Escape")
+                  ) {
+                    return null
+                  }
+                  _vm.editDialog = false
+                }
+              },
+              model: {
+                value: _vm.editDialog,
+                callback: function($$v) {
+                  _vm.editDialog = $$v
+                },
+                expression: "editDialog"
+              }
+            },
+            [
+              _c(
+                "v-toolbar",
+                { staticClass: "white--text", attrs: { color: "blue" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { flat: "", icon: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.editDialog = false
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("close")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-title",
+                    {
+                      staticClass: "headline",
+                      staticStyle: { "text-transform": "capitalize" }
+                    },
+                    [
+                      _vm._v(
+                        "Editar Tag\n                        " +
+                          _vm._s(_vm.actualitzat)
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("v-icon", { staticClass: "white--text" }, [
+                    _vm._v("local_offer")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { flat: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.editDialog = false
+                        }
+                      }
+                    },
+                    [
+                      _c("v-icon", { staticClass: "mr-2" }, [
+                        _vm._v("exit_to_app")
+                      ]),
+                      _vm._v(
+                        "\n                            Sortir\n                        "
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    { staticClass: "white--text", attrs: { flat: "" } },
+                    [
+                      _c("v-icon", { staticClass: "mr-2" }, [_vm._v("save")]),
+                      _vm._v(
+                        "\n                            Guardar\n                        "
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
-                "v-btn",
-                {
-                  staticClass: "white--text",
-                  attrs: {
-                    fab: "",
-                    bottom: "",
-                    right: "",
-                    fixed: "",
-                    large: "",
-                    color: "pink accent-3"
-                  },
-                  on: { click: _vm.showCreate }
-                },
-                [_c("v-icon", [_vm._v("add")])],
+                "v-card",
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-form",
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "prepend-icon": "local_offer",
+                              label: "Nom",
+                              hint: "Nom del tag ",
+                              placeholder: "Nom del tag"
+                            },
+                            model: {
+                              value: _vm.tagBeingEdit.name,
+                              callback: function($$v) {
+                                _vm.$set(_vm.tagBeingEdit, "name", $$v)
+                              },
+                              expression: "tagBeingEdit.name"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            attrs: {
+                              "prepend-icon": "color_lens",
+                              label: "Color",
+                              hint: "Color del tag ",
+                              placeholder: "Color del tag"
+                            },
+                            model: {
+                              value: _vm.tagBeingEdit.color,
+                              callback: function($$v) {
+                                _vm.$set(_vm.tagBeingEdit, "color", $$v)
+                              },
+                              expression: "tagBeingEdit.color"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-textarea", {
+                            attrs: {
+                              "prepend-icon": "description",
+                              label: "Descripció"
+                            },
+                            model: {
+                              value: _vm.tagBeingEdit.description,
+                              callback: function($$v) {
+                                _vm.$set(_vm.tagBeingEdit, "description", $$v)
+                              },
+                              expression: "tagBeingEdit.description"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "text-xs-center" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.editDialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("v-icon", { staticClass: "mr-2" }, [
+                                    _vm._v("exit_to_app")
+                                  ]),
+                                  _vm._v(
+                                    "\n                                        Cancel·lar\n                                    "
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "success" },
+                                  on: { click: _vm.update }
+                                },
+                                [
+                                  _c("v-icon", { staticClass: "mr-2" }, [
+                                    _vm._v("save")
+                                  ]),
+                                  _vm._v(
+                                    "\n                                        Guardar\n                                    "
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
                 1
               )
             ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-toolbar",
+                { attrs: { dark: "", color: "red dark" } },
+                [
+                  _c("v-icon", [_vm._v("local_offer")]),
+                  _vm._v(" "),
+                  _c("v-toolbar-title", [
+                    _vm._v("Tags (" + _vm._s(_vm.total) + ")")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { staticStyle: { "margin-top": "1%" }, attrs: { lg3: "" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "search",
+                          label: "Buscar",
+                          color: "white"
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: {
+                        icon: "",
+                        loading: _vm.loading,
+                        disabled: _vm.loading
+                      },
+                      on: { click: _vm.refresh }
+                    },
+                    [_c("v-icon", [_vm._v("refresh")])],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                { staticClass: "px-0" },
+                [
+                  _c(
+                    "v-data-table",
+                    {
+                      staticClass: "hidden-md-and-down",
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.dataTags,
+                        search: _vm.search,
+                        "no-results-text": "No s'ha trobat cap registre",
+                        "no-data-text": "No hiha dades disponibles",
+                        "rows-per-page-text": "Tags per pagina",
+                        "rows-per-page-items": [
+                          5,
+                          10,
+                          25,
+                          50,
+                          100,
+                          200,
+                          { text: "tots", value: -1 }
+                        ],
+                        loading: _vm.loading,
+                        pagination: _vm.pagination
+                      },
+                      on: {
+                        "update:pagination": function($event) {
+                          _vm.pagination = $event
+                        }
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "items",
+                          fn: function(ref) {
+                            var tag = ref.item
+                            return [
+                              _c("td", [_vm._v(_vm._s(tag.id))]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(tag.name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(tag.description))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _c("div", {
+                                  staticClass: "elevation-2",
+                                  style:
+                                    "background-color:" +
+                                    tag.color +
+                                    ";border-radius: 4px;height: 15px;width: 15px;"
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "span",
+                                  {
+                                    attrs: { title: tag.created_at_formatted }
+                                  },
+                                  [_vm._v(_vm._s(tag.created_at_human))]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "span",
+                                  {
+                                    attrs: { title: tag.updated_at_formatted }
+                                  },
+                                  [_vm._v(_vm._s(tag.updated_at_human))]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "text-xs-center" },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "can",
+                                          rawName: "v-can",
+                                          value: _vm.tags.show,
+                                          expression: "tags.show"
+                                        }
+                                      ],
+                                      attrs: {
+                                        icon: "",
+                                        flat: "",
+                                        title: "Mostrar la tag"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showShow(tag)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { color: "green" } },
+                                        [_vm._v("visibility")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "can",
+                                          rawName: "v-can",
+                                          value: _vm.tags.update,
+                                          expression: "tags.update"
+                                        }
+                                      ],
+                                      attrs: {
+                                        icon: "",
+                                        flat: "",
+                                        title: "Editar la tag"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showUpdate(tag)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { color: "blue" } },
+                                        [_vm._v("edit")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "can",
+                                          rawName: "v-can",
+                                          value: _vm.tags.destroy,
+                                          expression: "tags.destroy"
+                                        }
+                                      ],
+                                      attrs: {
+                                        icon: "",
+                                        flat: "",
+                                        title: "Eliminar la tag"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showDestroy(tag)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: {
+                                            title: "Delete tag",
+                                            color: "red"
+                                          }
+                                        },
+                                        [_vm._v("delete")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    },
+                    [
+                      _c("v-progress-linear", {
+                        attrs: {
+                          slot: "progress",
+                          color: "pink",
+                          indeterminate: ""
+                        },
+                        slot: "progress"
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-data-iterator", {
+                    staticClass: "hidden-lg-and-up",
+                    attrs: {
+                      items: _vm.dataTags,
+                      search: _vm.search,
+                      "no-results-text": "No s'ha trobat cap registre",
+                      "no-data-text": "No hiha dades disponibles",
+                      "rows-per-page-text": "Tags per pagina",
+                      "rows-per-page-items": [
+                        5,
+                        10,
+                        25,
+                        50,
+                        100,
+                        200,
+                        { text: "tots", value: -1 }
+                      ],
+                      loading: _vm.loading,
+                      pagination: _vm.pagination
+                    },
+                    on: {
+                      "update:pagination": function($event) {
+                        _vm.pagination = $event
+                      }
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "item",
+                        fn: function(ref) {
+                          var tag = ref.item
+                          return _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md4: "" } },
+                            [
+                              _c(
+                                "v-card",
+                                { staticClass: "mb-1" },
+                                [
+                                  _c(
+                                    "v-list",
+                                    { attrs: { dense: "" } },
+                                    [
+                                      _c(
+                                        "v-list-tile",
+                                        [
+                                          _c("v-list-tile-content", [
+                                            _vm._v("Nom:")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-content",
+                                            { staticClass: "align-end" },
+                                            [_vm._v(_vm._s(tag.name))]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile",
+                                        [
+                                          _c("v-list-tile-content", [
+                                            _vm._v("Descripcio:")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-content",
+                                            { staticClass: "align-end" },
+                                            [_vm._v(_vm._s(tag.description))]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile",
+                                        [
+                                          _c("v-list-tile-content", [
+                                            _vm._v("Color:")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-content",
+                                            { staticClass: "align-end" },
+                                            [
+                                              _c("div", {
+                                                staticClass: "elevation-2",
+                                                style:
+                                                  "background-color:" +
+                                                  tag.color +
+                                                  ";border-radius: 4px;height: 15px;width: 15px;"
+                                              })
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        }
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              directives: [
+                {
+                  name: "can",
+                  rawName: "v-can",
+                  value: _vm.tags.store,
+                  expression: "tags.store"
+                }
+              ],
+              staticClass: "white--text",
+              attrs: {
+                fab: "",
+                bottom: "",
+                right: "",
+                fixed: "",
+                large: "",
+                color: "pink accent-3"
+              },
+              on: { click: _vm.showCreate }
+            },
+            [_c("v-icon", [_vm._v("add")])],
             1
           )
         ],
