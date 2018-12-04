@@ -1,24 +1,24 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="550">
-            <v-card>
-                <v-card-title class="headline">Esteu segurs voleu elimnar <strong style="color: red;text-transform: uppercase">&nbsp;{{eliminat}}</strong> ?</v-card-title>
-                <v-card-text>
-                    Aquesta operació no es pot desfer.
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                      <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
-                        Cancel·lar
-                      </v-btn>
-                      <v-btn color="error darken-1" flat="flat" @click="destroy"
-                             :loading="removing"
-                             :disabled="removing">
-                        Confirmar
-                      </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <!--<v-dialog v-model="deleteDialog" width="550">-->
+            <!--<v-card>-->
+                <!--<v-card-title class="headline">Esteu segurs voleu elimnar <strong style="color: red;text-transform: uppercase">&nbsp;{{eliminat}}</strong> ?</v-card-title>-->
+                <!--<v-card-text>-->
+                    <!--Aquesta operació no es pot desfer.-->
+                <!--</v-card-text>-->
+                <!--<v-card-actions>-->
+                    <!--<v-spacer></v-spacer>-->
+                      <!--<v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">-->
+                        <!--Cancel·lar-->
+                      <!--</v-btn>-->
+                      <!--<v-btn color="error darken-1" flat="flat" @click="destroy"-->
+                             <!--:loading="removing"-->
+                             <!--:disabled="removing">-->
+                        <!--Confirmar-->
+                      <!--</v-btn>-->
+                <!--</v-card-actions>-->
+            <!--</v-card>-->
+        <!--</v-dialog>-->
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
@@ -215,7 +215,7 @@
                             <v-btn v-if="$can('user.tasks.update',tasks)" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="destroy(task)" :loading="removing==task.id" :disabled="removing ===task.id">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -289,10 +289,8 @@ export default {
       name: '',
       description: '',
       createDialog: false,
-      deleteDialog: false,
       eliminat: '',
       editDialog: false,
-      taskBeingRemoved: '',
       taskBeingEdit: '',
       showDialog: false,
       user: '',
@@ -315,7 +313,7 @@ export default {
       loading: false,
       creating: false,
       editing: false,
-      removing: false,
+      removing: null,
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
@@ -357,11 +355,6 @@ export default {
     createTask (task) {
       this.dataTasks.splice(0, 0, task)
     },
-    showDestroy (task) {
-      this.deleteDialog = true
-      this.taskBeingRemoved = task
-      this.eliminat = this.taskBeingRemoved.name
-    },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
@@ -385,19 +378,29 @@ export default {
         this.editing = false
       })
     },
-    destroy (task) {
-      this.removing = true
-      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
-        // this.refresh()
-        this.removeTask(this.taskBeingRemoved)
-        this.deleteDialog = false
-        this.taskBeingRemoved = null
-        this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
-        this.removing = false
-      }).catch(error => {
-        this.$snackbar.showError(error)
-        this.removing = false
-      })
+    async destroy (task) {
+      // es6 async await
+      let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
+        {
+          title: 'Esteu segurs eliminem ' + task.name + '?',
+          buttonTrueText: 'Eliminar',
+          buttonFalseText: 'Cancel·lar',
+          color: 'red'
+        })
+      if (result) {
+        this.removing = true
+        window.axios.delete(this.uri + '/' + task.id).then(() => {
+          // this.refresh()
+          this.removeTask(task)
+          this.deleteDialog = false
+          this.task = null
+          this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
+          this.removing = false
+        }).catch(error => {
+          this.$snackbar.showError(error)
+          this.removing = false
+        })
+      }
     },
     showCreate (task) {
       this.createDialog = true
