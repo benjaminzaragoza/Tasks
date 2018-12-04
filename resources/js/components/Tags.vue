@@ -1,10 +1,10 @@
 <template>
     <span>
             <v-flex xs12 justify-center>
-                <v-dialog v-model="deleteDialog" width="400">
+                <v-dialog v-model="deleteDialog" width="550">
                     <v-card>
                         <!--<strong>{{this.newTag.name}}</strong>-->
-                        <v-card-title class="headline">Voleu borrar el tag  <strong> &nbsp;{{borrat}}</strong>?</v-card-title>
+                        <v-card-title class="headline" style="text-align: center">Voleu borrar el tag  <strong style="color: red;text-transform: uppercase;">&nbsp;{{borrat}}</strong>?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
                         </v-card-text>
@@ -68,10 +68,6 @@
                             <v-icon class="mr-2">exit_to_app</v-icon>
                             Sortir
                         </v-btn>
-                        <v-btn flat class="white--text">
-                            <v-icon class="mr-2">save</v-icon>
-                            Guardar
-                        </v-btn>
                     </v-toolbar>
                     <v-card>
                         <v-card-text>
@@ -80,16 +76,6 @@
                                 <v-text-field disabled prepend-icon="color_lens" v-model="tagBeingShown.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
                                 <!--<v-autocomplete prepend-icon="face" disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>-->
                                 <v-textarea disabled prepend-icon="description" v-model="tagBeingShown.description" label="Descripció"></v-textarea>
-                                <div class="text-xs-center">
-                                    <v-btn @click="showDialog=false">
-                                        <v-icon class="mr-2">exit_to_app</v-icon>
-                                        Cancel·lar
-                                    </v-btn>
-                                    <v-btn color="success">
-                                        <v-icon class="mr-2">save</v-icon>
-                                        Guardar
-                                    </v-btn>
-                                </div>
                             </v-form>
                         </v-card-text>
                     </v-card>
@@ -100,9 +86,10 @@
                                 <v-icon>close</v-icon>
                             </v-btn>
 
-                            <v-card-title class="headline">Editar Tag</v-card-title>
-                            <v-icon class="white--text">local_offer</v-icon>
+                            <v-card-title class="headline" style="text-transform: capitalize;">Editar Tag
+                            {{actualitzat}}</v-card-title>
 
+                            <v-icon class="white--text">local_offer</v-icon>
                             <v-spacer></v-spacer>
                             <v-btn flat class="white--text" @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -163,6 +150,8 @@
                                 rows-per-page-text="Tags per pagina"
                                 :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
                                 :loading="loading"
+                                :pagination.sync="pagination"
+                                class="hidden-md-and-down"
                         >
                             <v-progress-linear slot="progress" color="pink" indeterminate></v-progress-linear>
                             <template slot="items" slot-scope="{item: tag}">
@@ -192,6 +181,44 @@
                                     </td>
                             </template>
                         </v-data-table>
+                         <v-data-iterator
+                                 class="hidden-lg-and-up"
+                                 :items="dataTags"
+                                 :search="search"
+                                 no-results-text="No s'ha trobat cap registre"
+                                 no-data-text="No hiha dades disponibles"
+                                 rows-per-page-text="Tags per pagina"
+                                 :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
+                                 :loading="loading"
+                                 :pagination.sync="pagination"
+                         >
+                <v-flex
+                        slot="item"
+                        slot-scope="{item:tag}"
+                        xs12
+                        sm6
+                        md4
+                >
+                    <v-card class="mb-1">
+                        <v-list dense>
+                            <v-list-tile>
+                               <v-list-tile-content>Nom:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ tag.name }}</v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                               <v-list-tile-content>Descripcio:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ tag.description }}</v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Color:</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                <div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card>
+                </v-flex>
+            </v-data-iterator>
                     </v-card-text>
                 </v-card>
                 <v-btn
@@ -209,7 +236,6 @@
                 </v-btn>
             </v-flex>
         </span>
-
 </template>
 
 <script>
@@ -240,6 +266,7 @@ export default {
       tagBeingEdit: '',
       showDialog: false,
       borrat: '',
+      actualitzat: '',
       filter: 'Totes',
       // filters: [
       //   'Totes',
@@ -284,6 +311,8 @@ export default {
     showUpdate (tag) {
       this.editDialog = true
       this.tagBeingEdit = tag
+      this.actualitzat = this.tagBeingEdit.name
+
     },
     showShow (tag) {
       this.showDialog = true

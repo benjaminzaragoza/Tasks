@@ -1,8 +1,8 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="400">
+        <v-dialog v-model="deleteDialog" width="550">
             <v-card>
-                <v-card-title class="headline">Esteu segurs?</v-card-title>
+                <v-card-title class="headline">Esteu segurs voleu elimnar <strong style="color: red;text-transform: uppercase">&nbsp;{{eliminat}}</strong> ?</v-card-title>
                 <v-card-text>
                     Aquesta operació no es pot desfer.
                 </v-card-text>
@@ -25,6 +25,7 @@
                     <v-icon>close</v-icon>
                 </v-btn>
                 <v-card-title class="headline">Crear tasca</v-card-title>
+                 <v-icon class="white--text">assignment_turned_in</v-icon>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="createDialog=false">
                     <v-icon class="mr-2">exit_to_app</v-icon>
@@ -62,6 +63,7 @@
                     <v-icon>close</v-icon>
                 </v-btn>
                 <v-card-title class="headline">Editar tasca</v-card-title>
+                <v-icon class="white--text">description</v-icon>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="editDialog=false">
                     <v-icon class="mr-2">exit_to_app</v-icon>
@@ -105,10 +107,6 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
-                </v-btn>
             </v-toolbar>
             <v-card>
                 <v-card-text>
@@ -135,6 +133,7 @@
                     </v-list-tile>
                 </v-list>
             </v-menu>
+             <v-icon class="white--text">assignment</v-icon>
             <v-toolbar-title class="white--text">Tasques</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon class="white--text">
@@ -291,6 +290,7 @@ export default {
       description: '',
       createDialog: false,
       deleteDialog: false,
+      eliminat: '',
       editDialog: false,
       taskBeingRemoved: '',
       taskBeingEdit: '',
@@ -360,6 +360,7 @@ export default {
     showDestroy (task) {
       this.deleteDialog = true
       this.taskBeingRemoved = task
+      this.eliminat = this.taskBeingRemoved.name
     },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
@@ -369,7 +370,7 @@ export default {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
-        this.newTask = ''
+        // this.dataTasks = ''
       }).catch((error) => {
         this.$snackbar.showError(error)
       })
