@@ -28,7 +28,7 @@ class DestroyTaskCompleted extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required'
+        //
         ];
     }
 }

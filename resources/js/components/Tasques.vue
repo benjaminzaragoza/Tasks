@@ -199,7 +199,9 @@
                             </v-avatar>
                         </td>
                         <td class="text-xs-left">
-                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
+                           <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
+                            <task-completed-toggle :task="task"></task-completed-toggle>
+                            <!--<v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>-->
                         </td>
                         <td class="text-xs-left">
                             <span  :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -273,8 +275,15 @@
 </template>
 
 <script>
+import TaskCompletedToggle from './TaskCompletedToggle'
+import Toggle from './Toggle'
 export default {
   name: 'Tasques',
+  components: {
+    TaskCompletedToggle,
+    'task-completed': TaskCompletedToggle,
+    'toggle': Toggle
+  },
   data () {
     return {
       taskBeingShown: '',
