@@ -5,6 +5,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
@@ -28,23 +29,24 @@ if (!function_exists('create_primary_user')) {
 
 if (!function_exists('create_example_tasks')) {
     function create_example_tasks() {
+        $user1=factory(User::class)->create();
         Task::create([
             'name' => 'comprar pa',
             'completed' => false,
             'description'=>'hola paco',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
         Task::create([
             'name' => 'comprar llet',
             'completed' => false,
             'description'=>'hola feo',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
         Task::create([
             'name' => 'Estudiar PHP',
             'completed' => true,
             'description'=>'hola guapo',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
     }
 }
@@ -53,17 +55,18 @@ if (!function_exists('create_example_tags')) {
         Tag::create([
             'name' => 'comprar pa',
             'description'=>'hola que tal',
-            'color'=>'blue'
+            'color'=>'blue',
+
         ]);
         Tag::create([
             'name' => 'comprar llet',
             'description'=>'hola que mal',
-            'color'=>'green'
+            'color'=>'green',
         ]);
         Tag::create([
             'name' => 'Estudiar PHP',
             'description'=>'hola que fatal',
-            'color'=>'red'
+            'color'=>'red',
         ]);
     }
 }
@@ -132,6 +135,14 @@ if (!function_exists('create_permission')) {
         } catch(Exception $e) {
             return Permission::findByName($permission);
         }
+    }
+}
+if (!function_exists('initialize_gates')) {
+    function initialize_gates()
+    {
+        Gate::define('tasks.manage',function($user) {
+            return $user->isSuperAdmin() || $user->hasRole('TaskManager');
+        });
     }
 }
 if (!function_exists('initialize_roles')) {
@@ -219,6 +230,8 @@ if (!function_exists('sample_users')) {
         }
         try {
             $bartsimpson->assignRole('Tasks');
+            $bartsimpson->assignRole('Tags');
+
         } catch (exception $e) {
         }
         try {
@@ -230,7 +243,12 @@ if (!function_exists('sample_users')) {
         }
         try {
             $homersimpson->assignRole('TaskManager');
+            $homersimpson->assignRole('TagsManager');
         } catch (exception $e) {
+        }try {
+            $homersimpson->assignRole('Tasks');
+            $homersimpson->assignRole('Tags');
+    } catch (exception $e) {
         }
         try {
             $sergitur = factory(User::class)->create([
@@ -244,6 +262,7 @@ if (!function_exists('sample_users')) {
         }
         try {
             $sergitur->assignRole('TaskManager');
+            $sergitur->assignRole('TagsManager');
         } catch (exception $e) {
         }
     }

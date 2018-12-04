@@ -14,7 +14,7 @@ class ShowTag extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tag.show');
+        return Auth::user()->can('tags.show');
     }
 
     /**

@@ -21,7 +21,7 @@
                         </form>
 
                         <div v-if="errorMessage">
-                            Ha succeit un error: {{ errorMessage }}
+                            <!--Ha succeit un error: {{ errorMessage }}-->
                         </div>
                         <v-list dense>
                             <v-list-tile v-for="task in filteredTasks" :key="task.id">

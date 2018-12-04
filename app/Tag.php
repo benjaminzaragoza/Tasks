@@ -2,44 +2,27 @@
 
 namespace App;
 
+use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $guarded = [];
-    protected $hidden = [
-        'created_at'
-    ];
-    public function file()
-    {
-        return $this->hasOne(File::class);
-    }
-    public function assignFile(File $file)
-    {
-        $file->task_id = $this->id;
-        $file->save();
-    }
-    public function addTags($tags)
-    {
-        $this->tags()->saveMany($tags);
-    }
-    public function addTag($tag)
-    {
-        $this->tags()->save($tag);
-    }
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
+    use FormattedDates;
+    protected $fillable = ['name','description','color'];
     public function map()
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
             'color' => $this->color,
-//            'tags' => $this->tags
-//            'file' => $this->file
+            'description' => $this->description,
+            'created_at' => $this->created_at,
+            'created_at_formatted' => $this->created_at_formatted,
+            'created_at_human' => $this->created_at_human,
+            'updated_at' => $this->updated_at,
+            'updated_at_formatted' => $this->updated_at_formatted,
+            'updated_at_human' => $this->updated_at_human,
+            'updated_at_timestamp' => $this->updated_at_timestamp,
         ];
     }
 

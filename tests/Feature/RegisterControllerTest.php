@@ -7,8 +7,10 @@
  */
 
 namespace Tests\Feature;
+use App\Mail\TestWelcomeEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,12 +28,16 @@ class RegisterControllerTest extends TestCase
         initialize_roles();
         $this->assertNull(Auth::user());
         //2
+        Mail::fake();
         $response = $this->post('/register',$user=[
             'name' => 'Benjamin Zaragoza',
             'email' => 'benjaminzaragoza@iesebre.com',
             'password' => 'secret11', //password per defecte factoria
             'password_confirmation'=>'secret11'
         ]);
+        Mail::assertSent(TestWelcomeEmail::class,function($mail){
+            return $mail->user->name=='Benjamin Zaragoza';
+        });
         //3
         //Mirar si sa creat ala base de dades
         $this->assertDatabaseHas('users',['email' => 'benjaminzaragoza@iesebre.com']);

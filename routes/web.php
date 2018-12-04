@@ -28,8 +28,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/home','TasquesController@index');
     Route::get('/user/tasks','LoggedUserTasksController@index');
 
-    Route::get('/tags', 'TagsVueController@index');
     Route::impersonate();
+    Route::get('/tags', 'TagsController@index');
+
 });
 
 Route::get('/', function () {

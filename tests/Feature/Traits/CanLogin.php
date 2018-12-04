@@ -14,13 +14,48 @@ trait CanLogin
      * @param null $guard
      * @return mixed
      */
-    protected function loginAsTaskManager($guard = null)
+    protected function loginAsUsingRole($guard,$role)
     {
         initialize_roles();
         $user = factory(User::class)->create();
-        $user->assignRole('TaskManager');
+        $roles=is_array($role)?$role:[$role];
+        foreach ($roles as $role) {
+            $user->assignRole($role);
+        }
         $this->actingAs($user,$guard);
         return $user;
+    }
+    /**
+     * @param null $guard
+     * @return mixed
+     */
+    protected function loginAsTaskManager($guard = null)
+    {
+    return $this->loginAsUsingRole($guard,['TaskManager','Tasks']);
+    }
+    /**
+     * @param null $guard
+     * @return mixed
+     */
+    protected function loginAsTasksUser($guard = null)
+    {
+        return $this->loginAsUsingRole($guard,'Tasks');
+    }
+    /**
+     * @param null $guard
+     * @return mixedF
+     */
+    protected function loginAsTagsManager($guard = null)
+    {
+        return $this->loginAsUsingRole($guard,['TagsManager','Tags']);
+    }
+    /**
+     * @param null $guard
+     * @return mixed
+     */
+    protected function loginAsTagsUser($guard = null)
+    {
+        return $this->loginAsUsingRole($guard,'Tags');
     }
     /**
      * @param null $guard

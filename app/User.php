@@ -39,7 +39,7 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-    public function addTask($task)
+    public function addTask(Task $task)
     {
         $this->tasks()->save($task);
     }
@@ -48,14 +48,50 @@ class User extends Authenticatable
         $this->tasks()->saveMany($tasks);
     }
 
-    public function haveTask()
+    public function haveTask(Task $task)
     {
+        return $this->tasks()->where('id',$task->id)->first();
     }
     public function removeTask()
     {
         $this->tasks()->delete();
     }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+    /**
+     * @param Tag $tag
+     */
+    public function addTag(Tag $tag){
+        $this->tags()->save($tag);
+    }
+    /**
+     * @param $tags
+     */
+    public function addTags($tags){
+        $this->tags()->saveMany($tags);
+    }
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\HasMany|null|object
+     */
+    public function haveTag(Tag $tag)
+    {
+        return $this->tags()->where('id',$tag->id)->first();
+    }
+    /**
+     * @param Tag $tag
+     * @return bool|mixed|null
+     * @throws \Exception
+     */
+    public function removeTag()
+    {
+        $this->tags()->delete();
+    }
     /**
      * @return mixed
      */

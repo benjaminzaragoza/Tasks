@@ -18,12 +18,8 @@ class TasksTest extends TestCase
         //1 Prepare
         create_example_tasks();
         $this->login();
-//        $this->actingAs($user,'api');
-
-//        dd(Task::find(1));
         // 2 execute
         $response = $this->get('/tasks');
-//        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('Tasques');
@@ -59,14 +55,6 @@ class TasksTest extends TestCase
     /**
      * @test
      */
-//    public function user_without_permissions_cannnot_delete_tasks()
-//    {
-//        $response = $this->delete('/tasks/1');
-//        $response->assertStatus(403);
-//    }
-    /**
-     * @test
-     */
     public function can_delete_task()
     {
         // 1
@@ -99,40 +87,32 @@ class TasksTest extends TestCase
             'completed' => '1'
         ]);
         $response->assertStatus(302);
-//            $response->assertStatus(200);
-        // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
+
         $task = $task->fresh();
         $this->assertEquals($task->name, $newTask['name']);
         $this->assertEquals($task->completed, $newTask['completed']);
     }
-//    /**
-//     * @test
-//     */
-//    public function can_edit_a_task_todo_validation()
-//    {
-//        $this->loginAsTaskManager('api');
-//
-//        $this->withoutExceptionHandling();
-//        // 1
-//        $task = Task::create([
-//            'name' => 'asdasdasd',
-//            'completed' => false
-//        ]);
-//        //2
-//        $response = $this->put('/tasks/' . $task->id, $newTask = [
-//            'completed' => true
-//        ]);
-//        $response->assertSuccessful();
-////            $response->assertStatus(200);
-//        // 2 opcions
-////        $this->assertDatabaseHas('tasks',$newTask);
-////        $this->assertDatabaseMissing('tasks',$task);
-//        $task = $task->fresh();
-//        $this->assertEquals($task->name, 'Comprar pa');
-//        $this->assertEquals((boolean)$task->completed, true);
-//    }
+    /**
+     * @test
+     */
+    public function can_edit_a_task_todo_validation()
+    {
+        $this->markTestSkipped();
+        $this->withoutExceptionHandling();
+        // 1
+        $task = Task::create([
+            'name' => 'asdasdasd',
+            'completed' => false
+        ]);
+        //2
+        $response = $this->put('/tasks/' . $task->id,$newTask = [
+            'completed' => true
+        ]);
+        $response->assertSuccessful();
+        $task = $task->fresh();
+        $this->assertEquals($task->name,'Comprar pa');
+        $this->assertEquals($task->completed,true);
+    }
 
     /**
      * @test
@@ -141,12 +121,8 @@ class TasksTest extends TestCase
     {
         $this->login();
 
-//        $this->withoutExceptionHandling();
-        // TDD CompletedTaskControllerTest Driven Development ->
-        // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
         $response = $this->put('/tasks/1',[]);
-//        dd($response->getContent());
-        // 3 assert
+
         $response->assertStatus(404);
     }
     /**
@@ -179,15 +155,4 @@ class TasksTest extends TestCase
 
 
 }
-//Class CompletedTaskController{
-//    public function store()
-//    {
-//
-//    }
-//
-//    public function delete()
-//    {
-//
-//    }
-//
-//}
+

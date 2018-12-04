@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTag extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateTag extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tags.index');
+        return Auth::user()->can('tags.update');
     }
 
     /**

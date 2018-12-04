@@ -14,7 +14,7 @@ class DestroyTag extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tag.destroy');
+        return Auth::user()->can('tags.destroy');
 
     }
 

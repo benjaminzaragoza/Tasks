@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestroyTag;
+use App\Http\Requests\IndexTag;
 use App\Http\Requests\ShowTag;
 use App\Http\Requests\StoreTag;
 use App\Http\Requests\UpdateTag;
@@ -13,9 +14,10 @@ use Illuminate\Http\Request;
 class TagsController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(IndexTag $request)
     {
-        return Tag::orderBy('created_at','desc')->get();
+        $tags = map_collection(Tag::orderBy('created_at','desc')->get());
+        return $tags;
     }
     public function show(ShowTag $request, Tag $tag) // Route Model Binding
     {
@@ -27,16 +29,12 @@ class TagsController extends Controller
     }
     public function store(StoreTag $request)
     {
-        $tag = new Tag();
-        $tag->name = $request->name;
-        $tag->description = $request->description;
-        $tag->color = $request->color;
-        $tag->save();
+        $tag = Tag::create($request->all());
         return $tag->map();
     }
-    public function update(UpdateTag $request, TaG $tag)
+    public function update(UpdateTag $request, Tag $tag)
     {
-        $tag->update($request->all());
+        $tag->update($request->only(['name','description','color']));
         $tag->save();
         return $tag->map();
     }
