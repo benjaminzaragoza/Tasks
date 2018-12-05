@@ -296,6 +296,10 @@ export default {
     tags: {
       type: Array,
       required: true
+    },
+    uri: {
+      type: String,
+      required: true
     }
 
   },
@@ -312,7 +316,6 @@ export default {
       this.editDialog = true
       this.tagBeingEdit = tag
       this.actualitzat = this.tagBeingEdit.name
-
     },
     showShow (tag) {
       this.showDialog = true
@@ -333,17 +336,24 @@ export default {
       this.dataTags.splice(this.dataTags.indexOf(tag), 1)
     },
     add () {
-      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
+      this.creating = true
+      window.axios.post(this.uri, this.newTag).then((response) => {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
       }).catch((error) => {
         this.$snackbar.showError(error)
+      }).finally(() => {
+        this.creating = false
+        this.newTag.name = ''
+        this.newTag.description = ''
+        this.newTag.color = ''
+        this.createDialog = false
       })
     },
     update () {
       this.editing = true
-      window.axios.put('/api/v1/tags/' + this.tagBeingEdit.id, this.tagBeingEdit).then((response) => {
+      window.axios.put(this.uri + '/' + this.tagBeingEdit.id, this.tagBeingEdit).then((response) => {
         this.dataTags.splice(this.dataTags.indexOf(this.tagBeingEdit), 1, response.data)
         this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
         this.editDialog = false
@@ -353,7 +363,7 @@ export default {
     },
     destroy (tag) {
       this.removing = true
-      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(() => {
+      window.axios.delete(this.uri + '/' + this.tagBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTag(this.tagBeingRemoved)
         this.deleteDialog = false
@@ -378,7 +388,7 @@ export default {
     refresh () {
       this.loading = true
       // setTimeout(() => { this.loading = false }, 5000)
-      window.axios.get('/api/v1/tags').then(response => {
+      window.axios.get(this.uri).then(response => {
         this.dataTags = response.data
         this.loading = false
         this.$snackbar.showMessage("S'han actualitzat correctament els tags ")
