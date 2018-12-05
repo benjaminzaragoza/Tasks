@@ -92,27 +92,27 @@ class TasksTest extends TestCase
         $this->assertEquals($task->name, $newTask['name']);
         $this->assertEquals($task->completed, $newTask['completed']);
     }
-    /**
-     * @test
-     */
-    public function can_edit_a_task_todo_validation()
-    {
-        $this->markTestSkipped();
-        $this->withoutExceptionHandling();
-        // 1
-        $task = Task::create([
-            'name' => 'asdasdasd',
-            'completed' => false
-        ]);
-        //2
-        $response = $this->put('/tasks/' . $task->id,$newTask = [
-            'completed' => true
-        ]);
-        $response->assertSuccessful();
-        $task = $task->fresh();
-        $this->assertEquals($task->name,'Comprar pa');
-        $this->assertEquals($task->completed,true);
-    }
+//    /**
+//     * @test
+//     */
+//    public function can_edit_a_task_todo_validation()
+//    {
+//        $this->markTestSkipped();
+//        $this->withoutExceptionHandling();
+//        // 1
+//        $task = Task::create([
+//            'name' => 'asdasdasd',
+//            'completed' => false
+//        ]);
+//        //2
+//        $response = $this->put('/tasks/' . $task->id,$newTask = [
+//            'completed' => true
+//        ]);
+//        $response->assertSuccessful();
+//        $task = $task->fresh();
+//        $this->assertEquals($task->name,'Comprar pa');
+//        $this->assertEquals($task->completed,true);
+//    }
 
     /**
      * @test
