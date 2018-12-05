@@ -36,7 +36,7 @@ class TagsControllerTest extends TestCase
         // 1
         $tag = factory(Tag::class)->create();
         // 2
-        $response = $this->delete('/api/v1/tags/' . $tag->id);
+        $response = $this->json('DELETE','/api/v1/tags/' . $tag->id);
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
@@ -104,7 +104,7 @@ class TagsControllerTest extends TestCase
             'color' => '#04B404'
         ]);
         // 2
-        $response = $this->put('/api/v1/tags/'.$oldTag->id, [
+        $response = $this->json('PUT','/api/v1/tags/'.$oldTag->id, [
             'name' => 'classe',
             'description' => 'classethings',
             'color' => '#05C202'

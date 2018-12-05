@@ -1,6 +1,6 @@
 <!-- // Taken from https://github.com/yariksav/vuetify-confirm -->
 <template>
-    <v-dialog @input="change" value="true"  width="450">
+    <v-dialog @input="change" value="true" :max-width="width">
         <v-toolbar v-if="!!title" dark :color="color" dense>
             <v-icon v-if="!!icon">{{ icon }}</v-icon>
             <v-toolbar-title class="white--text" v-text="title"/>
@@ -10,7 +10,7 @@
             <v-card-actions>
                 <v-spacer/>
                 <v-btn :color="buttonFalseColor" flat @click="choose(false)">{{ buttonFalseText }}</v-btn>
-                <v-btn :color="buttonTrueColor" flat @click="choose(true)">{{ buttonTrueText }}</v-btn>
+                <v-btn :color="buttonTrueColor" @click="choose(true)">{{ buttonTrueText }}</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -45,14 +45,19 @@ export default {
     },
     message: {
       type: String,
-      reqiured: true
+      required: true
     },
     title: {
       type: String
+
     },
     width: {
       type: Number,
-      default: 300
+      default: 550
+    },
+    height: {
+      type: Number,
+      default: 550
     }
   },
   data () {

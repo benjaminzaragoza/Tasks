@@ -63,9 +63,10 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function cannot_uncomplete_a_unexisting_task()
     {
-        $this->login('api');
-
-        $response= $this->delete('/api/v1/completed_task/1');
+        // 1 -> no cal fer res
+        $this->loginAsTaskManager('api');
+        // 2 Execute
+        $response= $this->json('DELETE','/api/v1/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
     }

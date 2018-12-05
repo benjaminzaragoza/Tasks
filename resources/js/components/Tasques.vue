@@ -217,7 +217,7 @@
                             <v-btn v-if="$can('user.tasks.update',tasks)" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="destroy(task)" :loading="removing==task.id" :disabled="removing ===task.id">
+                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="destroy(task)" :loading="removing===task.id" :disabled="removing ===task.id">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -267,7 +267,7 @@
                 large
                 color="pink accent-3"
                 class="white--text"
-                v-if="$can('tasks.store')"
+                v-if="$can('user.tasks.store', tasks)"
         >
             <v-icon>add</v-icon>
         </v-btn>
@@ -368,33 +368,47 @@ export default {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     add () {
+      this.creating = true
       window.axios.post(this.uri + '/', this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
-        this.createDialog = false
-        // this.dataTasks = ''
+        this.refresh()
       }).catch((error) => {
         this.$snackbar.showError(error)
+        this.creating = false
+      }).finally(() => {
+        this.creating = false
+        this.newTask.name = ''
+        this.newTask.description = ''
+        this.newTask.completed = false
+        this.newTask.user_id = ''
+        this.createDialog = false
       })
     },
     update () {
       this.editing = true
       window.axios.put(this.uri + '/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
-        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
-        this.editDialog = false
       }).catch((error) => {
+        this.$snackbar.showError(error)
         this.editing = false
+        this.editDialog = false
+      }).finally(() => {
+        // this.refresh()
+        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
+        this.editing = false
+        this.editDialog = false
       })
     },
     async destroy (task) {
       // es6 async await
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
         {
-          title: 'Esteu segurs eliminem ' + task.name + '?',
+          title: 'Esteu segurs voleu elimnar ' + task.name + '?',
           buttonTrueText: 'Eliminar',
           buttonFalseText: 'Cancel·lar',
-          color: 'red'
+          color: 'red',
+          buttonTrueColor: 'error darken-1'
         })
       if (result) {
         this.removing = true

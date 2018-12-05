@@ -1,13 +1,14 @@
 <template>
-    <v-switch v-model="dataTask.completed" :loading="loading" :disabled="loading" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
+    <v-switch :loading="loading" :disabled="loading" v-model="dataTask.completed" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
 </template>
+
 <script>
 export default {
   name: 'taskCompletedToggle',
   data () {
     return {
-      loading: null,
-      dataTask: this.task
+      dataTask: this.task,
+      loading: false
     }
   },
   props: {
@@ -23,16 +24,27 @@ export default {
         else this.uncompleteTask()
       },
       deep: true
+    },
+    task (task) {
+      this.dataTask = task
     }
   },
   methods: {
-    completeTask () {
-      // loading i disabled
-      // window.axios.post('/v1/completed_task/' + this.task.id) // TODO ACABAR
-      window.axios.post('/api/v1/completed_task/' + this.task.id)
-    },
     uncompleteTask () {
-      window.axios.delete('/api/v1/completed_task/' + this.task.id)
+      this.loading = true
+      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() => {
+        this.loading = false
+      }).catch(error => {
+        this.loading = false
+      })
+    },
+    completeTask () {
+      this.loading = true
+      window.axios.post('/api/v1/completed_task/' + this.task.id).then(() => {
+        this.loading = false
+      }).catch(error => {
+        this.loading = false
+      })
     }
   }
 }
