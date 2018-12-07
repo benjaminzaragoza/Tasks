@@ -24,6 +24,12 @@ if (!function_exists('create_primary_user')) {
             $user->admin=true;
            $user->save();
         }
+        Task::create([
+            'name' => 'Tasca Benja',
+            'completed' => true,
+            'description' => 'Benja tasca',
+            'user_id' => $user->id
+        ]);
     }
 }
 
@@ -218,12 +224,18 @@ if (!function_exists('sample_users')) {
     {
         //superadmin no cal -> jo mateix
         try {
-            factory(User::class)->create([
+            $pepepringao = factory(User::class)->create([
                 'name' => 'Pepe Pringao',
                 'email' => 'pepepringao@hotmail.com'
             ]);
         } catch (exception $e) {
         }
+        Task::create([
+            'name' => 'Tasca Pepe',
+            'completed' => false,
+            'description' => 'Descripció de prova',
+            'user_id' => $pepepringao->id
+        ]);
         try {
             $bartsimpson = factory(User::class)->create([
                 'name' => 'Bart Simpson',
@@ -237,6 +249,12 @@ if (!function_exists('sample_users')) {
 
         } catch (exception $e) {
         }
+        Task::create([
+            'name' => 'Tasca Bart',
+            'completed' => false,
+            'description' => 'Descripció Bart',
+            'user_id' => $bartsimpson->id
+        ]);
         try {
             $homersimpson = factory(User::class)->create([
                 'name' => 'Homer Simpson',
@@ -253,21 +271,28 @@ if (!function_exists('sample_users')) {
             $homersimpson->assignRole('Tags');
     } catch (exception $e) {
         }
+        Task::create([
+            'name' => 'Tasca Homer',
+            'completed' => true,
+            'description' => 'Descripció Homer',
+            'user_id' => $homersimpson->id
+        ]);
         try {
             $sergitur = factory(User::class)->create([
                 'name' => 'Sergi Tur',
                 'email' => 'sergiturbadenas@gmail.com',
-                'password' => 'secret'
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
             ]);
             $sergitur->admin = true;
             $sergitur->save();
-        } catch (exception $e) {
+        } catch (Exception $e) {
         }
-        try {
-            $sergitur->assignRole('TaskManager');
-            $sergitur->assignRole('TagsManager');
-        } catch (exception $e) {
-        }
+        Task::create([
+            'name' => 'Tasca Sergi',
+            'completed' => false,
+            'description' => 'Sergi tasca',
+            'user_id' => $sergitur->id
+        ]);
     }
 };
 if (!function_exists('map_collection')) {
