@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-
+//fitxer de tags correctament
     public function index(IndexTag $request)
     {
         $tags = map_collection(Tag::orderBy('created_at','desc')->get());
