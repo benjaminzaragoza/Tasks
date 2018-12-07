@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class ShowTaskCompleted extends FormRequest
+class StoreTaskCompleted extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class ShowTaskCompleted extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.complete');
+        return Auth::user()->can('user.tasks.complete');
     }
 
     /**

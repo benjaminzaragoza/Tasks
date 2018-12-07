@@ -28,6 +28,7 @@ Route::middleware('auth:api')->group(function (){
     Route::delete('/v1/completed_task/{task}','Api\CompletedTasksController@destroy');         // EDIT
     Route::post('/v1/completed_task/{task}','Api\CompletedTasksController@store');         // EDIT
 
+
 Route::get('/v1/tags', 'Api\TagsController@index');
 Route::post('/v1/tags', 'Api\TagsController@store');
 Route::get('/v1/tags/{tag}', 'Api\TagsController@show');
@@ -36,7 +37,7 @@ Route::delete('/v1/tags/{tag}', 'Api\TagsController@destroy');
 
 Route::get('/v1/user/tasks','Api\LoggedUserTasksController@index');//Route::get('/v1/tasks',function (){
 Route::get('/v1/user/tasks/{task}','Api\LoggedUserTasksController@show');//Route::get('/v1/tasks',function (){
-Route::post('/v1/user/tasks','Api\LoggedUserTasksController@store');//Route::get('/v1/tasks',function (){
+Route::post('/v1/user/tasks/','Api\LoggedUserTasksController@store');//Route::get('/v1/tasks',function (){
 Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');//Route::get('/v1/tasks',function (){
 Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');//Route::get('/v1/tasks',function (){
 

@@ -26,10 +26,7 @@ class TasksController extends Controller
     }
     public function update(Request $request)
     {
-        //Models -> eloquent -> ORM (Hibernate de java)
-//        Task::find($request->id);
-//        if (!Task::find($request->id)) return response (404,'No ho he provat');
-        $task = Task::findOrFail($request->id);
+       $task = Task::findOrFail($request->id);
 //        $task->name = $request->name;
 //        $task->completed = false;
         $task->update($request->all());
@@ -45,13 +42,6 @@ class TasksController extends Controller
     public function complete(Request $request)
     {
         $task = Task::findOrFail($request->id);
-//        if (!$task->completed = true){
-//            $task->completed = true;
-//            $task->save();
-//        } else {
-//            $task->completed = false;
-//            $task->save();
-//        }
         if (!$task->completed = true) $task->completed = true; $task->save();
 //        if (!$task->completed = false) $task->completed = false; $task->save();
         return redirect ('/tasks');

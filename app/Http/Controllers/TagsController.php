@@ -11,11 +11,15 @@ class TagsController extends Controller
 {
     public function index(IndexUserTag $request){
 
-        if(Auth::user()->isSuperAdmin() || Auth::user()->hasRole('TagsManager')) {
+        if(Auth::user()->can('tags.manage')) {
             $tags = map_collection(Tag::orderBy('created_at','desc')->get());
+            $uri = '/api/v1/tags';
+        }else{
+            $tags= map_collection($request->user()->tasks);
+            $uri = '/api/v1/user/tasks';
         }
         $tags=map_collection(Tag::all());
-        return view('/tags/index', compact('tags'));
+        return view('/tags/index', compact('tags','uri'));
 //        $users = User::all();
 
     }

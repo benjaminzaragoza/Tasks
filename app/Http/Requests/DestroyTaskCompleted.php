@@ -14,7 +14,7 @@ class DestroyTaskCompleted extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.uncomplete');
+        return Auth::user()->can('user.tasks.uncomplete');
 
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasROle('TaskManager') ||
 //            Auth::user()->id===$task->user_id;
@@ -28,7 +28,7 @@ class DestroyTaskCompleted extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required'
+        //
         ];
     }
 }

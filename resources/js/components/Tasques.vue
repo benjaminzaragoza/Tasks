@@ -1,24 +1,24 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="550">
-            <v-card>
-                <v-card-title class="headline">Esteu segurs voleu elimnar <strong style="color: red;text-transform: uppercase">&nbsp;{{eliminat}}</strong> ?</v-card-title>
-                <v-card-text>
-                    Aquesta operació no es pot desfer.
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                      <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
-                        Cancel·lar
-                      </v-btn>
-                      <v-btn color="error darken-1" flat="flat" @click="destroy"
-                             :loading="removing"
-                             :disabled="removing">
-                        Confirmar
-                      </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <!--<v-dialog v-model="deleteDialog" width="550">-->
+            <!--<v-card>-->
+                <!--<v-card-title class="headline">Esteu segurs voleu elimnar <strong style="color: red;text-transform: uppercase">&nbsp;{{eliminat}}</strong> ?</v-card-title>-->
+                <!--<v-card-text>-->
+                    <!--Aquesta operació no es pot desfer.-->
+                <!--</v-card-text>-->
+                <!--<v-card-actions>-->
+                    <!--<v-spacer></v-spacer>-->
+                      <!--<v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">-->
+                        <!--Cancel·lar-->
+                      <!--</v-btn>-->
+                      <!--<v-btn color="error darken-1" flat="flat" @click="destroy"-->
+                             <!--:loading="removing"-->
+                             <!--:disabled="removing">-->
+                        <!--Confirmar-->
+                      <!--</v-btn>-->
+                <!--</v-card-actions>-->
+            <!--</v-card>-->
+        <!--</v-dialog>-->
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
@@ -42,7 +42,7 @@
                         <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="newTask.completed" :label="newTask.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="newTask.description" label="Descripció"></v-textarea>
-                        <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
+                        <v-autocomplete v-if="$can('tasks.index')" v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -80,7 +80,7 @@
                         <v-text-field v-model="taskBeingEdit.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingEdit.completed" :label="taskBeingEdit.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdit.description" label="Descripció"></v-textarea>
-                        <v-autocomplete v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
+                        <v-autocomplete  :disabled="!$can('tasks.index')" v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -199,7 +199,9 @@
                             </v-avatar>
                         </td>
                         <td class="text-xs-left">
-                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
+                           <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
+                            <task-completed-toggle :task="task"></task-completed-toggle>
+                            <!--<v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>-->
                         </td>
                         <td class="text-xs-left">
                             <span  :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -215,7 +217,7 @@
                             <v-btn v-if="$can('user.tasks.update',tasks)" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="destroy(task)" :loading="removing===task.id" :disabled="removing ===task.id">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -265,7 +267,7 @@
                 large
                 color="pink accent-3"
                 class="white--text"
-                v-if="$can('tasks.store')"
+                v-if="$can('user.tasks.store', tasks)"
         >
             <v-icon>add</v-icon>
         </v-btn>
@@ -273,8 +275,15 @@
 </template>
 
 <script>
+import TaskCompletedToggle from './TaskCompletedToggle'
+import Toggle from './Toggle'
 export default {
   name: 'Tasques',
+  components: {
+    TaskCompletedToggle,
+    'task-completed': TaskCompletedToggle,
+    'toggle': Toggle
+  },
   data () {
     return {
       taskBeingShown: '',
@@ -289,10 +298,8 @@ export default {
       name: '',
       description: '',
       createDialog: false,
-      deleteDialog: false,
       eliminat: '',
       editDialog: false,
-      taskBeingRemoved: '',
       taskBeingEdit: '',
       showDialog: false,
       user: '',
@@ -315,7 +322,7 @@ export default {
       loading: false,
       creating: false,
       editing: false,
-      removing: false,
+      removing: null,
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
@@ -357,47 +364,66 @@ export default {
     createTask (task) {
       this.dataTasks.splice(0, 0, task)
     },
-    showDestroy (task) {
-      this.deleteDialog = true
-      this.taskBeingRemoved = task
-      this.eliminat = this.taskBeingRemoved.name
-    },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     add () {
+      this.creating = true
       window.axios.post(this.uri + '/', this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
-        this.createDialog = false
-        // this.dataTasks = ''
+        this.refresh()
       }).catch((error) => {
         this.$snackbar.showError(error)
+        this.creating = false
+      }).finally(() => {
+        this.creating = false
+        this.newTask.name = ''
+        this.newTask.description = ''
+        this.newTask.completed = false
+        this.newTask.user_id = ''
+        this.createDialog = false
       })
     },
     update () {
       this.editing = true
       window.axios.put(this.uri + '/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(this.taskBeingEdit), 1, response.data)
-        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
-        this.editDialog = false
       }).catch((error) => {
+        this.$snackbar.showError(error)
         this.editing = false
+        this.editDialog = false
+      }).finally(() => {
+        // this.refresh()
+        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
+        this.editing = false
+        this.editDialog = false
       })
     },
-    destroy (task) {
-      this.removing = true
-      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
-        // this.refresh()
-        this.removeTask(this.taskBeingRemoved)
-        this.deleteDialog = false
-        this.taskBeingRemoved = null
-        this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
-        this.removing = false
-      }).catch(error => {
-        this.$snackbar.showError(error)
-        this.removing = false
-      })
+    async destroy (task) {
+      // es6 async await
+      let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
+        {
+          title: 'Esteu segurs voleu elimnar ' + task.name + '?',
+          buttonTrueText: 'Eliminar',
+          buttonFalseText: 'Cancel·lar',
+          color: 'red',
+          buttonTrueColor: 'error darken-1'
+        })
+      if (result) {
+        this.removing = true
+        window.axios.delete(this.uri + '/' + task.id).then(() => {
+          // this.refresh()
+          this.removeTask(task)
+          this.deleteDialog = false
+          this.task = null
+          this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
+          this.removing = false
+        }).catch(error => {
+          this.$snackbar.showError(error)
+          this.removing = false
+        })
+      }
     },
     showCreate (task) {
       this.createDialog = true

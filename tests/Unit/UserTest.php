@@ -100,7 +100,6 @@ class UserTest extends TestCase
         $this->assertTrue($tasks[2]->is($task3));
     }
 
-
     public function haveTask()
     {
         $user = factory(User::class)->create();

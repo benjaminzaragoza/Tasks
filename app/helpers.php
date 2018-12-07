@@ -143,6 +143,9 @@ if (!function_exists('initialize_gates')) {
         Gate::define('tasks.manage',function($user) {
             return $user->isSuperAdmin() || $user->hasRole('TaskManager');
         });
+        Gate::define('tags.manage',function($user) {
+            return $user->isSuperAdmin() || $user->hasRole('TagsManager');
+        });
     }
 }
 if (!function_exists('initialize_roles')) {

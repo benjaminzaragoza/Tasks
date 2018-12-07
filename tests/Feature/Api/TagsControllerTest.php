@@ -15,7 +15,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_show_a_tag()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         $this->loginAsTagsManager('api');
         $tag = factory(Tag::class)->create();
         $response = $this->json('GET','/api/v1/tags/' . $tag->id);
@@ -36,7 +36,7 @@ class TagsControllerTest extends TestCase
         // 1
         $tag = factory(Tag::class)->create();
         // 2
-        $response = $this->delete('/api/v1/tags/' . $tag->id);
+        $response = $this->json('DELETE','/api/v1/tags/' . $tag->id);
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
@@ -101,13 +101,13 @@ class TagsControllerTest extends TestCase
         $oldTag = factory(Tag::class)->create([
             'name' => 'feina',
             'description' => "blablab",
-            'color' => '#04B404'
+            'color' => 'red'
         ]);
         // 2
-        $response = $this->put('/api/v1/tags/'.$oldTag->id, [
+        $response = $this->json('PUT','/api/v1/tags/'.$oldTag->id, [
             'name' => 'classe',
             'description' => 'classethings',
-            'color' => '#05C202'
+            'color' => 'red'
         ]);
         // 3
         $result = json_decode($response->getContent());
@@ -116,7 +116,7 @@ class TagsControllerTest extends TestCase
         $this->assertNotNull($newTag);
         $this->assertEquals('classe',$result->name);
         $this->assertEquals('classethings',$result->description);
-        $this->assertEquals('#05C202',$result->color);
+        $this->assertEquals('red',$result->color);
     }
     /**
      * @test
