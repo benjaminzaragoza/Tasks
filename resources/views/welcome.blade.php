@@ -10,21 +10,28 @@
     </v-toolbar>
     <v-content>
         <section>
-            <v-parallax src="img/hero.jpeg" height="600">
-                <v-layout column align-center justify-center class="white--text">
-
-                    <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                    <h1 class="white--text mb-2 display-1 text-xs-center">Tasques i Tags amb Vue</h1>
-                    <div class="subheading mb-3 text-xs-center">by Benjamin Zaragoza Pla</div>
+            <v-parallax src="img/paper.jpg" height="600">
+                <v-layout column align-center justify-center class="white--text" style="margin-top: 3%;">
+                    <img src="img/task.png" alt="Vuetify.js" height="200">
+                    <h1 class="primary--text mb-2 display-1 text-xs-center" style="margin-top: 4%;" >Tasques i Tags amb Vue</h1>
+                    <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                    <v-layout>
                     <v-btn
-                            class="blue lighten-2 mt-5"
+                            class="light-blue darken-4 lighten-2 mt-5"
                             dark
                             large
                             href="/home"
                     >
                         Get Started
                     </v-btn>
-                </v-layout>
+                    <v-btn depressed
+                           class="dark mt-5"
+                           target="_blank"
+                           large
+                           href="https://github.com/benjaminzaragoza/Tasks"
+                    ><img src="img/github.png" alt="Github" height="65">
+                    </v-btn>
+                    </v-layout>
             </v-parallax>
         </section>
 
