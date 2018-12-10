@@ -14,7 +14,8 @@
                                     type="text"
                                     v-model="newTask" @keyup.enter="add"
                                     name="name"
-                                    required>
+                                    required
+                            >
                             </v-text-field>
 
                             <v-btn id="button_add_task" style="margin-right: -70%;" dark color="green dark" @click="add">Afegir</v-btn>
@@ -127,12 +128,10 @@ export default {
       this.filter = newFilter
     },
     add () {
-      // this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
-      // this.newTask=''
+      if (this.newTask === '') return
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
-        console.log('responde')
         console.log(response.data)
         let task = { id: response.data.id, name: this.newTask, completed: false }
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
@@ -154,9 +153,7 @@ export default {
   },
   created () {
     if (this.tasks.length === 0) {
-      console.log('entra')
       window.axios.get('/api/v1/tasks').then((response) => {
-        console.log('ok')
         console.log(response.data)
         this.dataTasks = response.data
       }).catch((error) => {

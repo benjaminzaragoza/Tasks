@@ -336,25 +336,11 @@ export default {
       this.dataTags.splice(this.dataTags.indexOf(tag), 1)
     },
     add () {
-<<<<<<< HEAD
-      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
-<<<<<<< HEAD
-        console.log('responde')
-        console.log(response.data)
-        this.refresh()
-        this.newTag.name = ''
-        this.newTag.description = ''
-        this.newTag.color = ''
-        this.loading = false
-=======
-=======
       this.creating = true
       window.axios.post(this.uri, this.newTag).then((response) => {
->>>>>>> master
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
->>>>>>> master
       }).catch((error) => {
         this.$snackbar.showError(error)
       }).finally(() => {

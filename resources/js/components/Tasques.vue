@@ -1,24 +1,5 @@
 <template>
     <span>
-        <!--<v-dialog v-model="deleteDialog" width="550">-->
-            <!--<v-card>-->
-                <!--<v-card-title class="headline">Esteu segurs voleu elimnar <strong style="color: red;text-transform: uppercase">&nbsp;{{eliminat}}</strong> ?</v-card-title>-->
-                <!--<v-card-text>-->
-                    <!--Aquesta operació no es pot desfer.-->
-                <!--</v-card-text>-->
-                <!--<v-card-actions>-->
-                    <!--<v-spacer></v-spacer>-->
-                      <!--<v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">-->
-                        <!--Cancel·lar-->
-                      <!--</v-btn>-->
-                      <!--<v-btn color="error darken-1" flat="flat" @click="destroy"-->
-                             <!--:loading="removing"-->
-                             <!--:disabled="removing">-->
-                        <!--Confirmar-->
-                      <!--</v-btn>-->
-                <!--</v-card-actions>-->
-            <!--</v-card>-->
-        <!--</v-dialog>-->
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
@@ -69,7 +50,7 @@
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <v-btn flat class="white--text">
+                <v-btn flat class="white--text" @click="update">
                     <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
@@ -359,7 +340,6 @@ export default {
       this.taskBeingShown = task
     },
     opcio1 () {
-      console.log('Todo Opcio')
     },
     createTask (task) {
       this.dataTasks.splice(0, 0, task)
@@ -371,18 +351,17 @@ export default {
       this.creating = true
       window.axios.post(this.uri + '/', this.newTask).then((response) => {
         this.createTask(response.data)
+        this.createDialog = false
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
-        this.refresh()
       }).catch((error) => {
-        this.$snackbar.showError(error)
         this.creating = false
+        this.$snackbar.showError(error.message)
       }).finally(() => {
         this.creating = false
         this.newTask.name = ''
         this.newTask.description = ''
         this.newTask.completed = false
         this.newTask.user_id = ''
-        this.createDialog = false
       })
     },
     update () {
@@ -427,10 +406,8 @@ export default {
     },
     showCreate (task) {
       this.createDialog = true
-      console.log('Todo delete task')
     },
     create (task) {
-      console.log('Todo delete task')
     },
     complete (task) {
       this.taskBeingEdit = task
@@ -453,7 +430,6 @@ export default {
     }
   },
   created () {
-    console.log('Usuari logat')
     console.log(window.laravel_user)
   }
 }
