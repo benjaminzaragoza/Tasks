@@ -322,7 +322,6 @@ export default {
       this.tagBeingShown = tag
     },
     opcio1 () {
-      console.log('Todo Opcio')
     },
     createTag (tag) {
       this.dataTags.splice(0, 0, tag)
@@ -377,10 +376,8 @@ export default {
     },
     showCreate (tag) {
       this.createDialog = true
-      console.log('Todo delete tag')
     },
     create (tag) {
-      console.log('Todo delete tag')
     },
     show (tag) {
       console.log('Todo show tag' + tag.id)
@@ -398,10 +395,6 @@ export default {
       })
     }
   }
-  // created () {
-  //   console.log('Usuari logat')
-  //   console.log(window.laravel_user)
-  // }
 }
 </script>
 

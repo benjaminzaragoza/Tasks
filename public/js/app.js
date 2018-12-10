@@ -72550,6 +72550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 var filters = {
@@ -72618,12 +72619,10 @@ var filters = {
     add: function add() {
       var _this = this;
 
-      // this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
-      // this.newTask=''
+      if (this.newTask === '') return;
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then(function (response) {
-        console.log('responde');
         console.log(response.data);
         var task = { id: response.data.id, name: _this.newTask, completed: false };
         _this.dataTasks.splice(0, 0, { id: response.data.id, name: _this.newTask, completed: false });
@@ -72648,9 +72647,7 @@ var filters = {
     var _this3 = this;
 
     if (this.tasks.length === 0) {
-      console.log('entra');
       window.axios.get('/api/v1/tasks').then(function (response) {
-        console.log('ok');
         console.log(response.data);
         _this3.dataTasks = response.data;
       }).catch(function (error) {
@@ -73260,7 +73257,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73281,25 +73278,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -73625,9 +73603,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       this.showDialog = true;
       this.taskBeingShown = task;
     },
-    opcio1: function opcio1() {
-      console.log('Todo Opcio');
-    },
+    opcio1: function opcio1() {},
     createTask: function createTask(task) {
       this.dataTasks.splice(0, 0, task);
     },
@@ -73640,18 +73616,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       this.creating = true;
       window.axios.post(this.uri + '/', this.newTask).then(function (response) {
         _this.createTask(response.data);
+        _this.createDialog = false;
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
-        _this.refresh();
       }).catch(function (error) {
-        _this.$snackbar.showError(error);
         _this.creating = false;
+        _this.$snackbar.showError(error.message);
       }).finally(function () {
         _this.creating = false;
         _this.newTask.name = '';
         _this.newTask.description = '';
         _this.newTask.completed = false;
         _this.newTask.user_id = '';
-        _this.createDialog = false;
       });
     },
     update: function update() {
@@ -73723,11 +73698,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }(),
     showCreate: function showCreate(task) {
       this.createDialog = true;
-      console.log('Todo delete task');
     },
-    create: function create(task) {
-      console.log('Todo delete task');
-    },
+    create: function create(task) {},
     complete: function complete(task) {
       this.taskBeingEdit = task;
       this.update();
@@ -73751,7 +73723,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }
   },
   created: function created() {
-    console.log('Usuari logat');
     console.log(window.laravel_user);
   }
 });
@@ -74758,13 +74729,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.dataCompleted = _completed;
     },
     dataCompleted: function dataCompleted(_dataCompleted, oldDataCompleted) {
-      console.log('dataCompleted ha canviat');
-      console.log('NOU');
-      console.log(_dataCompleted);
-      console.log('ANTIC');
-      console.log(oldDataCompleted);
+      // console.log('dataCompleted ha canviat')
+      // console.log('NOU')
+      // console.log(dataCompleted)
+      // console.log('ANTIC')
+      // console.log(oldDataCompleted)
       if (_dataCompleted) {
-        // LOADING i disabled TODO
         window.axios.post('/v1/completed_task/{task}'); // TODO ACABAR
       } else {
           // window.axios.delete('/v1/completed_task/{task}') // todo acabar
@@ -75102,7 +75072,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                { staticClass: "white--text", attrs: { flat: "" } },
+                {
+                  staticClass: "white--text",
+                  attrs: { flat: "" },
+                  on: { click: _vm.update }
+                },
                 [
                   _c("v-icon", { staticClass: "mr-2" }, [_vm._v("save")]),
                   _vm._v("\n                Guardar\n            ")
@@ -75165,7 +75139,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-autocomplete", {
                         attrs: {
-                          disabled: !_vm.$can("tasks.index"),
+                          readonly: !_vm.$can("tasks.index"),
                           items: _vm.dataUsers,
                           label: "Usuari",
                           "item-text": "name",
@@ -76905,22 +76879,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'RegisterForm',
   mixins: [__WEBPACK_IMPORTED_MODULE_0_vuelidate__["validationMixin"]],
   validations: {
     name: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"], minLength: Object(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["minLength"])(3) },
-    dataEmail: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"], minLength: Object(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["minLength"])(6), email: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["email"] },
+    dataEmail: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"], email: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["email"] },
     password: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"], minLength: Object(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["minLength"])(6) },
     password_confirmation: { sameAsPassword: Object(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["sameAs"])('password') }
   },
-  name: 'RegisterForm',
   data: function data() {
     return {
-      dataEmail: this.email,
       name: '',
+      dataEmail: this.email,
       password: '',
       password_confirmation: ''
     };
@@ -76934,29 +76945,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     emailErrors: function emailErrors() {
       var errors = [];
       if (!this.$v.dataEmail.$dirty) return errors;
-      !this.$v.dataEmail.minLength && errors.push('El camp e-mail ha de tindre una mida mínima de 6 caràcters');
-      !this.$v.dataEmail.required && errors.push('El camp e-mail és obligatori');
-      !this.$v.dataEmail.email && errors.push('El camp e-mail ha de tindre un format mail vàlid');
-      return errors;
-    },
-    nameErrors: function nameErrors() {
-      var errors = [];
-      if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.minLength && errors.push('El camp nom ha de tindre una mida mínima de 6 caràcters');
-      !this.$v.name.required && errors.push('El camp nom és obligatori');
+      !this.$v.dataEmail.email && errors.push('El camp email ha de ser tipus email.');
+      !this.$v.dataEmail.required && errors.push('El camp email és obligatori.');
       return errors;
     },
     passwordErrors: function passwordErrors() {
       var errors = [];
       if (!this.$v.password.$dirty) return errors;
-      !this.$v.password.minLength && errors.push('El camp password ha de tindre una mida mínima de 6 caràcters');
-      !this.$v.password.required && errors.push('El camp password és obligatori');
+      !this.$v.password.required && errors.push('El password és obligatori.');
+      !this.$v.password.minLength && errors.push('El camp password ha de tenir una mida minima de 6 caràcters.');
       return errors;
     },
     password_confirmationErrors: function password_confirmationErrors() {
       var errors = [];
-      if (!this.$v.password_confirmation.$dirty) return errors;
+      if (!this.$v.password.$dirty) return errors;
       !this.$v.password_confirmation.sameAsPassword && errors.push('Les contrasenyes no coincideixen');
+      return errors;
+    },
+    nameErrors: function nameErrors() {
+      var errors = [];
+      if (!this.$v.name.$dirty) return errors;
+      !this.$v.name.required && errors.push('El nom és obligatori.');
+      !this.$v.name.minLength && errors.push('El camp nom ha de tenir una mida minima de 3 caràcters.');
       return errors;
     }
   }
@@ -76972,16 +76982,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-form",
-    { attrs: { action: "/register", method: "post" } },
+    { attrs: { action: "/register", method: "POST" } },
     [
       _c(
         "v-toolbar",
         { attrs: { dark: "", color: "primary" } },
-        [
-          _c("v-toolbar-title", [_vm._v("Formulari de Registre")]),
-          _vm._v(" "),
-          _c("v-spacer")
-        ],
+        [_c("v-toolbar-title", [_vm._v("Register form")])],
         1
       ),
       _vm._v(" "),
@@ -77022,7 +77028,7 @@ var render = function() {
             attrs: {
               "prepend-icon": "email",
               name: "email",
-              label: "E-mail",
+              label: "Correu electrònic",
               type: "text",
               "error-messages": _vm.emailErrors
             },
@@ -77074,7 +77080,7 @@ var render = function() {
               id: "password_confirmation",
               "prepend-icon": "lock",
               name: "password_confirmation",
-              label: "Password Confirmation",
+              label: "Confirmació password",
               type: "password",
               "error-messages": _vm.password_confirmationErrors
             },
@@ -77107,7 +77113,6 @@ var render = function() {
             "v-btn",
             {
               attrs: {
-                dark: "",
                 color: "primary",
                 type: "submit",
                 disabled: _vm.$v.$invalid
@@ -77866,9 +77871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showDialog = true;
       this.tagBeingShown = tag;
     },
-    opcio1: function opcio1() {
-      console.log('Todo Opcio');
-    },
+    opcio1: function opcio1() {},
     createTag: function createTag(tag) {
       this.dataTags.splice(0, 0, tag);
     },
@@ -77928,11 +77931,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     showCreate: function showCreate(tag) {
       this.createDialog = true;
-      console.log('Todo delete tag');
     },
-    create: function create(tag) {
-      console.log('Todo delete tag');
-    },
+    create: function create(tag) {},
     show: function show(tag) {
       console.log('Todo show tag' + tag.id);
     },
@@ -77951,10 +77951,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     }
   }
-  // created () {
-  //   console.log('Usuari logat')
-  //   console.log(window.laravel_user)
-  // }
 });
 
 /***/ }),

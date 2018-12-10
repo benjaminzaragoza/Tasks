@@ -24,13 +24,12 @@ export default {
       this.dataCompleted = completed
     },
     dataCompleted (dataCompleted, oldDataCompleted) {
-      console.log('dataCompleted ha canviat')
-      console.log('NOU')
-      console.log(dataCompleted)
-      console.log('ANTIC')
-      console.log(oldDataCompleted)
+      // console.log('dataCompleted ha canviat')
+      // console.log('NOU')
+      // console.log(dataCompleted)
+      // console.log('ANTIC')
+      // console.log(oldDataCompleted)
       if (dataCompleted) {
-        // LOADING i disabled TODO
         window.axios.post('/v1/completed_task/{task}') // TODO ACABAR
       } else {
         // window.axios.delete('/v1/completed_task/{task}') // todo acabar

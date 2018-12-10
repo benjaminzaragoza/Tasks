@@ -170,11 +170,3 @@ export default {
         text-decoration: line-through;
     }
 </style>
-    // {
-    //     marca:'Renault',
-    //     consum:'5l/100',
-    //     start: function (){
-    //         console.log('arraca');
-    // }
-    //
-    // }

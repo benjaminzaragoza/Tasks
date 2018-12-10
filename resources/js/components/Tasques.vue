@@ -61,7 +61,7 @@
                         <v-text-field v-model="taskBeingEdit.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingEdit.completed" :label="taskBeingEdit.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdit.description" label="Descripció"></v-textarea>
-                        <v-autocomplete  :disabled="!$can('tasks.index')" v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
+                        <v-autocomplete  :readonly="!$can('tasks.index')" v-model="taskBeingEdit.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
