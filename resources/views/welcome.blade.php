@@ -1,20 +1,42 @@
 @extends('layouts.landing')
 
 @section('content')
-
     <v-app light>
     <v-toolbar class="white">
-        <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques Benjamin Zaragoza</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+        @if (Route::has('login'))
+            @auth
+            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+            @else
+                <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+            @endauth
+            @endif
         <v-spacer></v-spacer>
         @if (Route::has('login'))
-
             <div class="top-right links">
                 @auth
                     <v-layout>
-                    <v-form>
-                        <v-btn class=" font-weight-bold text-xs-center" color="primary" href="{{ url('/tasks') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
+                        <v-avatar @click="drawerRight=!drawerRight" style="margin-top: 2%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+                            <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-right: 60%;margin-top: -11%;">
+                        </v-avatar>
+                        <v-layout>
+                            @impersonating
+                                <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )" style="margin-top: 10%;">
+                                    <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar" style="margin-right: 36%;margin-top: 11%;">
+                                </v-avatar>
+                            @endImpersonating
+                            <v-flex xs12 style="margin-top: 1%">
+                                @canImpersonate
+                                <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
+                                @endCanImpersonate
+                            </v-flex>
+                        </v-layout>
+                        @impersonating
+                        <a style="margin-top: 3%;" href="impersonate/leave">Abandonar la suplantació</a>
+                        @endImpersonating
+                    <v-form style="margin-top: 1%">
+                        <v-btn class=" font-weight-bold text-xs-center" color="primary" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
                     </v-form>
-                    <v-form action="logout" method="POST" >
+                    <v-form style="margin-top: 1%" action="logout" method="POST" >
                         @csrf
                         <v-btn type="submit" medium color="red">
                             <v-icon color="white" large >exit_to_app</v-icon>
@@ -135,9 +157,11 @@
                     {{-->--}}
                         {{--Start!--}}
                     {{--</v-btn>--}}
-                    <v-btn large color="primary">
+                    <v-btn large color="primary"
+                            href="/home"
+                    >
                         <v-icon large left>favorite</v-icon>
-                        With Icon
+                        Start Experience
                     </v-btn>
                 </v-layout>
             </v-parallax>
@@ -217,5 +241,9 @@
   import VInput from "vuetify/lib/components/VInput/VInput"
   export default {
     components: {VInput}
+  }
+  import VToolbar from "vuetify/src/components/VToolbar/VToolbar"
+  export default {
+    components: {VToolbar}
   }
 </script>
