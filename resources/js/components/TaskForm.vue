@@ -14,7 +14,7 @@
         <v-textarea v-model="description" label="Descripció"></v-textarea>
         <user-select v-if="$can('tasks.index')" @selected="setUser" :users="dataUsers" label="Users"></user-select>
         <div class="text-xs-center">
-            <v-btn @click="emit('close')">
+            <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
                 Cancel·lar
             </v-btn>

@@ -54,6 +54,10 @@ export default {
     users () {
       this.dataUsers = this.users
     }
+    // if (newValue !== null) {
+    //   await this.$emit('selected', newValue)
+    //   this.selectedUser = null
+    // }
   }
 }
 </script>
