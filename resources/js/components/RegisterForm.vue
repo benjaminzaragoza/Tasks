@@ -1,7 +1,7 @@
 <template>
     <v-form action="/register" method="POST">
         <v-toolbar dark color="primary">
-            <v-toolbar-title>Register form</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold text-xs-center text-uppercase">Register form&nbsp;<v-icon>face</v-icon></v-toolbar-title>
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
@@ -47,8 +47,12 @@
                     @blur="$v.password_confirmation.$touch()"
                     v-model="password_confirmation">
             </v-text-field>
+            <a class="justify-content-center" href="/login">Ja tens compte d'usuari? Logejat!</a>
         </v-card-text>
         <v-card-actions>
+            <v-btn href="/" type="submit" color="primary">
+                <v-icon class="mr-2" >home</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" type="submit" :disabled="$v.$invalid">Register</v-btn>
         </v-card-actions>

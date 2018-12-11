@@ -35,7 +35,8 @@
                                         <v-text-field prepend-icon="local_offer" v-model="newTag.name" label="Nom"></v-text-field>
                                     </v-flex>
                                     <v-flex xs12>
-                                        <v-text-field prepend-icon="color_lens" v-model="newTag.color" label="Color"></v-text-field>
+                                        <!--<v-text-field prepend-icon="color_lens" v-model="newTag.color" label="Color"></v-text-field>-->
+                                        <input type="color" v-model="newTag.color" label="Color" style="width: 50px; height: 50px;">
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea prepend-icon="description" v-model="newTag.description" label="Descripcio"></v-textarea>
@@ -72,10 +73,10 @@
                     <v-card>
                         <v-card-text>
                             <v-form>
-                                <v-text-field  disabled prepend-icon="local_offer" v-model="tagBeingShown.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
-                                <v-text-field disabled prepend-icon="color_lens" v-model="tagBeingShown.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
-                                <!--<v-autocomplete prepend-icon="face" disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>-->
-                                <v-textarea disabled prepend-icon="description" v-model="tagBeingShown.description" label="Descripció"></v-textarea>
+                                <v-text-field  readonly prepend-icon="local_offer" v-model="tagBeingShown.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
+                                <input readonly type="color" v-model="tagBeingShown.color" label="Color" style="width: 50px; height: 50px; margin: 1%">
+                                <!--<v-text-field readonly prepend-icon="color_lens" v-model="tagBeingShown.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>-->
+                                <v-textarea readonly prepend-icon="description" v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                             </v-form>
                         </v-card-text>
                     </v-card>
@@ -104,7 +105,8 @@
                             <v-card-text>
                                 <v-form>
                                     <v-text-field prepend-icon="local_offer" v-model="tagBeingEdit.name" label="Nom" hint="Nom del tag " placeholder="Nom del tag"></v-text-field>
-                                    <v-text-field prepend-icon="color_lens" v-model="tagBeingEdit.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>
+                                    <input prepend-icon="color_lens" type="color" v-model="tagBeingEdit.color" label="Color" hint="Color del tag " style="width: 50px; height: 50px; margin: 1%">
+                                    <!--<v-text-field prepend-icon="color_lens" v-model="tagBeingEdit.color" label="Color" hint="Color del tag " placeholder="Color del tag"></v-text-field>-->
                                     <v-textarea prepend-icon="description" v-model="tagBeingEdit.description" label="Descripció"></v-textarea>
                                     <div class="text-xs-center">
                                         <v-btn @click="editDialog=false">
@@ -158,11 +160,11 @@
                                 <td>{{ tag.id}}</td>
                                 <td class="text-xs-left">{{ tag.name }}</td>
                                 <td class="text-xs-left">{{ tag.description }}</td>
-                                <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
-                                <td>
+                                <td class="text-xs-left"><v-icon x-large :color="tag.color">local_offer</v-icon></td>
+                                <td class="text-xs-center">
                                     <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
                                 </td>
-                                <td>
+                                <td class="text-xs-center">
                                     <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
                                 </td>
                                 <td class="text-xs-center">

@@ -157,7 +157,7 @@
             </v-card-title>
             <v-data-table
                     :headers="headers"
-                    :items="dataTasks"
+                    :items="getFilteredTasks"
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
                     no-data-text="No hi han dades disponibles"
@@ -175,9 +175,10 @@
                             <span  :title="task.description">{{ task.name }}</span>
                         </td>
                         <td class="text-xs-left">
-                            <v-avatar :title="task.user_name">
+                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
+                            {{task.user_email}}
                         </td>
                         <td class="text-xs-left">
                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
@@ -290,11 +291,11 @@ export default {
         'Sergi Baucells',
         'Benjamin Zaragoza'
       ],
-      filter: 'Totes',
+      filter: { name: 'Totes', value: null },
       filters: [
-        'Totes',
-        'Completades',
-        'Pendents'
+        { name: 'Totes', value: null },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
       ],
       search: '',
       pagination: {
@@ -328,6 +329,14 @@ export default {
     uri: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    getFilteredTasks () {
+      return this.dataTasks.filter((task) => {
+        if (task.completed === this.filter.value || this.filter.value == null) return true
+        else return false
+      })
     }
   },
   methods: {

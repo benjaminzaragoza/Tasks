@@ -1,7 +1,7 @@
 <template>
     <v-form action="/login" method="POST">
         <v-toolbar dark color="primary">
-            <v-toolbar-title>Login form</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold text-xs-center text-uppercase">Login form &nbsp;<v-icon>face</v-icon></v-toolbar-title>
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
@@ -26,8 +26,12 @@
                     @input="$v.password.$touch()"
                     @blur="$v.password.$touch()"
             ></v-text-field>
+            <a href="/register">No tens compte d'usuari? Registrat </a>
         </v-card-text>
         <v-card-actions>
+            <v-btn href="/" type="submit" color="primary">
+                <v-icon class="mr-2" >home</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" type="submit" :disabled="$v.$invalid" >Login</v-btn>
         </v-card-actions>
@@ -37,9 +41,11 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength } from 'vuelidate/lib/validators'
+import VListTile from "vuetify/lib/components/VList/VListTile"
 
 export default {
   name: 'LoginForm',
+  components: {VListTile},
   mixins: [validationMixin],
   validations: {
     dataEmail: { required, email },

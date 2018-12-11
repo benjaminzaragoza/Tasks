@@ -4,25 +4,45 @@
 
     <v-app light>
     <v-toolbar class="white">
+        <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques Benjamin Zaragoza</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
         <v-spacer></v-spacer>
-        <v-btn href="/login" color="primary" small>Login</v-btn>
-        <v-btn href="/register" color="primary" small>Register</v-btn>
+        @if (Route::has('login'))
+
+            <div class="top-right links">
+                @auth
+                    <v-layout>
+                    <v-form>
+                        <v-btn class=" font-weight-bold text-xs-center" color="primary" href="{{ url('/tasks') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
+                    </v-form>
+                    <v-form action="logout" method="POST" >
+                        @csrf
+                        <v-btn type="submit" medium color="red">
+                            <v-icon color="white" large >exit_to_app</v-icon>
+                        </v-btn>
+                    </v-form>
+                        </v-layout>
+                        @else
+                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('login') }}">Login</v-btn>
+                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}">Register</v-btn>
+                @endauth
+            </div>
+        @endif
     </v-toolbar>
-    <v-content>
+    <v-content style="margin-top: 0%;">
         <section>
-            <v-parallax src="img/paper.jpg" height="600">
-                <v-layout column align-center justify-center class="white--text" style="margin-top: 3%;">
+            <v-parallax src="img/paper.jpg" height="720">
+                <v-layout column align-center justify-center class="white--text" >
                     <img src="img/task.png" alt="Vuetify.js" height="200">
-                    <h1 class="primary--text mb-2 display-1 text-xs-center" style="margin-top: 4%;" >Tasques i Tags amb Vue</h1>
-                    <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                    <h1 class="black--text mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
+                    <div class=" black--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
                     <v-layout>
                     <v-btn
-                            class="light-blue darken-4 lighten-2 mt-5"
+                            class="light-blue darken-4 lighten-2 mt-5 font-weight-bold text-xs-center text-uppercase"
                             dark
                             large
                             href="/home"
                     >
-                        Get Started
+                        Tasques Go
                     </v-btn>
                     <v-btn depressed
                            class="dark mt-5"
@@ -50,13 +70,13 @@
               </span>
                     </div>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 style="margin-top: -11%;">
                     <v-container grid-list-xl>
                         <v-layout row wrap align-center>
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                     <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                                        <v-icon x-large class="blue--text text--lighten-2">assignment</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
                                         <div class="headline text-xs-center">Material Design</div>
@@ -71,7 +91,7 @@
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                     <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                                        <v-icon x-large class="blue--text text--lighten-2">assignment_turned_in</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
                                         <div class="headline">Fast development</div>
@@ -86,7 +106,7 @@
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                     <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                                        <v-icon x-large class="blue--text text--lighten-2">assessment</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
                                         <div class="headline text-xs-center">Completely Open Sourced</div>
@@ -104,18 +124,20 @@
             </v-layout>
         </section>
 
-        <section>
-            <v-parallax src="img/section.jpg" height="380">
+        <section style="margin-top: -31%;">
+            <v-parallax src="img/task2.jpg" height="480">
                 <v-layout column align-center justify-center>
-                    <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-                    <em>Kick-start your application today</em>
-                    <v-btn
-                            class="blue lighten-2 mt-5"
-                            dark
-                            large
-                            href="/home"
-                    >
-                        Get Started
+                    {{--<v-btn--}}
+                            {{--class="blue lighten-2 mt-5"--}}
+                            {{--dark--}}
+                            {{--large--}}
+                            {{--href="/home"--}}
+                    {{-->--}}
+                        {{--Start!--}}
+                    {{--</v-btn>--}}
+                    <v-btn large color="primary">
+                        <v-icon large left>favorite</v-icon>
+                        With Icon
                     </v-btn>
                 </v-layout>
             </v-parallax>
@@ -191,3 +213,9 @@
     </v-content>
     </v-app>
 @endsection
+<script>
+  import VInput from "vuetify/lib/components/VInput/VInput"
+  export default {
+    components: {VInput}
+  }
+</script>

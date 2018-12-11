@@ -6,7 +6,7 @@
             <v-card >
                 <v-img
                         style="margin-top: 5%;"
-                        src="https://www.icot.es/wp-content/uploads/2016/12/informatica-profesional.jpg"
+                        src="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BRDf5QkViozx5sck/artificial-intelligence-concept_beunyf0-x_thumbnail-full01.png"
                         aspect-ratio="1.75"
                 ></v-img>
 
@@ -20,7 +20,7 @@
                 </v-card-title>
 
                 <v-card-actions>
-                    <v-btn flat color="blue" href="https://github.com/benjaminzaragoza">Saber mes</v-btn>
+                    <v-btn flat color="blue" class=" font-weight-bold text-xs-center" href="https://github.com/benjaminzaragoza">Saber mes</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
