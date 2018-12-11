@@ -20,7 +20,7 @@ class TasquesController extends Controller
             $uri = '/api/v1/user/tasks';
         }
         // Agafa de la base de dades i ho passa a la vista
-        $users = User::all();
+        $users = map_collection(User::all());
         return view('tasques', compact('tasks','users','uri'));
 
     }

@@ -3,15 +3,12 @@
 @section('content')
     <v-app light>
     <v-toolbar class="white">
-        @if (Route::has('login'))
             @auth
             <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
             @else
                 <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
             @endauth
-            @endif
         <v-spacer></v-spacer>
-        @if (Route::has('login'))
             <div class="top-right links">
                 @auth
                     <v-layout>
@@ -26,7 +23,7 @@
                             @endImpersonating
                             <v-flex xs12 style="margin-top: 1%">
                                 @canImpersonate
-                                <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
+                                <impersonate label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></impersonate>
                                 @endCanImpersonate
                             </v-flex>
                         </v-layout>
@@ -48,7 +45,6 @@
                     <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}">Register</v-btn>
                 @endauth
             </div>
-        @endif
     </v-toolbar>
     <v-content style="margin-top: 0%;">
         <section>

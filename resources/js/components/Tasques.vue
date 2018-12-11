@@ -1,43 +1,5 @@
 <template>
     <span>
-        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
-            <v-toolbar color="primary" class="white--text">
-                <v-btn flat icon class="white--text" @click="createDialog=false">
-                    <v-icon>close</v-icon>
-                </v-btn>
-                <v-card-title class="headline">Crear tasca</v-card-title>
-                 <v-icon class="white--text">assignment_turned_in</v-icon>
-                <v-spacer></v-spacer>
-                <v-btn flat class="white--text" @click="createDialog=false">
-                    <v-icon class="mr-2">exit_to_app</v-icon>
-                    Sortir
-                </v-btn>
-                <v-btn flat class="white--text" @click="add">
-                    <v-icon class="mr-2">save</v-icon>
-                    Guardar
-                </v-btn>
-            </v-toolbar>
-            <v-card>
-                <v-card-text>
-                    <v-form>
-                        <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="newTask.completed" :label="newTask.completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="newTask.description" label="Descripció"></v-textarea>
-                        <v-autocomplete v-if="$can('tasks.index')" v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
-                        <div class="text-xs-center">
-                            <v-btn @click="createDialog=false">
-                                <v-icon class="mr-2">exit_to_app</v-icon>
-                                Cancel·lar
-                            </v-btn>
-                            <v-btn color="success" @click="add" >
-                                <v-icon class="mr-2">save</v-icon>
-                                Guardar
-                            </v-btn>
-                        </div>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
         <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="editDialog=false">
@@ -178,12 +140,9 @@
                             <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
-                            {{task.user_email}}
                         </td>
                         <td class="text-xs-left">
-                           <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
                             <task-completed-toggle :task="task"></task-completed-toggle>
-                            <!--<v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>-->
                         </td>
                         <td class="text-xs-left">
                             <span  :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -240,28 +199,18 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn
-                @click="showCreate"
-                fab
-                bottom
-                right
-                fixed
-                large
-                color="pink accent-3"
-                class="white--text"
-                v-if="$can('user.tasks.store', tasks)"
-        >
-            <v-icon>add</v-icon>
-        </v-btn>
+        <task-create :users="users" :uri="uri" @created="refresh" ></task-create>
     </span>
 </template>
 
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
 import Toggle from './Toggle'
+import TaskCreate from './TaskCreate'
 export default {
   name: 'Tasques',
   components: {
+    TaskCreate,
     TaskCompletedToggle,
     'task-completed': TaskCompletedToggle,
     'toggle': Toggle
@@ -279,7 +228,6 @@ export default {
       completed: false,
       name: '',
       description: '',
-      createDialog: false,
       eliminat: '',
       editDialog: false,
       taskBeingEdit: '',
@@ -356,23 +304,6 @@ export default {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    add () {
-      this.creating = true
-      window.axios.post(this.uri + '/', this.newTask).then((response) => {
-        this.createTask(response.data)
-        this.createDialog = false
-        this.$snackbar.showMessage("S'ha creat correctament la tasca")
-      }).catch((error) => {
-        this.creating = false
-        this.$snackbar.showError(error.message)
-      }).finally(() => {
-        this.creating = false
-        this.newTask.name = ''
-        this.newTask.description = ''
-        this.newTask.completed = false
-        this.newTask.user_id = ''
-      })
-    },
     update () {
       this.editing = true
       window.axios.put(this.uri + '/' + this.taskBeingEdit.id, this.taskBeingEdit).then((response) => {
@@ -412,11 +343,6 @@ export default {
           this.removing = false
         })
       }
-    },
-    showCreate (task) {
-      this.createDialog = true
-    },
-    create (task) {
     },
     complete (task) {
       this.taskBeingEdit = task

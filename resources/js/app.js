@@ -15,6 +15,7 @@ import Tags from './components/Tags.vue'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
+import Impersonate from './components/Impersonate'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
@@ -35,6 +36,7 @@ window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 window.Vue.component('tags', Tags)
+window.Vue.component('impersonate', Impersonate)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
