@@ -1,6 +1,6 @@
 @extends('layouts.login')
 @section('title')
-    Login a l'aplicació de tasks
+    Login tasks
 @endsection
 @section('content')
     @if ($errors->any())

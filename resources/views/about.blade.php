@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Sabem mes?
+@endsection
 @section('content')
     <v-layout>
         <v-flex xs12 sm6 offset-sm3 >

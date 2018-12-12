@@ -1,5 +1,7 @@
 @extends('layouts.landing')
-
+@section('title')
+    Benvingut a Tasques
+@endsection
 @section('content')
     <v-app light>
     <v-toolbar class="white">
@@ -23,7 +25,7 @@
                             @endImpersonating
                             <v-flex xs12 style="margin-top: 1%">
                                 @canImpersonate
-                                <impersonate label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></impersonate>
+                                <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
                                 @endCanImpersonate
                             </v-flex>
                         </v-layout>

@@ -8,10 +8,7 @@
     <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{--<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">--}}
-    {{--<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">--}}
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}
@@ -134,19 +131,19 @@
 
     </v-navigation-drawer>
 
-        <v-toolbar color="dark" dark app clipped-left clipped-right fixed>
+        <v-toolbar color="#311B92" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Menú</v-toolbar-title>
+        <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
+            <img src="img/task.png" style="margin-left: 1%;height:50%">
         <v-spacer></v-spacer>
             <h4 class="white-text mb-3 font-italic text-center" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
-            <v-btn href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
-
-            <v-form action="logout" method="POST" >
+            <v-btn color="#311B92" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
+            <v-form  action="logout" method="POST" >
             @csrf
-            <v-btn type="submit" medium dark>
+            <v-btn color="#311B92" type="submit" medium dark>
                 <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
@@ -167,13 +164,15 @@
     </v-content>
     <v-footer
             app
-            class="indigo lighten-1 white--text text-xs-center"
+            color="#311B92"
+            class=" lighten-1 white--text text-xs-center"
             height="auto"
     >
         <v-card
                 flat
                 tile
-                class="indigo lighten-1 white--text text-xs-center"
+                color="#311B92"
+                class="lighten-1 white--text text-xs-center"
         >
             <v-divider></v-divider>
 
@@ -192,15 +191,15 @@
 
 </body>
 </html>
-<script>
-  import VToolbar from "vuetify/src/components/VToolbar/VToolbar"
-  export default {
-    components: {VToolbar}
-  }
-</script>
-<script>
-  import VListTile from "vuetify/lib/components/VList/VListTile"
-  export default {
-    components: {VListTile}
-  }
-</script>
+{{--<script>--}}
+  {{--import VToolbar from "vuetify/src/components/VToolbar/VToolbar"--}}
+  {{--export default {--}}
+    {{--components: {VToolbar}--}}
+  {{--}--}}
+{{--</script>--}}
+{{--<script>--}}
+  {{--import VListTile from "vuetify/lib/components/VList/VListTile"--}}
+  {{--export default {--}}
+    {{--components: {VListTile}--}}
+  {{--}--}}
+{{--</script>--}}

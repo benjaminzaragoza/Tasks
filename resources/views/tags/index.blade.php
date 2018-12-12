@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Tags
+@endsection
 @section('content')
     <v-container fluid>
         <v-layout>

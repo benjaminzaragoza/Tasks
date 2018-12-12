@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Tasques
+    Tasques PHP
 @endsection
 @section('content')
     <v-card>

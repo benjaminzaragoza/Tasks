@@ -81,13 +81,13 @@ class TagsControllerTest extends TestCase
         $this->assertCount(3,$result);
         $this->assertEquals('comprar pa', $result[0]->name);
         $this->assertEquals('hola que tal', $result[0]->description);
-        $this->assertEquals('blue', $result[0]->color);
+        $this->assertEquals('#17afe4', $result[0]->color);
         $this->assertEquals('comprar llet', $result[1]->name);
         $this->assertEquals('hola que mal', $result[1]->description);
-        $this->assertEquals('green', $result[1]->color);
+        $this->assertEquals('#e41717', $result[1]->color);
         $this->assertEquals('Estudiar PHP', $result[2]->name);
         $this->assertEquals('hola que fatal', $result[2]->description);
-        $this->assertEquals('red', $result[2]->color);
+        $this->assertEquals('#17e421', $result[2]->color);
     }
     /**
      * @test

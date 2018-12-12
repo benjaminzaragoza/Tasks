@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Tasques amb Vue
+@endsection
 @section('content')
     <v-container fluid>
     <v-layout>

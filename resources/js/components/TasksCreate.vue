@@ -12,14 +12,14 @@
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-2">save</v-icon>
-                    Guardar
-                </v-btn>
+                <!--<v-btn flat class="white&#45;&#45;text">-->
+                    <!--<v-icon class="mr-2">save</v-icon>-->
+                    <!--Guardar-->
+                <!--</v-btn>-->
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="$emit('created')" ></task-form>
+                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created" ></task-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -44,7 +44,7 @@ export default {
   components: {
     'task-form': TaskForm
   },
-  data () {
+  data() {
     return {
       dialog: false
     }
@@ -57,6 +57,11 @@ export default {
     uri: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    created(task) {
+      this.$emit('created', task)
     }
   }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.login')
 @section('title')
-    Register User
+    Register User Task
 @endsection
 @section('content')
     <v-content>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Tasques
+    Edit Tasques
 @endsection
 @section('content')
     <v-container>
