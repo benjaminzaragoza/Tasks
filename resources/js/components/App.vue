@@ -25,11 +25,11 @@ export default
       {
         icon: 'keyboard_arrow_up',
         'icon-alt': 'keyboard_arrow_down',
-        text: 'Tasques segons tipus',
+        text: 'Tipus de Tasca',
         model: true,
         children: [
           { icon: 'assignment_turned_in', text: 'Tasques amb PHP', url: '/tasks' },
-          { icon: 'assignment', text: 'Tasques tamb Tailwind', url: '/tasks_vue' },
+          { icon: 'assignment', text: 'Tasques amb Tailwind', url: '/tasks_vue' },
           { icon: 'insert_chart', text: 'Tasques amb Vue', url: '/tasques' }
         ]
       },

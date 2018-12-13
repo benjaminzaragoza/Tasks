@@ -37,14 +37,10 @@
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                        <v-select
+                        <user-select
                                 label="Usuari"
-                                :items="dataUsers"
-                                v-model="user"
-                                item-text="name"
-                                :return-object="true"
-                                clearable
-                        ></v-select>
+                                :users="dataUsers"
+                        ></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
