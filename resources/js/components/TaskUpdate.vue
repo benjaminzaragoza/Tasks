@@ -1,49 +1,40 @@
 <template>
-    <span>
-     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" @keydown.esc.stop.prevent="dialog=false">
->
+<span>
+     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="dialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="dialog=false">
                     <v-icon>close</v-icon>
                 </v-btn>
-                <v-card-title class="headline">Crear tasca</v-card-title>
-                 <v-icon class="white--text">assignment_turned_in</v-icon>
+                <v-card-title class="headline">Editar tasca</v-card-title>
+                <v-icon class="white--text">description</v-icon>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="dialog=false">
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <!--<v-btn flat class="white&#45;&#45;text">-->
+                <!--<v-btn flat class="white&#45;&#45;text" @click="update">-->
                     <!--<v-icon class="mr-2">save</v-icon>-->
                     <!--Guardar-->
                 <!--</v-btn>-->
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created" ></task-form>
+                    <task-update-form :task="task" :uri="uri" :users="users" @close="dialog=false" @updated="updated"></task-update-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <v-btn
-                @click="dialog = true"
-                fab
-                bottom
-                right
-                fixed
-                large
-                color="pink accent-3"
-                class="white--text">
-                <v-icon>add</v-icon>
-        </v-btn>
-    </span>
+    <v-btn v-if="$can('user.tasks.update',task)" icon color="success" flat title="Actualitzar la tasca" @click="dialog=true">
+     <v-icon>edit</v-icon>
+     </v-btn>
+</span>
 </template>
 
 <script>
-import TaskForm from './TaskForm'
+import TaskUpdateForm from './TaskUpdateForm'
 export default {
-  name: 'TaskCreate',
+  name: 'TaskUpdate',
   components: {
-    'task-form': TaskForm
+    'task-update-form': TaskUpdateForm
   },
   data () {
     return {
@@ -55,19 +46,19 @@ export default {
       type: Array,
       required: true
     },
+    task: {
+      type: Object,
+      required: true
+    },
     uri: {
       type: String,
       required: true
     }
   },
   methods: {
-    created (task) {
-      this.$emit('created', task)
+    updated (task) {
+      this.$emit('updated', task)
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

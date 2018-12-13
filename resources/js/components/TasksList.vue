@@ -85,16 +85,9 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td class="text-xs-left">
-                            <v-btn v-if="$can('user.tasks.show',tasks)" icon color="cyan" flat title="Mostrar la tasca" @click="showShow(task)">
-                                <v-icon>visibility</v-icon>
-                            </v-btn>
-
-                            <v-btn v-if="$can('user.tasks.update',tasks)" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
-                                <v-icon>edit</v-icon>
-                            </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy',tasks)" icon color="error" flat title="Eliminar la tasca" @click="destroy(task)" :loading="removing===task.id" :disabled="removing ===task.id">
-                                <v-icon>delete</v-icon>
-                            </v-btn>
+                            <task-show :task="task" @updated="updateTask" :uri="uri" :users="users"></task-show>
+                            <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
+                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
                         </td>
                     </tr>
                 </template>
@@ -137,6 +130,9 @@
 
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
+import TaskDestroy from './TaskDestroy'
+import TaskUpdate from './TaskUpdate'
+import TaskShow from './TaskShow'
 
 export default {
   name: 'TasksList',
@@ -145,7 +141,6 @@ export default {
       user: '',
       user_id: '',
       loading: false,
-      removing: null,
       dataTasks: this.tasks,
       dataUsers: this.users,
       filter: 'Totes',
@@ -170,7 +165,10 @@ export default {
     }
   },
   components: {
-    'task-completed-toggle': TaskCompletedToggle
+    'task-completed-toggle': TaskCompletedToggle,
+    'task-destroy': TaskDestroy,
+    'task-show': TaskShow,
+    'task-update': TaskUpdate
   },
   props: {
     tasks: {
@@ -198,6 +196,9 @@ export default {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
+    updateTask (task) {
+      this.refresh()
+    },
     refresh () {
       this.loading = true
       window.axios.get(this.uri).then(response => {
@@ -208,30 +209,6 @@ export default {
         console.log(error)
         this.loading = false
       })
-    },
-    async destroy (task) {
-      // ES6 async await
-      let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
-        {
-          title: 'Esteu segurs voleu elimnar ' + task.name + '?',
-          buttonTruetext: 'Eliminar',
-          buttonFalsetext: 'Cancel·lar',
-          // icon: '',
-          color: 'error'
-        })
-      if (result) {
-        this.removing = task.id
-        window.axios.delete(this.uri + '/' + task.id).then(() => {
-          this.removeTask(task)
-          this.deleteDialog = false
-          task = null
-          this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
-          this.removing = null
-        }).catch(error => {
-          this.$snackbar.showError(error.message)
-          this.removing = null
-        })
-      }
     }
 
   }

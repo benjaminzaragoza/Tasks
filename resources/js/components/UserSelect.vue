@@ -1,7 +1,7 @@
 <template>
     <v-autocomplete
             :items="dataUsers"
-            v-model="selectedUser"
+            v-model="dataSelectedUser"
             item-value="id"
             clearable
             :label="label"
@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       dataUsers: this.users,
-      selectedUser: null
+      dataSelectedUser: null
     }
   },
   props: {
@@ -48,15 +48,18 @@ export default {
     }
   },
   watch: {
-    selectedUser (newValue) {
+    dataSelectedUser (newValue) {
       this.$emit('selected', newValue)
     },
     users () {
       this.dataUsers = this.users
+    },
+    selectedUser (newValue) {
+      this.selectedUser = newValue
     }
     // if (newValue !== null) {
     //   await this.$emit('selected', newValue)
-    //   this.selectedUser = null
+    //   this.dataSelectedUser = null
     // }
   }
 }

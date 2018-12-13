@@ -12,7 +12,7 @@
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció"></v-textarea>
-        <user-select v-if="$can('tasks.index')" @selected="setUser" :users="dataUsers" label="Users"></user-select>
+        <user-select v-if="$can('tasks.index')" :selected-user="user_id" @selected="setUser" :users="dataUsers" label="Users"></user-select>
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -43,7 +43,7 @@ export default {
     return {
       name: '',
       completed: false,
-      user_id: '',
+      user_id: null,
       description: '',
       loading: false,
       dataUsers: this.users
@@ -87,17 +87,18 @@ export default {
         this.$emit('created', response.data)
         this.$emit('close')
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
+        this.reset()
       }).catch((error) => {
         this.creating = false
         this.$snackbar.showError(error.message)
       }).finally(() => {
         this.creating = false
-        this.reset()
       })
     },
-    setUser ($event) {
-      this.user_id = $event
+    setUser (user) {
+      this.user_id = user
     }
+
   }
 }
 
