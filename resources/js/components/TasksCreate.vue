@@ -1,7 +1,6 @@
 <template>
     <span>
      <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" @keydown.esc.stop.prevent="dialog=false">
->
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="dialog=false">
                     <v-icon>close</v-icon>
@@ -14,13 +13,13 @@
                     Sortir
                 </v-btn>
                 <!--<v-btn flat class="white&#45;&#45;text">-->
-                    <!--<v-icon class="mr-2">save</v-icon>-->
-                    <!--Guardar-->
+                <!--<v-icon class="mr-2">save</v-icon>-->
+                <!--Guardar-->
                 <!--</v-btn>-->
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created" ></task-form>
+                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created" @update="update"></task-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -63,6 +62,9 @@ export default {
   methods: {
     created (task) {
       this.$emit('created', task)
+    },
+    update (task) {
+      this.refresh()
     }
   }
 }

@@ -84,8 +84,8 @@
                         <td class="text-xs-left" >
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
-                        <td class="text-xs-left">
-                            <task-show :task="task" @updated="updateTask" :uri="uri" :users="users"></task-show>
+                        <td class="text-xs-left d-flex">
+                            <task-show :task="task" :uri="uri" :users="users"></task-show>
                             <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
                             <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
                         </td>

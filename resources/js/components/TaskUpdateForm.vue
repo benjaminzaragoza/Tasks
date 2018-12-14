@@ -48,20 +48,16 @@ export default {
       this.working = true
       const newTask = {
         name: this.name,
-        completed: this.completed,
         description: this.description,
+        completed: this.completed,
         user_id: this.user
       }
       window.axios.put(this.uri + '/' + this.task.id, newTask).then((response) => {
-        console.log(response.data)
-        this.$snackbar.showMessage("S'ha actualitzat correctament la tasca")
         this.$emit('updated', response.data)
         this.$emit('close')
-      }).catch((error) => {
-        this.$snackbar.showError(error)
         this.working = false
-      }).finally(() => {
-        // this.refresh()
+      }).catch(error => {
+        this.$snackbar.showError(error)
         this.working = false
       })
     }
