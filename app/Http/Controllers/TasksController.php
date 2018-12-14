@@ -16,6 +16,7 @@ class TasksController extends Controller
             'completed' => false
         ]);
         //retornar a /tasks
+
         return redirect('/tasks');
     }
     public function destroy(Request $request)
