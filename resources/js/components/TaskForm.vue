@@ -12,7 +12,7 @@
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció"></v-textarea>
-        <user-select v-if="$can('tasks.index')" :selected-user="user_id" @selected="setUser" :users="dataUsers" label="Users"></user-select>
+        <user-select :item-value="null" v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -43,7 +43,7 @@ export default {
     return {
       name: '',
       completed: false,
-      user_id: null,
+      user: null,
       description: '',
       loading: false,
       dataUsers: this.users
@@ -68,11 +68,18 @@ export default {
     }
   },
   methods: {
+    selectLoggedUser () {
+      if (window.laravel_user) {
+        this.user = this.users.find((user) => {
+          return parseInt(user.id) === parseInt(window.laravel_user.id)
+        })
+      }
+    },
     reset () {
       this.name = ''
       this.description = ''
       this.completed = false
-      this.user_id = null
+      this.user = null
     },
     add () {
       this.loading = true
@@ -80,7 +87,7 @@ export default {
         'name': this.name,
         'description': this.description,
         'completed': this.completed,
-        'user_id': this.user_id
+        'user_id': this.user.id
       }
       window.axios.post(this.uri + '/', task).then((response) => {
         // this.createTask(response.data)
@@ -94,11 +101,10 @@ export default {
       }).finally(() => {
         this.loading = false
       })
-    },
-    setUser (user) {
-      this.user_id = user
     }
-
+  },
+  created () {
+    this.selectLoggedUser()
   }
 }
 

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api;
 use App\Task;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Gate;
 use Tests\Feature\Traits\CanLogin;
@@ -112,17 +113,27 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function task_manager_can_create_task()
+    public function superadmin_can_create_fulltask()
     {
-        $this->loginAsTaskManager('api');
+        $this->loginAsSuperAdmin('api');
+        $user = factory(User::class)->create();
         $response = $this->json('POST','/api/v1/tasks/',[
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'description' => 'aa',
+            'completed' => true,
+            'user_id' => $user->id
         ]);
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
-        $this->assertFalse($result->completed);
+        $this->assertEquals('aa',$result->description);
+        $this->assertEquals(true,$result->completed);
+        $this->assertEquals($user->id,$result->user_id);
+        $this->assertEquals('Comprar pa',$task->name);
+        $this->assertEquals('aa',$task->description);
+        $this->assertEquals(true,$task->completed);
+        $this->assertEquals($user->id,$task->user_id);
     }
     /**
      * @test

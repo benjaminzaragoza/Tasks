@@ -3,7 +3,9 @@
         <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció"></v-textarea>
-        <v-autocomplete  :readonly="!$can('tasks.index')" v-model="user"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
+        <user-select :readonly="!$can('tasks.index')" v-model="user" :users="dataUsers" label="Usuari" item-text="name" item-value="id"></user-select>
+
+        <!--<v-autocomplete   v-model="user"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>-->
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -19,12 +21,13 @@
 
 <script>
 export default {
+  name: 'TaskUpdateForm',
   data () {
     return {
       name: this.task.name,
       completed: this.task.completed,
       dataUsers: this.users,
-      user: this.task.user_id,
+      user: null,
       description: this.task.description,
       working: false
     }
@@ -43,7 +46,17 @@ export default {
       required: true
     }
   },
+  watch: {
+    task (task) {
+      this.updateUser(task)
+    }
+  },
   methods: {
+    updateUser (task) {
+      this.user = this.users.find((user) => {
+        return parseInt(user.id) === parseInt(task.user_id)
+      })
+    },
     update () {
       this.working = true
       const newTask = {
