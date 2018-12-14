@@ -1,7 +1,24 @@
 #!/bin/bash
 cd /home/benjamin/Code/benjaminzaragoza/tasks/
-git checkout production
-git checkout .
-git merge master
+npm run dev
 git checkout master
-ssh tasks2DAM
+git status
+git add .
+git commit -a -m "sync"
+git pull origin master
+git push origin master
+git status
+git checkout production
+git merge master
+git status
+git add .
+git commit -a -m "sync"
+git pull origin master
+git push origin master
+git status
+git checkout master
+git push --all origin
+ssh tasks2DAM << EOF
+cd tasks.benjaminzaragoza.scool.cat/
+git pull origin production
+EOF
