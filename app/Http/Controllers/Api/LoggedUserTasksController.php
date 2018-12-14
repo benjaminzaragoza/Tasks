@@ -23,7 +23,7 @@ class LoggedUserTasksController extends Controller
         $task = Task::create($request->only(['name','completed','description','user_id']));
         Auth::user()->addTask($task);
         $task->refresh();
-        return $task;
+        return $task->map();
     }
 
     public function update(UpdateUserTask $request, Task $task)
