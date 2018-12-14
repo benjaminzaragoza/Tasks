@@ -20,5 +20,7 @@ git checkout master
 git push --all origin
 ssh tasks2DAM << EOF
 cd tasks.benjaminzaragoza.scool.cat/
+php artisan migrate:fresh --seed
+composer install
 git pull origin production
 EOF
