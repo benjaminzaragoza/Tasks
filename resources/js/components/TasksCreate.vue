@@ -19,7 +19,7 @@
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created"></task-form>
+                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created" @update="update"></task-form>
                 </v-card-text>
             </v-card>
         </v-dialog>

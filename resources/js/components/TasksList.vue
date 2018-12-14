@@ -192,6 +192,11 @@ export default {
       })
     }
   },
+  watch: {
+    tasks (newTasks) {
+      this.dataTasks = newTasks
+    }
+  },
   methods: {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
