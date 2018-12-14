@@ -72,14 +72,14 @@ export default {
       this.name = ''
       this.description = ''
       this.completed = false
-      this.user_id = ''
+      this.user_id = null
     },
     add () {
-      this.creating = true
+      this.loading = true
       const task = {
         'name': this.name,
         'description': this.description,
-        'completed': false,
+        'completed': this.completed,
         'user_id': this.user_id
       }
       window.axios.post(this.uri + '/', task).then((response) => {
@@ -89,10 +89,10 @@ export default {
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.reset()
       }).catch((error) => {
-        this.creating = false
+        this.loading = false
         this.$snackbar.showError(error.message)
       }).finally(() => {
-        this.creating = false
+        this.loading = false
       })
     },
     setUser (user) {
