@@ -24,7 +24,7 @@ export default {
       name: this.task.name,
       completed: this.task.completed,
       dataUsers: this.users,
-      user: this.task.user,
+      user: this.task.user_id,
       description: this.task.description,
       working: false
     }
