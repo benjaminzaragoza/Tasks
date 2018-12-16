@@ -1,8 +1,8 @@
 <template>
     <v-autocomplete
             :items="dataUsers"
-            v-model="dataSelectedUser"
-            item-value="id"
+            v-model="selectedUser"
+            :item-value="itemValue"
             clearable
             :label="label"
     >
@@ -17,7 +17,8 @@
         <template slot="item" slot-scope="{ item: user }">
             <v-list-tile-avatar>
                 <v-avatar :title="user.name">
-                    <img :src="user.gravatar" alt="avatar">
+                    <img v-if="user.gravatar" :src="user.gravatar" alt="avatar">
+                    <img v-else src="https://www.gravatar.com/avatar/" alt="avatar">
                 </v-avatar>
             </v-list-tile-avatar>
             <v-list-tile-content>
@@ -34,10 +35,24 @@ export default {
   data () {
     return {
       dataUsers: this.users,
-      dataSelectedUser: null
+      selectedUser: this.user
     }
   },
+  model: {
+    prop: 'user',
+    event: 'selected'
+  },
   props: {
+    itemValue: {
+      type: String,
+      value: 'id'
+    },
+    user: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
     users: {
       type: Array,
       required: true
@@ -48,15 +63,18 @@ export default {
     }
   },
   watch: {
-    dataSelectedUser (newValue) {
+    user (user) {
+      this.selectedUser = user
+    },
+    selectedUser (newValue) {
       this.$emit('selected', newValue)
     },
     users () {
       this.dataUsers = this.users
-    },
-    selectedUser (newValue) {
-      this.selectedUser = newValue
     }
+    // selectedUser (newValue) {
+    //   this.selectedUser = newValue
+    // }
     // if (newValue !== null) {
     //   await this.$emit('selected', newValue)
     //   this.dataSelectedUser = null

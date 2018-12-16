@@ -39,6 +39,7 @@
                     <v-flex lg4 class="pr-2">
                         <user-select
                                 label="Usuari"
+                                v-model="filterUser"
                                 :users="dataUsers"
                         ></user-select>
                     </v-flex>
@@ -144,6 +145,7 @@ export default {
       dataTasks: this.tasks,
       dataUsers: this.users,
       filter: 'Totes',
+      filterUser: null,
       filters: [
         { name: 'Totes', value: null },
         { name: 'Completades', value: true },
@@ -186,10 +188,23 @@ export default {
   },
   computed: {
     getFilteredTasks () {
-      return this.dataTasks.filter((task) => {
-        if (task.completed === this.filter.value || this.filter.value == null) return true
-        else return false
-      })
+      if (this.filterUser) {
+        return this.dataTasks.filter((task) => {
+          if ((task.completed === this.filter.value || this.filter.value == null) &&
+            (task.user_id === this.filterUser.id)) return true
+          else {
+            this.dataUsers
+            return false
+          }
+        })
+      } else {
+        return this.dataTasks.filter((task) => {
+          if (task.completed === this.filter.value || this.filter.value == null) return true
+          else {
+            return false
+          }
+        })
+      }
     }
   },
   watch: {
