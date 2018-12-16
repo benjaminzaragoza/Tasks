@@ -12,7 +12,7 @@
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció"></v-textarea>
-        <user-select :item-value="null" v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+        <user-select :item-value="null" v-if="$hasRole('TaskManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>

@@ -3,9 +3,7 @@
         <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció"></v-textarea>
-        <user-select :readonly="!$can('tasks.index')" v-model="user" :users="dataUsers" label="Usuari" item-text="name" item-value="id"></user-select>
-
-        <!--<v-autocomplete   v-model="user"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>-->
+        <user-select v-if="$hasRole('TaskManager')" v-model="user" :users="dataUsers" label="Usuari" item-text="name" item-value="id"></user-select>
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -20,25 +18,35 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+import UserSelect from './UserSelect'
 export default {
   name: 'TaskUpdateForm',
+  mixins: [validationMixin],
+  validations: {
+    name: { required }
+  },
+  components: {
+    'user-select': UserSelect
+  },
   data () {
     return {
       name: this.task.name,
-      completed: this.task.completed,
-      dataUsers: this.users,
-      user: null,
       description: this.task.description,
+      completed: this.task.completed,
+      user: null,
+      dataUsers: this.users,
       working: false
     }
   },
   props: {
-    users: {
-      type: Array,
-      required: true
-    },
     task: {
       type: Object,
+      required: true
+    },
+    users: {
+      type: Array,
       required: true
     },
     uri: {
@@ -74,6 +82,9 @@ export default {
         this.working = false
       })
     }
+  },
+  created () {
+    this.updateUser(this.task)
   }
 }
 </script>

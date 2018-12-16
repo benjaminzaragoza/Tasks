@@ -23,7 +23,7 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-    <v-btn v-if="$can('user.tasks.update',task)" icon color="success" flat title="Actualitzar la tasca" @click="dialog=true">
+    <v-btn v-if="$can('user.tasks.update',task)" icon color="success" flat title="Actualitzar la tasca" @click="dialog=true" >
      <v-icon>edit</v-icon>
      </v-btn>
 </span>

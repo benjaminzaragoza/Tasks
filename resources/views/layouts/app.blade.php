@@ -90,44 +90,68 @@
     <v-navigation-drawer
             v-model="drawerRight"
             fixed
-            right
-            clipped
             app
+            clipped
+            right
     >
-        <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
-            <v-layout row wrap>
-                <v-flex xs12>
-                    <ul>
-                        <li>Nom : {{ Auth::user()->name }}</li>
-                        <li>Email : {{ Auth::user()->email }}</li>
-                        <li>Admin : {{ Auth::user()->admin }}</li>
-                        <li>Roles : {{ implode(',',Auth::user()->map()['roles']) }}</li>
-                        <li>Permissions : {{ implode(', ',Auth::user()->map()['permissions']) }}</li>
-                    </ul>
-                </v-flex>
-            </v-layout>
-        </v-card>
-        <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+        <v-toolbar color="blue darken-3" dark>
+            <v-icon>face</v-icon><v-toolbar-title>Perfil</v-toolbar-title>
+        </v-toolbar>
+        <v-card flat>
+            <v-card-text>
+                <h3 style=" margin-left: 2%;text-align: center">
+                    <v-avatar @click="drawerRight=!drawerRight" style="margin-top: 2%;margin-right: 5%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+                        <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-left: 15%;margin-right: 40%;margin-top: -11%;">
+                    </v-avatar>{{ Auth::user()->name }}</h3>
 
-            <v-layout row wrap>
-                @impersonating
-                <v-flex xs12>
-                    <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
-                    </v-avatar>
-                </v-flex>
-                @endImpersonating
-                <v-flex xs12>
-                    @canImpersonate
-                    <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
-                    @endCanImpersonate
+                <v-list-tile-title style="margin-top: 11%;margin-bottom: 10%; text-align: center" class="font-weight-black font-italic
+">{{ Auth::user()->email }}</v-list-tile-title>
+                <h4>Rol</h4>
+                <p style="margin-top: 5%;">
+                    @if(Auth::user()->admin)
+                        <v-chip color="teal" text-color="white" >
+                            <v-avatar>
+                                <v-icon>check_circle</v-icon>
+                            </v-avatar>
+                            Super Administrador
+                        </v-chip>
+                    @else
+                        <v-chip color="red" text-color="white">
+                            <v-avatar>
+                                <v-icon>close</v-icon>
+                            </v-avatar>
+                            Usuari
+                        </v-chip>
+                    @endif
+                </p>
+                <h4>Permisos</h4>
+                <template >
+                    <v-treeview style="margin-top: 5%;">{{ implode(', ',Auth::user()->map()['permissions']) }}</v-treeview>
+                </template>
+                <p> </p>
+            </v-card-text>
+        </v-card>
+
+        <v-card>
+            @canImpersonate
+            <v-toolbar color="blue darken-3" dark>
+                <v-toolbar-title>Opcions administrador</v-toolbar-title>
+            </v-toolbar>
+            <v-card flat>
+                <v-card-text>
+                    <impersonate label="Entrar com ... " url="/api/v1/regular_users"></impersonate>
+                </v-card-text>
+            </v-card>
+            @endCanImpersonate
                     @impersonating
-                    {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
-                    <a href="impersonate/leave">Abandonar la suplantació</a>
-                    @endImpersonating
-                </v-flex>
+            <v-card-text>
+
+                <b>{{ Auth::user()->impersonatedBy()->name }}</b> està suplantant <b>{{ Auth::user()->name }}</b>
+            </v-card-text>
+            <v-btn color="red" dark href="impersonate/leave" >Abandonar la suplantació
+                <v-icon dark right>supervisor_account</v-icon>
+            </v-btn>
+            @endImpersonating
             </v-layout>
         </v-card>
 

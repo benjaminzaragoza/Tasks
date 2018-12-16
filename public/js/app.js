@@ -11869,105 +11869,48 @@ function applyToTag (styleElement, obj) {
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(112)
+/* template */
+var __vue_template__ = __webpack_require__(113)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/UserSelect.vue"
 
-var utils = __webpack_require__(2);
-var normalizeHeaderName = __webpack_require__(47);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-55e6c9d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-55e6c9d2", Component.options)
   }
-}
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(16);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(16);
-  }
-  return adapter;
-}
+module.exports = Component.exports
 
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
 /* 8 */
@@ -12842,48 +12785,105 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(112)
-/* template */
-var __vue_template__ = __webpack_require__(113)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/UserSelect.vue"
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-55e6c9d2", Component.options)
-  } else {
-    hotAPI.reload("data-v-55e6c9d2", Component.options)
+var utils = __webpack_require__(2);
+var normalizeHeaderName = __webpack_require__(47);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
   }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
+}
 
-module.exports = Component.exports
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(16);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(16);
+  }
+  return adapter;
+}
 
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
 /* 11 */
@@ -26998,7 +26998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_RegisterForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_RegisterForm_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_UserList__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_UserList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_UserList__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserSelect__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserSelect__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_UserSelect__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Tags_vue__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Tags_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_Tags_vue__);
@@ -71502,7 +71502,7 @@ module.exports = __webpack_require__(44);
 var utils = __webpack_require__(2);
 var bind = __webpack_require__(15);
 var Axios = __webpack_require__(46);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(10);
 
 /**
  * Create an instance of Axios
@@ -71585,7 +71585,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(10);
 var utils = __webpack_require__(2);
 var InterceptorManager = __webpack_require__(55);
 var dispatchRequest = __webpack_require__(56);
@@ -72124,7 +72124,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(2);
 var transformData = __webpack_require__(57);
 var isCancel = __webpack_require__(18);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(10);
 var isAbsoluteURL = __webpack_require__(58);
 var combineURLs = __webpack_require__(59);
 
@@ -73793,7 +73793,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73808,7 +73808,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
 //
 //
@@ -73855,7 +73855,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       name: '',
       completed: false,
-      user_id: null,
+      user: null,
       description: '',
       loading: false,
       dataUsers: this.users
@@ -73881,11 +73881,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    selectLoggedUser: function selectLoggedUser() {
+      if (window.laravel_user) {
+        this.user = this.users.find(function (user) {
+          return parseInt(user.id) === parseInt(window.laravel_user.id);
+        });
+      }
+    },
     reset: function reset() {
       this.name = '';
       this.description = '';
       this.completed = false;
-      this.user_id = null;
+      this.user = null;
     },
     add: function add() {
       var _this = this;
@@ -73895,7 +73902,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'name': this.name,
         'description': this.description,
         'completed': this.completed,
-        'user_id': this.user_id
+        'user_id': this.user.id
       };
       window.axios.post(this.uri + '/', task).then(function (response) {
         // this.createTask(response.data)
@@ -73909,10 +73916,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).finally(function () {
         _this.loading = false;
       });
-    },
-    setUser: function setUser(user) {
-      this.user_id = user;
     }
+  },
+  created: function created() {
+    this.selectLoggedUser();
   }
 });
 
@@ -74687,17 +74694,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserSelect',
   data: function data() {
     return {
       dataUsers: this.users,
-      dataSelectedUser: null
+      selectedUser: this.user
     };
   },
 
+  model: {
+    prop: 'user',
+    event: 'selected'
+  },
   props: {
+    itemValue: {
+      type: String,
+      value: 'id'
+    },
+    user: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
     users: {
       type: Array,
       required: true
@@ -74708,15 +74730,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   watch: {
-    dataSelectedUser: function dataSelectedUser(newValue) {
+    user: function user(_user) {
+      this.selectedUser = _user;
+    },
+    selectedUser: function selectedUser(newValue) {
       this.$emit('selected', newValue);
     },
     users: function users() {
       this.dataUsers = this.users;
-    },
-    selectedUser: function selectedUser(newValue) {
-      this.selectedUser = newValue;
     }
+    // selectedUser (newValue) {
+    //   this.selectedUser = newValue
+    // }
     // if (newValue !== null) {
     //   await this.$emit('selected', newValue)
     //   this.dataSelectedUser = null
@@ -74736,7 +74761,7 @@ var render = function() {
   return _c("v-autocomplete", {
     attrs: {
       items: _vm.dataUsers,
-      "item-value": "id",
+      "item-value": _vm.itemValue,
       clearable: "",
       label: _vm.label
     },
@@ -74769,7 +74794,16 @@ var render = function() {
               "v-list-tile-avatar",
               [
                 _c("v-avatar", { attrs: { title: user.name } }, [
-                  _c("img", { attrs: { src: user.gravatar, alt: "avatar" } })
+                  user.gravatar
+                    ? _c("img", {
+                        attrs: { src: user.gravatar, alt: "avatar" }
+                      })
+                    : _c("img", {
+                        attrs: {
+                          src: "https://www.gravatar.com/avatar/",
+                          alt: "avatar"
+                        }
+                      })
                 ])
               ],
               1
@@ -74793,11 +74827,11 @@ var render = function() {
       }
     ]),
     model: {
-      value: _vm.dataSelectedUser,
+      value: _vm.selectedUser,
       callback: function($$v) {
-        _vm.dataSelectedUser = $$v
+        _vm.selectedUser = $$v
       },
-      expression: "dataSelectedUser"
+      expression: "selectedUser"
     }
   })
 }
@@ -74869,14 +74903,20 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm.$can("tasks.index")
+      _vm.$hasRole("TaskManager")
         ? _c("user-select", {
             attrs: {
-              "selected-user": _vm.user_id,
+              "item-value": null,
               users: _vm.dataUsers,
-              label: "Users"
+              label: "Usuari"
             },
-            on: { selected: _vm.setUser }
+            model: {
+              value: _vm.user,
+              callback: function($$v) {
+                _vm.user = $$v
+              },
+              expression: "user"
+            }
           })
         : _vm._e(),
       _vm._v(" "),
@@ -75274,6 +75314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -75290,6 +75331,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       dataTasks: this.tasks,
       dataUsers: this.users,
       filter: 'Totes',
+      filterUser: null,
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
@@ -75323,9 +75365,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getFilteredTasks: function getFilteredTasks() {
       var _this = this;
 
-      return this.dataTasks.filter(function (task) {
-        if (task.completed === _this.filter.value || _this.filter.value == null) return true;else return false;
-      });
+      if (this.filterUser) {
+        return this.dataTasks.filter(function (task) {
+          if ((task.completed === _this.filter.value || _this.filter.value == null) && task.user_id === _this.filterUser.id) return true;else {
+            _this.dataUsers;
+            return false;
+          }
+        });
+      } else {
+        return this.dataTasks.filter(function (task) {
+          if (task.completed === _this.filter.value || _this.filter.value == null) return true;else {
+            return false;
+          }
+        });
+      }
     }
   },
   watch: {
@@ -76636,6 +76689,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
 //
 //
 //
@@ -76656,25 +76715,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TaskUpdateForm',
+  mixins: [__WEBPACK_IMPORTED_MODULE_0_vuelidate__["validationMixin"]],
+  validations: {
+    name: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] }
+  },
+  components: {
+    'user-select': __WEBPACK_IMPORTED_MODULE_2__UserSelect___default.a
+  },
   data: function data() {
     return {
       name: this.task.name,
-      completed: this.task.completed,
-      dataUsers: this.users,
-      user: this.task.user_id,
       description: this.task.description,
+      completed: this.task.completed,
+      user: null,
+      dataUsers: this.users,
       working: false
     };
   },
 
   props: {
-    users: {
-      type: Array,
-      required: true
-    },
     task: {
       type: Object,
+      required: true
+    },
+    users: {
+      type: Array,
       required: true
     },
     uri: {
@@ -76682,7 +76752,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       required: true
     }
   },
+  watch: {
+    task: function task(_task) {
+      this.updateUser(_task);
+    }
+  },
   methods: {
+    updateUser: function updateUser(task) {
+      this.user = this.users.find(function (user) {
+        return parseInt(user.id) === parseInt(task.user_id);
+      });
+    },
     update: function update() {
       var _this = this;
 
@@ -76702,6 +76782,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.working = false;
       });
     }
+  },
+  created: function created() {
+    this.updateUser(this.task);
   }
 });
 
@@ -76753,22 +76836,23 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("v-autocomplete", {
-        attrs: {
-          readonly: !_vm.$can("tasks.index"),
-          items: _vm.dataUsers,
-          label: "Usuari",
-          "item-text": "name",
-          "item-value": "id"
-        },
-        model: {
-          value: _vm.user,
-          callback: function($$v) {
-            _vm.user = $$v
-          },
-          expression: "user"
-        }
-      }),
+      _vm.$hasRole("TaskManager")
+        ? _c("user-select", {
+            attrs: {
+              users: _vm.dataUsers,
+              label: "Usuari",
+              "item-text": "name",
+              "item-value": "id"
+            },
+            model: {
+              value: _vm.user,
+              callback: function($$v) {
+                _vm.user = $$v
+              },
+              expression: "user"
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -77138,6 +77222,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UserSelect__);
 //
 //
 //
@@ -77150,7 +77236,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TaskShowForm',
+  components: {
+    'user-select': __WEBPACK_IMPORTED_MODULE_0__UserSelect___default.a
+  },
   data: function data() {
     return {
       name: this.task.name,
@@ -77163,18 +77255,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   props: {
-    users: {
-      type: Array,
-      required: true
-    },
     task: {
       type: Object,
+      required: true
+    },
+    users: {
+      type: Array,
       required: true
     },
     uri: {
       type: String,
       required: true
     }
+  },
+  methods: {
+    showUser: function showUser(task) {
+      this.user = this.users.find(function (user) {
+        return parseInt(user.id) === parseInt(task.user_id);
+      });
+    }
+  },
+  created: function created() {
+    this.showUser(this.task);
   }
 });
 
@@ -77233,14 +77335,8 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-autocomplete", {
-            attrs: {
-              readonly: "",
-              items: _vm.dataUsers,
-              label: "Usuari",
-              "item-value": "id",
-              "item-text": "name"
-            },
+          _c("user-select", {
+            attrs: { readonly: "", users: _vm.dataUsers, label: "Usuari" },
             model: {
               value: _vm.user,
               callback: function($$v) {
@@ -77533,7 +77629,14 @@ var render = function() {
                     { staticClass: "pr-2", attrs: { lg4: "" } },
                     [
                       _c("user-select", {
-                        attrs: { label: "Usuari", users: _vm.dataUsers }
+                        attrs: { label: "Usuari", users: _vm.dataUsers },
+                        model: {
+                          value: _vm.filterUser,
+                          callback: function($$v) {
+                            _vm.filterUser = $$v
+                          },
+                          expression: "filterUser"
+                        }
                       })
                     ],
                     1
@@ -81128,7 +81231,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UserSelect__);
 //
 //
@@ -81151,7 +81254,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     impersonate: function impersonate(user) {
       if (user) {
-        window.location.href = '/impersonate/take/' + user;
+        window.location.href = '/impersonate/take/' + user.id;
       }
     }
   },
@@ -81190,7 +81293,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("user-select", {
-    attrs: { users: _vm.dataUsers, label: _vm.label },
+    attrs: { users: _vm.dataUsers, label: _vm.label, "item-value": null },
     on: { selected: _vm.impersonate }
   })
 }
