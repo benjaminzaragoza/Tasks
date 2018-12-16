@@ -74695,6 +74695,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserSelect',
@@ -74727,6 +74729,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     label: {
       type: String,
       default: 'Usuaris'
+    },
+    readonly: {
+      type: Boolean
     }
   },
   watch: {
@@ -74739,14 +74744,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     users: function users() {
       this.dataUsers = this.users;
     }
-    // selectedUser (newValue) {
-    //   this.selectedUser = newValue
-    // }
-    // if (newValue !== null) {
-    //   await this.$emit('selected', newValue)
-    //   this.dataSelectedUser = null
-    // }
-
   }
 });
 
@@ -74763,7 +74760,8 @@ var render = function() {
       items: _vm.dataUsers,
       "item-value": _vm.itemValue,
       clearable: "",
-      label: _vm.label
+      label: _vm.label,
+      readonly: _vm.readonly == true ? true : false
     },
     scopedSlots: _vm._u([
       {
@@ -77336,7 +77334,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("user-select", {
-            attrs: { readonly: "", users: _vm.dataUsers, label: "Usuari" },
+            attrs: { readonly: true, users: _vm.dataUsers, label: "Usuari" },
             model: {
               value: _vm.user,
               callback: function($$v) {

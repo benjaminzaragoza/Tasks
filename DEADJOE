@@ -59,3 +59,25 @@ Processing '/etc/joe/editorrc'...
 Processing '/etc/joe/ftyperc'...
 Finished processing /etc/joe/ftyperc
 Finished processing /etc/joe/editorrc
+
+*** These modified files were found in JOE when it aborted on Sun Dec 16 22:49:52 2018
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+* Build Log *
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
