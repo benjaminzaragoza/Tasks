@@ -1,0 +1,30 @@
+
+*** These modified files were found in JOE when it aborted on Sun Dec 16 22:21:34 2018
+*** JOE was aborted by UNIX signal 1
+
+*** File '/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG'
+X.A
+# Por favor ingrese un mensaje de commit que explique por qué es necesaria esta fusión,
+# especialmente si esto fusiona un upstream actualizado en una rama de tópico.
+#
+# Líneas comenzando con '#' serán ignoradas, y un mensaje vacío aborta
+# el commit.
+
+*** File '(Unnamed)'
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/Institut-Ebre/2dam201819/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+* Build Log *
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+/home/benjamin/Code/benjaminzaragoza/tasks/.git/MERGE_MSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
