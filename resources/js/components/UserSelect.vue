@@ -5,6 +5,8 @@
             :item-value="itemValue"
             clearable
             :label="label"
+            :readonly="(readonly == true) ? true : false"
+
     >
         <template slot="selection" slot-scope="data">
             <v-chip>
@@ -60,6 +62,9 @@ export default {
     label: {
       type: String,
       default: 'Usuaris'
+    },
+    readonly: {
+      type: Boolean
     }
   },
   watch: {
@@ -72,13 +77,6 @@ export default {
     users () {
       this.dataUsers = this.users
     }
-    // selectedUser (newValue) {
-    //   this.selectedUser = newValue
-    // }
-    // if (newValue !== null) {
-    //   await this.$emit('selected', newValue)
-    //   this.dataSelectedUser = null
-    // }
   }
 }
 </script>
