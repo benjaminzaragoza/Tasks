@@ -8,6 +8,7 @@
     <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
+    <meta name="git" content="{{ git() }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>@yield('title')</title>
     <style>
@@ -17,6 +18,7 @@
 <body>
 <v-app id="app" v-cloak >
     <snackbar></snackbar>
+
     <v-navigation-drawer
             v-model="drawer"
             fixed
@@ -104,8 +106,7 @@
                         <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-left: 15%;margin-right: 40%;margin-top: -11%;">
                     </v-avatar>{{ Auth::user()->name }}</h3>
 
-                <v-list-tile-title style="margin-top: 11%;margin-bottom: 10%; text-align: center" class="font-weight-black font-italic
-">{{ Auth::user()->email }}</v-list-tile-title>
+                <v-list-tile-title style="margin-top: 11%;margin-bottom: 10%; text-align: center" class="font-weight-black font-italic">{{ Auth::user()->email }}</v-list-tile-title>
                 <h4>Rol</h4>
                 <p style="margin-top: 5%;">
                     @if(Auth::user()->admin)
@@ -159,9 +160,15 @@
 
         <v-toolbar color="#311B92" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
             <img src="img/task.png" style="margin-left: 1%;height:50%">
-        <v-spacer></v-spacer>
+
+
+            <span v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
+
+
+
+            <v-spacer></v-spacer>
             <h4 class="white-text mb-3 font-italic text-center" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
