@@ -74696,7 +74696,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserSelect',
@@ -74717,10 +74716,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       value: 'id'
     },
     user: {
-      type: Object,
-      default: function _default() {
-        return {};
-      }
+      // type: Object,
+      // default: function () {
+      //   return {}
+      // }
     },
     users: {
       type: Array,
@@ -75313,6 +75312,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -75330,7 +75330,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       dataUsers: this.users,
       filter: 'Totes',
       filterUser: null,
-      filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
+      filters: [{ name: 'Totes', value: 'Totes' }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
+      statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 25
@@ -75361,22 +75362,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   computed: {
     getFilteredTasks: function getFilteredTasks() {
-      var _this = this;
-
-      if (this.filterUser) {
-        return this.dataTasks.filter(function (task) {
-          if ((task.completed === _this.filter.value || _this.filter.value == null) && task.user_id === _this.filterUser.id) return true;else {
-            _this.dataUsers;
-            return false;
-          }
-        });
-      } else {
-        return this.dataTasks.filter(function (task) {
-          if (task.completed === _this.filter.value || _this.filter.value == null) return true;else {
-            return false;
-          }
+      var filterUser = this.filterUser;
+      var statusBy = this.statusBy;
+      var tasks = this.dataTasks;
+      if (filterUser == null) {
+        tasks = this.dataTasks;
+        console.log('lo');
+      } else if (filterUser !== null) {
+        tasks = tasks.filter(function (task) {
+          if (task.user_id == filterUser.id) return true;else return false;
         });
       }
+      if (statusBy.value != 'Totes') {
+        console.log('a');
+        tasks = tasks.filter(function (task) {
+          if (task.completed == statusBy.value) return true;else return false;
+        });
+      }
+      return tasks;
     }
   },
   watch: {
@@ -75392,16 +75395,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.refresh();
     },
     refresh: function refresh() {
-      var _this2 = this;
+      var _this = this;
 
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
-        _this2.dataTasks = response.data;
-        _this2.loading = false;
-        _this2.$snackbar.showMessage('Tasques actualitzades correctament');
+        _this.dataTasks = response.data;
+        _this.loading = false;
+        _this.$snackbar.showMessage('Tasques actualitzades correctament');
       }).catch(function (error) {
         console.log(error);
-        _this2.loading = false;
+        _this.loading = false;
       });
     }
   }
@@ -77611,11 +77614,11 @@ var render = function() {
                           "return-object": true
                         },
                         model: {
-                          value: _vm.filter,
+                          value: _vm.statusBy,
                           callback: function($$v) {
-                            _vm.filter = $$v
+                            _vm.statusBy = $$v
                           },
-                          expression: "filter"
+                          expression: "statusBy"
                         }
                       })
                     ],
@@ -77627,7 +77630,11 @@ var render = function() {
                     { staticClass: "pr-2", attrs: { lg4: "" } },
                     [
                       _c("user-select", {
-                        attrs: { label: "Usuari", users: _vm.dataUsers },
+                        attrs: {
+                          url: "/api/v1/users",
+                          label: "Usuari",
+                          users: _vm.dataUsers
+                        },
                         model: {
                           value: _vm.filterUser,
                           callback: function($$v) {
