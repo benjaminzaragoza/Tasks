@@ -74759,7 +74759,7 @@ var render = function() {
     attrs: {
       items: _vm.dataUsers,
       "item-value": _vm.itemValue,
-      clearable: "",
+      clearable: _vm.readonly == false ? true : false,
       label: _vm.label,
       readonly: _vm.readonly == true ? true : false
     },

@@ -3,7 +3,7 @@
             :items="dataUsers"
             v-model="selectedUser"
             :item-value="itemValue"
-            clearable
+            :clearable="(readonly == false) ? true : false"
             :label="label"
             :readonly="(readonly == true) ? true : false"
 
