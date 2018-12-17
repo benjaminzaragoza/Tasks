@@ -31,13 +31,14 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
                         <user-select
+                                url="/api/v1/users"
                                 label="Usuari"
                                 v-model="filterUser"
                                 :users="dataUsers"
@@ -147,10 +148,11 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        { name: 'Totes', value: null },
+        { name: 'Totes', value: 'Totes' },
         { name: 'Completades', value: true },
         { name: 'Pendents', value: false }
       ],
+      statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 25
@@ -188,23 +190,26 @@ export default {
   },
   computed: {
     getFilteredTasks () {
-      if (this.filterUser) {
-        return this.dataTasks.filter((task) => {
-          if ((task.completed === this.filter.value || this.filter.value == null) &&
-            (task.user_id === this.filterUser.id)) return true
-          else {
-            this.dataUsers
-            return false
-          }
-        })
-      } else {
-        return this.dataTasks.filter((task) => {
-          if (task.completed === this.filter.value || this.filter.value == null) return true
-          else {
-            return false
-          }
+      let filterUser = this.filterUser
+      let statusBy = this.statusBy
+      let tasks = this.dataTasks
+      if (filterUser == null) {
+        tasks = this.dataTasks
+        console.log('lo')
+      } else if (filterUser !== null) {
+        tasks = tasks.filter((task) => {
+          if (task.user_id == filterUser.id) return true
+          else return false
         })
       }
+      if (statusBy.value != 'Totes') {
+        console.log('a')
+        tasks = tasks.filter((task) => {
+          if (task.completed == statusBy.value) return true
+          else return false
+        })
+      }
+      return tasks
     }
   },
   watch: {
@@ -230,7 +235,6 @@ export default {
         this.loading = false
       })
     }
-
   }
 }
 </script>

@@ -6,7 +6,6 @@
             :clearable="(readonly == false) ? true : false"
             :label="label"
             :readonly="(readonly == true) ? true : false"
-
     >
         <template slot="selection" slot-scope="data">
             <v-chip>
@@ -50,10 +49,10 @@ export default {
       value: 'id'
     },
     user: {
-      type: Object,
-      default: function () {
-        return {}
-      }
+      // type: Object,
+      // default: function () {
+      //   return {}
+      // }
     },
     users: {
       type: Array,
