@@ -31,7 +31,7 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         ></v-select>
@@ -148,10 +148,11 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        { name: 'Totes', value: null },
+        { name: 'Totes', value: 'Totes' },
         { name: 'Completades', value: true },
         { name: 'Pendents', value: false }
       ],
+      statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 25
@@ -190,20 +191,21 @@ export default {
   computed: {
     getFilteredTasks () {
       let filterUser = this.filterUser
+      let statusBy = this.statusBy
       let tasks = this.dataTasks
-
       if (filterUser == null) {
-        console.log('hola')
         tasks = this.dataTasks
+        console.log('lo')
       } else if (filterUser !== null) {
-        tasks = this.dataTasks.filter((task) => {
-          if ((task.completed === this.filter.value || this.filter.value == null) &&
-            (task.user_id === this.filterUser.id)) return true
+        tasks = tasks.filter((task) => {
+          if (task.user_id == filterUser.id) return true
           else return false
         })
-      } else {
-        tasks = this.dataTasks.filter((task) => {
-          if (task.completed === this.filter.value || this.filter.value == null) return true
+      }
+      if (statusBy.value != 'Totes') {
+        console.log('a')
+        tasks = tasks.filter((task) => {
+          if (task.completed == statusBy.value) return true
           else return false
         })
       }
@@ -233,7 +235,6 @@ export default {
         this.loading = false
       })
     }
-
   }
 }
 </script>
