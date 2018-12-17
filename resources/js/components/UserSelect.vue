@@ -6,7 +6,6 @@
             :clearable="(readonly == false) ? true : false"
             :label="label"
             :readonly="(readonly == true) ? true : false"
-
     >
         <template slot="selection" slot-scope="data">
             <v-chip>

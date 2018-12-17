@@ -38,6 +38,7 @@
                     </v-flex>
                     <v-flex lg4 class="pr-2">
                         <user-select
+                                url="/api/v1/users"
                                 label="Usuari"
                                 v-model="filterUser"
                                 :users="dataUsers"
@@ -188,23 +189,25 @@ export default {
   },
   computed: {
     getFilteredTasks () {
-      if (this.filterUser) {
-        return this.dataTasks.filter((task) => {
+      let filterUser = this.filterUser
+      let tasks = this.dataTasks
+
+      if (filterUser == null) {
+        console.log('hola')
+        tasks = this.dataTasks
+      } else if (filterUser !== null) {
+        tasks = this.dataTasks.filter((task) => {
           if ((task.completed === this.filter.value || this.filter.value == null) &&
             (task.user_id === this.filterUser.id)) return true
-          else {
-            this.dataUsers
-            return false
-          }
+          else return false
         })
       } else {
-        return this.dataTasks.filter((task) => {
+        tasks = this.dataTasks.filter((task) => {
           if (task.completed === this.filter.value || this.filter.value == null) return true
-          else {
-            return false
-          }
+          else return false
         })
       }
+      return tasks
     }
   },
   watch: {
