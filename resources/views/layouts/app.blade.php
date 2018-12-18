@@ -162,12 +162,7 @@
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
             <img src="img/task.png" style="margin-left: 1%;height:50%">
-
-
             <span v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
-
-
-
             <v-spacer></v-spacer>
             <h4 class="white-text mb-3 font-italic text-center" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
