@@ -27,6 +27,9 @@
                     @blur="$v.password.$touch()"
             ></v-text-field>
             <a href="/register">No tens compte d'usuari? Registrat </a>
+            <br>
+            <a href="/password/reset">T'has olvidat la contrasenya? </a>
+
         </v-card-text>
         <v-card-actions>
             <v-btn href="/" type="submit" color="primary">

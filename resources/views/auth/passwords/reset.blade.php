@@ -1,8 +1,11 @@
 @extends('layouts.login')
-
+@section('title')
+    Nova Contrasenya
+@endsection
 @section('content')
-
-    <v-flex xs12 sm4 offset-sm4 class="mt-5">
+    <v-container fluid fill-height>
+        <v-layout align-center justify-center>
+    <v-flex xs12 sm4 class="mt-5">
         <v-card class="elevation-12">
             <v-toolbar color="red lighten-1" dark>
                 <v-toolbar-title>
@@ -36,12 +39,19 @@
 
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue lighten-1" dark type="submit">
-                            {{ __('Reset Password') }}
+                        <v-btn
+                                color="green"
+                                class="white--text"
+                                type="submit"
+                        >
+                            {{ __('Reset') }}
+                            <v-icon right dark>send</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card-text>
             </v-form>
         </v-card>
     </v-flex>
+        </v-layout>
+    </v-container>
 @endsection
