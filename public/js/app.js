@@ -78060,6 +78060,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -78566,6 +78569,12 @@ var render = function() {
           _vm._v(" "),
           _c("a", { attrs: { href: "/register" } }, [
             _vm._v("No tens compte d'usuari? Registrat ")
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "/password/reset" } }, [
+            _vm._v("T'has olvidat la contrasenya? ")
           ])
         ],
         1
