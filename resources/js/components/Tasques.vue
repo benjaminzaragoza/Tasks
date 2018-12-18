@@ -1,6 +1,6 @@
 <template>
     <span>
-        <tasks-list :users="users" :uri="uri" :tasks="dataTasks" ></tasks-list>
+        <tasks-list :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
     </span>
 </template>
@@ -25,6 +25,10 @@ export default {
       required: true
     },
     users: {
+      type: Array,
+      required: true
+    },
+    tags: {
       type: Array,
       required: true
     },

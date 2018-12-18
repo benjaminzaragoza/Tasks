@@ -80,6 +80,9 @@
                         <td class="text-xs-left">
                             <task-completed-toggle :task="task"></task-completed-toggle>
                         </td>
+                          <td>
+                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                        </td>
                         <td class="text-xs-left">
                             <span  :title="task.created_at_formatted">{{ task.created_at_human}}</span>
                         </td>
@@ -135,6 +138,7 @@ import TaskCompletedToggle from './TaskCompletedToggle'
 import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
+import TasksTags from './TasksTags'
 
 export default {
   name: 'TasksList',
@@ -148,7 +152,7 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        { name: 'Totes', value: 'Totes' },
+        { name: 'Totes', value: 'TotesF' },
         { name: 'Completades', value: true },
         { name: 'Pendents', value: false }
       ],
@@ -162,6 +166,7 @@ export default {
         { text: 'Name', value: 'name' },
         { text: 'User', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },
         { text: 'Accions', sortable: false, value: 'full_search' }
@@ -172,10 +177,15 @@ export default {
     'task-completed-toggle': TaskCompletedToggle,
     'task-destroy': TaskDestroy,
     'task-show': TaskShow,
-    'task-update': TaskUpdate
+    'task-update': TaskUpdate,
+    'tasks-tags': TasksTags
   },
   props: {
     tasks: {
+      type: Array,
+      required: true
+    },
+    tags: {
       type: Array,
       required: true
     },
@@ -195,7 +205,6 @@ export default {
       let tasks = this.dataTasks
       if (filterUser == null) {
         tasks = this.dataTasks
-        console.log('lo')
       } else if (filterUser !== null) {
         tasks = tasks.filter((task) => {
           if (task.user_id == filterUser.id) return true
@@ -203,7 +212,6 @@ export default {
         })
       }
       if (statusBy.value != 'Totes') {
-        console.log('a')
         tasks = tasks.filter((task) => {
           if (task.completed == statusBy.value) return true
           else return false
