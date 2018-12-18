@@ -26965,7 +26965,7 @@ var EventBus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(25);
-module.exports = __webpack_require__(171);
+module.exports = __webpack_require__(174);
 
 
 /***/ }),
@@ -27007,10 +27007,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__plugins_confirm__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Impersonate__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Impersonate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_Impersonate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_git_GitInfoComponent__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_git_GitInfoComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_git_GitInfoComponent__);
 
 
  // Ensure you are using css-loader
  // Ensure you are using css-loader
+
 
 
 
@@ -27046,6 +27049,7 @@ window.Vue.component('user-list', __WEBPACK_IMPORTED_MODULE_11__components_UserL
 window.Vue.component('user-select', __WEBPACK_IMPORTED_MODULE_12__components_UserSelect___default.a);
 window.Vue.component('tags', __WEBPACK_IMPORTED_MODULE_13__components_Tags_vue___default.a);
 window.Vue.component('impersonate', __WEBPACK_IMPORTED_MODULE_17__components_Impersonate___default.a);
+window.Vue.component('git-info', __WEBPACK_IMPORTED_MODULE_18__components_git_GitInfoComponent___default.a);
 
 window.Vue.component('login-form', __WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tags', __webpack_require__(22));
@@ -50376,6 +50380,11 @@ if (user) {
 } else {
   console.error('CAUTION!: user not found at HTML meta');
 }
+
+var gitHeader = document.head.querySelector('meta[name="git"]');
+window.git = null;
+if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content);
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -81314,6 +81323,314 @@ if (false) {
 
 /***/ }),
 /* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(172)
+/* template */
+var __vue_template__ = __webpack_require__(173)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/git/GitInfoComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0b299476", Component.options)
+  } else {
+    hotAPI.reload("data-v-0b299476", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 172 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'GitInfoComponent',
+  data: function data() {
+    return {
+      dialog: false,
+      dataGit: this.git
+    };
+  },
+
+  props: {
+    git: {
+      type: Object,
+      required: false
+    }
+  },
+  methods: {
+    githubUri: function githubUri() {
+      return this.dataGit.origin.split(':')[1].split('.')[0];
+    },
+    githubURL: function githubURL() {
+      return 'https://github.com/' + this.githubUri();
+    },
+    githubURLIssues: function githubURLIssues() {
+      return this.githubURL() + '/commits/master';
+    },
+    refresh: function refresh() {
+      var _this = this;
+
+      window.axios.get('/api/v1/git/info').then(function (response) {
+        _this.$snackbar.showMessage('Dades actualitzades correctament');
+        _this.dataGit = response.data;
+      }).catch(function (error) {
+        _this.$snackbar.showError(error);
+      });
+    }
+  },
+  created: function created() {
+    if (!this.git) this.dataGit = window.git;
+  }
+});
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "span",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-title",
+                {
+                  staticClass: "headline grey lighten-2",
+                  attrs: { "primary-title": "" }
+                },
+                [
+                  _vm._v(
+                    "\n          Informació versió de l'aplicació\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _c("ul", [
+                  _c("li", [_vm._v("Branca: " + _vm._s(_vm.dataGit.branch))]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Commit: " + _vm._s(_vm.dataGit.commit))]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("Commit_short: " + _vm._s(_vm.dataGit.commit_short))
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("Autor: " + _vm._s(_vm.dataGit.author_name))
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("Email: " + _vm._s(_vm.dataGit.author_email))
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("Missatge: " + _vm._s(_vm.dataGit.message))
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Data: " +
+                        _vm._s(_vm.dataGit.date_human) +
+                        " | " +
+                        _vm._s(_vm.dataGit.date_formatted)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Origin: " + _vm._s(_vm.dataGit.origin))]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("Projecte Github: "),
+                    _c(
+                      "a",
+                      { attrs: { href: _vm.githubURL(), target: "_blank" } },
+                      [_vm._v(_vm._s(_vm.githubUri()))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("Commits Github: "),
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: _vm.githubURLIssues(), target: "_blank" }
+                      },
+                      [_vm._v(_vm._s(_vm.githubUri()))]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        icon: "",
+                        small: "",
+                        title: "Actualitzeu les dades/flush de la cache"
+                      },
+                      on: { click: _vm.refresh }
+                    },
+                    [_c("v-icon", [_vm._v("refresh")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", flat: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n            Tancar\n          ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v("\n    Versió: "),
+      _c(
+        "a",
+        {
+          staticClass: "white--text",
+          attrs: { href: "#", click: "dialog=true" },
+          on: {
+            click: function($event) {
+              _vm.dialog = true
+            }
+          }
+        },
+        [_vm._v(_vm._s(_vm.dataGit.commit_short))]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0b299476", module.exports)
+  }
+}
+
+/***/ }),
+/* 174 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
