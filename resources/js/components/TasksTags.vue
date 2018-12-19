@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-chip  v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag" style="padding: 5%; color:white" ></v-chip>
+        <v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag" style="padding: 5%;cursor: pointer; color:white" ></v-chip>
         <v-btn color="primary" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-dialog v-model="dialog" width="700" @keydown.esc="dialog = false">
             <v-card>

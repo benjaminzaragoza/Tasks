@@ -4,8 +4,10 @@ export default
   el: '#app',
   name: 'App',
   data: () => ({
-    drawer: null,
+    drawer: true,
     drawerRight: false,
+    mini: false,
+    right: null,
     photos: [
       {
         src: 'https://conceptodefinicion.de/wp-content/uploads/2016/10/Programaci%C3%B3n-Inform%C3%A1tica.jpg'
