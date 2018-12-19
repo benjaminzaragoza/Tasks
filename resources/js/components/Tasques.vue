@@ -30,7 +30,7 @@ export default {
     },
     tags: {
       type: Array,
-      required: true
+      // required: true
     },
     uri: {
       type: String,

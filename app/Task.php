@@ -30,7 +30,11 @@ class Task extends Model
     }
     public function addTag($tag)
     {
-        $this->tags()->save($tag);
+        $this->tags()->attach($tag);
+    }
+    public function destroyTag($tag)
+    {
+        $this->tags()->dettach($tag);
     }
     public function tags()
     {

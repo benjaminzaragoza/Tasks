@@ -81,7 +81,8 @@
                             <task-completed-toggle :task="task"></task-completed-toggle>
                         </td>
                           <td>
-                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                            <tasks-tags :task="task" :tags="tags"  @added="task.tags.push($event)"
+                            ></tasks-tags>
                         </td>
                         <td class="text-xs-left">
                             <span  :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -186,8 +187,7 @@ export default {
       required: true
     },
     tags: {
-      type: Array,
-      required: true
+      type: Array
     },
     users: {
       type: Array,

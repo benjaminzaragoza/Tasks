@@ -45,6 +45,9 @@ Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');/
 Route::get('/v1/users','Api\UsersController@index');
 Route::get('/v1/regular_users','Api\RegularUsersController@index');
 
+    Route::post('/v1/tasks/{task}/tag', 'Api\TaskTagController@store');
+    Route::delete('/v1/tasks/{task}/tag', 'Api\TaskTagController@destroy');
+
 Route::get('/v1/git/info','\\' . GitController::class . '@index');
 
 });

@@ -1,28 +1,32 @@
 <template>
     <span>
-        <v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag"></v-chip>
-        <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
-        <v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>
-        <v-dialog v-model="dialog" width="500">
+        <v-chip  v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag" style="padding: 5%; color:white" ></v-chip>
+        <v-btn color="primary" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
+        <v-dialog v-model="dialog" width="700" @keydown.esc="dialog = false">
             <v-card>
-                <v-card-title>Afegiu etiquetes a la tasca</v-card-title>
+            <v-toolbar dark color="yellow darken-4">
+                           <v-icon medium>local_offer</v-icon><v-toolbar-title>Etiquetes </v-toolbar-title>
+                </v-toolbar>
                 <v-card-text>
                      <v-combobox
-                             v-model="selectedTags"
+                             v-model="selectedTag"
                              :items="tags"
-                             multiple
-                             chips
                              item-text="name"
-                     >
+                             item-value="name"
+                             label="Escull o tria una etiqueta"
+                             multiple
+                             chips>
                         <template slot="selection"
-                                  slot-scope="data">
+                                  slot-scope="data" >
                             <v-chip
                                     :selected="data.selected"
                                     :disabled="data.disabled"
+                                    :color="data.item.color"
                                     :key="JSON.stringify(data.item)"
                                     class="v-chip--select-multi"
                                     @input="data.parent.selectItem(data.item)"
-                            > {{ data.item.name }}
+                                    style="color: white;padding-right: 2%;margin-top: 2%"
+                            >         <v-icon style="margin-right: 10%" small >local_offer</v-icon>{{ data.item.name }}
                             </v-chip>
                         </template>
                     </v-combobox>
@@ -44,37 +48,41 @@ export default {
   data () {
     return {
       dialog: false,
-      selectedTags: []
+      selectedTag: []
     }
   },
   props: {
     task: {
-      type: Object,
-      required: true
+      type: Object
     },
     tags: {
-      type: Array,
-      required: true
+      type: Array
     }
   },
   methods: {
-    removeTag () {
-      // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
-      console.log('TODO REMOVE TAG')
-      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.tag).then(response => {
-        this.$snackbar.showMessage('Etiqueta eliminada correctament')
-      }).catch(error => {
-        this.$snackbar.showError(error)
+    addTag () {
+      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then((response) => {
+        console.log(response.data)
+        this.$snackbar.showMessage('Tag ' + this.selectedTag.name + ' assigned correctly')
+        this.dialog = false
+        this.$emit('added', response.data)
+      }).catch((error) => {
+        console.log(error.response.data)
+        this.$snackbar.showError(error.response.data.exception)
       })
     },
-    addTag () {
-      console.log('TODO ADD TAG')
-      let tag = {}
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(response => {
-        this.$snackbar.showMessage('Etiqueta afegida correctament')
-      }).catch(error => {
-        this.$snackbar.showError(error)
-      })
+    async removeTag () {
+      let result = await this.$confirm('',
+        { title: 'Esteu segurs que voleu eliminar ' + this.selectedTag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'blue' })
+      if (result) {
+        window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then((response) => {
+          console.log(response.data)
+          this.$snackbar.showMessage('Tag ' + this.selectedTag.name + ' eliminat correctament')
+        }).catch((error) => {
+          console.log(error.data)
+          this.$snackbar.showError(error.data)
+        })
+      }
     }
   }
 }
