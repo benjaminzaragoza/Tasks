@@ -4,7 +4,8 @@
         <v-chip v-for="tag in task.tags"
                 :key="tag.id"
                 :color="tag.color"
-                @dblclick="removeTag" style="cursor: pointer; color:white"
+                @dblclick="removeTag(tag)"
+                style="cursor: pointer; color:white"
                 close
                 @input="removeTag(tag)"
         >
@@ -76,6 +77,7 @@ export default {
         this.selectedTag = []
         this.$emit('added', response.data)
       }).catch((error) => {
+        console.log(error.response.data.exception)
         this.$snackbar.showError(error.response.data.message)
       })
     },

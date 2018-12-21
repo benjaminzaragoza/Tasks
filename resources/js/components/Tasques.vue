@@ -29,7 +29,7 @@ export default {
       required: true
     },
     tags: {
-      type: Array,
+      type: Array
       // required: true
     },
     uri: {
