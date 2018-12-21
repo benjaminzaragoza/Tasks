@@ -21,10 +21,12 @@ class TagsController extends Controller
     }
     public function show(ShowTag $request, Tag $tag) // Route Model Binding
     {
-       return $tag->map();
+        $tag = Tag::findOrFail($tag->id);
+        return $tag->map();
     }
     public function destroy(DestroyTag $request, Tag $tag)
     {
+        Tag::destroy($tag->id);
         $tag->delete();
     }
     public function store(StoreTag $request)

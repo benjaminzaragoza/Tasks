@@ -81,7 +81,7 @@
                             <task-completed-toggle :task="task"></task-completed-toggle>
                         </td>
                           <td>
-                            <tasks-tags :task="task" :tags="tags"  @added="task.tags.push($event)"
+                            <tasks-tags :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
                             ></tasks-tags>
                         </td>
                         <td class="text-xs-left">
@@ -93,7 +93,7 @@
                         <td class="text-xs-left d-flex">
                             <task-show :task="task" :uri="uri" :users="users"></task-show>
                             <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
-                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                            <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
                         </td>
                     </tr>
                 </template>
@@ -226,6 +226,15 @@ export default {
     }
   },
   methods: {
+    searchForTasks () {
+      this.loading = true
+      window.axios.get(this.uri).then((response) => {
+        this.loading = false
+        this.dataTasks = response.data
+      }).catch((error) => {
+        this.$snackbar.showError(error.response.data.message)
+      })
+    },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },

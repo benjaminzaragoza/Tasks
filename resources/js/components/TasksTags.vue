@@ -1,6 +1,15 @@
 <template>
     <span>
-        <v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag" style="padding: 5%;cursor: pointer; color:white" ></v-chip>
+        <!--<v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag" style="padding: 5%;cursor: pointer; color:white" ></v-chip>-->
+        <v-chip v-for="tag in task.tags"
+                :key="tag.id"
+                :color="tag.color"
+                @dblclick="removeTag" style="cursor: pointer; color:white"
+                close
+                @input="removeTag(tag)"
+        >
+            {{ tag.name }}
+        </v-chip>
         <v-btn color="primary" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-dialog v-model="dialog" width="700" @keydown.esc="dialog = false">
             <v-card>
@@ -62,25 +71,25 @@ export default {
   methods: {
     addTag () {
       window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then((response) => {
-        console.log(response.data)
-        this.$snackbar.showMessage('Tag ' + this.selectedTag.name + ' assigned correctly')
+        this.$snackbar.showMessage('Tag ' + response.data.name + ' assigned correctly')
         this.dialog = false
+        this.selectedTag = []
         this.$emit('added', response.data)
       }).catch((error) => {
-        console.log(error.response.data)
-        this.$snackbar.showError(error.response.data.exception)
+        this.$snackbar.showError(error.response.data.message)
       })
     },
-    async removeTag () {
+    async removeTag (tag) {
       let result = await this.$confirm('',
-        { title: 'Esteu segurs que voleu eliminar ' + this.selectedTag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'blue' })
+        { title: 'Esteu segurs que voleu eliminar ' + tag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'blue' })
       if (result) {
-        window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then((response) => {
+        window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { data: { tag: tag } }).then((response) => {
           console.log(response.data)
-          this.$snackbar.showMessage('Tag ' + this.selectedTag.name + ' eliminat correctament')
+          this.$snackbar.showMessage('Tag ' + tag.name + ' removed successfully')
+          this.$emit('removed', response.data)
         }).catch((error) => {
-          console.log(error.data)
-          this.$snackbar.showError(error.data)
+          console.log(error.response)
+          this.$snackbar.showError(error.response)
         })
       }
     }

@@ -34,7 +34,7 @@ class Task extends Model
     }
     public function destroyTag($tag)
     {
-        $this->tags()->dettach($tag);
+        $this->tags()->detach($tag);
     }
     public function tags()
     {
@@ -53,6 +53,18 @@ class Task extends Model
     {
         $this->completed= !$this->completed;
         $this->save();
+    }
+    public function getStringTagsAttribute()
+    {
+        if (sizeof($this->tags) > 0) {
+            $string = '';
+            foreach ($this->tags as $tag) {
+                $string .= $tag->name . ' ' . $tag->color . ' ';
+            }
+            return $string;
+        } else {
+            return '';
+        }
     }
     public function map()
     {
