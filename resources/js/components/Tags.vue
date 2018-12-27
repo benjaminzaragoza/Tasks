@@ -3,7 +3,7 @@
             <v-flex xs12 justify-center>
                 <v-dialog v-model="deleteDialog" width="550">
                     <v-card>
-                        <!--<strong>{{this.newTag.name}}</strong>-->
+                        <!--<strong>{{this.selectedTag.name}}</strong>-->
                         <v-card-title class="headline" style="text-align: center">Voleu borrar el tag  <strong style="color: red;text-transform: uppercase;">&nbsp;{{borrat}}</strong>?</v-card-title>
                         <v-card-text>
                             Aquesta operació no es pot desfer.
@@ -32,14 +32,14 @@
                             <v-container grid-list-md>
                                 <v-layout wrap>
                                     <v-flex xs12>
-                                        <v-text-field prepend-icon="local_offer" v-model="newTag.name" label="Nom"></v-text-field>
+                                        <v-text-field prepend-icon="local_offer" v-model="selectedTag.name" label="Nom"></v-text-field>
                                     </v-flex>
                                     <v-flex xs12>
-                                        <!--<v-text-field prepend-icon="color_lens" v-model="newTag.color" label="Color"></v-text-field>-->
-                                        <input type="color" v-model="newTag.color" label="Color" style="width: 50px; height: 50px;">
+                                        <!--<v-text-field prepend-icon="color_lens" v-model="selectedTag.color" label="Color"></v-text-field>-->
+                                        <input type="color" v-model="selectedTag.color" label="Color" style="width: 50px; height: 50px;">
                                     </v-flex>
                                     <v-flex xs12>
-                                        <v-textarea prepend-icon="description" v-model="newTag.description" label="Descripcio"></v-textarea>
+                                        <v-textarea prepend-icon="description" v-model="selectedTag.description" label="Descripcio"></v-textarea>
                                     </v-flex>
 
                                 </v-layout>
@@ -246,7 +246,7 @@ export default {
   data () {
     return {
       tagBeingShown: '',
-      newTag: {
+      selectedTag: {
         name: '',
         description: '',
         color: ''
@@ -310,7 +310,7 @@ export default {
       return this.dataTags.length
     },
     eliminar () {
-      return this.newTag.name
+      return this.selectedTag.name
     }
   },
   methods: {
@@ -338,7 +338,7 @@ export default {
     },
     add () {
       this.creating = true
-      window.axios.post(this.uri, this.newTag).then((response) => {
+      window.axios.post(this.uri, this.selectedTag).then((response) => {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -346,9 +346,9 @@ export default {
         this.$snackbar.showError(error)
       }).finally(() => {
         this.creating = false
-        this.newTag.name = ''
-        this.newTag.description = ''
-        this.newTag.color = ''
+        this.selectedTag.name = ''
+        this.selectedTag.description = ''
+        this.selectedTag.color = ''
         this.createDialog = false
       })
     },

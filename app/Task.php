@@ -30,7 +30,11 @@ class Task extends Model
     }
     public function addTag($tag)
     {
-        $this->tags()->save($tag);
+        $this->tags()->attach($tag);
+    }
+    public function destroyTag($tag)
+    {
+        $this->tags()->detach($tag);
     }
     public function tags()
     {
@@ -49,6 +53,18 @@ class Task extends Model
     {
         $this->completed= !$this->completed;
         $this->save();
+    }
+    public function getStringTagsAttribute()
+    {
+        if (sizeof($this->tags) > 0) {
+            $string = '';
+            foreach ($this->tags as $tag) {
+                $string .= $tag->name . ' ' . $tag->color . ' ';
+            }
+            return $string;
+        } else {
+            return '';
+        }
     }
     public function map()
     {
@@ -70,7 +86,8 @@ class Task extends Model
             'updated_at_human' => $this->updated_at_human,
             'updated_at_timestamp' => $this->updated_at_timestamp,
             'user' => $this->user,
-            'full_search' => $this->full_search
+            'full_search' => $this->full_search,
+            'tags' => $this->tags
         ];
 
     }
@@ -79,6 +96,6 @@ class Task extends Model
         $state = $this->completed ? 'Completada' : 'Pendent';
         $username = optional($this->user)->name;
         $useremail = optional($this->user)->email;
-        return "$this->id $this->name $this->description $state $username $useremail";
+        return "$this->id $this->name $this->description $state $username $useremail $this->string_tags";
     }
 }

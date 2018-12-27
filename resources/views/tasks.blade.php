@@ -34,7 +34,6 @@
             </form>
             <br>
             <?php foreach ($tasks as $task) : ?>
-
             <v-list-tile >
                 <v-list-tile-avatar>
                     <img src="http://www.iconarchive.com/download/i78247/igh0zt/ios7-style-metro-ui/MetroUI-Other-Task.ico">
