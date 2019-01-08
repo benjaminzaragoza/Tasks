@@ -9,6 +9,7 @@
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
+    <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>@yield('title')</title>
     <style>
