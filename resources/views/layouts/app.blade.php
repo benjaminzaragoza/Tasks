@@ -124,7 +124,8 @@
             clipped
             right
     >
-        <v-toolbar color="blue darken-3" dark>
+        {{--<v-toolbar color="blue darken-3" dark>--}}
+        <v-toolbar color="primary" dark>
             <v-icon>face</v-icon><v-toolbar-title>Perfil</v-toolbar-title>
         </v-toolbar>
         <v-card flat>
@@ -163,7 +164,7 @@
 
         <v-card>
             @canImpersonate
-            <v-toolbar color="blue darken-3" dark>
+            <v-toolbar color="primary" dark>
                 <v-toolbar-title>Opcions administrador</v-toolbar-title>
             </v-toolbar>
             <v-card flat>
@@ -185,8 +186,8 @@
         </v-card>
 
     </v-navigation-drawer>
-
-        <v-toolbar color="#311B92" dark app clipped-left clipped-right fixed>
+    {{--primary--}}
+        <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
             <img src="img/task.png" style="margin-left: 1%;height:50%">
@@ -196,10 +197,10 @@
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
-            <v-btn color="#311B92" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
+            <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
             <v-form  action="logout" method="POST" >
             @csrf
-            <v-btn color="#311B92" type="submit" medium dark>
+            <v-btn color="primary" type="submit" medium dark>
                 <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
@@ -219,14 +220,14 @@
     </v-content>
     <v-footer
             app
-            color="#311B92"
+            color="primary"
             class=" lighten-1 white--text text-xs-center"
             height="auto"
     >
         <v-card
                 flat
                 tile
-                color="#311B92"
+                color="primary"
                 class="lighten-1 white--text text-xs-center"
         >
             <v-divider></v-divider>

@@ -82,7 +82,7 @@
                     class="my-5"
                     align-center
             >
-                <v-flex xs12 sm4 class="my-3">
+                <v-flex sm4 class="my-3">
                     <div class="text-xs-center">
                         <h2 class="headline">The best way to start developing</h2>
                         <span class="subheading">
@@ -90,12 +90,12 @@
               </span>
                     </div>
                 </v-flex>
-                <v-flex xs12 style="margin-top: -11%;">
+                <v-flex style="margin-top: -10%;">
                     <v-container grid-list-xl>
                         <v-layout row wrap align-center>
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
-                                    <v-card-text class="text-xs-center">
+                                    <v-card-text class="text-xs-center" style="margin-top: 5%;">
                                         <v-icon x-large class="blue--text text--lighten-2">assignment</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
@@ -144,7 +144,7 @@
             </v-layout>
         </section>
 
-        <section style="margin-top: -31%;">
+        <section>
             <v-parallax src="img/task2.jpg" height="480">
                 <v-layout column align-center justify-center>
                     {{--<v-btn--}}
