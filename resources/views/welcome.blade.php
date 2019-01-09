@@ -43,8 +43,8 @@
                     </v-form>
                         </v-layout>
                         @else
-                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('login') }}">Login</v-btn>
-                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}">Register</v-btn>
+                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
+                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}"><v-icon  left>person_add</v-icon>Register</v-btn>
                 @endauth
             </div>
     </v-toolbar>
@@ -53,15 +53,16 @@
             <v-parallax src="img/paper.jpg" height="720">
                 <v-layout column align-center justify-center class="white--text" >
                     <img src="img/task.png" alt="Vuetify.js" height="200">
-                    <h1 class="black--text mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
-                    <div class=" black--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                    <h1 class="primary--text darken-3 mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
+                    <div class=" primary--text darken-3 subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
                     <v-layout>
                     <v-btn
-                            class="light-blue darken-4 lighten-2 mt-5 font-weight-bold text-xs-center text-uppercase"
+                            class="primary mt-5 font-weight-bold text-xs-center text-uppercase"
                             dark
                             large
                             href="/home"
                     >
+                        <v-icon  left>star</v-icon>
                         Tasques Go
                     </v-btn>
                     <v-btn depressed
@@ -96,7 +97,7 @@
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                     <v-card-text class="text-xs-center" style="margin-top: 5%;">
-                                        <v-icon x-large class="blue--text text--lighten-2">assignment</v-icon>
+                                        <v-icon x-large class="secondary--text text--lighten-2">assignment</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
                                         <div class="headline text-xs-center">Material Design</div>
@@ -111,7 +112,7 @@
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                     <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="blue--text text--lighten-2">assignment_turned_in</v-icon>
+                                        <v-icon x-large class="secondary--text text--lighten-2">assignment_turned_in</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
                                         <div class="headline">Fast development</div>
@@ -126,7 +127,7 @@
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                     <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="blue--text text--lighten-2">assessment</v-icon>
+                                        <v-icon x-large class="secondary--text text--lighten-2">assessment</v-icon>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
                                         <div class="headline text-xs-center">Completely Open Sourced</div>
@@ -191,7 +192,7 @@
                             <v-list class="transparent">
                                 <v-list-tile>
                                     <v-list-tile-action>
-                                        <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                                        <v-icon class="secondary--text text--lighten-2">phone</v-icon>
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>777-867-5309</v-list-tile-title>
@@ -199,7 +200,7 @@
                                 </v-list-tile>
                                 <v-list-tile>
                                     <v-list-tile-action>
-                                        <v-icon class="blue--text text--lighten-2">place</v-icon>
+                                        <v-icon class="secondary--text text--lighten-2">place</v-icon>
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>Chicago, US</v-list-tile-title>
@@ -207,7 +208,7 @@
                                 </v-list-tile>
                                 <v-list-tile>
                                     <v-list-tile-action>
-                                        <v-icon class="blue--text text--lighten-2">email</v-icon>
+                                        <v-icon class="secondary--text text--lighten-2">email</v-icon>
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
@@ -220,7 +221,7 @@
             </v-container>
         </section>
 
-        <v-footer class="blue darken-2">
+        <v-footer class="primary darken-1">
             <v-layout row wrap align-center>
                 <v-flex xs12>
                     <div class="white--text ml-3">

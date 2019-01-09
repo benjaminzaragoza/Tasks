@@ -19,7 +19,6 @@ import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
 
 window.Vue = Vue
-window.Vue.use(Vuetify)
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
@@ -27,21 +26,22 @@ window.Vue.use(confirm)
 window.Vuetify = Vuetify
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
-const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#38BEC9'
+
+const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#4828d7'
 
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
-      base: '#38BEC9',
-      lighten1: '#44056E',
-      lighten2: '#62B0E8',
-      lighten3: '#84C5F4',
-      lighten4: '#B6E0FE',
-      lighten5: '#DCEEFB',
-      darken1: '#186FAF',
-      darken2: '#0F609B',
-      darken3: '#0A558C',
-      darken4: '#003E6B'
+      base: primaryColor,
+      lighten1: '#6c53df',
+      lighten2: '#917ee7',
+      lighten3: '#b6a9ef',
+      lighten4: '#c8bef3',
+      lighten5: '#dad4f7',
+      darken1: '#3920ac',
+      darken2: '#311b92',
+      darken3: '#24146c',
+      darken4: '#1d1056'
     },
     secondary: {
       base: '#2CB1BC',
@@ -68,16 +68,16 @@ window.Vue.use(window.Vuetify, {
       darken4: '#8D2B0B'
     },
     error: {
-      base: '#BA2525',
-      lighten1: '#D64545',
-      lighten2: '#E66A6A',
-      lighten3: '#F29B9B',
-      lighten4: '#FACDCD',
-      lighten5: '#FFEEEE',
-      darken1: '#A61B1B',
-      darken2: '#911111',
-      darken3: '#780A0A',
-      darken4: '#610404'
+      base: '#ff0000',
+      lighten1: '#ff3333',
+      lighten2: '#ff4d4d',
+      lighten3: '#ff8080',
+      lighten4: '#ffb3b3',
+      lighten5: '#ffe6e6',
+      darken1: '#e60000',
+      darken2: '#cc0000',
+      darken3: '#b30000',
+      darken4: '#800000'
     },
     // Taken from palete 3
     success: {

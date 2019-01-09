@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="manifest" href="/manifest.json">
     <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
-    <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}
@@ -125,7 +126,7 @@
             right
     >
         {{--<v-toolbar color="blue darken-3" dark>--}}
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="secondary" dark class="white--text">
             <v-icon>face</v-icon><v-toolbar-title>Perfil</v-toolbar-title>
         </v-toolbar>
         <v-card flat>
@@ -139,14 +140,14 @@
                 <h4>Rol</h4>
                 <p style="margin-top: 5%;">
                     @if(Auth::user()->admin)
-                        <v-chip color="teal" text-color="white" >
+                        <v-chip color="success darken3" text-color="white" >
                             <v-avatar>
                                 <v-icon>check_circle</v-icon>
                             </v-avatar>
                             Super Administrador
                         </v-chip>
                     @else
-                        <v-chip color="red" text-color="white">
+                        <v-chip color="error darken3" text-color="white">
                             <v-avatar>
                                 <v-icon>close</v-icon>
                             </v-avatar>
@@ -164,7 +165,7 @@
 
         <v-card>
             @canImpersonate
-            <v-toolbar color="primary" dark>
+            <v-toolbar color="secondary" dark class="white--text">
                 <v-toolbar-title>Opcions administrador</v-toolbar-title>
             </v-toolbar>
             <v-card flat>
@@ -178,7 +179,7 @@
 
                 <b>{{ Auth::user()->impersonatedBy()->name }}</b> està suplantant <b>{{ Auth::user()->name }}</b>
             </v-card-text>
-            <v-btn color="red" dark href="impersonate/leave" >Abandonar la suplantació
+            <v-btn color="error darken3" dark href="impersonate/leave" >Abandonar la suplantació
                 <v-icon dark right>supervisor_account</v-icon>
             </v-btn>
             @endImpersonating
@@ -187,7 +188,7 @@
 
     </v-navigation-drawer>
     {{--primary--}}
-        <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
+        <v-toolbar color="primary darken-1" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
             <img src="img/task.png" style="margin-left: 1%;height:50%">
@@ -197,10 +198,10 @@
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
-            <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
+            <v-btn color="primary darken-1" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
             <v-form  action="logout" method="POST" >
             @csrf
-            <v-btn color="primary" type="submit" medium dark>
+            <v-btn color="primary darken-1" type="submit" medium dark>
                 <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
@@ -220,15 +221,15 @@
     </v-content>
     <v-footer
             app
-            color="primary"
-            class=" lighten-1 white--text text-xs-center"
+            color="primary darken-1"
+            class=" white--text text-xs-center"
             height="auto"
     >
         <v-card
                 flat
                 tile
-                color="primary"
-                class="lighten-1 white--text text-xs-center"
+                color="primary darken-1"
+                class=" white--text text-xs-center"
         >
             <v-divider></v-divider>
 

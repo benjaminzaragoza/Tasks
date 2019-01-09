@@ -11,7 +11,7 @@
         >
             {{ tag.name }}
         </v-chip>
-        <v-btn color="primary" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
+        <v-btn color="secondary lighten-1" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-dialog v-model="dialog" width="700" @keydown.esc="dialog = false">
             <v-card>
             <v-toolbar dark color="yellow darken-4">
@@ -44,8 +44,8 @@
                 <v-divider></v-divider>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn flat @click="dialog = false">Cancel·lar</v-btn>
-                    <v-btn color="primary" flat @click="addTag">Afegir</v-btn>
+                    <v-btn color="error" flat @click="dialog = false">Cancel·lar</v-btn>
+                    <v-btn color="success"  @click="addTag">Afegir</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -83,7 +83,7 @@ export default {
     },
     async removeTag (tag) {
       let result = await this.$confirm('',
-        { title: 'Esteu segurs que voleu eliminar ' + tag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'blue' })
+        { title: 'Esteu segurs que voleu eliminar ' + tag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'error darken-1' })
       if (result) {
         window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { data: { tag: tag } }).then((response) => {
           console.log(response.data)

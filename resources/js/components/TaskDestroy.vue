@@ -33,7 +33,7 @@ export default {
           title: 'Esteu segurs voleu elimnar ' + task.name + '?',
           buttonTruetext: 'Eliminar',
           buttonFalsetext: 'Cancel·lar',
-          color: 'error'
+          color: 'error darken-1'
         })
       if (result) {
         this.removing = true
