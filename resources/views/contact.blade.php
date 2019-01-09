@@ -19,7 +19,7 @@
                 justify-space-around
                 wrap
         >
-            <v-avatar color="indigo" >
+            <v-avatar color="secondary" >
                 <v-icon dark >account_circle</v-icon>
             </v-avatar>
 
@@ -44,7 +44,7 @@
                 <span class="white--text headline">B</span>
             </v-avatar>
 
-            <v-avatar color="red">
+            <v-avatar color="error">
                 <span  class="white--text headline">Z</span>
             </v-avatar>
         </v-layout>

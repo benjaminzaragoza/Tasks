@@ -37,7 +37,7 @@
                     </v-form>
                     <v-form style="margin-top: 1%" action="logout" method="POST" >
                         @csrf
-                        <v-btn type="submit" medium color="red">
+                        <v-btn type="submit" medium color="error">
                             <v-icon color="white" large >exit_to_app</v-icon>
                         </v-btn>
                     </v-form>
@@ -62,7 +62,7 @@
                             large
                             href="/home"
                     >
-                        <v-icon  left>star</v-icon>
+                        <v-icon  color="yellow" left>star</v-icon>
                         Tasques Go
                     </v-btn>
                     <v-btn depressed
