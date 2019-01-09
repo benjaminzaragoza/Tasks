@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar color="pink darken-2">
+        <v-toolbar color="pink darken-2" style="margin-top: -2.5%">
             <v-menu>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -65,7 +65,7 @@
                     :pagination.sync="pagination"
                     class="hidden-md-and-down"
             >
-                <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+                <v-progress-linear slot="progress" color="primary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: task}">
                      <tr class="text-xs-left">
                         <td class="text-xs-left" >{{task.id}}</td>
@@ -160,7 +160,7 @@ export default {
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 5
       },
       headers: [
         { text: 'Id', value: 'id' },

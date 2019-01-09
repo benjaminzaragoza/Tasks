@@ -5,9 +5,7 @@
 @endsection
 @section('content')
     <v-card>
-        <v-toolbar dark color="blue accent-4
-
-" dark>
+        <v-toolbar dark color="blue accent-4" dark>
 
             <v-toolbar-title color="black">Tasques</v-toolbar-title>
         </v-toolbar>

@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span >
         <tasks-list :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
     </span>

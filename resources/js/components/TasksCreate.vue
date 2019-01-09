@@ -1,7 +1,7 @@
 <template>
     <span>
      <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" @keydown.esc.stop.prevent="dialog=false">
-            <v-toolbar color="primary" class="white--text">
+            <v-toolbar color="pink" class="white--text">
                 <v-btn flat icon class="white--text" @click="dialog=false">
                     <v-icon>close</v-icon>
                 </v-btn>

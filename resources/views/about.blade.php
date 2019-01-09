@@ -22,7 +22,7 @@
                 </v-card-title>
 
                 <v-card-actions>
-                    <v-btn flat color="blue" class=" font-weight-bold text-xs-center" href="https://github.com/benjaminzaragoza">Saber mes</v-btn>
+                    <v-btn flat color="primary" class=" font-weight-bold text-xs-center" href="https://github.com/benjaminzaragoza">Saber mes</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>

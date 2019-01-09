@@ -27037,10 +27037,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue___default.a;
-window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vuetify___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_14__plugins_permissions__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_15__plugins_snackbar__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_16__plugins_confirm__["a" /* default */]);
+
+window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
+
+var PRIMARY_COLOR_KEY = 'primary_color_key';
+
+var primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#4828d7';
+
+window.Vue.use(window.Vuetify, {
+  theme: {
+    primary: {
+      base: primaryColor,
+      lighten1: '#6c53df',
+      lighten2: '#917ee7',
+      lighten3: '#b6a9ef',
+      lighten4: '#c8bef3',
+      lighten5: '#dad4f7',
+      darken1: '#3920ac',
+      darken2: '#311b92',
+      darken3: '#24146c',
+      darken4: '#1d1056'
+    },
+    secondary: {
+      base: '#2CB1BC',
+      lighten1: '#38BEC9',
+      lighten2: '#54D1DB',
+      lighten3: '#87EAF2',
+      lighten4: '#BEF8FD',
+      lighten5: '#E0FCFF',
+      darken1: '#14919B',
+      darken2: '#0E7C86',
+      darken3: '#0A6C74',
+      darken4: '#044E54'
+    },
+    accent: {
+      base: '#F0B429',
+      lighten1: '#F7C948',
+      lighten2: '#FADB5F',
+      lighten3: '#FCE588',
+      lighten4: '#FFF3C4',
+      lighten5: '#FFFBEA',
+      darken1: '#DE911D',
+      darken2: '#CB6E17',
+      darken3: '#B44D12',
+      darken4: '#8D2B0B'
+    },
+    error: {
+      base: '#ff0000',
+      lighten1: '#ff3333',
+      lighten2: '#ff4d4d',
+      lighten3: '#ff8080',
+      lighten4: '#ffb3b3',
+      lighten5: '#ffe6e6',
+      darken1: '#e60000',
+      darken2: '#cc0000',
+      darken3: '#b30000',
+      darken4: '#800000'
+    },
+    // Taken from palete 3
+    success: {
+      base: '#27AB83',
+      lighten1: '#3EBD93',
+      lighten2: '#65D6AD',
+      lighten3: '#8EEDC7',
+      lighten4: '#C6F7E2',
+      lighten5: '#EFFCF6',
+      darken1: '#199473',
+      darken2: '#147D64',
+      darken3: '#0C6B58',
+      darken4: '#014D40'
+    },
+    grey: {
+      base: '#627D98',
+      lighten1: '#829AB1',
+      lighten2: '#9FB3C8',
+      lighten3: '#BCCCDC',
+      lighten4: '#D9E2EC',
+      lighten5: '#F0F4F8',
+      darken1: '#486581',
+      darken2: '#334E68',
+      darken3: '#243B53',
+      darken4: '#102A43'
+    }
+  }
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -75031,7 +75114,7 @@ var render = function() {
         [
           _c(
             "v-toolbar",
-            { staticClass: "white--text", attrs: { color: "primary" } },
+            { staticClass: "white--text", attrs: { color: "pink" } },
             [
               _c(
                 "v-btn",
@@ -75363,7 +75446,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 5
       },
       headers: [{ text: 'Id', value: 'id' }, { text: 'Name', value: 'name' }, { text: 'User', value: 'user_id' }, { text: 'Completat', value: 'completed' }, { text: 'Etiquetes', value: 'tags' }, { text: 'Creat', value: 'created_at_timestamp' }, { text: 'Modificat', value: 'updated_at_timestamp' }, { text: 'Accions', sortable: false, value: 'full_search' }]
     };
@@ -75696,7 +75779,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   title: 'Esteu segurs voleu elimnar ' + task.name + '?',
                   buttonTruetext: 'Eliminar',
                   buttonFalsetext: 'Cancel·lar',
-                  color: 'error'
+                  color: 'error darken-1'
                 });
 
               case 2:
@@ -76980,7 +77063,10 @@ var render = function() {
         [
           _c(
             "v-toolbar",
-            { staticClass: "white--text", attrs: { color: "primary" } },
+            {
+              staticClass: "white--text",
+              attrs: { color: "success lighten-2" }
+            },
             [
               _c(
                 "v-btn",
@@ -77439,7 +77525,10 @@ var render = function() {
         [
           _c(
             "v-toolbar",
-            { staticClass: "white--text", attrs: { color: "blue darken-3" } },
+            {
+              staticClass: "white--text",
+              attrs: { color: "secondary  lighten-1" }
+            },
             [
               _c(
                 "v-btn",
@@ -77463,6 +77552,11 @@ var render = function() {
               _c("v-toolbar-title", { staticClass: "white--text" }, [
                 _vm._v("Mostrar tasca")
               ]),
+              _c(
+                "v-icon",
+                { staticStyle: { "margin-left": "1%" }, attrs: { dark: "" } },
+                [_vm._v("visibility")]
+              ),
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
@@ -77703,7 +77797,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.$confirm('', { title: 'Esteu segurs que voleu eliminar ' + tag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'blue' });
+                return this.$confirm('', { title: 'Esteu segurs que voleu eliminar ' + tag.name + ' ?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancel·lar', color: 'error darken-1' });
 
               case 2:
                 result = _context.sent;
@@ -77770,7 +77864,12 @@ var render = function() {
       _c(
         "v-btn",
         {
-          attrs: { color: "primary", flat: "", small: "", icon: "" },
+          attrs: {
+            color: "secondary lighten-1",
+            flat: "",
+            small: "",
+            icon: ""
+          },
           on: {
             click: function($event) {
               _vm.dialog = true
@@ -77900,7 +77999,7 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { flat: "" },
+                      attrs: { color: "error", flat: "" },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
@@ -77912,10 +78011,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-btn",
-                    {
-                      attrs: { color: "primary", flat: "" },
-                      on: { click: _vm.addTag }
-                    },
+                    { attrs: { color: "success" }, on: { click: _vm.addTag } },
                     [_vm._v("Afegir")]
                   )
                 ],
@@ -77954,7 +78050,10 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { color: "pink darken-2" } },
+        {
+          staticStyle: { "margin-top": "-2.5%" },
+          attrs: { color: "pink darken-2" }
+        },
         [
           _c(
             "v-menu",
@@ -78252,7 +78351,11 @@ var render = function() {
             },
             [
               _c("v-progress-linear", {
-                attrs: { slot: "progress", color: "blue", indeterminate: "" },
+                attrs: {
+                  slot: "progress",
+                  color: "primary",
+                  indeterminate: ""
+                },
                 slot: "progress"
               })
             ],
@@ -78936,7 +79039,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { dark: "", color: "primary" } },
+        { attrs: { dark: "", color: "primary darken-2" } },
         [
           _c(
             "v-toolbar-title",
@@ -79025,7 +79128,7 @@ var render = function() {
         [
           _c(
             "v-btn",
-            { attrs: { href: "/", type: "submit", color: "primary" } },
+            { attrs: { href: "/", type: "submit", color: "primary darken-2" } },
             [_c("v-icon", { staticClass: "mr-2" }, [_vm._v("home")])],
             1
           ),
@@ -79036,7 +79139,7 @@ var render = function() {
             "v-btn",
             {
               attrs: {
-                color: "primary",
+                color: "primary darken-2",
                 type: "submit",
                 disabled: _vm.$v.$invalid
               }
