@@ -17,6 +17,7 @@ import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
+import Color from './components/Color'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -25,9 +26,12 @@ window.Vue.use(confirm)
 
 window.Vuetify = Vuetify
 
-const PRIMARY_COLOR_KEY = 'primary_color_key'
+const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
+const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#4828d7'
+
+const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#2CB1BC'
 
 window.Vue.use(window.Vuetify, {
   theme: {
@@ -44,7 +48,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#1d1056'
     },
     secondary: {
-      base: '#2CB1BC',
+      base: secondaryColor,
       lighten1: '#38BEC9',
       lighten2: '#54D1DB',
       lighten3: '#87EAF2',
@@ -122,6 +126,7 @@ window.Vue.component('user-select', UserSelect)
 window.Vue.component('tags', Tags)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
+window.Vue.component('color', Color)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))

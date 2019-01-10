@@ -161,7 +161,10 @@
                     <v-treeview style="margin-top: 5%;">{{ implode(', ',Auth::user()->map()['permissions']) }}</v-treeview>
                 </template>
                 <p> </p>
+                <h4>Colors Tema</h4>
+                <color></color>
             </v-card-text>
+
         </v-card>
 
         <v-card>
@@ -189,7 +192,7 @@
 
     </v-navigation-drawer>
     {{--primary--}}
-        <v-toolbar color="primary darken-1" dark app clipped-left clipped-right fixed>
+        <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
             <img src="img/task.png" style="margin-left: 1%;height:50%">
@@ -199,10 +202,10 @@
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
-            <v-btn color="primary darken-1" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
+            <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
             <v-form  action="logout" method="POST" >
             @csrf
-            <v-btn color="primary darken-1" type="submit" medium dark>
+            <v-btn color="primary" type="submit" medium dark>
                 <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
@@ -222,14 +225,14 @@
     </v-content>
     <v-footer
             app
-            color="primary darken-1"
+            color="primary"
             class=" white--text text-xs-center"
             height="auto"
     >
         <v-card
                 flat
                 tile
-                color="primary darken-1"
+                color="primary"
                 class=" white--text text-xs-center"
         >
             <v-divider></v-divider>
