@@ -18,6 +18,7 @@ import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/Color'
+import Profile from './components/Profile'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -126,6 +127,7 @@ window.Vue.component('user-select', UserSelect)
 window.Vue.component('tags', Tags)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
+window.Vue.component('profile', Profile)
 window.Vue.component('color', Color)
 
 window.Vue.component('login-form', LoginForm)

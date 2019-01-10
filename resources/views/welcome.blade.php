@@ -6,7 +6,7 @@
     <v-app light>
     <v-toolbar class="white">
             @auth
-            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
 
             @else
             <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
@@ -17,11 +17,11 @@
                 @if (Route::has('login'))
                 @auth
                         <div style="margin-left: 40%">
-                    <v-layout>
+                    <v-layout >
                         <v-avatar @click="drawerRight=!drawerRight" style="margin-top: 2%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
                             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-right: 60%;margin-top: -11%;">
                         </v-avatar>
-                        <v-layout>
+                        <v-layout class="hidden-sm-and-down">
                             @impersonating
                                 <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )" style="margin-top: 10%;">
                                     <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar" style="margin-right: 36%;margin-top: 11%;">
@@ -34,10 +34,10 @@
                             </v-flex>
                         </v-layout>
                         @impersonating
-                        <a style="margin-top: 3%;" href="impersonate/leave">Abandonar la suplantació</a>
+                        <a class="hidden-sm-and-down" style="margin-top: 3%;" href="impersonate/leave">Abandonar la suplantació</a>
                         @endImpersonating
                     <v-form style="margin-top: 1%">
-                        <v-btn class=" font-weight-bold text-xs-center" color="primary" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
+                        <v-btn class=" font-weight-bold text-xs-center hidden-sm-and-down" color="primary" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
                     </v-form>
                     <v-form style="margin-top: 1%" action="logout" method="POST" >
                         @csrf
