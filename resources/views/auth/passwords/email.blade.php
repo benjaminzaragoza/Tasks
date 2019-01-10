@@ -14,7 +14,7 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm4>
                 <v-card class="elevation-12">
-                    <v-toolbar color="blue lighten-1" dark>
+                    <v-toolbar color="primary lighten-1" dark>
                         <v-toolbar-title>
                             {{ __('Reset Password') }}
                         </v-toolbar-title>

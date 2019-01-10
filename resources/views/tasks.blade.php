@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <v-card>
-        <v-toolbar dark color="blue accent-4" dark>
+        <v-toolbar dark color="primary accent-4" dark>
 
             <v-toolbar-title color="black">Tasques</v-toolbar-title>
         </v-toolbar>
@@ -42,14 +42,14 @@
                         @csrf
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <v-btn type="submit" dark color="warning">
+                        <v-btn type="submit" dark color="accent darken-1">
                             <button>Descompletar</button>
                         </v-btn>
                     </form>
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <v-btn  color="error">
+                        <v-btn type="submit" dark color="error darken-1">
                             <button>Eliminar</button>
                         </v-btn>
 
@@ -62,18 +62,18 @@
                         @csrf
 
                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <v-btn type="submit" dark color="cyan" >
+                        <v-btn type="submit" dark color="secondary lighten-1" >
                             <button>Completar</button>
                         </v-btn>
                     </form>
 
-                    <v-btn  type="submit" dark color="pink lighten-1" href="/task_edit/{{ $task->id }}">
+                    <v-btn  type="submit" dark color="pink" href="/task_edit/{{ $task->id }}">
                         <button>Modificar</button>
                     </v-btn>
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <v-btn type="submit" dark color="red darken-1">
+                        <v-btn type="submit" dark color="error darken-1">
                             <button>Eliminar</button>
                         </v-btn>
                     </form>

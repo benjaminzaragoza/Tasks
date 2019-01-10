@@ -47,7 +47,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" flat @click="createDialog=false">
+                            <v-btn color="primary darken-1" flat @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Close</v-btn>
                             <v-btn id="button_add_tag" dark color="green dark" flat @click="add">
@@ -82,7 +82,7 @@
                     </v-card>
                 </v-dialog>
                 <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
-                        <v-toolbar color="blue" class="white--text">
+                        <v-toolbar color="primary" class="white--text">
                             <v-btn flat icon class="white--text" @click="editDialog=false">
                                 <v-icon>close</v-icon>
                             </v-btn>
@@ -174,7 +174,7 @@
                                         </v-btn>
                                         <v-btn v-can="tags.update" icon flat title="Editar la tag"
                                                @click="showUpdate(tag)">
-                                            <v-icon color="blue">edit</v-icon>
+                                            <v-icon color="primary">edit</v-icon>
                                         </v-btn>
                                         <v-btn v-can="tags.destroy" icon flat title="Eliminar la tag"
                                                @click="showDestroy(tag)">
