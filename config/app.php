@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Lab404\Impersonate\ImpersonateServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class
 
     ],
 

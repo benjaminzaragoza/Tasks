@@ -6,34 +6,38 @@
     <v-app light>
     <v-toolbar class="white">
             @auth
-            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+
             @else
-                <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center">Tasques</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+            <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
         <v-spacer></v-spacer>
-            <div class="top-right links">
+
+
+                @if (Route::has('login'))
                 @auth
-                    <v-layout>
+                        <div style="margin-left: 40%">
+                    <v-layout >
                         <v-avatar @click="drawerRight=!drawerRight" style="margin-top: 2%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
                             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-right: 60%;margin-top: -11%;">
                         </v-avatar>
-                        <v-layout>
+                        <v-layout class="hidden-sm-and-down">
                             @impersonating
                                 <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )" style="margin-top: 10%;">
                                     <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar" style="margin-right: 36%;margin-top: 11%;">
                                 </v-avatar>
                             @endImpersonating
-                            <v-flex xs12 style="margin-top: 1%">
+                            <v-flex xs16 style="margin-top: 1%">
                                 @canImpersonate
                                 <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
                                 @endCanImpersonate
                             </v-flex>
                         </v-layout>
                         @impersonating
-                        <a style="margin-top: 3%;" href="impersonate/leave">Abandonar la suplantació</a>
+                        <a class="hidden-sm-and-down" style="margin-top: 3%;" href="impersonate/leave">Abandonar la suplantació</a>
                         @endImpersonating
                     <v-form style="margin-top: 1%">
-                        <v-btn class=" font-weight-bold text-xs-center" color="primary" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
+                        <v-btn class=" font-weight-bold text-xs-center hidden-sm-and-down" color="primary" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
                     </v-form>
                     <v-form style="margin-top: 1%" action="logout" method="POST" >
                         @csrf
@@ -42,19 +46,22 @@
                         </v-btn>
                     </v-form>
                         </v-layout>
-                        @else
+                        </div>
+
+                    @else
                     <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
                     <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}"><v-icon  left>person_add</v-icon>Register</v-btn>
                 @endauth
-            </div>
+                @endif
+
     </v-toolbar>
     <v-content style="margin-top: 0%;">
         <section>
             <v-parallax src="img/paper.jpg" height="720">
                 <v-layout column align-center justify-center class="white--text" >
                     <img src="img/task.png" alt="Vuetify.js" height="200">
-                    <h1 class="primary--text darken-3 mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
-                    <div class=" primary--text darken-3 subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                    <h1 class="primary--text mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
+                    <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
                     <v-layout>
                     <v-btn
                             class="primary mt-5 font-weight-bold text-xs-center text-uppercase"
@@ -221,7 +228,7 @@
             </v-container>
         </section>
 
-        <v-footer class="primary darken-1">
+        <v-footer class="primary">
             <v-layout row wrap align-center>
                 <v-flex xs12>
                     <div class="white--text ml-3">

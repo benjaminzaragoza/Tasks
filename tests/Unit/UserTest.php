@@ -90,7 +90,7 @@ class UserTest extends TestCase
         ]);
         $user->assignPhoto($photo);
         $user = $user->fresh();
-        $this->assertNotNull(1,$user->photo);
+        $this->assertNotNull($user->photo);
         $this->assertEquals('/photo1.png',$user->photo->url);
         $this->assertEquals($user->id,$user->photo->id);
     }

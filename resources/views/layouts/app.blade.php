@@ -36,7 +36,7 @@
             <v-list class="pa-0">
                 <v-list-tile avatar>
                     <v-list-tile-avatar >
-                        <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
+                        <img   src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
                     </v-list-tile-avatar>
                     <v-list-tile-content>
                         <v-list-tile-title>{{ Auth::user()->name }}</v-list-tile-title>
@@ -133,7 +133,7 @@
         <v-card flat>
             <v-card-text>
                 <h3 style=" margin-left: 2%;text-align: center">
-                    <v-avatar @click="drawerRight=!drawerRight" style="margin-top: 2%;margin-right: 5%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+                    <v-avatar  @click="drawerRight=!drawerRight" style="margin-top: 2%;margin-right: 5%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
                         <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-left: 15%;margin-right: 40%;margin-top: -11%;">
                     </v-avatar>{{ Auth::user()->name }}</h3>
 
@@ -161,7 +161,10 @@
                     <v-treeview style="margin-top: 5%;">{{ implode(', ',Auth::user()->map()['permissions']) }}</v-treeview>
                 </template>
                 <p> </p>
+                <h4>Colors Tema</h4>
+                <color></color>
             </v-card-text>
+
         </v-card>
 
         <v-card>
@@ -189,20 +192,20 @@
 
     </v-navigation-drawer>
     {{--primary--}}
-        <v-toolbar color="primary darken-1" dark app clipped-left clipped-right fixed>
+        <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title class="font-weight-bold" >Menú</v-toolbar-title>
-            <img src="img/task.png" style="margin-left: 1%;height:50%">
-            <span v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
+            <v-toolbar-title class="hidden-sm-and-down" class="font-weight-bold " >Menú</v-toolbar-title>
+            <img class="hidden-sm-and-down" src="img/task.png" style="margin-left: 1%;height:50%">
+            <span class="hidden-sm-and-down" v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
             <v-spacer></v-spacer>
-            <h4 class="white-text mb-3 font-italic text-center" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-        <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+            <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+        <v-avatar  @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
-            <v-btn color="primary darken-1" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
+            <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
             <v-form  action="logout" method="POST" >
             @csrf
-            <v-btn color="primary darken-1" type="submit" medium dark>
+            <v-btn color="primary" type="submit" medium dark>
                 <v-icon large >exit_to_app</v-icon>
             </v-btn>
         </v-form>
@@ -222,14 +225,14 @@
     </v-content>
     <v-footer
             app
-            color="primary darken-1"
+            color="primary"
             class=" white--text text-xs-center"
             height="auto"
     >
         <v-card
                 flat
                 tile
-                color="primary darken-1"
+                color="primary"
                 class=" white--text text-xs-center"
         >
             <v-divider></v-divider>

@@ -32,11 +32,11 @@
 
         </v-card-text>
         <v-card-actions>
-            <v-btn href="/" type="submit" color="primary darken-2">
+            <v-btn href="/" type="submit" color="primary">
                 <v-icon class="mr-2" >home</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary darken-2" type="submit" :disabled="$v.$invalid" >Login</v-btn>
+            <v-btn color="primary" type="submit" :disabled="$v.$invalid" >Login</v-btn>
         </v-card-actions>
     </v-form>
 </template>
