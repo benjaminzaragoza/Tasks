@@ -32,7 +32,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function photo()
+    {
+        return $this->hasOne(Photo::class);
+    }
+    public function assignPhoto(Photo $photo)
+    {
+        $photo->user_id = $this->id;
+        $photo->save();
+        return $this;
+    }
+    public function avatars()
+    {
+        return $this->hasMany(Avatar::class);
+    }
+    public function addAvatar(Avatar $avatar)
+    {
+        $this->avatars()->save($avatar);
+        return $this;
+    }
 
     public function tasks()
     {

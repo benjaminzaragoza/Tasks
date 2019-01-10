@@ -80364,7 +80364,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "blue darken-1", flat: "" },
+                          attrs: { color: "primary darken-1", flat: "" },
                           on: {
                             click: function($event) {
                               _vm.createDialog = false
@@ -80604,7 +80604,7 @@ var render = function() {
             [
               _c(
                 "v-toolbar",
-                { staticClass: "white--text", attrs: { color: "blue" } },
+                { staticClass: "white--text", attrs: { color: "primary" } },
                 [
                   _c(
                     "v-btn",
@@ -81007,7 +81007,7 @@ var render = function() {
                                     [
                                       _c(
                                         "v-icon",
-                                        { attrs: { color: "blue" } },
+                                        { attrs: { color: "primary" } },
                                         [_vm._v("edit")]
                                       )
                                     ],
