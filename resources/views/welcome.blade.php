@@ -9,7 +9,7 @@
             <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
 
             @else
-            <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
+            <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
         <v-spacer></v-spacer>
 
@@ -62,7 +62,7 @@
                     <img src="img/task.png" alt="Vuetify.js" height="200">
                     <h1 class="primary--text mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
                     <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
-                    <v-layout>
+                    <div class="text-xs-center">
                     <v-btn
                             class="primary mt-5 font-weight-bold text-xs-center text-uppercase"
                             dark
@@ -75,11 +75,10 @@
                     <v-btn depressed
                            class="dark mt-5"
                            target="_blank"
-                           large
                            href="https://github.com/benjaminzaragoza/Tasks"
                     ><img src="img/github.png" alt="Github" height="65">
                     </v-btn>
-                    </v-layout>
+                    </div>
             </v-parallax>
         </section>
 
