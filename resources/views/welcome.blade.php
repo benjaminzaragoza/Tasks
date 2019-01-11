@@ -6,14 +6,12 @@
     <v-app light>
     <v-toolbar class="white">
             @auth
-            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down">Tasques de {{(Auth::user()->name)}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/task.png" height="40">
+            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" style="margin-right: 1%">Tasques de {{(Auth::user()->name)}}</h1><img src="img/task.png" height="40">
 
             @else
             <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
         <v-spacer></v-spacer>
-
-
                 @if (Route::has('login'))
                 @auth
                         <div style="margin-left: 40%">
@@ -154,14 +152,6 @@
         <section>
             <v-parallax src="img/task2.jpg" height="480">
                 <v-layout column align-center justify-center>
-                    {{--<v-btn--}}
-                            {{--class="blue lighten-2 mt-5"--}}
-                            {{--dark--}}
-                            {{--large--}}
-                            {{--href="/home"--}}
-                    {{-->--}}
-                        {{--Start!--}}
-                    {{--</v-btn>--}}
                     <v-btn large color="primary"
                             href="/home"
                     >
