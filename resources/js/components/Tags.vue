@@ -47,7 +47,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary darken-1" flat @click="createDialog=false">
+                            <v-btn color="primary" flat @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Close</v-btn>
                             <v-btn id="button_add_tag" dark color="green dark" flat @click="add">
@@ -201,23 +201,33 @@
                         sm6
                         md4
                 >
-                    <v-card class="mb-1">
-                        <v-list dense>
-                            <v-list-tile>
-                               <v-list-tile-content>Nom:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ tag.name }}</v-list-tile-content>
-                            </v-list-tile>
+                    <v-card class="mb-4">
+                        <v-card-title class="pb-0"><h4 class="mb-0 font-weight-bold">Tag: {{ tag.name }}</h4></v-card-title>
+                        <v-list dense  style="margin-top: 5%">
                             <v-list-tile>
                                <v-list-tile-content>Descripcio:</v-list-tile-content>
                               <v-list-tile-content class="align-end">{{ tag.description }}</v-list-tile-content>
                             </v-list-tile>
                             <v-list-tile>
                                 <v-list-tile-content>Color:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">
-                                <div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div>
+                                <v-list-tile-content style="margin-right: -80%">
+                                    <v-icon x-medium :color="tag.color">local_offer</v-icon>
                                 </v-list-tile-content>
                             </v-list-tile>
-                        </v-list>
+                            <v-list-tile>
+                                <v-list-tile-content>Detalls</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                    <div class="align-end">
+                                        <v-btn v-can="tags.show" icon flat title="Mostrar la tag"
+                                               @click="showShow(tag)">
+                                            <v-icon color="green">visibility</v-icon>
+                                        </v-btn>
+                                        </div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            </v-list>
+
+
                     </v-card>
                 </v-flex>
             </v-data-iterator>
