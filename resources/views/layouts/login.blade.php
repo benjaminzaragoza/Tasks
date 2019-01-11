@@ -9,7 +9,7 @@
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="primary"/>
+    <meta name="theme-color" content="#4828d7"/>
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}

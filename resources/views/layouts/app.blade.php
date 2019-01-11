@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="primary"/>
+    <meta name="theme-color" content="#4828d7"/>
     <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
@@ -28,14 +28,13 @@
             fixed
             app
             clipped
-
+            left
     >
         <v-toolbar flat class="transparent " >
-            <v-list class="pa-0" class="hidden-sm-and-down">
-                <v-list-tile avatar>
+            <v-list class="pa-0" class="hidden-sm-and-down" >
+                <v-list-tile avatar >
                     <v-list-tile-avatar >
-                        <img
-                             src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
+                        <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
                     </v-list-tile-avatar>
                     <v-list-tile-content>
                         <v-list-tile-title>{{ Auth::user()->name }}</v-list-tile-title>
@@ -195,17 +194,19 @@
             <v-toolbar-title class="hidden-sm-and-down" class="font-weight-bold " >Menú</v-toolbar-title>
             <img class="hidden-sm-and-down" src="img/task.png" style="margin-left: 1%;height:50%">
             <span class="hidden-sm-and-down" v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
-            <v-spacer></v-spacer>
+            <v-spacer class="hidden-sm-and-down"></v-spacer>
             <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
         <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
+            <v-spacer class="hidden-sm-and-up"></v-spacer>
             <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
             <v-form  action="logout" method="POST" >
             @csrf
             <v-btn color="primary" type="submit" medium dark>
                 <v-icon large >exit_to_app</v-icon>
             </v-btn>
+
         </v-form>
 
         </v-toolbar>
