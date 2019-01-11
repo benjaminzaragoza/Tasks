@@ -265,7 +265,6 @@
                             </v-list-tile>
                             </v-list>
                     </v-card>
-
                 </v-flex>
             </v-data-iterator>
         </span>

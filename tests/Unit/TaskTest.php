@@ -196,7 +196,7 @@ class TaskTest extends TestCase
         $this->assertNotNull($mappedTask['updated_at_formatted']);
         $this->assertNotNull($mappedTask['updated_at_timestamp']);
         $this->assertEquals($mappedTask['user_gravatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
-        $this->assertEquals($mappedTask['full_search'],'1 Comprar pa Bla bla bla Pendent Pepe Pardo Jeans pepepardo@jeans.com');
+        $this->assertEquals($mappedTask['full_search'],'1 Comprar pa Bla bla bla Pendent Pepe Pardo Jeans pepepardo@jeans.com Tag1 blue Tag2 red ');
 
 //        dump($mappedTask['tags'][0]);
         $this->assertEquals($mappedTask['tags'][0]->name,'Tag1');
