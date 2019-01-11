@@ -183,17 +183,33 @@
                                     </td>
                             </template>
                         </v-data-table>
-                         <v-data-iterator
-                                 class="hidden-lg-and-up"
-                                 :items="dataTags"
-                                 :search="search"
-                                 no-results-text="No s'ha trobat cap registre"
-                                 no-data-text="No hiha dades disponibles"
-                                 rows-per-page-text="Tags per pagina"
-                                 :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
-                                 :loading="loading"
-                                 :pagination.sync="pagination"
-                         >
+                    </v-card-text>
+                </v-card>
+                <v-btn
+                        @click="showCreate"
+                        fab
+                        bottom
+                        right
+                        fixed
+                        large
+                        color="pink accent-3"
+                        class="white--text "
+                        v-can="tags.store"
+                >
+                    <v-icon>add</v-icon>
+                </v-btn>
+            </v-flex>
+                                 <v-data-iterator
+                                         class="hidden-lg-and-up"
+                                         :items="dataTags"
+                                         :search="search"
+                                         no-results-text="No s'ha trobat cap registre"
+                                         no-data-text="No hiha dades disponibles"
+                                         rows-per-page-text="Tags per pagina"
+                                         :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
+                                         :loading="loading"
+                                         :pagination.sync="pagination"
+                                 >
                 <v-flex
                         slot="item"
                         slot-scope="{item:tag}"
@@ -210,7 +226,7 @@
                             </v-list-tile>
                             <v-list-tile>
                                 <v-list-tile-content>Color:</v-list-tile-content>
-                                <v-list-tile-content style="margin-right: -80%">
+                                <v-list-tile-content style="margin-right: -70%">
                                     <v-icon x-medium :color="tag.color">local_offer</v-icon>
                                 </v-list-tile-content>
                             </v-list-tile>
@@ -225,28 +241,33 @@
                                         </div>
                                 </v-list-tile-content>
                             </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Editar</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                    <div class="align-end">
+                                        <v-btn v-can="tags.update" icon flat title="Editar la tag"
+                                               @click="showUpdate(tag)">
+                                            <v-icon color="primary">edit</v-icon>
+                                        </v-btn>
+                                        </div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Borrar</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                    <div class="align-end">
+                                        <v-btn v-can="tags.destroy" icon flat title="Eliminar la tag"
+                                               @click="showDestroy(tag)">
+                                            <v-icon title="Delete tag" color="red">delete</v-icon>
+                                        </v-btn>
+                                        </div>
+                                </v-list-tile-content>
+                            </v-list-tile>
                             </v-list>
-
-
                     </v-card>
+
                 </v-flex>
             </v-data-iterator>
-                    </v-card-text>
-                </v-card>
-                <v-btn
-                        @click="showCreate"
-                        fab
-                        bottom
-                        right
-                        fixed
-                        large
-                        color="pink accent-3"
-                        class="white--text"
-                        v-can="tags.store"
-                >
-                    <v-icon>add</v-icon>
-                </v-btn>
-            </v-flex>
         </span>
 </template>
 
