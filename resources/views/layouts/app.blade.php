@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#2680C2"/>
+    <meta name="theme-color" content="primary"/>
     <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <link rel=" shortcut icon" href="https://www.freeiconspng.com/uploads/tasks-icon-26.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
@@ -28,26 +28,25 @@
             fixed
             app
             clipped
-            hide-overlay
-            stateless
 
     >
-        <v-toolbar flat class="transparent">
-            <v-list class="pa-0">
+        <v-toolbar flat class="transparent " >
+            <v-list class="pa-0" class="hidden-sm-and-down">
                 <v-list-tile avatar>
                     <v-list-tile-avatar >
-                        <img   src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
+                        <img
+                             src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
                     </v-list-tile-avatar>
                     <v-list-tile-content>
                         <v-list-tile-title>{{ Auth::user()->name }}</v-list-tile-title>
                     </v-list-tile-content>
 
-                    <v-list-tile-action>
+                    <v-list-tile-action class="hidden-sm-and-down">
                         <v-btn
                                 icon
                                 @click.stop="mini = !mini"
                         >
-                            <v-icon>chevron_left</v-icon>
+                            <v-icon >chevron_left</v-icon>
                         </v-btn>
                     </v-list-tile-action>
                 </v-list-tile>
@@ -126,7 +125,6 @@
             clipped
             right
     >
-        {{--<v-toolbar color="blue darken-3" dark>--}}
         <v-toolbar color="secondary" dark class="white--text">
             <v-icon>face</v-icon><v-toolbar-title>Perfil</v-toolbar-title>
         </v-toolbar>
@@ -199,7 +197,7 @@
             <span class="hidden-sm-and-down" v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
             <v-spacer></v-spacer>
             <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-        <v-avatar  @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
+        <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
             <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
@@ -237,8 +235,8 @@
         >
             <v-divider></v-divider>
 
-            <v-card-text class="white--text">
-                &copy;2018 — <strong>Created by Benjamin Zaragoza, &copy; 2018 All rights reserved                                                                                              </strong>
+            <v-card-text class="white--text hidden-sm-and-down" >
+                &copy;2018 — <strong >Created by Benjamin Zaragoza, &copy; 2018 All rights reserved                                                                                              </strong>
             </v-card-text>
         </v-card>
     </v-footer>

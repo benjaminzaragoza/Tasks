@@ -28,7 +28,7 @@ export default
         icon: 'keyboard_arrow_up',
         'icon-alt': 'keyboard_arrow_down',
         text: 'Tipus de Tasca',
-        model: true,
+        model: false,
         children: [
           { icon: 'assignment_turned_in', text: 'Tasques amb PHP', url: '/tasks' },
           { icon: 'assignment', text: 'Tasques amb Tailwind', url: '/tasks_vue' },
