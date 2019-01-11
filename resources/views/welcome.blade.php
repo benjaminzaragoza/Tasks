@@ -7,7 +7,6 @@
     <v-toolbar class="white">
             @auth
             <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" style="margin-right: 1%">Tasques de {{(Auth::user()->name)}}</h1><img src="img/task.png" height="40">
-
             @else
             <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
@@ -59,7 +58,11 @@
                 <v-layout column align-center justify-center class="white--text" >
                     <img src="img/task.png" alt="Vuetify.js" height="200">
                     <h1 class="primary--text mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
-                    <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                    @auth
+                        <div class=" primary--text subheading mb-3 text-xs-center"><strong>{{(Auth::user()->name)}}<strong></strong></div>
+                    @else
+                        <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                    @endauth
                     <div class="text-xs-center">
                     <v-btn
                             class="primary mt-5 font-weight-bold text-xs-center text-uppercase"

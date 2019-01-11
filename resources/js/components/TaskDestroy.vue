@@ -30,6 +30,7 @@ export default {
     async destroy (task) {
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
         {
+
           title: 'Esteu segurs voleu elimnar ' + task.name + '?',
           buttonTruetext: 'Eliminar',
           buttonFalsetext: 'Cancel·lar',

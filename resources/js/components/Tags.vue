@@ -47,7 +47,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary darken-1" flat @click="createDialog=false">
+                            <v-btn color="primary" flat @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Close</v-btn>
                             <v-btn id="button_add_tag" dark color="green dark" flat @click="add">
@@ -183,44 +183,6 @@
                                     </td>
                             </template>
                         </v-data-table>
-                         <v-data-iterator
-                                 class="hidden-lg-and-up"
-                                 :items="dataTags"
-                                 :search="search"
-                                 no-results-text="No s'ha trobat cap registre"
-                                 no-data-text="No hiha dades disponibles"
-                                 rows-per-page-text="Tags per pagina"
-                                 :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
-                                 :loading="loading"
-                                 :pagination.sync="pagination"
-                         >
-                <v-flex
-                        slot="item"
-                        slot-scope="{item:tag}"
-                        xs12
-                        sm6
-                        md4
-                >
-                    <v-card class="mb-1">
-                        <v-list dense>
-                            <v-list-tile>
-                               <v-list-tile-content>Nom:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ tag.name }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                               <v-list-tile-content>Descripcio:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ tag.description }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                                <v-list-tile-content>Color:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">
-                                <div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div>
-                                </v-list-tile-content>
-                            </v-list-tile>
-                        </v-list>
-                    </v-card>
-                </v-flex>
-            </v-data-iterator>
                     </v-card-text>
                 </v-card>
                 <v-btn
@@ -231,12 +193,81 @@
                         fixed
                         large
                         color="pink accent-3"
-                        class="white--text"
+                        class="white--text "
                         v-can="tags.store"
                 >
                     <v-icon>add</v-icon>
                 </v-btn>
             </v-flex>
+                                 <v-data-iterator
+                                         class="hidden-lg-and-up"
+                                         :items="dataTags"
+                                         :search="search"
+                                         no-results-text="No s'ha trobat cap registre"
+                                         no-data-text="No hiha dades disponibles"
+                                         rows-per-page-text="Tags per pagina"
+                                         :rows-per-page-items="[5,10,25,50,100,200,{'text':'tots','value':-1}]"
+                                         :loading="loading"
+                                         :pagination.sync="pagination"
+                                 >
+                <v-flex
+                        slot="item"
+                        slot-scope="{item:tag}"
+                        xs12
+                        sm6
+                        md4
+                >
+                    <v-card class="mb-4">
+                        <v-card-title class="pb-0"><h4 class="mb-0 font-weight-bold">Tag: {{ tag.name }}</h4></v-card-title>
+                        <v-list dense  style="margin-top: 5%">
+                            <v-list-tile>
+                               <v-list-tile-content>Descripcio:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ tag.description }}</v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Color:</v-list-tile-content>
+                                <v-list-tile-content style="margin-right: -70%">
+                                    <v-icon x-medium :color="tag.color">local_offer</v-icon>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Detalls</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                    <div class="align-end">
+                                        <v-btn v-can="tags.show" icon flat title="Mostrar la tag"
+                                               @click="showShow(tag)">
+                                            <v-icon color="green">visibility</v-icon>
+                                        </v-btn>
+                                        </div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Editar</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                    <div class="align-end">
+                                        <v-btn v-can="tags.update" icon flat title="Editar la tag"
+                                               @click="showUpdate(tag)">
+                                            <v-icon color="primary">edit</v-icon>
+                                        </v-btn>
+                                        </div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content>Borrar</v-list-tile-content>
+                                <v-list-tile-content class="align-end">
+                                    <div class="align-end">
+                                        <v-btn v-can="tags.destroy" icon flat title="Eliminar la tag"
+                                               @click="showDestroy(tag)">
+                                            <v-icon title="Delete tag" color="red">delete</v-icon>
+                                        </v-btn>
+                                        </div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            </v-list>
+                    </v-card>
+
+                </v-flex>
+            </v-data-iterator>
         </span>
 </template>
 

@@ -5,7 +5,7 @@
                 <v-btn flat icon class="white--text" @click="dialog=false">
                     <v-icon>close</v-icon>
                 </v-btn>
-                <v-card-title class="headline">Editar tasca</v-card-title>
+                <v-toolbar-title class="white--text mr-3">Editar tasca</v-toolbar-title>
                 <v-icon class="white--text">description</v-icon>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="dialog=false">
