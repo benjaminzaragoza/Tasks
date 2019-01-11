@@ -75436,6 +75436,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -75788,6 +75825,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 0:
                 _context.next = 2;
                 return this.$confirm('Les tasques esborrades no es poden recuperar', {
+
                   title: 'Esteu segurs voleu elimnar ' + task.name + '?',
                   buttonTruetext: 'Eliminar',
                   buttonFalsetext: 'Cancel·lar',
@@ -77095,7 +77133,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-card-title", { staticClass: "headline" }, [
+              _c("v-toolbar-title", { staticClass: "white--text mr-3" }, [
                 _vm._v("Editar tasca")
               ]),
               _vm._v(" "),
@@ -77242,6 +77280,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TaskShowForm__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TaskShowForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__TaskShowForm__);
+//
 //
 //
 //
@@ -77561,14 +77600,13 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-toolbar-title", { staticClass: "white--text" }, [
-                _vm._v("Mostrar tasca")
+              _c("v-toolbar-title", { staticClass: "white--text mr-3" }, [
+                _vm._v("Detalls tasca")
               ]),
-              _c(
-                "v-icon",
-                { staticStyle: { "margin-left": "1%" }, attrs: { dark: "" } },
-                [_vm._v("visibility")]
-              ),
+              _vm._v(" "),
+              _c("v-icon", { staticClass: "white--text" }, [
+                _vm._v("visibility")
+              ]),
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
@@ -78410,41 +78448,189 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { staticClass: "mb-1" },
+                        { staticClass: "mt-4" },
                         [
-                          _c("v-card-title", {
-                            domProps: { textContent: _vm._s(task.name) }
-                          }),
+                          _c("v-card-title", { staticClass: "pb-0" }, [
+                            _c("h4", { staticClass: "mb-0 font-weight-bold" }, [
+                              _vm._v("Tasca: " + _vm._s(task.name))
+                            ])
+                          ]),
                           _vm._v(" "),
                           _c(
                             "v-list",
-                            { attrs: { dense: "" } },
+                            {
+                              staticStyle: { "margin-top": "5%" },
+                              attrs: { dense: "" }
+                            },
                             [
-                              _c(
-                                "v-list-tile",
-                                [
-                                  _c("v-list-tile-content", [
-                                    _vm._v("Completed:")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(task.completed))]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
                               _c(
                                 "v-list-tile",
                                 [
                                   _c("v-list-tile-content", [_vm._v("User:")]),
                                   _vm._v(" "),
                                   _c(
-                                    "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(task.user_id))]
+                                    "div",
+                                    { staticClass: "text-xs-center" },
+                                    [
+                                      _c(
+                                        "v-chip",
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            {
+                                              attrs: {
+                                                title:
+                                                  task.user !== null
+                                                    ? task.user_name +
+                                                      " - " +
+                                                      task.user_email
+                                                    : "Usuari no assignat"
+                                              }
+                                            },
+                                            [
+                                              _c("img", {
+                                                attrs: {
+                                                  src:
+                                                    task.user !== null
+                                                      ? task.user_gravatar
+                                                      : "http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png"
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(task.user_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { dense: "" } },
+                                [
+                                  _c(
+                                    "v-list-tile",
+                                    [
+                                      _c("v-list-tile-content", [
+                                        _vm._v("Estat")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile-content",
+                                        { staticClass: "align-end" },
+                                        [
+                                          _c("task-completed-toggle", {
+                                            staticClass: "align-end",
+                                            attrs: { task: task }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { dense: "" } },
+                                [
+                                  _c(
+                                    "v-list-tile",
+                                    [
+                                      _c("v-list-tile-content", [
+                                        _vm._v("Detalls")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile-content",
+                                        { staticClass: "align-end" },
+                                        [
+                                          _c("task-show", {
+                                            attrs: {
+                                              task: task,
+                                              uri: _vm.uri,
+                                              users: _vm.users
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { dense: "" } },
+                                [
+                                  _c(
+                                    "v-list-tile",
+                                    [
+                                      _c("v-list-tile-content", [
+                                        _vm._v("Editar")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile-content",
+                                        { staticClass: "align-end" },
+                                        [
+                                          _c("task-update", {
+                                            attrs: {
+                                              task: task,
+                                              uri: _vm.uri,
+                                              users: _vm.users
+                                            },
+                                            on: { updated: _vm.updateTask }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { dense: "" } },
+                                [
+                                  _c(
+                                    "v-list-tile",
+                                    [
+                                      _c("v-list-tile-content", [
+                                        _vm._v("Borrar")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile-content",
+                                        { staticClass: "align-end" },
+                                        [
+                                          _c("task-destroy", {
+                                            attrs: { task: task, uri: _vm.uri },
+                                            on: { deleted: _vm.removeTask }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -79051,7 +79237,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { dark: "", color: "primary darken-2" } },
+        { attrs: { dark: "", color: "primary " } },
         [
           _c(
             "v-toolbar-title",
@@ -79986,6 +80172,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tags',
@@ -80376,7 +80593,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "primary darken-1", flat: "" },
+                          attrs: { color: "primary", flat: "" },
                           on: {
                             click: function($event) {
                               _vm.createDialog = false
@@ -81081,118 +81298,7 @@ var render = function() {
                       })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("v-data-iterator", {
-                    staticClass: "hidden-lg-and-up",
-                    attrs: {
-                      items: _vm.dataTags,
-                      search: _vm.search,
-                      "no-results-text": "No s'ha trobat cap registre",
-                      "no-data-text": "No hiha dades disponibles",
-                      "rows-per-page-text": "Tags per pagina",
-                      "rows-per-page-items": [
-                        5,
-                        10,
-                        25,
-                        50,
-                        100,
-                        200,
-                        { text: "tots", value: -1 }
-                      ],
-                      loading: _vm.loading,
-                      pagination: _vm.pagination
-                    },
-                    on: {
-                      "update:pagination": function($event) {
-                        _vm.pagination = $event
-                      }
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "item",
-                        fn: function(ref) {
-                          var tag = ref.item
-                          return _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md4: "" } },
-                            [
-                              _c(
-                                "v-card",
-                                { staticClass: "mb-1" },
-                                [
-                                  _c(
-                                    "v-list",
-                                    { attrs: { dense: "" } },
-                                    [
-                                      _c(
-                                        "v-list-tile",
-                                        [
-                                          _c("v-list-tile-content", [
-                                            _vm._v("Nom:")
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-list-tile-content",
-                                            { staticClass: "align-end" },
-                                            [_vm._v(_vm._s(tag.name))]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-list-tile",
-                                        [
-                                          _c("v-list-tile-content", [
-                                            _vm._v("Descripcio:")
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-list-tile-content",
-                                            { staticClass: "align-end" },
-                                            [_vm._v(_vm._s(tag.description))]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-list-tile",
-                                        [
-                                          _c("v-list-tile-content", [
-                                            _vm._v("Color:")
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-list-tile-content",
-                                            { staticClass: "align-end" },
-                                            [
-                                              _c("div", {
-                                                staticClass: "elevation-2",
-                                                style:
-                                                  "background-color:" +
-                                                  tag.color +
-                                                  ";border-radius: 4px;height: 15px;width: 15px;"
-                                              })
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        }
-                      }
-                    ])
-                  })
+                  )
                 ],
                 1
               )
@@ -81211,7 +81317,7 @@ var render = function() {
                   expression: "tags.store"
                 }
               ],
-              staticClass: "white--text",
+              staticClass: "white--text ",
               attrs: {
                 fab: "",
                 bottom: "",
@@ -81227,7 +81333,277 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("v-data-iterator", {
+        staticClass: "hidden-lg-and-up",
+        attrs: {
+          items: _vm.dataTags,
+          search: _vm.search,
+          "no-results-text": "No s'ha trobat cap registre",
+          "no-data-text": "No hiha dades disponibles",
+          "rows-per-page-text": "Tags per pagina",
+          "rows-per-page-items": [
+            5,
+            10,
+            25,
+            50,
+            100,
+            200,
+            { text: "tots", value: -1 }
+          ],
+          loading: _vm.loading,
+          pagination: _vm.pagination
+        },
+        on: {
+          "update:pagination": function($event) {
+            _vm.pagination = $event
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "item",
+            fn: function(ref) {
+              var tag = ref.item
+              return _c(
+                "v-flex",
+                { attrs: { xs12: "", sm6: "", md4: "" } },
+                [
+                  _c(
+                    "v-card",
+                    { staticClass: "mb-4" },
+                    [
+                      _c("v-card-title", { staticClass: "pb-0" }, [
+                        _c("h4", { staticClass: "mb-0 font-weight-bold" }, [
+                          _vm._v("Tag: " + _vm._s(tag.name))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-list",
+                        {
+                          staticStyle: { "margin-top": "5%" },
+                          attrs: { dense: "" }
+                        },
+                        [
+                          _c(
+                            "v-list-tile",
+                            [
+                              _c("v-list-tile-content", [
+                                _vm._v("Descripcio:")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                { staticClass: "align-end" },
+                                [_vm._v(_vm._s(tag.description))]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile",
+                            [
+                              _c("v-list-tile-content", [_vm._v("Color:")]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                { staticStyle: { "margin-right": "-70%" } },
+                                [
+                                  _c(
+                                    "v-icon",
+                                    {
+                                      attrs: {
+                                        "x-medium": "",
+                                        color: tag.color
+                                      }
+                                    },
+                                    [_vm._v("local_offer")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile",
+                            [
+                              _c("v-list-tile-content", [_vm._v("Detalls")]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                { staticClass: "align-end" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "align-end" },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "can",
+                                              rawName: "v-can",
+                                              value: _vm.tags.show,
+                                              expression: "tags.show"
+                                            }
+                                          ],
+                                          attrs: {
+                                            icon: "",
+                                            flat: "",
+                                            title: "Mostrar la tag"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.showShow(tag)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "green" } },
+                                            [_vm._v("visibility")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile",
+                            [
+                              _c("v-list-tile-content", [_vm._v("Editar")]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                { staticClass: "align-end" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "align-end" },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "can",
+                                              rawName: "v-can",
+                                              value: _vm.tags.update,
+                                              expression: "tags.update"
+                                            }
+                                          ],
+                                          attrs: {
+                                            icon: "",
+                                            flat: "",
+                                            title: "Editar la tag"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.showUpdate(tag)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "primary" } },
+                                            [_vm._v("edit")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile",
+                            [
+                              _c("v-list-tile-content", [_vm._v("Borrar")]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                { staticClass: "align-end" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "align-end" },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "can",
+                                              rawName: "v-can",
+                                              value: _vm.tags.destroy,
+                                              expression: "tags.destroy"
+                                            }
+                                          ],
+                                          attrs: {
+                                            icon: "",
+                                            flat: "",
+                                            title: "Eliminar la tag"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.showDestroy(tag)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: {
+                                                title: "Delete tag",
+                                                color: "red"
+                                              }
+                                            },
+                                            [_vm._v("delete")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            }
+          }
+        ])
+      })
     ],
     1
   )
