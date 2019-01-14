@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         create_example_tasks_with_tags();
         //Crear usuaris de proves
         sample_users();
+        sample_logs();
 
         //todo -> com fer-ho en el registre
     }

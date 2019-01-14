@@ -38,7 +38,9 @@ export default
       { icon: 'local_offer', text: 'Tags', url: '/tags' },
       { icon: 'help', text: 'Sabem mes', url: '/about' },
       { icon: 'camera', text: 'Perfil', url: '/profile' },
+      { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' },
       { icon: 'photo', text: 'Imatges', url: '/contact' }
+
     ]
   }),
   props: {

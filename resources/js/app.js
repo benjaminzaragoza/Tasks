@@ -19,6 +19,9 @@ import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/Color'
 import Profile from './components/Profile'
+import Changelog from './components/changelog/ChangelogComponent.vue'
+import VueTimeago from 'vue-timeago'
+import TreeView from 'vue-json-tree-view'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -33,7 +36,13 @@ const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#4828d7'
 
 const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#2CB1BC'
-
+window.Vue.use(TreeView)
+window.Vue.use(VueTimeago, {
+  locale: 'ca', // Default locale
+  locales: {
+    'ca': require('date-fns/locale/ca')
+  }
+})
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
@@ -129,6 +138,7 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('profile', Profile)
 window.Vue.component('color', Color)
+window.Vue.component('changelog', Changelog)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
