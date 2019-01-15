@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -36,11 +38,13 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/profile', '\\'. ProfileController::class . '@show');
     Route::post('/photo', '\\'. PhotoController::class . '@store');
     Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
-
+    Route::get('/changelog','\\'. ChangelogController::class . '@index');
 
 });
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/auth/{provider}', '\\'. LoginController::class . '@redirectToProvider');
+Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
