@@ -2,6 +2,15 @@
     <v-form action="/login" method="POST">
         <v-toolbar dark color="primary ">
             <v-toolbar-title class="font-weight-bold text-xs-center text-uppercase">Login form &nbsp;<v-icon>face</v-icon></v-toolbar-title>
+            <v-spacer></v-spacer>
+
+            <v-btn style="margin-top: -0.5%" fab color="rgb(255, 0, 0, 0)" href="/auth/facebook"
+            ><img src="img/face.png" height="45">
+            </v-btn>
+            <v-btn style="margin-top: -0.5%" fab color="rgb(255, 0, 0, 0)" href="/auth/github"
+            ><img src="img/git.ico" height="50">
+            </v-btn>
+            <!--<v-btn color="primary" href="/auth/facebook">Facebook</v-btn>-->
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
@@ -37,8 +46,7 @@
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" type="submit" :disabled="$v.$invalid" >Login</v-btn>
-            <v-btn color="primary" href="/auth/facebook">Facebook</v-btn>
-            <v-btn color="primary" href="/auth/github">Github</v-btn>
+
         </v-card-actions>
     </v-form>
 </template>
