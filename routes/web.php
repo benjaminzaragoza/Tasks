@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
@@ -43,5 +44,7 @@ Route::middleware(['auth'])->group(function (){
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/auth/{provider}', '\\'. LoginController::class . '@redirectToProvider');
+Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
