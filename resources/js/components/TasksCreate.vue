@@ -39,6 +39,8 @@
 
 <script>
 import TaskForm from './TaskForm'
+import EventBus from './../eventBus'
+
 export default {
   name: 'TaskCreate',
   components: {
@@ -66,6 +68,11 @@ export default {
     update (task) {
       this.refresh()
     }
+  },
+  mounted () {
+    EventBus.$on('cta', () => {
+      this.dialog = true
+    })
   }
 }
 </script>
