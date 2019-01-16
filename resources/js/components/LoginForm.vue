@@ -4,11 +4,11 @@
             <v-toolbar-title class="font-weight-bold text-xs-center text-uppercase">Login form &nbsp;<v-icon>face</v-icon></v-toolbar-title>
             <v-spacer></v-spacer>
 
-            <v-btn style="margin-top: -0.5%" fab color="rgb(255, 0, 0, 0)" href="/auth/facebook"
-            ><img src="img/face.png" height="45">
+            <v-btn small fab color="primary" href="/auth/facebook"
+            ><img src="img/face.png" height="40">
             </v-btn>
-            <v-btn style="margin-top: -0.5%" fab color="rgb(255, 0, 0, 0)" href="/auth/github"
-            ><img src="img/git.ico" height="50">
+            <v-btn small fab color="primary" href="/auth/github"
+            ><img src="img/git.ico" height="45">
             </v-btn>
             <!--<v-btn color="primary" href="/auth/facebook">Facebook</v-btn>-->
         </v-toolbar>

@@ -1,6 +1,5 @@
 <template>
     <v-layout row>
-        <v-flex xs12 sm10 offset-sm1>
             <v-card>
                 <snackbar></snackbar>
         <tasks-list v-show="dataTasks.length > 0" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
@@ -12,7 +11,6 @@
             main-text="No hi ha tasques disponibles"
             img="https://cdn6.aptoide.com/imgs/3/4/1/341a7e12b4e48867ff420dc56106a07e_icon.png?w=240"
     ></no-data-cta>
-        </v-flex>
     </v-layout>
 </template>
 
