@@ -13,8 +13,8 @@
                     Sortir
                 </v-btn>
                 <!--<v-btn flat class="white&#45;&#45;text" @click="update">-->
-                    <!--<v-icon class="mr-2">save</v-icon>-->
-                    <!--Guardar-->
+                <!--<v-icon class="mr-2">save</v-icon>-->
+                <!--Guardar-->
                 <!--</v-btn>-->
             </v-toolbar>
             <v-card>

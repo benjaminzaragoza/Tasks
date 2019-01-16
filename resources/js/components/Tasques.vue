@@ -1,18 +1,32 @@
 <template>
-    <span >
-        <tasks-list :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
+    <v-layout row>
+        <v-flex xs12 sm10 offset-sm1>
+            <v-card>
+                <snackbar></snackbar>
+        <tasks-list v-show="dataTasks.length > 0" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
-    </span>
+            </v-card>
+            <no-data-cta
+            v-show="dataTasks.length == 0"
+            btn-text="Crea nova tasca"
+            main-text="No hi ha tasques disponibles"
+            img="https://cdn6.aptoide.com/imgs/3/4/1/341a7e12b4e48867ff420dc56106a07e_icon.png?w=240"
+    ></no-data-cta>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
 import TasksCreate from './TasksCreate'
 import TasksList from './TasksList'
+import NoDataCTA from './NoDataCTAComponent'
+
 export default {
   name: 'Tasques',
   components: {
     'tasks-list': TasksList,
-    'tasks-create': TasksCreate
+    'tasks-create': TasksCreate,
+    'no-data-cta': NoDataCTA
   },
   data () {
     return {
