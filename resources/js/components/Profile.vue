@@ -24,6 +24,7 @@
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="name"
                                             class="purple-input"
                                             label="User Name"
                                     />
@@ -33,16 +34,18 @@
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="email"
                                             label="Email Address"
-                                            class="purple-input"/>
+                                    />
                                 </v-flex>
                                 <v-flex
                                         xs12
                                         md6
                                 >
-                                    <v-text-field
-                                            label="Admin"
-                                            class="purple-input"/>
+                                    <v-if></v-if>
+                                    <v-text-field v-if="admin=true"
+                                                  label="Admin"
+                                                  class="purple-input"/>
                                 </v-flex>
                                 <v-flex
                                         xs12
@@ -60,35 +63,6 @@
                                             label="Permissions"
                                             class="purple-input"/>
                                 </v-flex>
-                                <!--<v-flex-->
-                                <!--xs12-->
-                                <!--md4>-->
-                                <!--<v-text-field-->
-                                <!--label="City"-->
-                                <!--class="purple-input"/>-->
-                                <!--</v-flex>-->
-                                <!--<v-flex-->
-                                <!--xs12-->
-                                <!--md4>-->
-                                <!--<v-text-field-->
-                                <!--label="Country"-->
-                                <!--class="purple-input"/>-->
-                                <!--</v-flex>-->
-                                <!--<v-flex-->
-                                <!--xs12-->
-                                <!--md4>-->
-                                <!--<v-text-field-->
-                                <!--class="purple-input"-->
-                                <!--label="Postal Code"-->
-                                <!--type="number"/>-->
-                                <!--</v-flex>-->
-                                <!--<v-flex xs12>-->
-                                <!--<v-textarea-->
-                                <!--class="purple-input"-->
-                                <!--label="About Me"-->
-                                <!--value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."-->
-                                <!--/>-->
-                                <!--</v-flex>-->
                                 <v-flex
                                         xs12
                                         text-xs-right
@@ -116,12 +90,16 @@
                             size="130"
                     >
                         <img
-                                src="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+                                src="/user/avatar"
                         >
                     </v-avatar>
                     <v-card-text class="text-xs-center">
                         <p>Username here</p>
-                        <input type="file" name="avatar" id="avatar-file-input" ref="avatar" accept="image/*">
+                        <form action="/avatar" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="avatar" id="avatar-file-input" ref="avatar" accept="image/*">
+                            <input type="hidden" name="_token" :value="csrf_token">
+                            <input type="submit" value="Pujar">
+                        </form>
                         <v-btn
                                 color="success"
                                 round
@@ -165,6 +143,19 @@ export default {
   name: 'Profile',
   components: {
     'material-card': MaterialCard
+  },
+  data () {
+    return {
+      name: this.user.name,
+      email: this.user.email,
+      admin: this.user.admin
+    }
+  },
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
   },
   created () {
     this.csrf_token = window.csrf_token

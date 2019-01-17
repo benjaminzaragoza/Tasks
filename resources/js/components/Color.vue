@@ -2,6 +2,15 @@
         <div class="text-xs-center form__input">
   <h4>Principal:</h4> <swatches colors="text-advanced" v-model="colorPrincipal"></swatches>
   <h4>Secundari:</h4><swatches colors="text-advanced" v-model="colorSecundari"></swatches>
+            <v-btn
+                    color="success"
+                    value="Refresh Page"
+                    class="white--text"
+                    onClick="window.location.reload()"
+            >
+                Guardar
+                <v-icon right dark>save</v-icon>
+            </v-btn>
         </div>
 </template>
 
