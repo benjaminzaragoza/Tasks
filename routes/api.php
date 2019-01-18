@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\GitController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Changelog\ChangelogController;
+
 use App\Task;
 
 /*
@@ -49,6 +51,7 @@ Route::post('/v1/tasks/{task}/tag', 'Api\TaskTagController@store');
 Route::delete('/v1/tasks/{task}/tag', 'Api\TaskTagController@destroy');
 
 Route::get('/v1/git/info','\\' . GitController::class . '@index');
+    Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
 
 });
 //

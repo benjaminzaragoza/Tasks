@@ -1,8 +1,10 @@
 <?php
 namespace Tests\Feature;
+use App\Log;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 class CompletedTaskControllerTest extends TestCase
@@ -46,7 +48,6 @@ class CompletedTaskControllerTest extends TestCase
     public function can_uncomplete_a_task()
     {
         $this->login();
-
         //1
         $task = Task::create([
             'name' => 'comprar pa',

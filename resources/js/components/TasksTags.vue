@@ -73,7 +73,7 @@ export default {
   methods: {
     addTag () {
       window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then((response) => {
-        this.$snackbar.showMessage('Tag ' + response.data.name + ' assigned correctly')
+        this.$snackbar.showMessage(response.data.name + ' assignat correctament')
         this.dialog = false
         this.selectedTag = null
         this.$emit('added', response.data)
@@ -83,7 +83,7 @@ export default {
     },
     removeTag (tag) {
       window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { data: { tag: tag } }).then((response) => {
-        this.$snackbar.showMessage('Tag ' + tag.name + ' removed successfully')
+        this.$snackbar.showMessage( tag.name + ' eliminat correcatment')
         this.$emit('removed', response.data)
       }).catch((error) => {
         this.$snackbar.showError(error.response.data.exception)

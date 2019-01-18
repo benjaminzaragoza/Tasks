@@ -21,6 +21,8 @@ class ChangelogControllerTest extends TestCase {
      */
     public function can_list_logs()
     {
+        $this->withoutExceptionHandling();
+
         $logs = sample_logs();
         $user = factory(User::class)->create();
         $role = Role::firstOrCreate(['name' => 'ChangelogManager']);
@@ -47,6 +49,7 @@ class ChangelogControllerTest extends TestCase {
         $this->assertEquals($logs[0]->icon, $result[0]->icon);
         $this->assertEquals($logs[0]->color, $result[0]->color);
     }
+
 
 
     /**

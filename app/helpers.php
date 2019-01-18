@@ -83,6 +83,13 @@ if (! function_exists('create_sample_task')) {
         return $task;
     }
 }
+if (! function_exists('ellipsis')) {
+    function ellipsis($text,$max=50)
+    {
+        $ellipted = strlen($text) > $max ? substr($text,0,$max)."..." : $text;
+        return $ellipted;
+    }
+}
 if (! function_exists('sample_logs')) {
     function sample_logs()
     {

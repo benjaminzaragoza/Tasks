@@ -91,6 +91,10 @@ class Task extends Model
         ];
 
     }
+    public function subject()
+    {
+        return ellipsis('Tasca pendent (' . $this->id . '): ' . $this->name, 80);
+    }
     public function getFullSearchAttribute()
     {
         $state = $this->completed ? 'Completada' : 'Pendent';

@@ -16,7 +16,7 @@ class User extends Authenticatable
     const DEFAULT_PHOTO = 'default.png';
 //    const PHOTOS_PATH = 'user_photos';
     const DEFAULT_PHOTO_PATH1 = 'photos/' . self::DEFAULT_PHOTO;
-    const DEFAULT_PHOTO_PATH = 'app/' . self::DEFAULT_PHOTO;
+    const DEFAULT_PHOTO_PATH = 'app/' . self::DEFAULT_PHOTO_PATH1;
 
     const DEFAULT_AVATAR = 'default.png';
     const DEFAULT_AVATAR_PATH1 = 'avatar/' . self::DEFAULT_AVATAR;
