@@ -200,13 +200,15 @@
             <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
         </v-avatar>
             <v-spacer class="hidden-sm-and-up"></v-spacer>
-            <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
+            <v-btn large style="margin-left: 2%"flat icon color="white " href="/"  type="submit">
+                <v-icon large>home</v-icon>
+            </v-btn>
+            {{--<v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>--}}
             <v-form  action="logout" method="POST" >
             @csrf
-            <v-btn color="primary" type="submit" medium dark>
-                <v-icon large >exit_to_app</v-icon>
-            </v-btn>
-
+                <v-btn large style="margin-right: 50%" flat icon color="white " >
+                    <v-icon large>exit_to_app</v-icon>
+                </v-btn>
         </v-form>
 
         </v-toolbar>
