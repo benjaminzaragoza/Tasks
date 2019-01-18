@@ -148,8 +148,8 @@
               </v-card>
             </v-flex>
              </v-container>
-      </v-card>
-                                </v-flex>
+            </v-card>
+        </v-flex>
 
                         <!--slot="item"-->
                         <!--slot-scope="{item:task}"-->
