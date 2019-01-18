@@ -42,7 +42,6 @@
                                         xs12
                                         md6
                                 >
-                                    <v-if></v-if>
                                     <v-text-field v-if="admin=true"
                                                   label="Admin"
                                                   class="purple-input"/>
@@ -123,13 +122,13 @@
                         <form action="/photo" method="POST" enctype="multipart/form-data">
                             <input type="file" name="photo" id="photo-file-input" ref="avatar" accept="image/*">
                             <input type="hidden" name="_token" :value="csrf_token">
-                            <input type="submit" value="Pujar">
+                            <v-btn
+                                    color="success"
+                                    round
+                                    class="font-weight-light"
+                            ><input type="submit" value="UPLOAD PERFIL">
+                            </v-btn>
                         </form>
-                        <v-btn
-                                color="success"
-                                round
-                                class="font-weight-light"
-                        >Upload Photo</v-btn>
                     </v-card-text>
                 </material-card>
             </v-flex>

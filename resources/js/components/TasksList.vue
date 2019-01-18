@@ -150,64 +150,6 @@
              </v-container>
             </v-card>
         </v-flex>
-
-                        <!--slot="item"-->
-                        <!--slot-scope="{item:task}"-->
-                        <!--xs12-->
-                        <!--sm6-->
-                        <!--md4-->
-                <!--&gt;-->
-                    <!--<v-card class="mt-4">-->
-                       <!--<v-card-title class="pb-0"><h4 class="mb-0 font-weight-bold">Tasca: {{ task.name }}</h4></v-card-title>-->
-                        <!--<v-list dense  style="margin-top: 5%">-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>User:</v-list-tile-content>-->
-                                <!--<div class="text-xs-center">-->
-                                <!--<v-chip>-->
-                                    <!--<v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">-->
-                                        <!--<img :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">-->
-                                    <!--</v-avatar>-->
-                                <!--{{task.user_name}}-->
-                                <!--</v-chip>-->
-                                <!--</div>-->
-                             <!--</v-list-tile>-->
-                            <!--<v-list dense>-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>Estat</v-list-tile-content>-->
-                                 <!--<v-list-tile-content class="align-end">-->
-                                    <!--<task-completed-toggle :task="task" class="align-end" ></task-completed-toggle>-->
-                                 <!--</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                            <!--</v-list>-->
-                            <!--<v-list dense>-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>Detalls</v-list-tile-content>-->
-                                <!--<v-list-tile-content class="align-end">-->
-                                    <!--<task-show :task="task" :uri="uri" :users="users"></task-show>-->
-                                <!--</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                            <!--</v-list>-->
-                            <!--<v-list dense>-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>Editar</v-list-tile-content>-->
-                                <!--<v-list-tile-content class="align-end">-->
-                                <!--<task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>-->
-                                <!--</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                            <!--</v-list>-->
-
-                        <!--<v-list dense>-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>Borrar</v-list-tile-content>-->
-                                <!--<v-list-tile-content class="align-end">-->
-                                    <!--<task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>-->
-                                <!--</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                        <!--</v-list>-->
-
-                        <!--</v-list>-->
-                    <!--</v-card>-->
-                <!--</v-flex>-->
             </v-data-iterator>
         </v-card>
     </span>
