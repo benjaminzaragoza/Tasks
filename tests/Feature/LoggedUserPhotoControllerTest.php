@@ -19,10 +19,12 @@ class LoggedUserPhotoControllerTest extends TestCase
      */
     public function show_logged_user_default_photo()
     {
+        $this->withoutExceptionHandling();
         $this->login();
         $response = $this->get('/user/photo');
         $response->assertSuccessful();
         $this->assertEquals(storage_path(User::DEFAULT_PHOTO_PATH), $response->baseResponse->getFile()->getPathName());
+        $response->assertSuccessful();
     }
 
     /** @test */
