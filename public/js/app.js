@@ -75916,64 +75916,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -78316,7 +78258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then(function (response) {
-        _this.$snackbar.showMessage('Tag ' + response.data.name + ' assigned correctly');
+        _this.$snackbar.showMessage(response.data.name + ' assignat correctament');
         _this.dialog = false;
         _this.selectedTag = null;
         _this.$emit('added', response.data);
@@ -78328,7 +78270,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { data: { tag: tag } }).then(function (response) {
-        _this2.$snackbar.showMessage('Tag ' + tag.name + ' removed successfully');
+        _this2.$snackbar.showMessage(tag.name + ' eliminat correcatment');
         _this2.$emit('removed', response.data);
       }).catch(function (error) {
         _this2.$snackbar.showError(error.response.data.exception);
@@ -83637,7 +83579,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -84199,8 +84140,6 @@ var render = function() {
                                 "v-flex",
                                 { attrs: { xs12: "", md6: "" } },
                                 [
-                                  _c("v-if"),
-                                  _vm._v(" "),
                                   (_vm.admin = true)
                                     ? _c("v-text-field", {
                                         staticClass: "purple-input",
@@ -84356,54 +84295,50 @@ var render = function() {
                     [_c("img", { attrs: { src: "/user/photo" } })]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "text-xs-center" },
-                    [
-                      _c("p", [_vm._v("Username here")]),
-                      _vm._v(" "),
-                      _c(
-                        "form",
-                        {
+                  _c("v-card-text", { staticClass: "text-xs-center" }, [
+                    _c("p", [_vm._v("Username here")]),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        attrs: {
+                          action: "/photo",
+                          method: "POST",
+                          enctype: "multipart/form-data"
+                        }
+                      },
+                      [
+                        _c("input", {
+                          ref: "avatar",
                           attrs: {
-                            action: "/photo",
-                            method: "POST",
-                            enctype: "multipart/form-data"
+                            type: "file",
+                            name: "photo",
+                            id: "photo-file-input",
+                            accept: "image/*"
                           }
-                        },
-                        [
-                          _c("input", {
-                            ref: "avatar",
-                            attrs: {
-                              type: "file",
-                              name: "photo",
-                              id: "photo-file-input",
-                              accept: "image/*"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "hidden", name: "_token" },
-                            domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "font-weight-light",
-                          attrs: { color: "success", round: "" }
-                        },
-                        [_vm._v("Upload Photo")]
-                      )
-                    ],
-                    1
-                  )
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "_token" },
+                          domProps: { value: _vm.csrf_token }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            staticClass: "font-weight-light",
+                            attrs: { color: "success", round: "" }
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "submit", value: "UPLOAD PERFIL" }
+                            })
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               )
