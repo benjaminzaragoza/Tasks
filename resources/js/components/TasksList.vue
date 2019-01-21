@@ -130,7 +130,7 @@
                         <div class="headline">{{ task.name }}</div>
                         <div style="margin-bottom: 20%">{{ task.description }}</div>
                         <div>{{ task.updated_at_human}}</div>
-                      <div style="text-align: left">{{ task.user_name}}</div>
+                      <div >{{ task.user_name}}</div>
 
                       </div>
                     </v-card-title>
