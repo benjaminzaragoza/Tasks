@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-
-use App\Mail\TaskCompleted;
+use App\Log;
+use App\Task;
+use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Mail;
 
-class SendMailTaskCompleted
+class LogTaskAdd
 {
     /**
      * Create the event listener.
@@ -17,6 +17,7 @@ class SendMailTaskCompleted
      */
     public function __construct()
     {
+        //
     }
 
     /**
@@ -27,9 +28,8 @@ class SendMailTaskCompleted
      */
     public function handle($event)
     {
-        $subject = $event->task->subject();
-        Mail::to($event->task->user)
-            ->cc(config('tasks.manager_email'))
-            ->send((new TaskCompleted($event->task))->subject($subject));
+        Log::create([
+            'text' => "S'ha creat '" . $event->task->name . "'",
+        ]);
     }
 }

@@ -126,17 +126,24 @@
                   <v-flex xs7 style="margin-right: -5%">
                     <v-card-title primary-title >
                       <div style="margin-left: 15%">
+
                         <div class="headline">{{ task.name }}</div>
                         <div style="margin-bottom: 20%">{{ task.description }}</div>
                         <div>{{ task.updated_at_human}}</div>
+                      <div style="text-align: left">{{ task.user_name}}</div>
+
                       </div>
                     </v-card-title>
+
                   </v-flex>
+
                   <v-flex xs5>
                       <img height="70%" style=" margin-top:15% ; margin-right:40%; width:100px; height:100px;border-radius:160px;"
                             contain :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
                   </v-flex>
+
                 </v-layout>
+
                 <v-divider light></v-divider>
                 <v-card-actions light style="background: white">
                     <task-completed-toggle class="headline white--text"  :task="task" ></task-completed-toggle>
@@ -145,7 +152,9 @@
                     <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
                     <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
                 </v-card-actions>
+
               </v-card>
+
             </v-flex>
              </v-container>
             </v-card>

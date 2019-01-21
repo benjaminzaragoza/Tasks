@@ -31,6 +31,6 @@ class TaskCompleted extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.tasks.completed');
+        return $this->markdown('emails.tasks.completed')->with(['task' => $this->task]);
     }
 }
