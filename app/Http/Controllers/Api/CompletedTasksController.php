@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Events\TaskUncompleted;
+use App\Events\TaskCompleted;
+
 use App\Http\Requests\DestroyTaskCompleted;
 use App\Http\Requests\StoreTaskCompleted;
 use App\Log;
@@ -26,7 +28,7 @@ class CompletedTasksController
 //
 //    }
 //DestroyTaskCompleted
-    public function destroy(Request $request, Task $task)
+    public function destroy(DestroyTaskCompleted $request, Task $task)
     {
         $task->completed=false;
         $task->save();
@@ -34,9 +36,10 @@ class CompletedTasksController
         event(new TaskUncompleted($task));
     }
 
-    public function store(Request $request, Task $task)
+    public function store(StoreTaskCompleted $request, Task $task)
     {
         $task->completed=true;
         $task->save();
+        event(new TaskCompleted($task));
     }
 }
