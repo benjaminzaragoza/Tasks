@@ -13,12 +13,11 @@ class AvatarControllerTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
 
-    /**
-     * @test
-     */
-//    public function upload_photo()
+//    /**
+//     * @test
+//     */
+//    public function upload_avatar()
 //    {
-//        $this->withoutExceptionHandling();
 //        Storage::fake('local');
 //        Storage::fake('google');
 //

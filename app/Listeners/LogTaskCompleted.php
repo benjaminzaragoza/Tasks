@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogTaskUncompleted
+class LogTaskCompleted
 {
     /**
      * Create the event listener.
@@ -24,22 +24,22 @@ class LogTaskUncompleted
      * Handle the event.
      *
      * @param  object  $event
-     * @return App\Log
+     * @return void
      */
     public function handle($event)
     {
         return Log::create([
-            'text' => "La Tasca '".$event->task->name."' ha estat marcada com pendent",
+            'text' => "La Tasca '".$event->task->name."' ha estat completada",
             'time' => Carbon::now(),
-            'action_type' => 'descompletar',
+            'action_type' => 'completar',
             'module_type' => 'Tasques',
-            'icon' => 'lock_open',
+            'icon' => 'lock',
             'color' => 'primary',
             'user_id' => $event->user->id,
             'loggable_id' => $event->task->id,
             'loggable_type' => Task::class,
-            'old_value' => true,
-            'new_value' => false
+            'old_value' => !$event->task->status,
+            'new_value' => $event->task->status
         ]);
     }
 }

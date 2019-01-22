@@ -12,20 +12,21 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TaskUncompleted
+class TaskUpdate
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $task, $user;
+    public $task, $old_task, $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Task $task, User $user)
+    public function __construct($old_task, Task $task, User $user)
     {
         $this->task = $task;
+        $this->old_task = $old_task;
         $this->user = $user;
     }
 

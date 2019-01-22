@@ -1,21 +1,21 @@
 <?php
 
 use App\Log;
-use App\Mail\TaskUncompleted;
+use App\Mail\TaskCompleted;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
-class SendMailTaskUncompletedTest extends TestCase
+class SendMailTaskCompletedTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
      * @test
      */
-    public function a_task_uncompleted_mail_has_been_send()
+    public function a_task_completed_mail_has_been_send()
     {
         // 1 Preparar
         $user = factory(User::class)->create();
@@ -27,10 +27,10 @@ class SendMailTaskUncompletedTest extends TestCase
         // Executar
 //        event(new TaskUncompleted($task));
         Mail::fake();
-        $listener = new \App\Listeners\SendMailTaskUncompleted();
-        $listener->handle(new \App\Events\TaskUncompleted($task,$user));
+        $listener = new \App\Listeners\SendMailTaskCompleted();
+        $listener->handle(new \App\Events\TaskCompleted($task,$user));
         // 3 ASSERT
-        Mail::assertSent(TaskUncompleted::class, function ($mail) use ($task, $user) {
+        Mail::assertSent(TaskCompleted::class, function ($mail) use ($task, $user) {
             return $mail->task->is($task) &&
                 $mail->hasTo($user->email) &&
                 $mail->hasCc(config('tasks.manager_email'));

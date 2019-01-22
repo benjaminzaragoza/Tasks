@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Task;
+use App\Tag;
 use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -12,23 +12,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TaskUncompleted
+class TagUpdate
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $task, $user;
+    public $tag, $old_tag, $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Task $task, User $user)
+    public function __construct($old_tag, Tag $tag, User $user)
     {
-        $this->task = $task;
+        $this->tag = $tag;
+        $this->old_task = $old_tag;
         $this->user = $user;
     }
-
     /**
      * Get the channels the event should broadcast on.
      *

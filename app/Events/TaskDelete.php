@@ -12,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TaskUncompleted
+class TaskDelete
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,7 +21,8 @@ class TaskUncompleted
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Task $task
+     * @param User $user
      */
     public function __construct(Task $task, User $user)
     {

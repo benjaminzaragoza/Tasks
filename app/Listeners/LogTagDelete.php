@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use App\Log;
-use App\Task;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogTaskUncompleted
+class LogTagDelete
 {
     /**
      * Create the event listener.
@@ -24,22 +24,22 @@ class LogTaskUncompleted
      * Handle the event.
      *
      * @param  object  $event
-     * @return App\Log
+     * @return void
      */
     public function handle($event)
     {
         return Log::create([
-            'text' => "La Tasca '".$event->task->name."' ha estat marcada com pendent",
+            'text' => "El tag '".$event->tag->name."' ha estat esborrada correctament",
             'time' => Carbon::now(),
-            'action_type' => 'descompletar',
-            'module_type' => 'Tasques',
-            'icon' => 'lock_open',
-            'color' => 'primary',
+            'action_type' => 'delete',
+            'module_type' => 'Tags',
+            'icon' => 'delete',
+            'color' => 'red',
             'user_id' => $event->user->id,
-            'loggable_id' => $event->task->id,
-            'loggable_type' => Task::class,
-            'old_value' => true,
-            'new_value' => false
+            'loggable_id' => $event->tag->id,
+            'loggable_type' => Tag::class,
+            'old_value' => $event->tag,
+            'new_value' => null
         ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Task;
+use App\Tag;
 use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TaskUncompleted
+class TagDelete
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,11 +21,12 @@ class TaskUncompleted
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Tag $task
+     * @param User $user
      */
-    public function __construct(Task $task, User $user)
+    public function __construct(Tag $tag, User $user)
     {
-        $this->task = $task;
+        $this->tag = $tag;
         $this->user = $user;
     }
 

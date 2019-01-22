@@ -26,11 +26,11 @@ class LogTaskUncompletedTest extends TestCase
 //        event(new TaskUncompleted($task));
 
         $listener = new \App\Listeners\LogTaskUncompleted();
-        $listener->handle(new \App\Events\TaskUncompleted($task));
+        $listener->handle(new \App\Events\TaskUncompleted($task,$user));
         // 3 ASSERT
         // Test log is inserted
         $log  = Log::find(1);
-        $this->assertEquals($log->text,"S'ha marcat com a pendent la tasca 'Comprar pa'");
+        $this->assertEquals($log->text,"La Tasca 'Comprar pa' ha estat marcada com pendent");
         $this->assertEquals($log->action_type,'descompletar');
         $this->assertEquals($log->module_type,'Tasques');
         $this->assertEquals($log->user_id,$user->id);
