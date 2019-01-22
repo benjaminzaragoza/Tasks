@@ -21,7 +21,7 @@
 <body>
 <v-app id="app" v-cloak >
     <snackbar></snackbar>
-
+    <service-worker></service-worker>
     <v-navigation-drawer
             v-model="drawer"
             :mini-variant.sync="mini"
@@ -116,7 +116,6 @@
             </template>
         </v-list>
     </v-navigation-drawer>
-
     <v-navigation-drawer
             v-model="drawerRight"
             fixed
@@ -206,11 +205,16 @@
             {{--<v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>--}}
             <v-form  action="logout" method="POST" >
             @csrf
-                <v-btn large style="margin-right: 50%" flat icon color="white " >
+                <v-btn  type="submit" large style="margin-right: 50%" flat icon color="white " >
                     <v-icon large>exit_to_app</v-icon>
                 </v-btn>
         </v-form>
-
+            {{--<v-form action="logout" method="POST" >--}}
+                {{--@csrf--}}
+                {{--<v-btn type="submit" medium dark>--}}
+                    {{--<v-icon large >exit_to_app</v-icon>--}}
+                {{--</v-btn>--}}
+            {{--</v-form>--}}
         </v-toolbar>
     <v-content >
         <v-container fluid fill-height >
