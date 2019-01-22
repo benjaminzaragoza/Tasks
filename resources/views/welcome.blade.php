@@ -75,6 +75,7 @@
                     </v-btn>
                     <v-btn depressed
                            class="dark mt-5"
+                           style="height: 6.2%"
                            target="_blank"
                            href="https://github.com/benjaminzaragoza/Tasks"
                     ><img src="img/github.png" alt="Github" height="65">
