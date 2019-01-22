@@ -127,9 +127,9 @@
                     <v-card-title primary-title >
                       <div style="margin-left: 15%">
 
-                        <div class="headline">{{ task.name }}</div>
+                        <div class="headline text-capitalize">{{ task.name }}</div>
                         <div style="margin-bottom: 20%">{{ task.description }}</div>
-                        <div>{{ task.updated_at_human}}</div>
+                        <!--<div>{{ task.updated_at_human}}</div>-->
                       <div >{{ task.user_name}}</div>
 
                       </div>
