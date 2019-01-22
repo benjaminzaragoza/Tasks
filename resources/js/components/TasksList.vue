@@ -78,7 +78,7 @@
                             </v-avatar>
                         </td>
                         <td class="text-xs-left">
-                            <task-completed-toggle :task="task"></task-completed-toggle>
+                                     <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                         </td>
                           <td>
                             <tasks-tags :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
@@ -146,7 +146,7 @@
 
                 <v-divider light></v-divider>
                 <v-card-actions light style="background: white">
-                    <task-completed-toggle class="headline white--text"  :task="task" ></task-completed-toggle>
+          <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                   <v-spacer></v-spacer>
                    <task-show :task="task" :uri="uri" :users="users"></task-show>
                     <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>

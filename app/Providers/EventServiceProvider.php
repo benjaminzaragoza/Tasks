@@ -2,12 +2,18 @@
 
 namespace App\Providers;
 
+use App\Events\TagDelete;
+use App\Events\TagStored;
+use App\Events\TagUpdate;
 use App\Events\TaskCompleted;
 use App\Events\TaskDelete;
 use App\Events\TaskStored;
 use App\Events\TaskUncompleted;
 use App\Events\TaskUpdate;
 use App\Listeners\AddRolesToRegisterUser;
+use App\Listeners\LogTagDelete;
+use App\Listeners\LogTagStored;
+use App\Listeners\LogTagUpdated;
 use App\Listeners\LogTaskDelete;
 use App\Listeners\LogTaskStored;
 use App\Listeners\LogTaskUncompleted;
@@ -54,6 +60,15 @@ class EventServiceProvider extends ServiceProvider
         TaskUpdate::class => [
             LogTaskUpdated::class,
             SendMailTaskUpdated::class
+        ],
+        TagDelete::class => [
+            LogTagDelete::class,
+        ],
+        TagUpdate::class => [
+            LogTagUpdated::class,
+        ],
+        TagStored::class => [
+            LogTagStored::class,
         ]
     ];
     /**
