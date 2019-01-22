@@ -1,5 +1,5 @@
 @component('mail::message')
-# Tasca pendent
+# Tasca completada
 
 S'ha marcat com a completada la tasca: {{ $task->name }}
 

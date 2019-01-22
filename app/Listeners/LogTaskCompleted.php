@@ -28,18 +28,18 @@ class LogTaskCompleted
      */
     public function handle($event)
     {
-        Log::create([
-            'text' => "S'ha marcat com a completada la tasca '" . $event->task->name . "'",
+        return Log::create([
+            'text' => "La Tasca '".$event->task->name."' ha estat completada",
             'time' => Carbon::now(),
-            'action_type'=> 'descompletar',
+            'action_type' => 'completar',
             'module_type' => 'Tasques',
-            'icon' => 'lock_open',
+            'icon' => 'lock',
             'color' => 'primary',
-            'user_id' => $event->task->user_id,
+            'user_id' => $event->user->id,
             'loggable_id' => $event->task->id,
             'loggable_type' => Task::class,
-            'old_value' => true,
-            'new_value' => false
+            'old_value' => !$event->task->status,
+            'new_value' => $event->task->status
         ]);
     }
 }

@@ -28,7 +28,7 @@ class SendMailTaskCompletedTest extends TestCase
 //        event(new TaskUncompleted($task));
         Mail::fake();
         $listener = new \App\Listeners\SendMailTaskCompleted();
-        $listener->handle(new \App\Events\TaskCompleted($task));
+        $listener->handle(new \App\Events\TaskCompleted($task,$user));
         // 3 ASSERT
         Mail::assertSent(TaskCompleted::class, function ($mail) use ($task, $user) {
             return $mail->task->is($task) &&

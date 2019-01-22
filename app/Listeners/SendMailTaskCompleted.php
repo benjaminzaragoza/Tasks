@@ -2,11 +2,8 @@
 
 namespace App\Listeners;
 
-
 use App\Mail\TaskCompleted;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class SendMailTaskCompleted
 {
@@ -17,6 +14,7 @@ class SendMailTaskCompleted
      */
     public function __construct()
     {
+        //
     }
 
     /**
@@ -27,9 +25,8 @@ class SendMailTaskCompleted
      */
     public function handle($event)
     {
-        $subject = $event->task->subject();
-        Mail::to($event->task->user)
+        Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskCompleted($event->task))->subject($subject));
+            ->send(new TaskCompleted($event->task));
     }
 }
