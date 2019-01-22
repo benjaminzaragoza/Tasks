@@ -2,13 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Log;
-use App\Task;
-use Carbon\Carbon;
+use App\Mail\TaskDeleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Mail;
 
-class LogTaskAdd
+class SendMailTaskDelete
 {
     /**
      * Create the event listener.
@@ -28,8 +27,9 @@ class LogTaskAdd
      */
     public function handle($event)
     {
-        Log::create([
-            'text' => "S'ha creat '" . $event->task->name . "'",
-        ]);
+        Mail::to($event->user)
+            ->cc(config('tasks.manager_email'))
+            ->send(new TaskDeleted($event->task));
     }
+
 }

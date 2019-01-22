@@ -3,12 +3,21 @@
 namespace App\Providers;
 
 use App\Events\TaskCompleted;
+use App\Events\TaskDelete;
+use App\Events\TaskStored;
 use App\Events\TaskUncompleted;
+use App\Events\TaskUpdate;
 use App\Listeners\AddRolesToRegisterUser;
+use App\Listeners\LogTaskDelete;
+use App\Listeners\LogTaskStored;
 use App\Listeners\LogTaskUncompleted;
+use App\Listeners\LogTaskUpdated;
+use App\Listeners\SendMailTaskDelete;
+use App\Listeners\SendMailTaskStored;
 use App\Listeners\SendMailTaskUncompleted;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\SendMailTaskCompleted;
+use App\Listeners\SendMailTaskUpdated;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,6 +42,18 @@ class EventServiceProvider extends ServiceProvider
          TaskCompleted::class => [
             LogTaskCompleted::class,
             SendMailTaskCompleted::class
+        ],
+        TaskDelete::class => [
+            LogTaskDelete::class,
+            SendMailTaskDelete::class
+        ],
+        TaskStored::class => [
+            LogTaskStored::class,
+            SendMailTaskStored::class
+        ],
+        TaskUpdate::class => [
+            LogTaskUpdated::class,
+            SendMailTaskUpdated::class
         ]
     ];
     /**

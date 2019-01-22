@@ -33,13 +33,13 @@ class CompletedTasksController
         $task->completed=false;
         $task->save();
         // HOOK -> EVENT
-        event(new TaskUncompleted($task));
+        event(new TaskUncompleted($task, $request->user()));
     }
 
     public function store(StoreTaskCompleted $request, Task $task)
     {
         $task->completed=true;
         $task->save();
-        event(new TaskCompleted($task));
+        event(new TaskCompleted($task, $request->user()));
     }
 }

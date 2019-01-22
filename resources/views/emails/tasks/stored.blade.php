@@ -1,10 +1,7 @@
 @component('mail::message')
-# Tasca pendent
-
-S'ha marcat com a completada la tasca: {{ $task->name }}
-
+La Tasca <b>{{ $task->name }}</b> ha estat creada.
 @component('mail::button', ['url' => url('/tasques')])
-    Veure tasca
+Veure tasca
 @endcomponent
 Gracies,<br>
 {{ config('app.name') }}
