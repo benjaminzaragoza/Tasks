@@ -142,18 +142,18 @@
                 </v-card>
                 <v-card class="card xl back">
                      <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
-                  <v-chip >
+                  <v-chip large>
                     <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
                                         <img :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
                                     </v-avatar>
                                 {{task.user_name}}
-                                </v-chip>
-                    <footer class="card-footer" >
-                        <v-spacer light></v-spacer>
-                                  <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
+                  </v-chip>
+                  <footer class="card-footer" >
+                  <v-spacer light></v-spacer>
+                  <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
 
                 <v-card-actions light style="background: white">
-                    <div style="text-align: left">
+                    <div >
                    <task-show :task="task" :uri="uri" :users="users"></task-show>
                     <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
                     <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
