@@ -118,7 +118,7 @@
         <v-container
                 fluid
                 grid-list-lg
-        >.
+        >
             <div class="flipper"  :class="flipperClass == true ? 'flip-class' : false">
                 <v-card class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
@@ -131,12 +131,15 @@
                         <h4 class="headline text-capitalize" >{{ task.name }}</h4>
                         <p>{{ task.description }}</p>
                         <v-spacer></v-spacer>
-                      <v-card-actions class="py-0">
+                        <v-card-actions class="py-0">
                           <p style="margin-left: -4%;margin-top: 11%;">{{ task.updated_at_human}}</p>
-                          <v-btn icon @click="clickFlip" >
-                      <v-icon style="margin-left: 570%;margin-top: 37%;color: #0d47a1">sync</v-icon>
-                    </v-btn>
-                </v-card-actions>
+                        <v-flex class="text-xs-right">
+                        <v-btn  icon @click="clickFlip" >
+                        <v-icon color="#0d47a1">sync</v-icon>
+                        </v-btn>
+                        </v-flex>
+                      </v-card-actions >
+
                     </footer>
                 </section>
                 </v-card>
@@ -160,13 +163,12 @@
                     <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
                     <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
                 </v-card-actions>
-                      <v-card-actions  color="red">
+                      <v-card-actions>
                       <task-completed-toggle  :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                       <v-btn  icon @click="clickFlip" >
                       <v-icon color="#0d47a1">sync</v-icon>
                     </v-btn>
-                      </v-card-actions  >
-
+                      </v-card-actions >
                     </footer>
                 </section>
                 <div class="content">
