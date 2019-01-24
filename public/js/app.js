@@ -79021,7 +79021,7 @@ var render = function() {
                             {
                               staticClass: "flipper",
                               class:
-                                _vm.flipperClass == true ? "flip-class" : null
+                                _vm.flipperClass == true ? "flip-class" : false
                             },
                             [
                               _c("v-card", { staticClass: "card xl" }, [
