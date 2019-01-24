@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Api\TasksTagsController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 
@@ -46,6 +47,8 @@ Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');/
 
 Route::get('/v1/users','Api\UsersController@index');
 Route::get('/v1/regular_users','Api\RegularUsersController@index');
+
+Route::put('/v1/tasks/{task}/tags','\\'. TasksTagsController::class.'@update');
 
 Route::post('/v1/tasks/{task}/tag', 'Api\TaskTagController@store');
 Route::delete('/v1/tasks/{task}/tag', 'Api\TaskTagController@destroy');

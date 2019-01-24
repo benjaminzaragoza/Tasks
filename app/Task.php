@@ -30,7 +30,9 @@ class Task extends Model
     }
     public function addTag($tag)
     {
-        $this->tags()->attach($tag);
+        !is_int($tag) ?: $tag=Tag::find($tag);
+        $this->tags()->save($tag);
+        return $this;
     }
     public function destroyTag($tag)
     {
