@@ -9,7 +9,7 @@
             v-show="dataTasks.length == 0"
             btn-text="Crea nova tasca"
             main-text="No hi ha tasques disponibles"
-            img="https://cdn6.aptoide.com/imgs/3/4/1/341a7e12b4e48867ff420dc56106a07e_icon.png?w=240"
+            img="img/list.svg"
     ></no-data-cta>
     </v-layout>
 </template>
