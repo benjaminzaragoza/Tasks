@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    {{--<link rel="manifest" href="/site.webmanifest">--}}
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="apple-mobile-web-app-title" content="Tasques">
     <meta name="application-name" content="Tasques">
@@ -30,100 +30,7 @@
 <v-app id="app" v-cloak >
     <snackbar></snackbar>
     <service-worker></service-worker>
-    <v-navigation-drawer
-            v-model="drawer"
-            :mini-variant.sync="mini"
-            fixed
-            app
-            clipped
-            left
-    >
-        <v-toolbar flat class="transparent " >
-            <v-list class="pa-0" class="hidden-sm-and-down" >
-                <v-list-tile avatar >
-                    <v-list-tile-avatar >
-                        <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
-                    </v-list-tile-avatar>
-                    <v-list-tile-content>
-                        <v-list-tile-title>{{ Auth::user()->name }}</v-list-tile-title>
-                    </v-list-tile-content>
-
-                    <v-list-tile-action class="hidden-sm-and-down">
-                        <v-btn
-                                icon
-                                @click.stop="mini = !mini"
-                        >
-                            <v-icon >chevron_left</v-icon>
-                        </v-btn>
-                    </v-list-tile-action>
-                </v-list-tile>
-            </v-list>
-        </v-toolbar>
-
-        <v-list class="pt-0" dense >
-            <v-divider></v-divider>
-            <template v-for="item in items">
-                <v-layout
-                        v-if="item.heading"
-                        :key="item.heading"
-                        row
-                        align-center
-                >
-                    <v-flex xs6>
-                        <v-subheader v-if="item.heading">
-                            @{{ item.heading }}
-                        </v-subheader>
-                    </v-flex>
-
-                    <v-flex xs6 class="text-xs-center">
-                        <a href="#!" class="body-2 black--text">EDIT</a>
-                    </v-flex>
-                </v-layout>
-
-                <v-list-group
-                        v-else-if="item.children"
-                        v-model="item.model"
-                        :key="item.text"
-                        :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                        append-icon=""
-                >
-                    <v-list-tile slot="activator" :href="item.url" >
-                        <v-list-tile-content>
-                            <v-list-tile-title  >
-                                @{{ item.text }}
-                            </v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-list-tile
-                            v-for="(child, i) in item.children"
-                            :key="i"
-                            @click=""
-                            :href="child.url"
-                    >
-                        <v-list-tile-action v-if="child.icon">
-                            <v-icon >@{{ child.icon }}</v-icon>
-                        </v-list-tile-action>
-                        <v-list-tile-content :href="item.url">
-                            <v-list-tile-title>
-                                @{{ child.text }}
-                            </v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </v-list-group>
-
-                <v-list-tile v-else :key="item.text" :href="item.url">
-                    <v-list-tile-action >
-                        <v-icon >@{{ item.icon }}</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-list-tile-title>
-                            @{{ item.text }}
-                        </v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-            </template>
-        </v-list>
-    </v-navigation-drawer>
+    <navigation v-model="drawer" :mini="mini" ></navigation>
     <v-navigation-drawer
             v-model="drawerRight"
             fixed
@@ -196,7 +103,7 @@
 
     </v-navigation-drawer>
     {{--primary--}}
-        <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
+    <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="hidden-sm-and-down" class="font-weight-bold " >Menú</v-toolbar-title>
             <img class="hidden-sm-and-down" src="img/task.png" style="margin-left: 1%;height:50%">
@@ -261,15 +168,3 @@
 
 </body>
 </html>
-{{--<script>--}}
-  {{--import VToolbar from "vuetify/src/components/VToolbar/VToolbar"--}}
-  {{--export default {--}}
-    {{--components: {VToolbar}--}}
-  {{--}--}}
-{{--</script>--}}
-{{--<script>--}}
-  {{--import VListTile from "vuetify/lib/components/VList/VListTile"--}}
-  {{--export default {--}}
-    {{--components: {VListTile}--}}
-  {{--}--}}
-{{--</script>--}}

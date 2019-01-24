@@ -24,6 +24,7 @@ import VueTimeago from 'vue-timeago'
 import TreeView from 'vue-json-tree-view'
 import TasksTags from './components/TasksTags'
 import ServiceWorker from './components/ServiceWorker'
+import Navigation from './components/Navigation'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -142,8 +143,8 @@ window.Vue.component('profile', Profile)
 window.Vue.component('color', Color)
 window.Vue.component('changelog', Changelog)
 Vue.component('tasks-tags', TasksTags)
-Vue.component('navigation', TasksTags)
 Vue.component('service-worker', ServiceWorker)
+window.Vue.component('navigation', Navigation)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
