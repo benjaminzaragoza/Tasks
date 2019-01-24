@@ -75994,6 +75994,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -79006,20 +79009,13 @@ var render = function() {
                   var task = ref.item
                   return _c(
                     "v-flex",
-                    {
-                      staticClass: "flip-container",
-                      attrs: {
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        ontouchstart: "this.classList.toggle('hover');"
-                      }
-                    },
+                    { attrs: { xs12: "", sm6: "", md4: "" } },
                     [
                       _c(
                         "v-container",
                         { attrs: { fluid: "", "grid-list-lg": "" } },
                         [
+                          _vm._v(".\n            "),
                           _c(
                             "div",
                             {
@@ -79239,22 +79235,8 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-card-actions",
-                                          {
-                                            staticClass: "justify-center",
-                                            staticStyle: {
-                                              background: "white"
-                                            },
-                                            attrs: { light: "" }
-                                          },
+                                          { staticClass: "justify-center" },
                                           [
-                                            _c("task-completed-toggle", {
-                                              attrs: {
-                                                status: task.completed,
-                                                task: task,
-                                                tags: _vm.tags
-                                              }
-                                            }),
-                                            _vm._v(" "),
                                             _c("task-show", {
                                               attrs: {
                                                 task: task,
@@ -79278,6 +79260,21 @@ var render = function() {
                                                 uri: _vm.uri
                                               },
                                               on: { deleted: _vm.removeTask }
+                                            })
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-actions",
+                                          { attrs: { color: "red" } },
+                                          [
+                                            _c("task-completed-toggle", {
+                                              attrs: {
+                                                status: task.completed,
+                                                task: task,
+                                                tags: _vm.tags
+                                              }
                                             }),
                                             _vm._v(" "),
                                             _c(
@@ -79290,11 +79287,7 @@ var render = function() {
                                                 _c(
                                                   "v-icon",
                                                   {
-                                                    staticStyle: {
-                                                      color: "#0d47a1",
-                                                      "margin-left": "580%"
-                                                    },
-                                                    attrs: { color: "primary" }
+                                                    attrs: { color: "#0d47a1" }
                                                   },
                                                   [_vm._v("sync")]
                                                 )
