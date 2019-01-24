@@ -14,7 +14,7 @@
         <v-dialog width="700" v-model="dialog" @keydown.esc="dialog = false">
             <v-card>
             <v-toolbar dark color="yellow darken-4">
-                           <v-icon medium>local_offer</v-icon><v-toolbar-title>Etiquetes </v-toolbar-title>
+                 <v-icon medium>local_offer</v-icon><v-toolbar-title>Etiquetes</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
                     <v-combobox

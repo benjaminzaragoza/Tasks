@@ -78528,7 +78528,7 @@ var render = function() {
                   _c("v-icon", { attrs: { medium: "" } }, [
                     _vm._v("local_offer")
                   ]),
-                  _c("v-toolbar-title", [_vm._v("Etiquetes ")])
+                  _c("v-toolbar-title", [_vm._v("Etiquetes")])
                 ],
                 1
               ),

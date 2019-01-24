@@ -119,7 +119,7 @@
                 fluid
                 grid-list-lg
         >
-            <div class="flipper"  :class="flipperClass == true ? 'flip-class' : false">
+            <div class="flipper" :class="flipperClass == true ? 'flip-class' : false">
                 <v-card class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                   <v-flex xs5 color="primary darken-1 " >
@@ -145,7 +145,7 @@
                 </v-card>
                 <v-card class="card xl back">
                      <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
-                     <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%">{{ task.name }}</h3>
+                     <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%" >{{ task.name }}</h3>
                   <v-chip style="height: 12%;margin-top: 10%;margin-left: 15%;margin-bottom: 10%;">
                     <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
                                         <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
