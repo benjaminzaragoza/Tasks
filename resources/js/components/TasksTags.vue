@@ -10,7 +10,7 @@
         >
             {{ tag.name }}
         </v-chip>
-        <v-btn color="secondary lighten-1" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
+        <v-btn class="btn-dark-sm" color="secondary lighten-1" flat small icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-dialog width="700" v-model="dialog" @keydown.esc="dialog = false">
             <v-card>
             <v-toolbar dark color="yellow darken-4">
@@ -94,5 +94,8 @@ export default {
 </script>
 
 <style scoped>
-
+@media all and (max-width: 800px) {
+    .btn-dark-sm { background: #222; }
+    .btn-dark-sm i.v-icon{ color:#ddd; }
+}
 </style>

@@ -76018,7 +76018,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       dataUsers: this.users,
       filter: 'Totes',
       filterUser: null,
-      flipperClass: false,
       filters: [{ name: 'Totes', value: 'TotesF' }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
@@ -76080,8 +76079,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
-    clickFlip: function clickFlip() {
-      this.flipperClass = !this.flipperClass;
+    clickFlip: function clickFlip(task) {
+      task.flipperClass = !task.flipperClass;
     },
     searchForTasks: function searchForTasks() {
       var _this = this;
@@ -78334,7 +78333,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n@media all and (max-width: 800px) {\n.btn-dark-sm[data-v-ca16c928] { background: #222;\n}\n.btn-dark-sm i.v-icon[data-v-ca16c928]{ color:#ddd;\n}\n}\n", ""]);
 
 // exports
 
@@ -78478,6 +78477,7 @@ var render = function() {
       _c(
         "v-btn",
         {
+          staticClass: "btn-dark-sm",
           attrs: {
             color: "secondary lighten-1",
             flat: "",
@@ -79023,7 +79023,7 @@ var render = function() {
                             {
                               staticClass: "flipper",
                               class:
-                                _vm.flipperClass == true ? "flip-class" : false
+                                task.flipperClass == true ? "flip-class" : false
                             },
                             [
                               _c("v-card", { staticClass: "card xl front" }, [
@@ -79116,7 +79116,11 @@ var render = function() {
                                                   "v-btn",
                                                   {
                                                     attrs: { icon: "" },
-                                                    on: { click: _vm.clickFlip }
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.clickFlip(task)
+                                                      }
+                                                    }
                                                   },
                                                   [
                                                     _c(
@@ -79287,7 +79291,11 @@ var render = function() {
                                               "v-btn",
                                               {
                                                 attrs: { icon: "" },
-                                                on: { click: _vm.clickFlip }
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.clickFlip(task)
+                                                  }
+                                                }
                                               },
                                               [
                                                 _c(
