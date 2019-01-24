@@ -75998,6 +75998,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -79016,7 +79018,6 @@ var render = function() {
                         "v-container",
                         { attrs: { fluid: "", "grid-list-lg": "" } },
                         [
-                          _vm._v(".\n            "),
                           _c(
                             "div",
                             {
@@ -79108,22 +79109,27 @@ var render = function() {
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "v-btn",
-                                              {
-                                                attrs: { icon: "" },
-                                                on: { click: _vm.clickFlip }
-                                              },
+                                              "v-flex",
+                                              { staticClass: "text-xs-right" },
                                               [
                                                 _c(
-                                                  "v-icon",
+                                                  "v-btn",
                                                   {
-                                                    staticStyle: {
-                                                      "margin-left": "570%",
-                                                      "margin-top": "37%",
-                                                      color: "#0d47a1"
-                                                    }
+                                                    attrs: { icon: "" },
+                                                    on: { click: _vm.clickFlip }
                                                   },
-                                                  [_vm._v("sync")]
+                                                  [
+                                                    _c(
+                                                      "v-icon",
+                                                      {
+                                                        attrs: {
+                                                          color: "#0d47a1"
+                                                        }
+                                                      },
+                                                      [_vm._v("sync")]
+                                                    )
+                                                  ],
+                                                  1
                                                 )
                                               ],
                                               1
@@ -79268,7 +79274,6 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-card-actions",
-                                          { attrs: { color: "red" } },
                                           [
                                             _c("task-completed-toggle", {
                                               attrs: {
