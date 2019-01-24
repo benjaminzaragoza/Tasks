@@ -21,26 +21,6 @@ export default
       {
         src: 'http://flagshipstore.telefonica.es/WebRoot/acens/Shops/3591595/5AD2/94FF/DFA5/2870/822D/7F00/0001/C558/php_1920x1080.jpg'
       }
-    ],
-    items: [
-      { icon: 'home', text: 'Tasques', url: '/tasks' },
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'keyboard_arrow_down',
-        text: 'Tipus de Tasca',
-        model: false,
-        children: [
-          { icon: 'assignment_turned_in', text: 'Tasques amb PHP', url: '/tasks' },
-          { icon: 'assignment', text: 'Tasques amb Tailwind', url: '/tasks_vue' },
-          { icon: 'insert_chart', text: 'Tasques amb Vue', url: '/tasques' }
-        ]
-      },
-      { icon: 'local_offer', text: 'Tags', url: '/tags' },
-      { icon: 'help', text: 'Sabem mes', url: '/about' },
-      { icon: 'camera', text: 'Perfil', url: '/profile' },
-      { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' },
-      { icon: 'photo', text: 'Imatges', url: '/contact' }
-
     ]
   }),
   props: {

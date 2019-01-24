@@ -27401,7 +27401,7 @@ module.exports = buildFormattingTokensRegExp
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(30);
-module.exports = __webpack_require__(253);
+module.exports = __webpack_require__(256);
 
 
 /***/ }),
@@ -27458,10 +27458,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_TasksTags___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__components_TasksTags__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_ServiceWorker__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_ServiceWorker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__components_ServiceWorker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_Navigation__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_Navigation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_Navigation__);
 
 
  // Ensure you are using css-loader
  // Ensure you are using css-loader
+
 
 
 
@@ -27502,7 +27505,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(250)
+    'ca': __webpack_require__(253)
   }
 });
 window.Vue.use(window.Vuetify, {
@@ -27602,8 +27605,8 @@ window.Vue.component('profile', __WEBPACK_IMPORTED_MODULE_20__components_Profile
 window.Vue.component('color', __WEBPACK_IMPORTED_MODULE_19__components_Color___default.a);
 window.Vue.component('changelog', __WEBPACK_IMPORTED_MODULE_21__components_changelog_ChangelogComponent_vue___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks-tags', __WEBPACK_IMPORTED_MODULE_24__components_TasksTags___default.a);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('navigation', __WEBPACK_IMPORTED_MODULE_24__components_TasksTags___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('service-worker', __WEBPACK_IMPORTED_MODULE_25__components_ServiceWorker___default.a);
+window.Vue.component('navigation', __WEBPACK_IMPORTED_MODULE_26__components_Navigation___default.a);
 
 window.Vue.component('login-form', __WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tags', __webpack_require__(27));
@@ -73003,14 +73006,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         src: 'https://styde.net/wp-content/uploads/2018/04/Post_VuePaginate.png'
       }, {
         src: 'http://flagshipstore.telefonica.es/WebRoot/acens/Shops/3591595/5AD2/94FF/DFA5/2870/822D/7F00/0001/C558/php_1920x1080.jpg'
-      }],
-      items: [{ icon: 'home', text: 'Tasques', url: '/tasks' }, {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'keyboard_arrow_down',
-        text: 'Tipus de Tasca',
-        model: false,
-        children: [{ icon: 'assignment_turned_in', text: 'Tasques amb PHP', url: '/tasks' }, { icon: 'assignment', text: 'Tasques amb Tailwind', url: '/tasks_vue' }, { icon: 'insert_chart', text: 'Tasques amb Vue', url: '/tasques' }]
-      }, { icon: 'local_offer', text: 'Tags', url: '/tags' }, { icon: 'help', text: 'Sabem mes', url: '/about' }, { icon: 'camera', text: 'Perfil', url: '/profile' }, { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' }, { icon: 'photo', text: 'Imatges', url: '/contact' }]
+      }]
     };
   },
   props: {
@@ -88066,8 +88062,401 @@ if (false) {
 /* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(251)
-var buildFormatLocale = __webpack_require__(252)
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(251)
+/* template */
+var __vue_template__ = __webpack_require__(252)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Navigation.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d456e682", Component.options)
+  } else {
+    hotAPI.reload("data-v-d456e682", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 251 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Navigation',
+  data: function data() {
+    return {
+      dataDrawer: this.drawer,
+      mini: this.mini,
+      items: [{ icon: 'home', text: 'Tasques', url: '/tasks' }, {
+        icon: 'keyboard_arrow_up',
+        'icon-alt': 'keyboard_arrow_down',
+        text: 'Tipus de Tasca',
+        model: false,
+        children: [{ icon: 'assignment_turned_in', text: 'Tasques amb PHP', url: '/tasks' }, { icon: 'assignment', text: 'Tasques amb Tailwind', url: '/tasks_vue' }, { icon: 'insert_chart', text: 'Tasques amb Vue', url: '/tasques' }]
+      }, { icon: 'local_offer', text: 'Tags', url: '/tags' }, { icon: 'help', text: 'Sabem mes', url: '/about' }, { icon: 'camera', text: 'Perfil', url: '/profile' }, { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' }, { icon: 'photo', text: 'Imatges', url: '/contact' }]
+    };
+  },
+
+  props: {
+    drawer: {
+      Type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    dataDrawer: function dataDrawer(drawer) {
+      this.$emit('input', drawer);
+    },
+    drawer: function drawer(_drawer) {
+      this.dataDrawer = _drawer;
+    }
+  },
+  model: {
+    prop: 'drawer',
+    event: 'input'
+  }
+});
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-navigation-drawer",
+    {
+      attrs: {
+        "mini-variant": _vm.mini,
+        fixed: "",
+        app: "",
+        clipped: "",
+        left: ""
+      },
+      on: {
+        "update:miniVariant": function($event) {
+          _vm.mini = $event
+        }
+      },
+      model: {
+        value: _vm.dataDrawer,
+        callback: function($$v) {
+          _vm.dataDrawer = $$v
+        },
+        expression: "dataDrawer"
+      }
+    },
+    [
+      _c(
+        "v-list",
+        { staticClass: "pt-0", attrs: { dense: "" } },
+        [
+          _c("v-divider"),
+          _vm._v(" "),
+          _vm._l(_vm.items, function(item) {
+            return [
+              item.heading
+                ? _c(
+                    "v-layout",
+                    {
+                      key: item.heading,
+                      attrs: { row: "", "align-center": "" }
+                    },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs6: "" } },
+                        [
+                          item.heading
+                            ? _c("v-subheader", [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(item.heading) +
+                                    "\n                    "
+                                )
+                              ])
+                            : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { staticClass: "text-xs-center", attrs: { xs6: "" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "body-2 black--text",
+                              attrs: { href: "#!" }
+                            },
+                            [_vm._v("EDIT")]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                : item.children
+                  ? _c(
+                      "v-list-group",
+                      {
+                        key: item.text,
+                        attrs: {
+                          "prepend-icon": item.model
+                            ? item.icon
+                            : item["icon-alt"],
+                          "append-icon": ""
+                        },
+                        model: {
+                          value: item.model,
+                          callback: function($$v) {
+                            _vm.$set(item, "model", $$v)
+                          },
+                          expression: "item.model"
+                        }
+                      },
+                      [
+                        _c(
+                          "v-list-tile",
+                          {
+                            attrs: { slot: "activator", href: item.url },
+                            slot: "activator"
+                          },
+                          [
+                            _c(
+                              "v-list-tile-content",
+                              [
+                                _c("v-list-tile-title", [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.text) +
+                                      "\n                        "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm._l(item.children, function(child, i) {
+                          return _c(
+                            "v-list-tile",
+                            { key: i, attrs: { href: child.url } },
+                            [
+                              child.icon
+                                ? _c(
+                                    "v-list-tile-action",
+                                    [
+                                      _c("v-icon", [_vm._v(_vm._s(child.icon))])
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                { attrs: { href: item.url } },
+                                [
+                                  _c("v-list-tile-title", [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(child.text) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  : _c(
+                      "v-list-tile",
+                      { key: item.text, attrs: { href: item.url } },
+                      [
+                        _c(
+                          "v-list-tile-action",
+                          [_c("v-icon", [_vm._v(_vm._s(item.icon))])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-tile-content",
+                          [
+                            _c("v-list-tile-title", [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(item.text) +
+                                  "\n                    "
+                              )
+                            ])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+            ]
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d456e682", module.exports)
+  }
+}
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(254)
+var buildFormatLocale = __webpack_require__(255)
 
 /**
  * @category Locales
@@ -88081,7 +88470,7 @@ module.exports = {
 
 
 /***/ }),
-/* 251 */
+/* 254 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -88186,7 +88575,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 252 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(28)
@@ -88276,7 +88665,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 253 */
+/* 256 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
