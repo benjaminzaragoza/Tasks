@@ -119,7 +119,7 @@
                 fluid
                 grid-list-lg
         >
-            <div class="flipper" :class="flipperClass == true ? 'flip-class' : false">
+            <div class="flipper" :class="task.flipperClass == true ? 'flip-class' : false">
                 <v-card class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                   <v-flex xs5 color="primary darken-1 " >
@@ -134,7 +134,7 @@
                         <v-card-actions class="py-0">
                           <p style="margin-left: -4%;margin-top: 11%;">{{ task.updated_at_human}}</p>
                         <v-flex class="text-xs-right">
-                        <v-btn  icon @click="clickFlip" >
+                        <v-btn  icon @click="clickFlip(task)" >
                         <v-icon color="#0d47a1">sync</v-icon>
                         </v-btn>
                         </v-flex>
@@ -165,7 +165,7 @@
                 </v-card-actions>
                       <v-card-actions>
                       <task-completed-toggle  :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
-                      <v-btn  icon @click="clickFlip" >
+                      <v-btn  icon @click="clickFlip(task)" >
                       <v-icon color="#0d47a1">sync</v-icon>
                     </v-btn>
                       </v-card-actions >
@@ -201,7 +201,6 @@ export default {
       dataUsers: this.users,
       filter: 'Totes',
       filterUser: null,
-      flipperClass: false,
       filters: [
         { name: 'Totes', value: 'TotesF' },
         { name: 'Completades', value: true },
@@ -277,8 +276,8 @@ export default {
     }
   },
   methods: {
-    clickFlip: function () {
-      this.flipperClass = !this.flipperClass
+    clickFlip: function (task) {
+      task.flipperClass = !task.flipperClass
     },
     searchForTasks () {
       this.loading = true
