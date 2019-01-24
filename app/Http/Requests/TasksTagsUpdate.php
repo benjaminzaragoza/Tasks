@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-
 class TasksTagsUpdate extends FormRequest
 {
     /**
@@ -16,7 +13,6 @@ class TasksTagsUpdate extends FormRequest
     {
         return Auth::user()->can('tasks.update');
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +21,7 @@ class TasksTagsUpdate extends FormRequest
     public function rules()
     {
         return [
-            'tags'=>'required'
+            'tags' => 'required'
         ];
     }
 }

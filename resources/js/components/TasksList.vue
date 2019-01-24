@@ -114,11 +114,11 @@
         xs12
         sm6
         md4
-        class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        >
         <v-container
                 fluid
                 grid-list-lg
-        >
+        >.
             <div class="flipper" :class="flipperClass == true ? 'flip-class' : null">
             <v-card class="card xl">
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
@@ -134,7 +134,7 @@
                       <v-card-actions class="py-0">
                           <p style="margin-left: -4%;margin-top: 11%;">{{ task.updated_at_human}}</p>
                           <v-btn icon @click="clickFlip" >
-                      <v-icon style="margin-left: 600%;margin-top: 37%;color: #0d47a1">sync</v-icon>
+                      <v-icon style="margin-left: 570%;margin-top: 37%;color: #0d47a1">sync</v-icon>
                     </v-btn>
                 </v-card-actions>
                     </footer>
@@ -142,26 +142,31 @@
                 </v-card>
                 <v-card class="card xl back">
                      <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
-                  <v-chip large>
+                     <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%">{{ task.name }}</h3>
+                  <v-chip style="height: 12%;margin-top: 10%;margin-left: 15%;margin-bottom: 10%;">
                     <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
-                                        <img :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
-                                    </v-avatar>
-                                {{task.user_name}}
+                                        <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
+                     </v-avatar>
+                     {{task.user_name}}
                   </v-chip>
+                    <v-spacer light></v-spacer>
+                    <v-card-actions class="justify-center">
+                   <tasks-tags   :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
+                   ></tasks-tags></v-card-actions>
                   <footer class="card-footer" >
                   <v-spacer light></v-spacer>
-                  <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
-
-                <v-card-actions light style="background: white">
-                    <div >
+                <v-card-actions  class="justify-center" >
                    <task-show :task="task" :uri="uri" :users="users"></task-show>
                     <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
                     <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
-                        </div>
-                    <v-btn  icon @click="clickFlip" >
-                      <v-icon color="primary" style="color: #0d47a1;margin-left: 580%;">sync</v-icon>
-                    </v-btn>
                 </v-card-actions>
+                      <v-card-actions  color="red">
+                      <task-completed-toggle  :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
+                      <v-btn  icon @click="clickFlip" >
+                      <v-icon color="#0d47a1">sync</v-icon>
+                    </v-btn>
+                      </v-card-actions  >
+
                     </footer>
                 </section>
                 <div class="content">

@@ -57,6 +57,7 @@ class TaskTest extends TestCase
 
         $this->assertTrue($tags[0]->is($tag));
     }
+
     /**
      * @test
      */
@@ -66,19 +67,15 @@ class TaskTest extends TestCase
         $task = Task::create([
             'name' => 'Comprar pa'
         ]);
-
         $tag = Tag::create([
             'name' => 'home',
             'description' => 'bla bla',
             'color' => 'blue'
         ]);
-
         // execució
         $task->addTag($tag->id);
-
         // Assertion
         $tags = $task->tags;
-
         $this->assertTrue($tags[0]->is($tag));
     }
     /**

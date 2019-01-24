@@ -35,13 +35,16 @@ class TagTest extends TestCase
     /**
      * @test
      */
-    public function can_assign_a_task_to_tag()
+    public function can_add_a_task_to_tag()
     {
+//        $tag->addTask($task); // On $task vull sigui id o model
+//        $tag->addTasks($tasks);  // On $tasks  sigui vector de ids o de model
+        // 1 Prepare
         $task = Task::create([
             'name' => 'Comprar pa'
         ]);
         $task2 = Task::create([
-            'name' => 'Comprar pa'
+            'name' => 'Comprar llet'
         ]);
         $tag = Tag::create([
             'name' => 'home',
@@ -50,23 +53,13 @@ class TagTest extends TestCase
         ]);
         // execució
         $tag->addTask($task);
-
+        // Assertion
         $tasks = $tag->tasks;
-
         $this->assertTrue($tasks[0]->is($task));
-
         // execució
         $tag->addTask($task2->id);
-
-        // Assertion
+//        // Assertion
 //        $tasks = $tag->tasks;
 //        $this->assertTrue($tasks[1]->is($task2));
-        // Assertion
-
-
-//        $tag->addTask($task);
-//        $tag->addTasks($tasks);
-
-
     }
 }

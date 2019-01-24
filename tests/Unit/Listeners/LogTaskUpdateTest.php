@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joan
- * Date: 21/01/19
- * Time: 20:22
- */
+
 
 namespace Tests\Unit;
 

@@ -75992,6 +75992,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -79119,7 +79121,7 @@ var render = function() {
                                                   "v-icon",
                                                   {
                                                     staticStyle: {
-                                                      "margin-left": "600%",
+                                                      "margin-left": "570%",
                                                       "margin-top": "37%",
                                                       color: "#0d47a1"
                                                     }
@@ -79153,8 +79155,27 @@ var render = function() {
                                   },
                                   [
                                     _c(
+                                      "h3",
+                                      {
+                                        staticClass: "headline text-capitalize",
+                                        staticStyle: {
+                                          "text-align": "center",
+                                          "margin-top": "10%"
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(task.name))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
                                       "v-chip",
-                                      { attrs: { large: "" } },
+                                      {
+                                        staticStyle: {
+                                          height: "12%",
+                                          "margin-top": "10%",
+                                          "margin-left": "15%",
+                                          "margin-bottom": "10%"
+                                        }
+                                      },
                                       [
                                         _c(
                                           "v-avatar",
@@ -79171,6 +79192,7 @@ var render = function() {
                                           [
                                             _c("img", {
                                               attrs: {
+                                                height: "30%",
                                                 src:
                                                   task.user !== null
                                                     ? task.user_gravatar
@@ -79180,10 +79202,29 @@ var render = function() {
                                           ]
                                         ),
                                         _vm._v(
-                                          "\n                                " +
+                                          "\n                     " +
                                             _vm._s(task.user_name) +
                                             "\n                  "
                                         )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("v-spacer", { attrs: { light: "" } }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card-actions",
+                                      { staticClass: "justify-center" },
+                                      [
+                                        _c("tasks-tags", {
+                                          attrs: { task: task, tags: _vm.tags },
+                                          on: {
+                                            added: function($event) {
+                                              task.tags.push($event)
+                                            },
+                                            removed: _vm.searchForTasks
+                                          }
+                                        })
                                       ],
                                       1
                                     ),
@@ -79196,57 +79237,48 @@ var render = function() {
                                           attrs: { light: "" }
                                         }),
                                         _vm._v(" "),
-                                        _c("task-completed-toggle", {
-                                          attrs: {
-                                            status: task.completed,
-                                            task: task,
-                                            tags: _vm.tags
-                                          }
-                                        }),
-                                        _vm._v(" "),
                                         _c(
                                           "v-card-actions",
                                           {
+                                            staticClass: "justify-center",
                                             staticStyle: {
                                               background: "white"
                                             },
                                             attrs: { light: "" }
                                           },
                                           [
-                                            _c(
-                                              "div",
-                                              [
-                                                _c("task-show", {
-                                                  attrs: {
-                                                    task: task,
-                                                    uri: _vm.uri,
-                                                    users: _vm.users
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c("task-update", {
-                                                  attrs: {
-                                                    task: task,
-                                                    uri: _vm.uri,
-                                                    users: _vm.users
-                                                  },
-                                                  on: {
-                                                    updated: _vm.updateTask
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c("task-destroy", {
-                                                  attrs: {
-                                                    task: task,
-                                                    uri: _vm.uri
-                                                  },
-                                                  on: {
-                                                    deleted: _vm.removeTask
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
+                                            _c("task-completed-toggle", {
+                                              attrs: {
+                                                status: task.completed,
+                                                task: task,
+                                                tags: _vm.tags
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("task-show", {
+                                              attrs: {
+                                                task: task,
+                                                uri: _vm.uri,
+                                                users: _vm.users
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("task-update", {
+                                              attrs: {
+                                                task: task,
+                                                uri: _vm.uri,
+                                                users: _vm.users
+                                              },
+                                              on: { updated: _vm.updateTask }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("task-destroy", {
+                                              attrs: {
+                                                task: task,
+                                                uri: _vm.uri
+                                              },
+                                              on: { deleted: _vm.removeTask }
+                                            }),
                                             _vm._v(" "),
                                             _c(
                                               "v-btn",
