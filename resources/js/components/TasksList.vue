@@ -120,8 +120,8 @@
                 grid-list-lg
         >.
             <div class="flipper" :class="flipperClass == true ? 'flip-class' : false">
-            <v-card class="card xl">
-                <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
+                <v-card class="card xl">
+                <section class="wrapper front" :style="{backgroundColor: randomColor(task.user_id)}">
                   <v-flex xs5 color="primary darken-1 " >
                       <img style="margin-left: 53%;margin-top: 30%;width: 150px;height: 150px;border-radius: 160px;"
                            contain :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
@@ -172,6 +172,7 @@
                 <div class="content">
                 </div>
                     </v-card>
+
                  </div>
                 </v-container>
             </v-flex>
@@ -488,10 +489,7 @@ export default {
     }
 
     .flip-container,
-    .front,
-    .back {
-        height: 100%;
-    }
+
     .front,
     .back {
         backface-visibility: hidden;
