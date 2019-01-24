@@ -119,7 +119,7 @@
                 fluid
                 grid-list-lg
         >.
-            <div class="flipper" :class="flipperClass == true ? 'flip-class' : null">
+            <div class="flipper" :class="flipperClass == true ? 'flip-class' : false">
             <v-card class="card xl">
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                   <v-flex xs5 color="primary darken-1 " >
