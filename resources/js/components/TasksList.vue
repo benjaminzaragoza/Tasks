@@ -156,7 +156,7 @@
                     <v-card-actions class="justify-center">
                    <tasks-tags   :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
                    ></tasks-tags></v-card-actions>
-                  <footer class="card-footer" >
+                  <footer class="card-footer">
                   <v-spacer light></v-spacer>
                 <v-card-actions  class="justify-center" >
                    <task-show :task="task" :uri="uri" :users="users"></task-show>
@@ -517,7 +517,6 @@ export default {
     .flipper {
         transition: 0.6s;
         transform-style: preserve-3d;
-
         position: relative;
     }
     /* Card Style: i */
@@ -634,9 +633,6 @@ export default {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-    }
-    .card > .content img:after{
-
     }
     .card.in-flight{
         cursor: default;
