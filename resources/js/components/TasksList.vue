@@ -119,9 +119,9 @@
                 fluid
                 grid-list-lg
         >.
-            <div class="flipper" :class="flipperClass == true ? 'flip-class' : false">
-                <v-card class="card xl">
-                <section class="wrapper front" :style="{backgroundColor: randomColor(task.user_id)}">
+            <div class="flipper"  :class="flipperClass == true ? 'flip-class' : false">
+                <v-card class="card xl front" >
+                <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                   <v-flex xs5 color="primary darken-1 " >
                       <img style="margin-left: 53%;margin-top: 30%;width: 150px;height: 150px;border-radius: 160px;"
                            contain :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
@@ -487,14 +487,18 @@ export default {
     .flip-class {
         transform: rotateY(180deg);
     }
-
     .flip-container,
-
-    .front,
     .back {
         backface-visibility: hidden;
-        position: absolute;
         top: 0;
+        position: absolute;
+        left: 0;
+    }
+    .flip-container,
+    .front {
+        backface-visibility: hidden;
+        top: 0;
+        position: center;
         left: 0;
     }
     .front {
@@ -675,14 +679,7 @@ export default {
             width: 65%;
         }
     }
-    .front,
-    .back {
-        backface-visibility: hidden;
 
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
     @media screen and (max-width: 599px){
         .card.in-flight{
             border-radius: 0;
