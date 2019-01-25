@@ -139,7 +139,7 @@ export default {
   },
   model: {
     prop: 'drawer',
-    event: 'input'
+    event: 'input',
   }
 }
 </script>

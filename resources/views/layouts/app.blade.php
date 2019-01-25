@@ -102,7 +102,6 @@
         </v-card>
 
     </v-navigation-drawer>
-    {{--primary--}}
     <v-toolbar color="primary" dark app clipped-left clipped-right fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="hidden-sm-and-down" class="font-weight-bold " >Menú</v-toolbar-title>
@@ -124,12 +123,6 @@
                     <v-icon large>exit_to_app</v-icon>
                 </v-btn>
         </v-form>
-            {{--<v-form action="logout" method="POST" >--}}
-                {{--@csrf--}}
-                {{--<v-btn type="submit" medium dark>--}}
-                    {{--<v-icon large >exit_to_app</v-icon>--}}
-                {{--</v-btn>--}}
-            {{--</v-form>--}}
         </v-toolbar>
     <v-content >
         <v-container fluid fill-height >
