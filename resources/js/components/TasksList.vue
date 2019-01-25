@@ -148,7 +148,7 @@
                      <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%" >{{ task.name }}</h3>
                   <v-chip style="height: 12%;margin-top: 10%;margin-left: 15%;margin-bottom: 10%;">
                     <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
-                                        <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
+                        <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
                      </v-avatar>
                      {{task.user_name}}
                   </v-chip>
@@ -164,7 +164,7 @@
                     <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
                 </v-card-actions>
                       <v-card-actions>
-                      <task-completed-toggle  :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
+                      <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                       <v-btn  icon @click="clickFlip(task)" >
                       <v-icon color="#0d47a1">sync</v-icon>
                     </v-btn>
@@ -395,9 +395,6 @@ export default {
         user-select:none;
         -o-user-select:none;
     }
-    .card.gate_reserved{
-        box-shadow: none;
-    }
     .card .wrapper {
         height: 100%;
         width: 100%;
@@ -422,9 +419,7 @@ export default {
         position: relative;
         width: 100%;
         height: 100%;
-        background-position: center;
         background-size: cover;
-        background-repeat: no-repeat;
     }
     .card > .wrapper > header,
     .card > .wrapper > footer{
@@ -479,12 +474,6 @@ export default {
     .flip-container {
         perspective: 1000px;
     }
-    /* flip the pane when hovered
-    .flip-container:hover .flipper,
-    .flip-container.hover .flipper {
-      transform: rotateY(180deg);
-    } */
-
     .flip-class {
         transform: rotateY(180deg);
     }
@@ -586,24 +575,6 @@ export default {
         bottom: 19px;
         box-sizing: border-box;
     }
-    input[type="button"].concord:active{
-        color: rgba(28, 80, 245, 0.48);
-    }
-    input[type="button"].concord.exit{
-        display: none;
-        z-index: 99;
-        top: 15px;
-        right: 20px;
-        bottom: initial;
-        padding: 2px 6px;
-        font-size: 1.2em;
-        line-height: 1em;
-        color: rgba(255,255,255,0.75);
-        background: rgba(20,20,25,0.65);
-    }
-    input[type="button"].concord-exit:active{
-        color: rgba(28, 80, 245, 0.48);
-    }
     /* Card State: Content and Card active Styling*/
     .card > .content{
         margin-top: 60px;
@@ -634,24 +605,6 @@ export default {
         background-repeat: no-repeat;
         background-size: cover;
     }
-    .card.in-flight{
-        cursor: default;
-        z-index: 98;
-        display: block;
-        max-height: none;
-        max-width: none;
-        top: 40px!important;
-        height: 95vh !important;
-        width: 100vw !important;
-        margin: 0;
-        overflow-y: scroll;
-        transform: none;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    .card.active:hover{
-        transform: none;
-    }
     .card.in-flight > .wrapper{
         height: 55%;
     }
@@ -665,53 +618,4 @@ export default {
         opacity: 1;
     }
 
-    @media screen and (min-width: 530px){
-        .card{
-            width: 75%;
-        }
-    }
-    @media screen and (min-width: 600px){
-        .card{
-            max-width:340px;
-            width: 65%;
-        }
-    }
-
-    @media screen and (max-width: 599px){
-        .card.in-flight{
-            border-radius: 0;
-            max-width: 100%;
-            top: 0!important;
-            left:0!important;
-        }
-    }
-    @media screen and (min-width: 600px){
-        .card.in-flight{
-            left: calc((100vw - 460px) / 2)!important;
-            max-width: 460px!important;
-        }
-    }
-    @media screen and (min-width: 730px){
-        .card{
-            max-width:340px;
-            width: 40%;
-        }
-        .card.in-flight{
-            left: calc((100vw - 700px) / 2)!important;
-            max-width: 700px!important;
-        }
-    }
-    @media screen and (min-width: 1000px){
-        .card{
-            width: 340px;
-        }
-        .card.xl{
-            width: 600px;
-            max-width: 600px;
-        }
-        .card.xl.active{
-            width: 100%;
-            max-width: 700px;
-        }
-    }
 </style>

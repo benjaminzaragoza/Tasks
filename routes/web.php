@@ -54,3 +54,7 @@ Route::get('/auth/{provider}', '\\'. LoginController::class . '@redirectToProvid
 Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/prova_cua', function(){
+    \App\Jobs\SleepJob::dispatch();
+});
