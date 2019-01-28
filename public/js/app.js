@@ -88829,50 +88829,53 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      (_vm.impersonate = true)
-        ? _c(
+      _c(
+        "v-card",
+        {
+          directives: [
+            {
+              name: "can",
+              rawName: "v-can",
+              value: _vm.impersonate,
+              expression: "impersonate"
+            }
+          ]
+        },
+        [
+          _c(
+            "v-toolbar",
+            {
+              staticClass: "white--text",
+              attrs: { color: "secondary", dark: "" }
+            },
+            [_c("v-toolbar-title", [_vm._v("Opcions administrador")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "v-card",
+            { attrs: { flat: "" } },
             [
               _c(
-                "v-toolbar",
-                {
-                  staticClass: "white--text",
-                  attrs: { color: "secondary", dark: "" }
-                },
-                [_c("v-toolbar-title", [_vm._v("Opcions administrador")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card",
-                { attrs: { flat: "" } },
+                "v-card-text",
                 [
-                  _c(
-                    "v-card-text",
-                    [
-                      _c("impersonate", {
-                        attrs: {
-                          label: "Entrar com ... ",
-                          url: "/api/v1/regular_users"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.impersonate = false
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
+                  _c("impersonate", {
+                    attrs: {
+                      label: "Entrar com ... ",
+                      url: "/api/v1/regular_users"
+                    }
+                  })
                 ],
                 1
               )
             ],
             1
           )
-        : _vm._e(),
+        ],
+        1
+      ),
       _vm._v(" "),
-      _vm.impersonat
+      _vm.impersonate
         ? _c(
             "v-btn",
             {
@@ -88880,11 +88883,6 @@ var render = function() {
                 color: "error darken3",
                 dark: "",
                 href: "impersonate/leave"
-              },
-              on: {
-                click: function($event) {
-                  _vm.impersonate = true
-                }
               }
             },
             [

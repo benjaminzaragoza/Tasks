@@ -47,17 +47,17 @@
 
         </v-card>
 
-        <v-card v-if="impersonate=true" >
+        <v-card v-can="impersonate" >
             <v-toolbar color="secondary" dark class="white--text">
                 <v-toolbar-title>Opcions administrador</v-toolbar-title>
             </v-toolbar>
             <v-card flat>
                 <v-card-text>
-                    <impersonate @click="impersonate=false" label="Entrar com ... " url="/api/v1/regular_users"></impersonate>
+                    <impersonate label="Entrar com ... " url="/api/v1/regular_users"></impersonate>
                 </v-card-text>
             </v-card>
         </v-card>
-        <v-btn  v-if="impersonat" color="error darken3" dark href="impersonate/leave" @click="impersonate=true" >Abandonar la suplantació
+        <v-btn  v-if="impersonate" color="error darken3" dark href="impersonate/leave">Abandonar la suplantació
             <v-icon dark right>supervisor_account</v-icon>
         </v-btn>
     </v-navigation-drawer>
