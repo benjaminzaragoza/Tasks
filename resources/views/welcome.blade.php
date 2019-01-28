@@ -6,7 +6,7 @@
     <v-app light>
     <v-toolbar class="white">
             @auth
-            <h1 class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" style="margin-right: 1%">Tasques de {{(Auth::user()->name)}}</h1><img src="img/task.png" height="40">
+            <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" style="font-size:20px ;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img src="img/task.png" height="40">
             @else
             <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
@@ -54,14 +54,15 @@
     </v-toolbar>
     <v-content style="margin-top: 0%;">
         <section>
-            <v-parallax src="img/paper.jpg" height="720">
-                <v-layout column align-center justify-center class="white--text" >
+                <v-parallax  class="article" height="720" >
+                <v-layout column align-center justify-center class="white--text justify-center" >
                     <img src="img/task.png" alt="Vuetify.js" height="200">
-                    <h1 class="primary--text mb-2 display-1 text-xs-center " style="margin-top: 4%;" ><strong>Tasques i Tags amb Vue</strong></h1>
+                        <h1 style="margin-top: 4%;text-shadow:  black 0.1em 0.1em 0.8em" class="dos" >Tasques i Tags amb Vue</h1>
+                    {{--<h1 class="white--text mb-2 display-1 text-xs-center " style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.1em" ><strong>Tasques i Tags amb Vue</strong></h1>--}}
                     @auth
-                        <div class=" primary--text subheading mb-3 text-xs-center"><strong>{{(Auth::user()->name)}}<strong></strong></div>
+                        <h4 class="white--text subheading mb-3 text-xs-center dos" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
                     @else
-                        <div class=" primary--text subheading mb-3 text-xs-center"><strong>by Benjamin Zaragoza Pla<strong></strong></div>
+                        <h4 class="white--text subheading mb-3 text-xs-center dos"style="text-shadow:  black 0.1em 0.1em 1em"><strong>by Benjamin Zaragoza Pla<strong></strong></h4>
                     @endauth
                     <div class="text-xs-center">
                     <v-btn
@@ -81,6 +82,7 @@
                     ><img src="img/github.png" alt="Github" height="65">
                     </v-btn>
                     </div>
+                </v-layout>
             </v-parallax>
         </section>
 
@@ -246,3 +248,32 @@
     components: {VToolbar}
   }
 </script>
+<style>
+    .article {
+        display: compact;
+        text-align: center;
+        background-image: url('img/image.jpg');
+        background-size: cover;
+    }
+    .article:before {
+        content:'';
+        position: absolute;
+        top:0;right:0;bottom:0;left:0;
+        background: rgba(93, 93, 146, 0.5);
+    }
+    .dos:before {
+        background: rgba(0,0,0,.4)
+    }
+    h1 {
+        color: #fff;
+        font-size: 4vw;
+        font-weight: 20;
+        text-align: center;
+    }
+    h4 {
+        color: #fff;
+        font-size: 4vw;
+        font-weight: 20;
+        text-align: center;
+    }
+</style>

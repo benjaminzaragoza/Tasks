@@ -7,26 +7,26 @@
             clipped
             left
     >
-        <!--<v-toolbar flat class="transparent " >-->
-            <!--<v-list class="pa-0 hidden-sm-and-down" >-->
-                <!--<v-list-tile avatar >-->
-                    <!--&lt;!&ndash;<v-list-tile-avatar >&ndash;&gt;-->
-                        <!--&lt;!&ndash;<img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">&ndash;&gt;-->
-                    <!--&lt;!&ndash;</v-list-tile-avatar>&ndash;&gt;-->
-                    <!--<v-list-tile-content>-->
-                        <!--<v-list-tile-title></v-list-tile-title>-->
-                    <!--</v-list-tile-content>-->
-                    <!--<v-list-tile-action class="hidden-sm-and-down">-->
-                        <!--<v-btn-->
-                                <!--icon-->
-                                <!--@click.stop="mini = !mini"-->
-                        <!--&gt;-->
-                            <!--<v-icon >chevron_left</v-icon>-->
-                        <!--</v-btn>-->
-                    <!--</v-list-tile-action>-->
-                <!--</v-list-tile>-->
-            <!--</v-list>-->
-        <!--</v-toolbar>-->
+        <v-toolbar flat class="transparent " >
+            <v-list class="pa-0 hidden-sm-and-down" >
+                <v-list-tile avatar >
+                    <v-list-tile-avatar >
+                        <img src="https://www.gravatar.com/avatar/" alt="avatar">
+                    </v-list-tile-avatar>
+                    <v-list-tile-content>
+                        <v-list-tile-title>{{ user('name') }}</v-list-tile-title>
+                    </v-list-tile-content>
+                    <v-list-tile-action class="hidden-sm-and-down">
+                        <v-btn
+                                icon
+                                @click.stop="mini = !mini"
+                        >
+                            <v-icon >chevron_left</v-icon>
+                        </v-btn>
+                    </v-list-tile-action>
+                </v-list-tile>
+            </v-list>
+        </v-toolbar>
 
         <v-list class="pt-0" dense >
             <v-divider></v-divider>
@@ -101,6 +101,7 @@ export default {
     return {
       dataDrawer: this.drawer,
       mini: this.mini,
+      nom: '',
       items: [
         { icon: 'home', text: 'Tasques', url: '/tasks' },
         {
@@ -139,7 +140,12 @@ export default {
   },
   model: {
     prop: 'drawer',
-    event: 'input',
+    event: 'input'
+  },
+  methods: {
+    user (prop) {
+      return window.laravel_user[prop]
+    }
   }
 }
 </script>

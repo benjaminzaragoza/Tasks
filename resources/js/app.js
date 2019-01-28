@@ -25,6 +25,7 @@ import TreeView from 'vue-json-tree-view'
 import TasksTags from './components/TasksTags'
 import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
+import NavigationRight from './components/NavigationRight'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -145,6 +146,8 @@ window.Vue.component('changelog', Changelog)
 Vue.component('tasks-tags', TasksTags)
 Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
+window.Vue.component('navigation', Navigation)
+Vue.component('navigation-right', NavigationRight)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
