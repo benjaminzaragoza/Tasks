@@ -139,35 +139,42 @@
                         </v-btn>
                         </v-flex>
                       </v-card-actions >
-
                     </footer>
                 </section>
                 </v-card>
                 <v-card class="card xl back">
                      <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                      <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%" >{{ task.name }}</h3>
-                  <v-chip style="height: 12%;margin-top: 10%;margin-left: 15%;margin-bottom: 10%;">
-                    <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
-                        <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
-                     </v-avatar>
-                     {{task.user_name}}
-                  </v-chip>
-                    <v-spacer light></v-spacer>
-                    <v-card-actions class="justify-center">
-                   <tasks-tags   :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
-                   ></tasks-tags></v-card-actions>
+
+                         <v-card-actions class="justify-center">
+                         <v-chip style="text-align:center;height: 12%;margin-top: 10%;margin-bottom: 10%;">
+                                <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
+                                    <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
+                                 </v-avatar>
+                                 {{task.user_name}}
+                        </v-chip>
+                        </v-card-actions>
+
+                        <v-spacer light></v-spacer>
+
+                         <v-card-actions class="justify-center">
+                       <tasks-tags   :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
+                       ></tasks-tags></v-card-actions>
+
                   <footer class="card-footer">
                   <v-spacer light></v-spacer>
-                <v-card-actions  class="justify-center" >
-                   <task-show :task="task" :uri="uri" :users="users"></task-show>
-                    <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
-                    <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
-                </v-card-actions>
+
+                    <v-card-actions  class="justify-center" >
+                           <task-show :task="task" :uri="uri" :users="users"></task-show>
+                            <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
+                            <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
+                    </v-card-actions>
+
                       <v-card-actions>
-                      <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
-                      <v-btn  icon @click="clickFlip(task)" >
-                      <v-icon color="#0d47a1">sync</v-icon>
-                    </v-btn>
+                          <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
+                          <v-btn  icon @click="clickFlip(task)" >
+                            <v-icon color="#0d47a1">sync</v-icon>
+                          </v-btn>
                       </v-card-actions >
                     </footer>
                 </section>
@@ -437,7 +444,6 @@ export default {
         left: 0;
     }
     .card:active {
-        transform: scale(0.97);
     }
 
     /* Card Style: x */
@@ -460,16 +466,6 @@ export default {
     }
     .card.x > .wrapper > footer {
         bottom: 0;
-    }
-    /* Card Style: v */
-    .card.v .wrapper{display: block;}
-    .card.v video{object-fit: cover;}
-    .card.v video:before{
-        position: absolute;
-        right: 15px;
-        top: 0;
-        background: rgba(255,255,255,0.3);
-        content: "mute";
     }
     .flip-container {
         perspective: 1000px;
@@ -507,115 +503,6 @@ export default {
         transition: 0.6s;
         transform-style: preserve-3d;
         position: relative;
-    }
-    /* Card Style: i */
-    .card.i h2,
-    .card.i h6,
-    .card.i p{
-        color: white;
-    }
-    .card.i h2{
-        width: 50%;
-        text-transform: uppercase;
-    }
-    .card.i p{
-        font-size: 0.7em;
-    }
-    .card.i > .wrapper > header,
-    .card.i > .wrapper > footer {
-        position: absolute;
-        left: 0;
-        padding: 15px 20px;
-    }
-    .card.i > .wrapper > header{
-        top: 0;
-    }
-    .card.i > .wrapper > header img{
-        width: 70px;
-        height: 70px;
-        border-radius: 18px;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-color: white;
-    }
-    .card.i > .wrapper > footer {
-        background: transparent;
-        bottom: 0;
-    }
-    button.card{
-        position: relative;
-        height: auto;
-        width: auto;
-        border: 0;
-        outline: 0;
-        font-weight: 600;
-        color: rgba(28, 111, 215, 0.88);
-        text-align: left;
-        background: rgba(255,255,255,0.95);
-        border-radius: 20px;
-        padding: 4.4px 13px;
-    }
-    /* Card Style~input styling*/
-    input[type="button"].concord{
-        cursor: pointer;
-        position: absolute;
-        height: auto;
-        width: auto;
-        border: 0;
-        outline: 0;
-        font-weight: 600;
-        color: rgba(28, 80, 245, 0.98);
-        text-align: left;
-        background: rgba(255,255,255,0.95);
-        border-radius: 20px;
-        padding: 4.4px 13px;
-        margin: 0;
-        right: 20px;
-        bottom: 19px;
-        box-sizing: border-box;
-    }
-    /* Card State: Content and Card active Styling*/
-    .card > .content{
-        margin-top: 60px;
-        margin-bottom: 20px;
-        opacity: 0;
-        width: 100%;
-        height: 0px;
-        transition: height, opacity, margin;
-        transition-duration: 900ms;
-        transition-timing-function: ease-in-out;
-    }
-    .card > .content p{
-        margin: 35px 20px;
-        color: #8f8f91;
-    }
-    .card > .content p + p{
-        margin-top: 0;
-    }
-    .card > .content p > b{
-        color: black;
-    }
-    .card > .content img{
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 300px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .card.in-flight > .wrapper{
-        height: 55%;
-    }
-    .card.in-flight > input[type="button"].concord.exit{
-        display: block;
-    }
-    .card.in-flight > .content{
-        margin-top: 0px;
-        height: 45%;
-        background: white;
-        opacity: 1;
     }
 
 </style>
