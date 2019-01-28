@@ -75803,7 +75803,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n@font-face {\n    src: url(\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/565097/Roboto-Regular.woff2\")\n    format(\"woff2\"),\n    url(\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/565097/Roboto-Regular.woff\")\n    format(\"woff\"),\n    url(\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/565097/Roboto-Regular.ttf\")\n    format(\"ttf\");\n}\n*, *:before, *:after {\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n\n/* ================================= *\n * Cards outer Styling\n ==================================== */\nmain.concord {\n    margin: 20px 0;\n    text-align: center;\n}\n.concord > header {\n    width: 90%;\n    padding: 0px 15px 0px 15px;\n    margin: 0 auto;\n    position: relative;\n    display: block;\n    overflow: auto;\n    text-align: left;\n}\n.concord > header time {\n    display: table-cell;\n    float: left;\n    color: black;\n}\n.concord > header time:first-child {\n    color: #8f8f91;\n}\n.concord > header time h3 {\n    color: black;\n    font-weight: 700;\n}\n.concord > header avatar{\n    display: table-cell;\n    text-align: right;\n    float: right;\n    background-position: center;\n    background-size: 120%;\n    background-repeat: no-repeat;\n    border-radius: 50%;\n    height: 50px;\n    width: 50px;\n}\n/* ================================= *\n * Card Styling + Default\n ==================================== */\n.card {\n    z-index: 1;\n    cursor: pointer;\n    display: inline-block;\n    position: static;\n    text-align: left;\n    width: 89%;\n    height: 400px;\n    max-height: 400px;\n    border-radius: 10px;\n    margin: 15px 8px;\n    overflow: hidden;\n    background: white;\n    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.10),\n    0px 1px 20px 0px rgba(0, 0, 0, 0.10);\n            box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.10),\n    0px 1px 20px 0px rgba(0, 0, 0, 0.10);\n    -webkit-transform-origin: center;\n            transform-origin: center;\n    -webkit-transition: width, height, border-radius, top, left, -webkit-transform;\n    transition: width, height, border-radius, top, left, -webkit-transform;\n    transition: transform, width, height, border-radius, top, left;\n    transition: transform, width, height, border-radius, top, left, -webkit-transform;\n    -webkit-transition-duration: 500ms;\n            transition-duration: 500ms;\n    -webkit-transition-timing-function: ease-in-out;\n            transition-timing-function: ease-in-out;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n    -ms-user-select:none;\n    user-select:none;\n    -o-user-select:none;\n}\n.card .wrapper {\n    height: 100%;\n    width: 100%;\n    position: relative;\n    display: table;\n}\n.card h5,\n.card h6,\n.card p {\n    margin: 4px 0;\n}\n.card h6,\n.card p {\n    color: #8f8f91;\n}\n.card h6 {\n    text-transform: uppercase;\n}\n.card video,\n.card img {\n    display: table-cell;\n    position: relative;\n    width: 100%;\n    height: 100%;\n    background-size: cover;\n}\n.card > .wrapper > header,\n.card > .wrapper > footer{\n    display: table-cell;\n    width: 100%;\n    height: auto;\n    padding: 15px 20px;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n}\n.card > .wrapper > footer{\n    background: white;\n    position: absolute;\n    bottom: 0;\n    top:60%;\n    left: 0;\n}\n.card:active {\n    -webkit-transform: scale(0.97);\n            transform: scale(0.97);\n}\n\n/* Card Style: x */\n.card.x h4,\n.card.x p {\n    color: white;\n}\n.card.x h6 {\n    color: rgba(255, 255, 255, 0.65);\n}\n.card.x > .wrapper > header,\n.card.x > .wrapper > footer {\n    position: absolute;\n    left: 0;\n    background: transparent;\n    padding: 15px 20px;\n}\n.card.x > .wrapper > header {\n    top: 0;\n}\n.card.x > .wrapper > footer {\n    bottom: 0;\n}\n/* Card Style: v */\n.card.v .wrapper{display: block;\n}\n.card.v video{-o-object-fit: cover;object-fit: cover;\n}\n.card.v video:before{\n    position: absolute;\n    right: 15px;\n    top: 0;\n    background: rgba(255,255,255,0.3);\n    content: \"mute\";\n}\n.flip-container {\n    -webkit-perspective: 1000px;\n            perspective: 1000px;\n}\n.flip-class {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg);\n}\n.flip-container,\n.back {\n    -webkit-backface-visibility: hidden;\n            backface-visibility: hidden;\n    top: 0;\n    position: absolute;\n    left: 0;\n}\n.flip-container,\n.front {\n    -webkit-backface-visibility: hidden;\n            backface-visibility: hidden;\n    top: 0;\n    position: center;\n    left: 0;\n}\n.front {\n    z-index: 2;\n    /* for firefox 31 */\n    -webkit-transform: rotateY(0deg);\n            transform: rotateY(0deg);\n}\n\n/* back, initially hidden pane */\n.back {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg);\n}\n\n/* flip speed goes here */\n.flipper {\n    -webkit-transition: 0.6s;\n    transition: 0.6s;\n    -webkit-transform-style: preserve-3d;\n            transform-style: preserve-3d;\n    position: relative;\n}\n/* Card Style: i */\n.card.i h2,\n.card.i h6,\n.card.i p{\n    color: white;\n}\n.card.i h2{\n    width: 50%;\n    text-transform: uppercase;\n}\n.card.i p{\n    font-size: 0.7em;\n}\n.card.i > .wrapper > header,\n.card.i > .wrapper > footer {\n    position: absolute;\n    left: 0;\n    padding: 15px 20px;\n}\n.card.i > .wrapper > header{\n    top: 0;\n}\n.card.i > .wrapper > header img{\n    width: 70px;\n    height: 70px;\n    border-radius: 18px;\n    background-position: center;\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-color: white;\n}\n.card.i > .wrapper > footer {\n    background: transparent;\n    bottom: 0;\n}\nbutton.card{\n    position: relative;\n    height: auto;\n    width: auto;\n    border: 0;\n    outline: 0;\n    font-weight: 600;\n    color: rgba(28, 111, 215, 0.88);\n    text-align: left;\n    background: rgba(255,255,255,0.95);\n    border-radius: 20px;\n    padding: 4.4px 13px;\n}\n/* Card Style~input styling*/\ninput[type=\"button\"].concord{\n    cursor: pointer;\n    position: absolute;\n    height: auto;\n    width: auto;\n    border: 0;\n    outline: 0;\n    font-weight: 600;\n    color: rgba(28, 80, 245, 0.98);\n    text-align: left;\n    background: rgba(255,255,255,0.95);\n    border-radius: 20px;\n    padding: 4.4px 13px;\n    margin: 0;\n    right: 20px;\n    bottom: 19px;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n}\n/* Card State: Content and Card active Styling*/\n.card > .content{\n    margin-top: 60px;\n    margin-bottom: 20px;\n    opacity: 0;\n    width: 100%;\n    height: 0px;\n    -webkit-transition: height, opacity, margin;\n    transition: height, opacity, margin;\n    -webkit-transition-duration: 900ms;\n            transition-duration: 900ms;\n    -webkit-transition-timing-function: ease-in-out;\n            transition-timing-function: ease-in-out;\n}\n.card > .content p{\n    margin: 35px 20px;\n    color: #8f8f91;\n}\n.card > .content p + p{\n    margin-top: 0;\n}\n.card > .content p > b{\n    color: black;\n}\n.card > .content img{\n    position: relative;\n    display: block;\n    width: 100%;\n    height: 300px;\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.card.in-flight > .wrapper{\n    height: 55%;\n}\n.card.in-flight > input[type=\"button\"].concord.exit{\n    display: block;\n}\n.card.in-flight > .content{\n    margin-top: 0px;\n    height: 45%;\n    background: white;\n    opacity: 1;\n}\n\n", ""]);
+exports.push([module.i, "\n@font-face {\n    src: url(\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/565097/Roboto-Regular.woff2\")\n    format(\"woff2\"),\n    url(\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/565097/Roboto-Regular.woff\")\n    format(\"woff\"),\n    url(\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/565097/Roboto-Regular.ttf\")\n    format(\"ttf\");\n}\n*, *:before, *:after {\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n\n/* ================================= *\n * Cards outer Styling\n ==================================== */\nmain.concord {\n    margin: 20px 0;\n    text-align: center;\n}\n.concord > header {\n    width: 90%;\n    padding: 0px 15px 0px 15px;\n    margin: 0 auto;\n    position: relative;\n    display: block;\n    overflow: auto;\n    text-align: left;\n}\n.concord > header time {\n    display: table-cell;\n    float: left;\n    color: black;\n}\n.concord > header time:first-child {\n    color: #8f8f91;\n}\n.concord > header time h3 {\n    color: black;\n    font-weight: 700;\n}\n.concord > header avatar{\n    display: table-cell;\n    text-align: right;\n    float: right;\n    background-position: center;\n    background-size: 120%;\n    background-repeat: no-repeat;\n    border-radius: 50%;\n    height: 50px;\n    width: 50px;\n}\n/* ================================= *\n * Card Styling + Default\n ==================================== */\n.card {\n    z-index: 1;\n    cursor: pointer;\n    display: inline-block;\n    position: static;\n    text-align: left;\n    width: 89%;\n    height: 400px;\n    max-height: 400px;\n    border-radius: 10px;\n    margin: 15px 8px;\n    overflow: hidden;\n    background: white;\n    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.10),\n    0px 1px 20px 0px rgba(0, 0, 0, 0.10);\n            box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.10),\n    0px 1px 20px 0px rgba(0, 0, 0, 0.10);\n    -webkit-transform-origin: center;\n            transform-origin: center;\n    -webkit-transition: width, height, border-radius, top, left, -webkit-transform;\n    transition: width, height, border-radius, top, left, -webkit-transform;\n    transition: transform, width, height, border-radius, top, left;\n    transition: transform, width, height, border-radius, top, left, -webkit-transform;\n    -webkit-transition-duration: 500ms;\n            transition-duration: 500ms;\n    -webkit-transition-timing-function: ease-in-out;\n            transition-timing-function: ease-in-out;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n    -ms-user-select:none;\n    user-select:none;\n    -o-user-select:none;\n}\n.card .wrapper {\n    height: 100%;\n    width: 100%;\n    position: relative;\n    display: table;\n}\n.card h5,\n.card h6,\n.card p {\n    margin: 4px 0;\n}\n.card h6,\n.card p {\n    color: #8f8f91;\n}\n.card h6 {\n    text-transform: uppercase;\n}\n.card video,\n.card img {\n    display: table-cell;\n    position: relative;\n    width: 100%;\n    height: 100%;\n    background-size: cover;\n}\n.card > .wrapper > header,\n.card > .wrapper > footer{\n    display: table-cell;\n    width: 100%;\n    height: auto;\n    padding: 15px 20px;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n}\n.card > .wrapper > footer{\n    background: white;\n    position: absolute;\n    bottom: 0;\n    top:60%;\n    left: 0;\n}\n.card:active {\n}\n\n/* Card Style: x */\n.card.x h4,\n.card.x p {\n    color: white;\n}\n.card.x h6 {\n    color: rgba(255, 255, 255, 0.65);\n}\n.card.x > .wrapper > header,\n.card.x > .wrapper > footer {\n    position: absolute;\n    left: 0;\n    background: transparent;\n    padding: 15px 20px;\n}\n.card.x > .wrapper > header {\n    top: 0;\n}\n.card.x > .wrapper > footer {\n    bottom: 0;\n}\n.flip-container {\n    -webkit-perspective: 1000px;\n            perspective: 1000px;\n}\n.flip-class {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg);\n}\n.flip-container,\n.back {\n    -webkit-backface-visibility: hidden;\n            backface-visibility: hidden;\n    top: 0;\n    position: absolute;\n    left: 0;\n}\n.flip-container,\n.front {\n    -webkit-backface-visibility: hidden;\n            backface-visibility: hidden;\n    top: 0;\n    position: center;\n    left: 0;\n}\n.front {\n    z-index: 2;\n    /* for firefox 31 */\n    -webkit-transform: rotateY(0deg);\n            transform: rotateY(0deg);\n}\n\n/* back, initially hidden pane */\n.back {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg);\n}\n\n/* flip speed goes here */\n.flipper {\n    -webkit-transition: 0.6s;\n    transition: 0.6s;\n    -webkit-transform-style: preserve-3d;\n            transform-style: preserve-3d;\n    position: relative;\n}\n\n", ""]);
 
 // exports
 
@@ -75824,6 +75824,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TaskShow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__TaskShow__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__TasksTags__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__TasksTags___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__TasksTags__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -79183,44 +79190,51 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "v-chip",
-                                      {
-                                        staticStyle: {
-                                          height: "12%",
-                                          "margin-top": "10%",
-                                          "margin-left": "15%",
-                                          "margin-bottom": "10%"
-                                        }
-                                      },
+                                      "v-card-actions",
+                                      { staticClass: "justify-center" },
                                       [
                                         _c(
-                                          "v-avatar",
+                                          "v-chip",
                                           {
-                                            attrs: {
-                                              title:
-                                                task.user !== null
-                                                  ? task.user_name +
-                                                    " - " +
-                                                    task.user_email
-                                                  : "Usuari no assignat"
+                                            staticStyle: {
+                                              "text-align": "center",
+                                              height: "12%",
+                                              "margin-top": "10%",
+                                              "margin-bottom": "10%"
                                             }
                                           },
                                           [
-                                            _c("img", {
-                                              attrs: {
-                                                height: "30%",
-                                                src:
-                                                  task.user !== null
-                                                    ? task.user_gravatar
-                                                    : "http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png"
-                                              }
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(
-                                          "\n                     " +
-                                            _vm._s(task.user_name) +
-                                            "\n                  "
+                                            _c(
+                                              "v-avatar",
+                                              {
+                                                attrs: {
+                                                  title:
+                                                    task.user !== null
+                                                      ? task.user_name +
+                                                        " - " +
+                                                        task.user_email
+                                                      : "Usuari no assignat"
+                                                }
+                                              },
+                                              [
+                                                _c("img", {
+                                                  attrs: {
+                                                    height: "30%",
+                                                    src:
+                                                      task.user !== null
+                                                        ? task.user_gravatar
+                                                        : "http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png"
+                                                  }
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(
+                                              "\n                                 " +
+                                                _vm._s(task.user_name) +
+                                                "\n                        "
+                                            )
+                                          ],
+                                          1
                                         )
                                       ],
                                       1

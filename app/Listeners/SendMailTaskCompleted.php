@@ -25,6 +25,7 @@ class SendMailTaskCompleted
      */
     public function handle($event)
     {
+
         Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
             ->send(new TaskCompleted($event->task));
