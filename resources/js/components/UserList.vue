@@ -17,28 +17,28 @@
     </v-list>
 </template>
 <script>
-  export default {
-    name: 'UserList',
-    data () {
-      return {
-        dataUsers: []
-      }
-    },
-    props: {
-      users: {
-        type: Array
-      }
-    },
-    created () {
-      if (this.users) this.dataUsers = this.users
-      else {
-        window.axios.get('/api/v1/users').then(response => {
-          this.dataUsers = response.data
-        }).catch(error => {
-          console.log(error)
-          // this.$snackbar.showError(error)
-        })
-      }
+export default {
+  name: 'UserList',
+  data () {
+    return {
+      dataUsers: []
+    }
+  },
+  props: {
+    users: {
+      type: Array
+    }
+  },
+  created () {
+    if (this.users) this.dataUsers = this.users
+    else {
+      window.axios.get('/api/v1/users').then(response => {
+        this.dataUsers = response.data
+      }).catch(error => {
+        console.log(error)
+        // this.$snackbar.showError(error)
+      })
     }
   }
+}
 </script>
