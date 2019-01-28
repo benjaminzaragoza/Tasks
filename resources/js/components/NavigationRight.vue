@@ -47,7 +47,7 @@
 
         </v-card>
 
-        <v-card v-can="impersonate" >
+        <v-card>
             <v-toolbar color="secondary" dark class="white--text">
                 <v-toolbar-title>Opcions administrador</v-toolbar-title>
             </v-toolbar>
@@ -57,9 +57,9 @@
                 </v-card-text>
             </v-card>
         </v-card>
-        <v-btn  v-if="impersonate" color="error darken3" dark href="impersonate/leave">Abandonar la suplantació
-            <v-icon dark right>supervisor_account</v-icon>
-        </v-btn>
+        <!--<v-btn  v-if="impersonating!=null" color="error darken3" dark href="impersonate/leave">Abandonar la suplantació-->
+            <!--<v-icon dark right>supervisor_account</v-icon>-->
+        <!--</v-btn>-->
     </v-navigation-drawer>
 
 </template>
@@ -71,7 +71,7 @@ export default {
   data () {
     return {
       dataDrawerRight: this.drawerRight,
-      impersonate: true
+      impersonate: false
     }
   },
   watch: {
@@ -82,6 +82,11 @@ export default {
       if (newdrawer != this.drawerRight) this.$emit('changed', newdrawer)
     }
   },
+  // computed: {
+  //   impersonating () {
+  //     return window.laravel_user_impersonating
+  //   }
+  // },
   methods: {
     impersonat () {
       this.impersonate = false

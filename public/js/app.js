@@ -50944,6 +50944,14 @@ if (user) {
   console.error('CAUTION!: user not found at HTML meta');
 }
 
+var userImpersonating = document.head.querySelector('meta[name="user_impersonating"]');
+if (userImpersonating) {
+  // TODO
+  window.laravel_user_impersonating = JSON.parse(userImpersonating.content);
+} else {
+  console.error('CAUTION!: user not found at HTML meta');
+}
+
 var gitHeader = document.head.querySelector('meta[name="git"]');
 window.git = null;
 if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content);
@@ -88650,7 +88658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       dataDrawerRight: this.drawerRight,
-      impersonate: true
+      impersonate: false
     };
   },
 
@@ -88662,6 +88670,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (newdrawer != this.drawerRight) this.$emit('changed', newdrawer);
     }
   },
+  // computed: {
+  //   impersonating () {
+  //     return window.laravel_user_impersonating
+  //   }
+  // },
   methods: {
     impersonat: function impersonat() {
       this.impersonate = false;
@@ -88831,16 +88844,6 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-card",
-        {
-          directives: [
-            {
-              name: "can",
-              rawName: "v-can",
-              value: _vm.impersonate,
-              expression: "impersonate"
-            }
-          ]
-        },
         [
           _c(
             "v-toolbar",
@@ -88873,27 +88876,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm.impersonate
-        ? _c(
-            "v-btn",
-            {
-              attrs: {
-                color: "error darken3",
-                dark: "",
-                href: "impersonate/leave"
-              }
-            },
-            [
-              _vm._v("Abandonar la suplantació\n        "),
-              _c("v-icon", { attrs: { dark: "", right: "" } }, [
-                _vm._v("supervisor_account")
-              ])
-            ],
-            1
-          )
-        : _vm._e()
+      )
     ],
     1
   )

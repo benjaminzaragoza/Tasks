@@ -47,6 +47,14 @@ if (user) {
   console.error('CAUTION!: user not found at HTML meta')
 }
 
+let userImpersonating = document.head.querySelector('meta[name="user_impersonating"]')
+if (userImpersonating) {
+  // TODO
+  window.laravel_user_impersonating = JSON.parse(userImpersonating.content)
+} else {
+  console.error('CAUTION!: user not found at HTML meta')
+}
+
 let gitHeader = document.head.querySelector('meta[name="git"]')
 window.git = null
 if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content)
