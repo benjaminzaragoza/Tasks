@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\TasksTagsController;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 
@@ -54,7 +55,9 @@ Route::post('/v1/tasks/{task}/tag', 'Api\TaskTagController@store');
 Route::delete('/v1/tasks/{task}/tag', 'Api\TaskTagController@destroy');
 
 Route::get('/v1/git/info','\\' . GitController::class . '@index');
-    Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
+Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
+
+    Route::post('/v1/user/photo', '\\' . PhotoController::class . '@store');
 
 });
 //

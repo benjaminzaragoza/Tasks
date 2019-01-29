@@ -89,6 +89,7 @@
                             size="130"
                     >
                         <img
+                                ref="img_avatar"
                                 src="/user/avatar"
                         >
                     </v-avatar>
@@ -114,21 +115,28 @@
                             size="130"
                     >
                         <img
+                                ref="img_photo"
                                 src="/user/photo"
+                                @click="selectFiles"
                         >
                     </v-avatar>
                     <v-card-text class="text-xs-center">
                         <p>Username here</p>
+
                         <form action="/photo" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="photo" id="photo-file-input" ref="avatar" accept="image/*">
+                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload" capture/>
                             <input type="hidden" name="_token" :value="csrf_token">
-                            <v-btn
-                                    color="success"
-                                    round
-                                    class="font-weight-light"
-                            ><input type="submit" value="UPLOAD PERFIL">
-                            </v-btn>
+                            <input type="submit" value="Pujar">
                         </form>
+
+                        <v-btn
+                                color="success"
+                                round
+                                class="font-weight-light"
+                                @click="selectFiles"
+                                :loading="uploading"
+                                :disabled="uploading"
+                        >Upload Photo</v-btn>
                     </v-card-text>
                 </material-card>
             </v-flex>
@@ -143,9 +151,51 @@ export default {
   components: {
     'material-card': MaterialCard
   },
+  methods: {
+    preview () {
+      if (this.$refs.photo.files && this.$refs.photo.files[0]) {
+        var reader = new FileReader()
+        reader.onload = e => {
+          this.$refs.img_photo.setAttribute('src', e.target.result)
+        }
+        reader.readAsDataURL(this.$refs.photo.files[0])
+      }
+    },
+    save (formData) {
+      this.uploading = true
+      var config = {
+        onUploadProgress: progressEvent => {
+          this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        }
+      }
+      window.axios.post('/api/v1/user/photo', formData, config)
+        .then(() => {
+          this.uploading = false
+          this.$snackbar.showMessage('Ok!')
+        })
+        .catch(error => {
+          console.log(error)
+          this.$snackbar.showError(error)
+          this.uploading = false
+        })
+    },
+    selectFiles () {
+      this.$refs.photo.click()
+    },
+    upload () {
+      const formData = new FormData()
+      formData.append('photo', this.$refs.photo.files[0])
+      // Preview it
+      this.preview()
+      // save it
+      this.save(formData)
+    }
+  },
   data () {
     return {
       name: this.user.name,
+      uploading: false,
+      percentCompleted: 0,
       email: this.user.email,
       admin: this.user.admin
     }
@@ -161,3 +211,10 @@ export default {
   }
 }
 </script>
+
+<style>
+    input[type=file] {
+        position: absolute;
+        left: -99999px;
+    }
+</style>
