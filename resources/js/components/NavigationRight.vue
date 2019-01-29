@@ -79,7 +79,7 @@ export default {
       this.dataDrawerRight = newvalue
     },
     dataDrawerRight (newdrawer) {
-      if (newdrawer != this.drawerRight) this.$emit('changed', newdrawer)
+      if (newdrawer !== this.drawerRight) this.$emit('changed', newdrawer)
     }
   },
   // computed: {

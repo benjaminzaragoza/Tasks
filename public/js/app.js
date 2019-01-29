@@ -50947,7 +50947,7 @@ if (user) {
 var userImpersonating = document.head.querySelector('meta[name="user_impersonating"]');
 if (userImpersonating) {
   // TODO
-  window.laravel_user_impersonating = JSON.parse(userImpersonating.content);
+  window.laravel_user_impersonating = true;
 } else {
   console.error('CAUTION!: user not found at HTML meta');
 }
@@ -88681,7 +88681,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.dataDrawerRight = newvalue;
     },
     dataDrawerRight: function dataDrawerRight(newdrawer) {
-      if (newdrawer != this.drawerRight) this.$emit('changed', newdrawer);
+      if (newdrawer !== this.drawerRight) this.$emit('changed', newdrawer);
     }
   },
   // computed: {

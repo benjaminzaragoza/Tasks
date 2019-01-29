@@ -52,13 +52,11 @@
                 @endif
 
     </v-toolbar>
-    <v-content style="margin-top: 0%;">
-        <section>
+    <v-content>
                 <v-parallax  class="article" height="720" >
                 <v-layout column align-center justify-center class="white--text justify-center" >
                     <img src="img/task.png" height="200">
                         <h1 style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.8em" class="dos" >Tasques i Tags amb Vue</h1>
-                    {{--<h1 class="white--text mb-2 display-1 text-xs-center " style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.1em" ><strong>Tasques i Tags amb Vue</strong></h1>--}}
                     @auth
                         <h4 class="white--text subheading mb-3 text-xs-center dos" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
                     @else
@@ -84,7 +82,6 @@
                     </div>
                 </v-layout>
             </v-parallax>
-        </section>
 
         <section>
             <v-layout
