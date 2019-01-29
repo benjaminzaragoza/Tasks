@@ -53,7 +53,7 @@
 
     </v-toolbar>
     <v-content>
-                <v-parallax  class="article" height="720" >
+                <v-parallax  class="article"  >
                 <v-layout column align-center justify-center class="white--text justify-center" >
                     <img src="img/task.png" height="200">
                         <h1 style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.8em" class="dos" >Tasques i Tags amb Vue</h1>
@@ -247,16 +247,16 @@
 </script>
 <style>
     .article {
-        /*display: compact;*/
-        /*text-align: center;*/
+        display: compact;
+        text-align: center;
         background-image: url('img/image.jpg');
-        /*background-size: cover;*/
+        background-size: cover;
     }
     .article:before {
-        /*content:'';*/
-        /*position: absolute;*/
-        /*top:0;right:0;bottom:0;left:0;*/
-        /*background: rgba(93, 93, 146, 0.5);*/
+        content:'';
+        position: absolute;
+        top:0;right:0;bottom:0;left:0;
+        background: rgba(93, 93, 146, 0.5);
     }
     .dos:before {
         background: rgba(0,0,0,.4)
