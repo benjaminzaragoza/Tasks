@@ -247,10 +247,10 @@
 </script>
 <style>
     .article {
-        background: url(<?php echo "img/image.jpg"; ?>);
+        {{--background: url(<?php echo "img/image.jpg"; ?>);--}}
         display: compact;
         text-align: center;
-        /*background-image: :src='/img/image';*/
+        background-image: url('img/image.jpg');
         background-size: cover;
     }
     .article:before {
