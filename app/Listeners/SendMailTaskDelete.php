@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 
-class SendMailTaskDelete implements ShouldQueue
+class SendMailTaskDelete
 {
     /**
      * Create the event listener.
