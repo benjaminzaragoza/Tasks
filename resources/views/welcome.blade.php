@@ -264,7 +264,6 @@
     }
     h1 {
         color: #fff;
-        font-size: 4vw;
         font-weight: 20;
         text-align: center;
     }
