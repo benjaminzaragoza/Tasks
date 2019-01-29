@@ -249,7 +249,8 @@
     .article {
         display: compact;
         text-align: center;
-        background-image: url("img/image.jpg");
+        /*background-image: src="img/image.jpg";*/
+        background-image: url('img/image.jpg');
         background-size: cover;
     }
     .article:before {
