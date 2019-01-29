@@ -50,7 +50,7 @@ if (user) {
 let userImpersonating = document.head.querySelector('meta[name="user_impersonating"]')
 if (userImpersonating) {
   // TODO
-  window.laravel_user_impersonating = JSON.parse(userImpersonating.content)
+  window.laravel_user_impersonating = true
 } else {
   console.error('CAUTION!: user not found at HTML meta')
 }
