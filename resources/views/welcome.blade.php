@@ -251,7 +251,6 @@
         display: compact;
         text-align: center;
         /*background-image: :src='/img/image';*/
-        background-size: cover;
     }
     .article:before {
         content:'';
