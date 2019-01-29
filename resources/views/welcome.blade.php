@@ -54,33 +54,33 @@
     </v-toolbar>
     <v-content>
                 <v-parallax  class="article" height="720" >
-                <v-layout column align-center justify-center class="white--text justify-center" >
-                    <img src="img/task.png" height="200">
-                        <h1 style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.8em" class="dos" >Tasques i Tags amb Vue</h1>
-                    @auth
-                        <h4 class="white--text subheading mb-3 text-xs-center dos" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
-                    @else
-                        <h4 class="white--text subheading mb-3 text-xs-center dos"style="text-shadow:  black 0.1em 0.1em 1em"><strong>by Benjamin Zaragoza Pla<strong></strong></h4>
-                    @endauth
-                    {{--<div class="text-xs-center">--}}
-                    {{--<v-btn--}}
-                            {{--class="primary mt-5 font-weight-bold text-xs-center text-uppercase"--}}
-                            {{--dark--}}
-                            {{--large--}}
-                            {{--href="/home"--}}
-                    {{-->--}}
-                        {{--<v-icon  color="yellow" left>star</v-icon>--}}
-                        {{--Tasques Go--}}
-                    {{--</v-btn>--}}
-                    {{--<v-btn depressed--}}
-                           {{--class="dark mt-5"--}}
-                           {{--style="height: 6.2%"--}}
-                           {{--target="_blank"--}}
-                           {{--href="https://github.com/benjaminzaragoza/Tasks"--}}
-                    {{--><img src="img/github.png" alt="Github" height="65">--}}
-                    {{--</v-btn>--}}
-                    {{--</div>--}}
-                </v-layout>
+                {{--<v-layout column align-center justify-center class="white--text justify-center" >--}}
+                    {{--<img src="img/task.png" height="200">--}}
+                        {{--<h1 style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.8em" class="dos" >Tasques i Tags amb Vue</h1>--}}
+                    {{--@auth--}}
+                        {{--<h4 class="white--text subheading mb-3 text-xs-center dos" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>--}}
+                    {{--@else--}}
+                        {{--<h4 class="white--text subheading mb-3 text-xs-center dos"style="text-shadow:  black 0.1em 0.1em 1em"><strong>by Benjamin Zaragoza Pla<strong></strong></h4>--}}
+                    {{--@endauth--}}
+                    <div class="text-xs-center">
+                    <v-btn
+                            class="primary mt-5 font-weight-bold text-xs-center text-uppercase"
+                            dark
+                            large
+                            href="/home"
+                    >
+                        <v-icon  color="yellow" left>star</v-icon>
+                        Tasques Go
+                    </v-btn>
+                    <v-btn depressed
+                           class="dark mt-5"
+                           style="height: 6.2%"
+                           target="_blank"
+                           href="https://github.com/benjaminzaragoza/Tasks"
+                    ><img src="img/github.png" alt="Github" height="65">
+                    </v-btn>
+                    </div>
+                {{--</v-layout>--}}
             </v-parallax>
 
         <section>
