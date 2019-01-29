@@ -82,11 +82,6 @@ export default {
       if (newdrawer !== this.drawerRight) this.$emit('changed', newdrawer)
     }
   },
-  // computed: {
-  //   impersonating () {
-  //     return window.laravel_user_impersonating
-  //   }
-  // },
   methods: {
     impersonat () {
       this.impersonate = false

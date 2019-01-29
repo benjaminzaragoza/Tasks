@@ -121,7 +121,7 @@
                         >
                     </v-avatar>
                     <v-card-text class="text-xs-center">
-                        <p>Username here</p>
+                        <p>{{ user1('name') }}</p>
 
                         <form action="/photo" method="POST" enctype="multipart/form-data">
                             <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload" capture/>
@@ -152,6 +152,9 @@ export default {
     'material-card': MaterialCard
   },
   methods: {
+    user1 (prop) {
+      return window.laravel_user[prop]
+    },
     preview () {
       if (this.$refs.photo.files && this.$refs.photo.files[0]) {
         var reader = new FileReader()
@@ -171,7 +174,7 @@ export default {
       window.axios.post('/api/v1/user/photo', formData, config)
         .then(() => {
           this.uploading = false
-          this.$snackbar.showMessage('Ok!')
+          this.$snackbar.showMessage('Pujada Correctament')
         })
         .catch(error => {
           console.log(error)
@@ -185,9 +188,7 @@ export default {
     upload () {
       const formData = new FormData()
       formData.append('photo', this.$refs.photo.files[0])
-      // Preview it
       this.preview()
-      // save it
       this.save(formData)
     }
   },

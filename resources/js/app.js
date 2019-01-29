@@ -26,6 +26,7 @@ import TasksTags from './components/TasksTags'
 import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRight'
+import NotificationsWidget from './components/NotificationsWidget'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -148,6 +149,8 @@ Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 window.Vue.component('navigation', Navigation)
 Vue.component('navigation-right', NavigationRight)
+Vue.component('navigation-right', NavigationRight)
+Vue.component('notifications-widget', NotificationsWidget)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
