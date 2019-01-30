@@ -83971,12 +83971,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Profile',
+  data: function data() {
+    return {
+      name: this.user.name,
+      uploading: false,
+      percentCompleted: 0,
+      email: this.user.email,
+      admin: this.user.admin
+    };
+  },
+
   components: {
     'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
   },
@@ -84023,16 +84031,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.save(formData);
     }
   },
-  data: function data() {
-    return {
-      name: this.user.name,
-      uploading: false,
-      percentCompleted: 0,
-      email: this.user.email,
-      admin: this.user.admin
-    };
-  },
-
   props: {
     user: {
       type: Object,
@@ -84749,7 +84747,7 @@ var render = function() {
                     "v-card-text",
                     { staticClass: "text-xs-center" },
                     [
-                      _c("p", [_vm._v(_vm._s(_vm.user1("name")))]),
+                      _c("p", [_vm._v("Username here")]),
                       _vm._v(" "),
                       _c(
                         "form",

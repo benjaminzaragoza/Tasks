@@ -121,14 +121,12 @@
                         >
                     </v-avatar>
                     <v-card-text class="text-xs-center">
-                        <p>{{ user1('name') }}</p>
-
+                        <p>Username here</p>
                         <form action="/photo" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload" capture/>
+                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" capture @change="upload">
                             <input type="hidden" name="_token" :value="csrf_token">
                             <input type="submit" value="Pujar">
                         </form>
-
                         <v-btn
                                 color="success"
                                 round
@@ -148,6 +146,15 @@
 import MaterialCard from './ui/MaterialCard'
 export default {
   name: 'Profile',
+  data () {
+    return {
+      name: this.user.name,
+      uploading: false,
+      percentCompleted: 0,
+      email: this.user.email,
+      admin: this.user.admin
+    }
+  },
   components: {
     'material-card': MaterialCard
   },
@@ -190,15 +197,6 @@ export default {
       formData.append('photo', this.$refs.photo.files[0])
       this.preview()
       this.save(formData)
-    }
-  },
-  data () {
-    return {
-      name: this.user.name,
-      uploading: false,
-      percentCompleted: 0,
-      email: this.user.email,
-      admin: this.user.admin
     }
   },
   props: {
