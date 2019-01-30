@@ -21,13 +21,16 @@ class AvatarControllerTest extends TestCase
         $this->withoutExceptionHandling();
         Storage::fake('local');
         Storage::fake('google');
+
         $user = $this->login();
         $response = $this->post('/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg')
         ]);
         $response->assertRedirect();
+
         Storage::disk('local')->assertExists($avatarUrl = 'avatars/' . $user->id . '.jpg');
         Storage::disk('google')->assertExists('/' . $user->id . '.jpg');
+
         $avatar = Avatar::first();
         $this->assertEquals($avatarUrl, $avatar->url);
         $this->assertNotNull($avatar->user);
@@ -38,23 +41,28 @@ class AvatarControllerTest extends TestCase
         $this->assertCount(1, $user->avatars);
         $this->assertEquals($avatarUrl, $user->avatars[0]->url);
     }
+
     /**
      * @test
      */
     public function upload_avatar_update()
     {
         $user = $this->login();
-        $avatarUrl = 'avatar/' . $user->id . '.jpg';
+        $avatarUrl = 'avatars/' . $user->id . '.jpg';
         Avatar::create([
             'url' => $avatarUrl,
             'user_id' => $user->id
         ]);
+
         Storage::fake('local');
+
         $response = $this->post('/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg')
         ]);
         $response->assertRedirect();
+
         Storage::disk('local')->assertExists($avatarUrl);
+
         $avatar = Avatar::first();
         $this->assertEquals($avatarUrl, $avatar->url);
         $this->assertNotNull($avatar->user);
