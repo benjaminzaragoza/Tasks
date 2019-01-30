@@ -28,7 +28,7 @@ class AvatarControllerTest extends TestCase
         ]);
         $response->assertRedirect();
 
-        Storage::disk('local')->assertExists($avatarUrl = 'avatars/' . $user->id . '.jpg');
+        Storage::disk('local')->assertExists($avatarUrl = 'avatar/' . $user->id . '.jpg');
         Storage::disk('google')->assertExists('/' . $user->id . '.jpg');
 
         $avatar = Avatar::first();
@@ -48,7 +48,7 @@ class AvatarControllerTest extends TestCase
     public function upload_avatar_update()
     {
         $user = $this->login();
-        $avatarUrl = 'avatars/' . $user->id . '.jpg';
+        $avatarUrl = 'avatar/' . $user->id . '.jpg';
         Avatar::create([
             'url' => $avatarUrl,
             'user_id' => $user->id
