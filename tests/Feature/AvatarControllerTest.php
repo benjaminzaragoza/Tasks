@@ -44,7 +44,7 @@ class AvatarControllerTest extends TestCase
     public function upload_avatar_update()
     {
         $user = $this->login();
-        $avatarUrl = 'avatars/' . $user->id . '.jpg';
+        $avatarUrl = 'avatar/' . $user->id . '.jpg';
         Avatar::create([
             'url' => $avatarUrl,
             'user_id' => $user->id
