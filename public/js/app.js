@@ -76129,11 +76129,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     refresh: function refresh() {
       var _this2 = this;
 
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
         _this2.dataTasks = response.data;
         _this2.loading = false;
-        _this2.$snackbar.showMessage('Tasques actualitzades correctament');
+        if (message) _this2.$snackbar.showMessage('Tasques actualitzades correctament');
       }).catch(function (error) {
         console.log(error);
         _this2.loading = false;
@@ -78416,41 +78418,68 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TasksTags',
-  props: {
-    task: {
-      type: Object
-    },
-    tags: {
-      type: Array
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    }
-  },
   data: function data() {
     return {
       dialog: false,
-      selectedTag: null
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
     };
   },
 
+  props: {
+    task: {
+      type: Object,
+      required: true
+    },
+    taskTags: {
+      type: Array,
+      required: true
+    },
+    tags: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    taskTags: function taskTags(_taskTags) {
+      this.dataTaskTags = _taskTags;
+    }
+  },
   methods: {
+    formatTag: function formatTag() {
+      var value = this.selectedTags[this.selectedTags.length - 1];
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'primary',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        };
+      }
+    },
     addTag: function addTag() {
       var _this = this;
 
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then(function (response) {
-        _this.$snackbar.showMessage(response.data.name + ' assignat correctament');
-        _this.dialog = false;
-        _this.selectedTag = null;
-        _this.$emit('added', response.data);
-      }).catch(function (error) {
-        _this.$snackbar.showError(error.response.data.message);
+      this.loading = true;
+      this.selectedTags.map(function (tag) {
+        return tag.id;
       });
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map(function (tag) {
+          if (tag.id) return tag.id;else return tag.name;
+        })
+      }).then(function (response) {
+        _this.dialog = false;
+        _this.$snackbar.showMessage('Etiqueta/s afegides correctament');
+        _this.dialog = false;
+        _this.loading = false;
+        _this.$emit('change', _this.selectedTags);
+      }).catch(function (error) {
+        _this.$snackbar.showError(error);
+      });
+      this.loading = false;
     },
     removeTag: function removeTag(tag) {
       var _this2 = this;
@@ -78476,7 +78505,7 @@ var render = function() {
   return _c(
     "span",
     [
-      _vm._l(_vm.task.tags, function(tag) {
+      _vm._l(_vm.taskTags, function(tag) {
         return _c(
           "v-chip",
           {
@@ -78562,11 +78591,11 @@ var render = function() {
                     attrs: {
                       items: _vm.tags,
                       "item-text": "name",
-                      "item-value": "name",
                       multiple: "",
                       label: "Escull o tria una etiqueta",
                       chips: ""
                     },
+                    on: { change: _vm.formatTag },
                     scopedSlots: _vm._u([
                       {
                         key: "selection",
@@ -78614,11 +78643,11 @@ var render = function() {
                       }
                     ]),
                     model: {
-                      value: _vm.selectedTag,
+                      value: _vm.selectedTags,
                       callback: function($$v) {
-                        _vm.selectedTag = $$v
+                        _vm.selectedTags = $$v
                       },
-                      expression: "selectedTag"
+                      expression: "selectedTags"
                     }
                   }),
                   _vm._v(" "),
@@ -78630,7 +78659,11 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "error", flat: "" },
+                          attrs: {
+                            flat: "",
+                            loading: _vm.loading,
+                            disabled: _vm.loading
+                          },
                           on: {
                             click: function($event) {
                               _vm.dialog = false
@@ -78928,10 +78961,14 @@ var render = function() {
                           "td",
                           [
                             _c("tasks-tags", {
-                              attrs: { task: task, tags: _vm.tags },
+                              attrs: {
+                                task: task,
+                                "task-tags": task.tags,
+                                tags: _vm.tags
+                              },
                               on: {
-                                added: function($event) {
-                                  task.tags.push($event)
+                                change: function($event) {
+                                  _vm.refresh(false)
                                 },
                                 removed: _vm.searchForTasks
                               }
@@ -79254,10 +79291,14 @@ var render = function() {
                                       { staticClass: "justify-center" },
                                       [
                                         _c("tasks-tags", {
-                                          attrs: { task: task, tags: _vm.tags },
+                                          attrs: {
+                                            task: task,
+                                            "task-tags": task.tags,
+                                            tags: _vm.tags
+                                          },
                                           on: {
-                                            added: function($event) {
-                                              task.tags.push($event)
+                                            change: function($event) {
+                                              _vm.refresh(false)
                                             },
                                             removed: _vm.searchForTasks
                                           }

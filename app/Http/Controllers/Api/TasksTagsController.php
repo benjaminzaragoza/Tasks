@@ -16,7 +16,32 @@ class TasksTagsController extends Controller
      */
     public function update(TasksTagsUpdate $request, Task $task)
     {
-        $tags= Task::find($request->tags);
-        $task->addTags($tags);
+//        foreach ($request->tags as $tag) {
+//            if(is_int($tag)){
+//                $task->addTag(Tag::find($tag));
+//
+//            }else{
+//                $newTag=Tag::create([
+//                   'color'=>'primary',
+//                   'name'=> $tag,
+//                    'description'=>''
+//                ]);
+//                $task->addTag($newTag);
+//
+//            }
+//        }
+
+        $mappedTags = collect($request->tags)->map(function ($tag){
+            if (is_int($tag)){
+                return $tag;
+            }else{
+                return Tag::create([
+                    'name' => $tag,
+                    'color' => 'primary',
+                    'description' => ''
+                ])->id;
+            }
+        });
+        $task->addTags(Tag::find($mappedTags));
     }
 }
