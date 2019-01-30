@@ -23,9 +23,14 @@ class TasksTagsControllerTest extends TestCase {
             'description' => 'bla bla',
             'color' => 'blue'
         ]);
+        $tag2 = Tag::create([
+            'name' => 'prova',
+            'description' => 'bla bla',
+            'color' => 'blue'
+        ]);
         $this->assertCount(0,$task->tags);
         $response = $this->json('PUT','/api/v1/tasks/' . $task->id . '/tags/', [
-            'tags' => [$tag->id]
+            'tags' => [$tag->id,$tag2->id]
         ]);
         $response->assertSuccessful();
         $task = $task->fresh();
@@ -94,4 +99,6 @@ class TasksTagsControllerTest extends TestCase {
         ]);
         $response->assertStatus(401);
     }
+
+
 }

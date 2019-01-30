@@ -78416,6 +78416,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TasksTags',
@@ -78562,6 +78563,7 @@ var render = function() {
                       items: _vm.tags,
                       "item-text": "name",
                       "item-value": "name",
+                      multiple: "",
                       label: "Escull o tria una etiqueta",
                       chips: ""
                     },

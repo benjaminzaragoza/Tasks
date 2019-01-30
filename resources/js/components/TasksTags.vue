@@ -22,6 +22,7 @@
                             :items="tags"
                             item-text="name"
                             item-value="name"
+                            multiple
                             label="Escull o tria una etiqueta"
                             chips>
                         <template slot="selection"
