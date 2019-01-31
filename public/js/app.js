@@ -50951,7 +50951,6 @@ if (user) {
 
 var userImpersonating = document.head.querySelector('meta[name="user_impersonating"]');
 if (userImpersonating) {
-  // TODO
   window.laravel_user_impersonating = true;
 } else {
   console.error('CAUTION!: user not found at HTML meta');
@@ -84032,6 +84031,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -84043,6 +84054,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       uploading: false,
       uploadingAvatar: false,
+      userAvatarPermisions: window.laravel_user.permissions,
+      userAvatarRole: window.laravel_user.admin,
       percentCompletedAvatar: 0,
       percentCompleted: 0,
       name: this.user.name,
@@ -84126,9 +84139,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     uploadAvatar: function uploadAvatar() {
       var formData = new FormData();
       formData.append('avatar', this.$refs.avatar.files[0]);
-      // Preview it
       this.previewAvatar();
-      // save it
       this.saveAvatar(formData);
     }
   },
@@ -84680,10 +84691,55 @@ var render = function() {
                                 "v-flex",
                                 { attrs: { xs12: "", md6: "" } },
                                 [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Admin" }
-                                  })
+                                  _vm.userAvatarRole == false
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          attrs: {
+                                            color: "success darken3",
+                                            "text-color": "white"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            [
+                                              _c("v-icon", [
+                                                _vm._v("check_circle")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(
+                                            "\n                                    Super Administrador\n                                "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.userAvatarRole == true
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          attrs: {
+                                            color: "error darken3",
+                                            "text-color": "white"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            [_c("v-icon", [_vm._v("close")])],
+                                            1
+                                          ),
+                                          _vm._v(
+                                            "\n                                    Usuari\n                                "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
                                 ],
                                 1
                               ),
@@ -84706,7 +84762,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Permissions" }
+                                    attrs: { label: "Permissions" },
+                                    model: {
+                                      value: _vm.userAvatarPermisions,
+                                      callback: function($$v) {
+                                        _vm.userAvatarPermisions = $$v
+                                      },
+                                      expression: "userAvatarPermisions"
+                                    }
                                   })
                                 ],
                                 1
@@ -88487,6 +88550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'Navigation',
   data: function data() {
     return {
+      userAvatar: window.laravel_user.gravatar,
       dataDrawer: this.drawer,
       mini: this.mini,
       nom: '',
@@ -88570,12 +88634,7 @@ var render = function() {
                 { attrs: { avatar: "" } },
                 [
                   _c("v-list-tile-avatar", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://www.gravatar.com/avatar/",
-                        alt: "avatar"
-                      }
-                    })
+                    _c("img", { attrs: { src: _vm.userAvatar, alt: "avatar" } })
                   ]),
                   _vm._v(" "),
                   _c(
@@ -88909,16 +88968,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NavigationRight',
   props: ['drawerRight'],
   data: function data() {
     return {
+      userAvatar: window.laravel_user.gravatar,
+      userAvatarName: window.laravel_user.name,
+      userAvatarEmail: window.laravel_user.email,
       dataDrawerRight: this.drawerRight,
       impersonate: false
     };
@@ -88926,16 +88984,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   watch: {
     drawerRight: function drawerRight(newvalue) {
+      // console.log(this.impersonate)
+      console.log(window.laravel_user);
       this.dataDrawerRight = newvalue;
     },
     dataDrawerRight: function dataDrawerRight(newdrawer) {
       if (newdrawer !== this.drawerRight) this.$emit('changed', newdrawer);
     }
   },
+  computed: {
+    impersonating: function impersonating() {
+      return window.laravel_user_impersonating;
+    }
+  },
   methods: {
-    impersonat: function impersonat() {
-      this.impersonate = false;
-    },
     user: function user(prop) {
       return window.laravel_user[prop];
     }
@@ -88990,6 +89052,9 @@ var render = function() {
                     "v-avatar",
                     {
                       staticStyle: { "margin-top": "2%", "margin-right": "5%" },
+                      attrs: {
+                        title: _vm.userAvatarName + " - " + _vm.userAvatarEmail
+                      },
                       on: {
                         click: function($event) {
                           _vm.drawerRight = !_vm.drawerRight
@@ -89003,10 +89068,7 @@ var render = function() {
                           "margin-right": "40%",
                           "margin-top": "-11%"
                         },
-                        attrs: {
-                          src: "https://www.gravatar.com/avatar/",
-                          alt: "avatar"
-                        }
+                        attrs: { src: _vm.userAvatar, alt: "avatar" }
                       })
                     ]
                   ),
@@ -89082,7 +89144,7 @@ var render = function() {
               _c("h4", [_vm._v("Permisos")]),
               _vm._v(" "),
               [
-                _c("p", { staticStyle: { "margin-top": "5%" } }, [
+                _c("v-list", { staticStyle: { "margin-top": "5%" } }, [
                   _vm._v(_vm._s(_vm.user("permissions").join()))
                 ])
               ],
@@ -89133,7 +89195,27 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm.userAvatarName
+        ? _c(
+            "v-btn",
+            {
+              attrs: {
+                color: "error darken3",
+                dark: "",
+                href: "impersonate/leave"
+              }
+            },
+            [
+              _vm._v("Abandonar la suplantació\n        "),
+              _c("v-icon", { attrs: { dark: "", right: "" } }, [
+                _vm._v("supervisor_account")
+              ])
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -89239,16 +89321,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NotificationsWidget',
-  data: function data() {
-    return {};
+  methods: {
+    notify: function notify() {
+      if (!('Notification' in window)) {
+        this.$snackbar.showError('This browser does not support desktop notification');
+      } else {
+        if (Notification.permission === 'default') {
+          Notification.requestPermission().then(function (result) {
+            console.log(result);
+            new Notification('Hi there!');
+          });
+        }
+        console.log(Notification.permission);
+        if (Notification.permission === 'granted') {
+          new Notification('Hi there!');
+        }
+      }
+    }
   }
 });
 
@@ -89270,7 +89362,7 @@ var render = function() {
         [
           _c(
             "v-list-tile",
-            { attrs: { avatar: "" } },
+            { attrs: { avatar: "" }, on: { click: _vm.notify } },
             [
               _c(
                 "v-list-tile-avatar",
@@ -89280,11 +89372,26 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list-tile-content",
-                [
-                  _c("v-list-tile-title", [_vm._v("Notification 1")]),
-                  _vm._v(" "),
-                  _c("v-list-tile-title", [_vm._v("Notification 1")])
-                ],
+                [_c("v-list-tile-title", [_vm._v("Notification 1")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            { attrs: { avatar: "" }, on: { click: _vm.notify } },
+            [
+              _c(
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-tile-content",
+                [_c("v-list-tile-title", [_vm._v("Notification 2")])],
                 1
               )
             ],
@@ -89303,34 +89410,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list-tile-content",
-                [
-                  _c("v-list-tile-title", [_vm._v("Notification 2")]),
-                  _vm._v(" "),
-                  _c("v-list-tile-title", [_vm._v("Notification 2")])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            { attrs: { avatar: "" } },
-            [
-              _c(
-                "v-list-tile-avatar",
-                [_c("v-icon", [_vm._v("notifications")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile-content",
-                [
-                  _c("v-list-tile-title", [_vm._v("Notification 3")]),
-                  _vm._v(" "),
-                  _c("v-list-tile-title", [_vm._v("Notification 3")])
-                ],
+                [_c("v-list-tile-title", [_vm._v("Notification 3")])],
                 1
               )
             ],

@@ -11,7 +11,7 @@
             <v-list class="pa-0 hidden-sm-and-down" >
                 <v-list-tile avatar >
                     <v-list-tile-avatar >
-                        <img src="https://www.gravatar.com/avatar/" alt="avatar">
+                        <img :src=userAvatar alt="avatar">
                     </v-list-tile-avatar>
                     <v-list-tile-content>
                         <v-list-tile-title>{{ user('name') }}</v-list-tile-title>
@@ -99,6 +99,7 @@ export default {
   name: 'Navigation',
   data () {
     return {
+      userAvatar: window.laravel_user.gravatar,
       dataDrawer: this.drawer,
       mini: this.mini,
       nom: '',
