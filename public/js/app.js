@@ -88835,31 +88835,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NotificationsWidget',
   data: function data() {
-    return {
-      data: ''
-    };
-  },
-
-  methods: {
-    notify: function notify() {
-      if (!('Notification' in window)) {
-        this.$snackbar.showError('asda');
-      } else {
-        if (Notification.permission === 'default') {
-          Notification.requestPermission().then(function (result) {
-            console.log(result);
-            new Notification('Hola caracola');
-          });
-        }
-        if (Notification.permission === 'granted') {
-          new Notification('Hola caracola');
-        }
-      }
-    }
+    return {};
   }
 });
 
@@ -88872,26 +88866,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "span",
+    "v-menu",
+    { attrs: { "offset-y": "" } },
     [
       _c(
-        "v-menu",
+        "v-list",
+        { attrs: { "two-line": "" } },
         [
           _c(
-            "v-badge",
-            {
-              attrs: { slot: "activator", left: "", color: "red", overlap: "" },
-              slot: "activator"
-            },
+            "v-list-tile",
+            { attrs: { avatar: "" } },
             [
-              _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
-                _vm._v("6")
-              ]),
+              _c(
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
+                1
+              ),
               _vm._v(" "),
               _c(
-                "v-btn",
-                { attrs: { fab: "", small: "", color: "primary" } },
-                [_c("v-icon", [_vm._v("notifications")])],
+                "v-list-tile-content",
+                [
+                  _c("v-list-tile-title", [_vm._v("Notification 1")]),
+                  _vm._v(" "),
+                  _c("v-list-tile-title", [_vm._v("Notification 1")])
+                ],
                 1
               )
             ],
@@ -88899,31 +88897,71 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-list",
+            "v-list-tile",
+            { attrs: { avatar: "" } },
             [
               _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", { on: { click: _vm.notify } })],
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
                 1
               ),
               _vm._v(" "),
               _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", [_vm._v("Notification 2")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", [_vm._v("Notification 3")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", [_vm._v("Notification 4")])],
+                "v-list-tile-content",
+                [
+                  _c("v-list-tile-title", [_vm._v("Notification 2")]),
+                  _vm._v(" "),
+                  _c("v-list-tile-title", [_vm._v("Notification 2")])
+                ],
                 1
               )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            { attrs: { avatar: "" } },
+            [
+              _c(
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-tile-content",
+                [
+                  _c("v-list-tile-title", [_vm._v("Notification 3")]),
+                  _vm._v(" "),
+                  _c("v-list-tile-title", [_vm._v("Notification 3")])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticStyle: { "margin-left": "-80%" },
+          attrs: { slot: "activator", flat: "", icon: "" },
+          slot: "activator"
+        },
+        [
+          _c(
+            "v-badge",
+            { attrs: { right: "", color: "red" } },
+            [
+              _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
+                _vm._v("6")
+              ]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("notifications")])
             ],
             1
           )
@@ -88991,8 +89029,8 @@ function buildDistanceInWordsLocale () {
     },
 
     aboutXHours: {
-      one: 'una hora',
-      other: '{{count}} hores'
+      one: 'aproximadament una hora',
+      other: 'aproximadament {{count}} hores'
     },
 
     xHours: {
@@ -89006,8 +89044,8 @@ function buildDistanceInWordsLocale () {
     },
 
     aboutXMonths: {
-      one: 'un mes',
-      other: 'fa {{count}} mesos'
+      one: 'aproximadament un mes',
+      other: 'aproximadament {{count}} mesos'
     },
 
     xMonths: {
@@ -89016,8 +89054,8 @@ function buildDistanceInWordsLocale () {
     },
 
     aboutXYears: {
-      one: 'un any',
-      other: '{{count}} anys'
+      one: 'aproximadament un any',
+      other: 'aproximadament {{count}} anys'
     },
 
     xYears: {
