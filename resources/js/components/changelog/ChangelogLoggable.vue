@@ -5,12 +5,12 @@
 </template>
 
 <script>
-export default {
-  props: {
-    loggable: {
-      type: Object,
-      required: true
+  export default {
+    props: {
+      loggable: {
+        type: Object,
+        required: true
+      }
     }
   }
-}
 </script>

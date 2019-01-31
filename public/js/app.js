@@ -84831,7 +84831,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -86380,7 +86379,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { color: "secondary" } },
+        { attrs: { color: "primary" } },
         [
           _c(
             "v-menu",
@@ -86465,7 +86464,7 @@ var render = function() {
               attrs: {
                 flat: false,
                 icon: "settings",
-                color: "secondary",
+                color: "primary",
                 title: "Canviar la configuració del registre de canvis"
               },
               model: {
@@ -88992,8 +88991,8 @@ function buildDistanceInWordsLocale () {
     },
 
     aboutXHours: {
-      one: 'aproximadament una hora',
-      other: 'aproximadament {{count}} hores'
+      one: 'una hora',
+      other: '{{count}} hores'
     },
 
     xHours: {
@@ -89007,8 +89006,8 @@ function buildDistanceInWordsLocale () {
     },
 
     aboutXMonths: {
-      one: 'aproximadament un mes',
-      other: 'aproximadament {{count}} mesos'
+      one: 'un mes',
+      other: 'fa {{count}} mesos'
     },
 
     xMonths: {
@@ -89017,8 +89016,8 @@ function buildDistanceInWordsLocale () {
     },
 
     aboutXYears: {
-      one: 'aproximadament un any',
-      other: 'aproximadament {{count}} anys'
+      one: 'un any',
+      other: '{{count}} anys'
     },
 
     xYears: {
