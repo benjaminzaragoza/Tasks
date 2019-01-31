@@ -83778,19 +83778,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(195)
+  __webpack_require__(266)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(197)
 /* template */
-var __vue_template__ = __webpack_require__(208)
+var __vue_template__ = __webpack_require__(268)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-3bd692e4"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -83823,46 +83823,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(196);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("51d8fa6e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\ninput[type=file] {\n    position: absolute;\n    left: -99999px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 195 */,
+/* 196 */,
 /* 197 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -84014,27 +83976,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Profile',
-  data: function data() {
-    return {
-      name: this.user.name,
-      uploading: false,
-      percentCompleted: 0,
-      email: this.user.email,
-      admin: this.user.admin
-    };
-  },
-
   components: {
     'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
   },
+  name: 'Profile',
+  data: function data() {
+    return {
+      uploading: false,
+      uploadingAvatar: false,
+      percentCompletedAvatar: 0,
+      percentCompleted: 0,
+      name: this.user.name,
+      email: this.user.email
+    };
+  },
+
   methods: {
-    user1: function user1(prop) {
-      return window.laravel_user[prop];
-    },
     preview: function preview() {
       var _this = this;
 
@@ -84057,7 +84035,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
       window.axios.post('/api/v1/user/photo', formData, config).then(function () {
         _this2.uploading = false;
-        _this2.$snackbar.showMessage('Pujada Correctament');
+        _this2.$snackbar.showMessage('La foto ha estat pujada correctament!');
       }).catch(function (error) {
         console.log(error);
         _this2.$snackbar.showError(error);
@@ -84070,18 +84048,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     upload: function upload() {
       var formData = new FormData();
       formData.append('photo', this.$refs.photo.files[0]);
+      // Preview it
       this.preview();
+      // save it
       this.save(formData);
+    },
+    previewAvatar: function previewAvatar() {
+      var _this3 = this;
+
+      if (this.$refs.avatar.files && this.$refs.avatar.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          _this3.$refs.img_avatar.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(this.$refs.avatar.files[0]);
+      }
+    },
+    saveAvatar: function saveAvatar(formData) {
+      var _this4 = this;
+
+      this.uploadingAvatar = true;
+      var config = {
+        onUploadProgress: function onUploadProgress(progressEvent) {
+          _this4.percentCompletedAvatar = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+        }
+      };
+      window.axios.post('/api/v1/user/avatar', formData, config).then(function () {
+        _this4.uploadingAvatar = false;
+        _this4.$snackbar.showMessage('El avatar ha estat pujat correctament!');
+      }).catch(function (error) {
+        console.log(error);
+        _this4.$snackbar.showError(error);
+        _this4.uploadingAvatar = false;
+      });
+    },
+    selectFilesAvatar: function selectFilesAvatar() {
+      this.$refs.avatar.click();
+    },
+    uploadAvatar: function uploadAvatar() {
+      var formData = new FormData();
+      formData.append('avatar', this.$refs.avatar.files[0]);
+      // Preview it
+      this.previewAvatar();
+      // save it
+      this.saveAvatar(formData);
     }
   },
+  created: function created() {
+    this.csrf_token = window.csrf_token;
+  },
+
   props: {
     user: {
       type: Object,
       required: true
     }
-  },
-  created: function created() {
-    this.csrf_token = window.csrf_token;
   }
 });
 
@@ -84532,340 +84553,7 @@ if (false) {
 }
 
 /***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-container",
-    { attrs: { "fill-height": "", fluid: "", "grid-list-xl": "" } },
-    [
-      _c(
-        "v-layout",
-        { attrs: { "justify-center": "", wrap: "" } },
-        [
-          _c(
-            "v-flex",
-            { attrs: { xs12: "", md8: "" } },
-            [
-              _c(
-                "v-card",
-                [
-                  _c(
-                    "v-toolbar",
-                    { attrs: { color: "primary" } },
-                    [
-                      _c("v-toolbar-title", { staticClass: "white--text" }, [
-                        _vm._v("Perfil")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-spacer")
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-form",
-                    { staticClass: "mt-4" },
-                    [
-                      _c(
-                        "v-container",
-                        { attrs: { "py-0": "" } },
-                        [
-                          _c(
-                            "v-layout",
-                            { attrs: { wrap: "" } },
-                            [
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md6: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "User Name" },
-                                    model: {
-                                      value: _vm.name,
-                                      callback: function($$v) {
-                                        _vm.name = $$v
-                                      },
-                                      expression: "name"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md6: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: { label: "Email Address" },
-                                    model: {
-                                      value: _vm.email,
-                                      callback: function($$v) {
-                                        _vm.email = $$v
-                                      },
-                                      expression: "email"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md6: "" } },
-                                [
-                                  (_vm.admin = true)
-                                    ? _c("v-text-field", {
-                                        staticClass: "purple-input",
-                                        attrs: { label: "Admin" }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md6: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Roles" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md12: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Permissions" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", "text-xs-right": "" } },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      staticClass: "mx-0 font-weight-light",
-                                      attrs: { color: "success" }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    Modificar\n                                "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { xs12: "", md4: "" } },
-            [
-              _c(
-                "material-card",
-                { staticClass: "v-card-profile" },
-                [
-                  _c(
-                    "v-avatar",
-                    {
-                      staticClass: "mx-auto d-block",
-                      attrs: { slot: "offset", size: "130" },
-                      slot: "offset"
-                    },
-                    [
-                      _c("img", {
-                        ref: "img_avatar",
-                        attrs: { src: "/user/avatar" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "text-xs-center" },
-                    [
-                      _c("p", [_vm._v("Username here")]),
-                      _vm._v(" "),
-                      _c(
-                        "form",
-                        {
-                          attrs: {
-                            action: "/avatar",
-                            method: "POST",
-                            enctype: "multipart/form-data"
-                          }
-                        },
-                        [
-                          _c("input", {
-                            ref: "avatar",
-                            attrs: {
-                              type: "file",
-                              name: "avatar",
-                              id: "avatar-file-input",
-                              accept: "image/*"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "hidden", name: "_token" },
-                            domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "font-weight-light",
-                          attrs: { color: "success", round: "" }
-                        },
-                        [_vm._v("Upload Avatar")]
-                      ),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("TODO LIST AVATARS here")])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "material-card",
-                { staticClass: "v-card-profile" },
-                [
-                  _c(
-                    "v-avatar",
-                    {
-                      staticClass: "mx-auto d-block",
-                      attrs: { slot: "offset", size: "130" },
-                      slot: "offset"
-                    },
-                    [
-                      _c("img", {
-                        ref: "img_photo",
-                        attrs: { src: "/user/photo" },
-                        on: { click: _vm.selectFiles }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "text-xs-center" },
-                    [
-                      _c("p", [_vm._v("Username here")]),
-                      _vm._v(" "),
-                      _c(
-                        "form",
-                        {
-                          attrs: {
-                            action: "/photo",
-                            method: "POST",
-                            enctype: "multipart/form-data"
-                          }
-                        },
-                        [
-                          _c("input", {
-                            ref: "photo",
-                            attrs: {
-                              type: "file",
-                              name: "photo",
-                              id: "photo-file-input",
-                              accept: "image/*",
-                              capture: ""
-                            },
-                            on: { change: _vm.upload }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "hidden", name: "_token" },
-                            domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "font-weight-light",
-                          attrs: {
-                            color: "success",
-                            round: "",
-                            loading: _vm.uploading,
-                            disabled: _vm.uploading
-                          },
-                          on: { click: _vm.selectFiles }
-                        },
-                        [_vm._v("Upload Photo")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3bd692e4", module.exports)
-  }
-}
-
-/***/ }),
+/* 208 */,
 /* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -89475,6 +89163,405 @@ module.exports = buildFormatLocale
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 265 */,
+/* 266 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(267);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("01f13a56", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 267 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ninput[type=file][data-v-3bd692e4] {\n    position: absolute;\n    left: -99999px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { "fill-height": "", fluid: "", "grid-list-xl": "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { "justify-center": "", wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", md8: "" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    { attrs: { color: "primary" } },
+                    [
+                      _c("v-toolbar-title", { staticClass: "white--text" }, [
+                        _vm._v("Perfil")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-form",
+                    { staticClass: "mt-4" },
+                    [
+                      _c(
+                        "v-container",
+                        { attrs: { "py-0": "" } },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { wrap: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "User Name" },
+                                    model: {
+                                      value: _vm.name,
+                                      callback: function($$v) {
+                                        _vm.name = $$v
+                                      },
+                                      expression: "name"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Email Address" },
+                                    model: {
+                                      value: _vm.email,
+                                      callback: function($$v) {
+                                        _vm.email = $$v
+                                      },
+                                      expression: "email"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Admin" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Roles" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md12: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Permissions" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", "text-xs-right": "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "mx-0 font-weight-light",
+                                      attrs: { color: "success" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Modificar\n                                "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", md4: "" } },
+            [
+              _c(
+                "material-card",
+                { staticClass: "v-card-profile" },
+                [
+                  _c(
+                    "v-avatar",
+                    {
+                      staticClass: "mx-auto d-block",
+                      attrs: { slot: "offset", size: "130" },
+                      slot: "offset"
+                    },
+                    [
+                      _c("img", {
+                        ref: "img_avatar",
+                        attrs: { src: "/user/avatar" },
+                        on: { click: _vm.selectFilesAvatar }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    { staticClass: "text-xs-center" },
+                    [
+                      _c("p", [_vm._v("Username here")]),
+                      _vm._v(" "),
+                      _c(
+                        "form",
+                        {
+                          attrs: {
+                            action: "/avatar",
+                            method: "POST",
+                            enctype: "multipart/form-data"
+                          }
+                        },
+                        [
+                          _c("input", {
+                            ref: "avatar",
+                            attrs: {
+                              type: "file",
+                              name: "avatar",
+                              id: "avatar-file-input",
+                              accept: "image/*"
+                            },
+                            on: { change: _vm.uploadAvatar }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf_token }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "font-weight-light",
+                          attrs: {
+                            color: "success",
+                            round: "",
+                            loading: _vm.uploadingAvatar,
+                            disabled: _vm.uploadingAvatar
+                          },
+                          on: { click: _vm.selectFilesAvatar }
+                        },
+                        [_vm._v("Upload Avatar")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-progress-linear", {
+                        attrs: {
+                          active: _vm.uploadingAvatar,
+                          indeterminate: _vm.uploadingAvatar
+                        },
+                        model: {
+                          value: _vm.percentCompletedAvatar,
+                          callback: function($$v) {
+                            _vm.percentCompletedAvatar = $$v
+                          },
+                          expression: "percentCompletedAvatar"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "material-card",
+                { staticClass: "v-card-profile" },
+                [
+                  _c(
+                    "v-avatar",
+                    {
+                      staticClass: "mx-auto d-block",
+                      attrs: { slot: "offset", size: "130" },
+                      slot: "offset"
+                    },
+                    [
+                      _c("img", {
+                        ref: "img_photo",
+                        attrs: { src: "/user/photo" },
+                        on: { click: _vm.selectFiles }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    { staticClass: "text-xs-center" },
+                    [
+                      _c("p", [_vm._v("Username here")]),
+                      _vm._v(" "),
+                      _c(
+                        "form",
+                        {
+                          attrs: {
+                            action: "/photo",
+                            method: "POST",
+                            enctype: "multipart/form-data"
+                          }
+                        },
+                        [
+                          _c("input", {
+                            ref: "photo",
+                            attrs: {
+                              type: "file",
+                              name: "photo",
+                              id: "photo-file-input",
+                              accept: "image/*"
+                            },
+                            on: { change: _vm.upload }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf_token }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "font-weight-light",
+                          attrs: {
+                            color: "success",
+                            round: "",
+                            loading: _vm.uploading,
+                            disabled: _vm.uploading
+                          },
+                          on: { click: _vm.selectFiles }
+                        },
+                        [_vm._v("Upload Photo")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-progress-linear", {
+                        attrs: {
+                          active: _vm.uploading,
+                          indeterminate: _vm.uploading
+                        },
+                        model: {
+                          value: _vm.percentCompleted,
+                          callback: function($$v) {
+                            _vm.percentCompleted = $$v
+                          },
+                          expression: "percentCompleted"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3bd692e4", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

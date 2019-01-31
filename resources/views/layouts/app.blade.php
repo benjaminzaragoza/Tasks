@@ -128,13 +128,12 @@
                 </v-btn>
         </v-form>
         </v-toolbar>
-    <v-content >
-        <v-container fluid fill-height >
+    <v-content style="background-color:  #f2f2f2">
+        <v-container fluid fill-height  >
             <v-layout
                     justify-center
             >
                 <v-flex text-xs-center >
-
                     @yield('content')
                 </v-flex>
             </v-layout>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Perfil
+@endsection
 @section('content')
     <v-container fluid>
         <v-layout>
