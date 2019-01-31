@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-chip v-for="tag in task.tags"
+        <v-chip v-for="tag in taskTags"
                 :key="tag.id"
                 :color="tag.color"
                 @dblclick="removeTag(tag)"
@@ -18,10 +18,11 @@
                 </v-toolbar>
                 <v-card-text>
                     <v-combobox
-                            v-model="selectedTag"
+                            v-model="selectedTags"
                             :items="tags"
                             item-text="name"
-                            item-value="name"
+                            multiple
+                            @change="formatTag"
                             label="Escull o tria una etiqueta"
                             chips>
                         <template slot="selection"
@@ -40,7 +41,7 @@
                     </v-combobox>
                     <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="error" flat @click="dialog = false">Cancel·lar</v-btn>
+                    <v-btn flat @click="dialog = false" :loading="loading" :disabled="loading">Cancel·lar</v-btn>
                     <v-btn color="success"  @click="addTag">Afegir</v-btn>
                 </v-card-actions>
                 </v-card-text>
@@ -48,42 +49,68 @@
         </v-dialog>
     </span>
 </template>
-
 <script>
 export default {
   name: 'TasksTags',
-  props: {
-    task: {
-      type: Object
-    },
-    tags: {
-      type: Array
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    }
-  },
   data () {
     return {
       dialog: false,
-      selectedTag: null
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
+    }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
+    },
+    taskTags: {
+      type: Array,
+      required: true
+    },
+    tags: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    taskTags (taskTags) {
+      this.dataTaskTags = taskTags
     }
   },
   methods: {
+    formatTag () {
+      var value = this.selectedTags[this.selectedTags.length - 1]
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'primary',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        }
+      }
+    },
     addTag () {
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then((response) => {
-        this.$snackbar.showMessage(response.data.name + ' assignat correctament')
+      this.loading = true
+      this.selectedTags.map(tag => tag.id)
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map((tag) => {
+          if (tag.id) return tag.id
+          else return tag.name
+        })
+      }).then(response => {
         this.dialog = false
-        this.selectedTag = null
-        this.$emit('added', response.data)
-      }).catch((error) => {
-        this.$snackbar.showError(error.response.data.message)
+        this.$snackbar.showMessage('Etiqueta/s afegides correctament')
+        this.dialog = false
+        this.loading = false
+        this.$emit('change', this.selectedTags)
+      }).catch(error => {
+        this.$snackbar.showError(error)
       })
+      this.loading = false
     },
     removeTag (tag) {
       window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { data: { tag: tag } }).then((response) => {
-        this.$snackbar.showMessage( tag.name + ' eliminat correcatment')
+        this.$snackbar.showMessage(tag.name + ' eliminat correcatment')
         this.$emit('removed', response.data)
       }).catch((error) => {
         this.$snackbar.showError(error.response.data.exception)

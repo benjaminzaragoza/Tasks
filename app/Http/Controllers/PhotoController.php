@@ -9,25 +9,25 @@ class PhotoController extends Controller
 {
 
     public function store(PhotoStore $request)
-    {
-        $extension = $request->file('photo')->getClientOriginalExtension();
-        $path = $request->file('photo')->storeAs(
-            'photos', $request->user()->id. '.'. $extension
-        );
-        $request->file('photo')->storeAs(
-            '',$request->user()->id. '.'. $extension,'google'
-        );
-        if ($photo = Photo::where('user_id',$request->user()->id)->first()) {
-            $photo->url = $path;
-            $photo->save();
-        } else {
-            Photo::create([
-                'url' => $path,
-                'user_id' => $request->user()->id
-            ]);
-        }
-        return back();
+{
+    $extension = $request->file('photo')->getClientOriginalExtension();
+    $path = $request->file('photo')->storeAs(
+        'photos', $request->user()->id. '.'. $extension
+    );
+    $request->file('photo')->storeAs(
+        '',$request->user()->id. '.'. $extension,'google'
+    );
+    if ($photo = Photo::where('user_id',$request->user()->id)->first()) {
+        $photo->url = $path;
+        $photo->save();
+    } else {
+        Photo::create([
+            'url' => $path,
+            'user_id' => $request->user()->id
+        ]);
     }
+    return back();
+}
 
     public function storeExamples(PhotoStore $request)
     {

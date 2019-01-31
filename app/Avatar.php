@@ -21,7 +21,6 @@ class Avatar extends Model
 
     public function user()
     {
-//        return $this->hasOne(User::class);    -> Camp users.photo_id -> No és el que volem, no embrutar taula principal
         return $this->belongsTo(User::class);
     }
 

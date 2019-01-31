@@ -32,8 +32,7 @@ class AvatarController extends Controller
     public function storeExamples(AvatarStore $request)
     {
         $path = $request->file('avatar')->store('avatars');
-//        $path = Storage::putFile('avatars', $request->file('avatar'));
-        //CustomFileName
+
         $path = $request->file('avatar')->storeAs(
             'avatars', $request->user()->id
         );
@@ -41,10 +40,7 @@ class AvatarController extends Controller
         $path = $request->file('avatar')->storeAs(
             'avatars', $request->user()->id
         );
-        // Specificar un disk
-//        $path = $request->file('avatar')->store(
-//            'avatars/'.$request->user()->id, 's3'
-//        );
+
         dump($path);
         return Avatar::create([
             'url' => $path

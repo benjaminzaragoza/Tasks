@@ -76129,11 +76129,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     refresh: function refresh() {
       var _this2 = this;
 
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
         _this2.dataTasks = response.data;
         _this2.loading = false;
-        _this2.$snackbar.showMessage('Tasques actualitzades correctament');
+        if (message) _this2.$snackbar.showMessage('Tasques actualitzades correctament');
       }).catch(function (error) {
         console.log(error);
         _this2.loading = false;
@@ -78419,37 +78421,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TasksTags',
-  props: {
-    task: {
-      type: Object
-    },
-    tags: {
-      type: Array
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    }
-  },
   data: function data() {
     return {
       dialog: false,
-      selectedTag: null
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
     };
   },
 
+  props: {
+    task: {
+      type: Object,
+      required: true
+    },
+    taskTags: {
+      type: Array,
+      required: true
+    },
+    tags: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    taskTags: function taskTags(_taskTags) {
+      this.dataTaskTags = _taskTags;
+    }
+  },
   methods: {
+    formatTag: function formatTag() {
+      var value = this.selectedTags[this.selectedTags.length - 1];
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'primary',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        };
+      }
+    },
     addTag: function addTag() {
       var _this = this;
 
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then(function (response) {
-        _this.$snackbar.showMessage(response.data.name + ' assignat correctament');
-        _this.dialog = false;
-        _this.selectedTag = null;
-        _this.$emit('added', response.data);
-      }).catch(function (error) {
-        _this.$snackbar.showError(error.response.data.message);
+      this.loading = true;
+      this.selectedTags.map(function (tag) {
+        return tag.id;
       });
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map(function (tag) {
+          if (tag.id) return tag.id;else return tag.name;
+        })
+      }).then(function (response) {
+        _this.dialog = false;
+        _this.$snackbar.showMessage('Etiqueta/s afegides correctament');
+        _this.dialog = false;
+        _this.loading = false;
+        _this.$emit('change', _this.selectedTags);
+      }).catch(function (error) {
+        _this.$snackbar.showError(error);
+      });
+      this.loading = false;
     },
     removeTag: function removeTag(tag) {
       var _this2 = this;
@@ -78475,7 +78505,7 @@ var render = function() {
   return _c(
     "span",
     [
-      _vm._l(_vm.task.tags, function(tag) {
+      _vm._l(_vm.taskTags, function(tag) {
         return _c(
           "v-chip",
           {
@@ -78561,10 +78591,11 @@ var render = function() {
                     attrs: {
                       items: _vm.tags,
                       "item-text": "name",
-                      "item-value": "name",
+                      multiple: "",
                       label: "Escull o tria una etiqueta",
                       chips: ""
                     },
+                    on: { change: _vm.formatTag },
                     scopedSlots: _vm._u([
                       {
                         key: "selection",
@@ -78612,11 +78643,11 @@ var render = function() {
                       }
                     ]),
                     model: {
-                      value: _vm.selectedTag,
+                      value: _vm.selectedTags,
                       callback: function($$v) {
-                        _vm.selectedTag = $$v
+                        _vm.selectedTags = $$v
                       },
-                      expression: "selectedTag"
+                      expression: "selectedTags"
                     }
                   }),
                   _vm._v(" "),
@@ -78628,7 +78659,11 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "error", flat: "" },
+                          attrs: {
+                            flat: "",
+                            loading: _vm.loading,
+                            disabled: _vm.loading
+                          },
                           on: {
                             click: function($event) {
                               _vm.dialog = false
@@ -78926,10 +78961,14 @@ var render = function() {
                           "td",
                           [
                             _c("tasks-tags", {
-                              attrs: { task: task, tags: _vm.tags },
+                              attrs: {
+                                task: task,
+                                "task-tags": task.tags,
+                                tags: _vm.tags
+                              },
                               on: {
-                                added: function($event) {
-                                  task.tags.push($event)
+                                change: function($event) {
+                                  _vm.refresh(false)
                                 },
                                 removed: _vm.searchForTasks
                               }
@@ -79252,10 +79291,14 @@ var render = function() {
                                       { staticClass: "justify-center" },
                                       [
                                         _c("tasks-tags", {
-                                          attrs: { task: task, tags: _vm.tags },
+                                          attrs: {
+                                            task: task,
+                                            "task-tags": task.tags,
+                                            tags: _vm.tags
+                                          },
                                           on: {
-                                            added: function($event) {
-                                              task.tags.push($event)
+                                            change: function($event) {
+                                              _vm.refresh(false)
                                             },
                                             removed: _vm.searchForTasks
                                           }
@@ -83747,7 +83790,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-3bd692e4"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -83790,13 +83833,13 @@ var content = __webpack_require__(196);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("51d8fa6e", content, false, {});
+var update = __webpack_require__(4)("01f13a56", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3bd692e4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -83814,7 +83857,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\ninput[type=file] {\n    position: absolute;\n    left: -99999px;\n}\n", ""]);
+exports.push([module.i, "\ninput[type=file][data-v-3bd692e4] {\n    position: absolute;\n    left: -99999px;\n}\n", ""]);
 
 // exports
 
@@ -83973,17 +84016,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Profile',
   components: {
     'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
   },
+  name: 'Profile',
+  data: function data() {
+    return {
+      uploading: false,
+      uploadingAvatar: false,
+      percentCompletedAvatar: 0,
+      percentCompleted: 0,
+      name: this.user.name,
+      email: this.user.email
+    };
+  },
+
   methods: {
-    user1: function user1(prop) {
-      return window.laravel_user[prop];
-    },
     preview: function preview() {
       var _this = this;
 
@@ -84006,7 +84073,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
       window.axios.post('/api/v1/user/photo', formData, config).then(function () {
         _this2.uploading = false;
-        _this2.$snackbar.showMessage('Pujada Correctament');
+        _this2.$snackbar.showMessage('La foto ha estat pujada correctament!');
       }).catch(function (error) {
         console.log(error);
         _this2.$snackbar.showError(error);
@@ -84019,18 +84086,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     upload: function upload() {
       var formData = new FormData();
       formData.append('photo', this.$refs.photo.files[0]);
+      // Preview it
       this.preview();
+      // save it
       this.save(formData);
+    },
+    previewAvatar: function previewAvatar() {
+      var _this3 = this;
+
+      if (this.$refs.avatar.files && this.$refs.avatar.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          _this3.$refs.img_avatar.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(this.$refs.avatar.files[0]);
+      }
+    },
+    saveAvatar: function saveAvatar(formData) {
+      var _this4 = this;
+
+      this.uploadingAvatar = true;
+      var config = {
+        onUploadProgress: function onUploadProgress(progressEvent) {
+          _this4.percentCompletedAvatar = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+        }
+      };
+      window.axios.post('/api/v1/user/avatar', formData, config).then(function () {
+        _this4.uploadingAvatar = false;
+        _this4.$snackbar.showMessage('El avatar ha estat pujat correctament!');
+      }).catch(function (error) {
+        console.log(error);
+        _this4.$snackbar.showError(error);
+        _this4.uploadingAvatar = false;
+      });
+    },
+    selectFilesAvatar: function selectFilesAvatar() {
+      this.$refs.avatar.click();
+    },
+    uploadAvatar: function uploadAvatar() {
+      var formData = new FormData();
+      formData.append('avatar', this.$refs.avatar.files[0]);
+      // Preview it
+      this.previewAvatar();
+      // save it
+      this.saveAvatar(formData);
     }
   },
-  data: function data() {
-    return {
-      name: this.user.name,
-      uploading: false,
-      percentCompleted: 0,
-      email: this.user.email,
-      admin: this.user.admin
-    };
+  created: function created() {
+    this.csrf_token = window.csrf_token;
   },
 
   props: {
@@ -84038,9 +84141,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Object,
       required: true
     }
-  },
-  created: function created() {
-    this.csrf_token = window.csrf_token;
   }
 });
 
@@ -84562,6 +84662,7 @@ var render = function() {
                                 { attrs: { xs12: "", md6: "" } },
                                 [
                                   _c("v-text-field", {
+                                    staticClass: "purple-input",
                                     attrs: { label: "Email Address" },
                                     model: {
                                       value: _vm.email,
@@ -84579,12 +84680,10 @@ var render = function() {
                                 "v-flex",
                                 { attrs: { xs12: "", md6: "" } },
                                 [
-                                  (_vm.admin = true)
-                                    ? _c("v-text-field", {
-                                        staticClass: "purple-input",
-                                        attrs: { label: "Admin" }
-                                      })
-                                    : _vm._e()
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Admin" }
+                                  })
                                 ],
                                 1
                               ),
@@ -84666,7 +84765,8 @@ var render = function() {
                     [
                       _c("img", {
                         ref: "img_avatar",
-                        attrs: { src: "/user/avatar" }
+                        attrs: { src: "/user/avatar" },
+                        on: { click: _vm.selectFilesAvatar }
                       })
                     ]
                   ),
@@ -84694,16 +84794,13 @@ var render = function() {
                               name: "avatar",
                               id: "avatar-file-input",
                               accept: "image/*"
-                            }
+                            },
+                            on: { change: _vm.uploadAvatar }
                           }),
                           _vm._v(" "),
                           _c("input", {
                             attrs: { type: "hidden", name: "_token" },
                             domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
                           })
                         ]
                       ),
@@ -84712,12 +84809,30 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "font-weight-light",
-                          attrs: { color: "success", round: "" }
+                          attrs: {
+                            color: "success",
+                            round: "",
+                            loading: _vm.uploadingAvatar,
+                            disabled: _vm.uploadingAvatar
+                          },
+                          on: { click: _vm.selectFilesAvatar }
                         },
                         [_vm._v("Upload Avatar")]
                       ),
                       _vm._v(" "),
-                      _c("p", [_vm._v("TODO LIST AVATARS here")])
+                      _c("v-progress-linear", {
+                        attrs: {
+                          active: _vm.uploadingAvatar,
+                          indeterminate: _vm.uploadingAvatar
+                        },
+                        model: {
+                          value: _vm.percentCompletedAvatar,
+                          callback: function($$v) {
+                            _vm.percentCompletedAvatar = $$v
+                          },
+                          expression: "percentCompletedAvatar"
+                        }
+                      })
                     ],
                     1
                   )
@@ -84749,7 +84864,7 @@ var render = function() {
                     "v-card-text",
                     { staticClass: "text-xs-center" },
                     [
-                      _c("p", [_vm._v(_vm._s(_vm.user1("name")))]),
+                      _c("p", [_vm._v("Username here")]),
                       _vm._v(" "),
                       _c(
                         "form",
@@ -84767,8 +84882,7 @@ var render = function() {
                               type: "file",
                               name: "photo",
                               id: "photo-file-input",
-                              accept: "image/*",
-                              capture: ""
+                              accept: "image/*"
                             },
                             on: { change: _vm.upload }
                           }),
@@ -84776,10 +84890,6 @@ var render = function() {
                           _c("input", {
                             attrs: { type: "hidden", name: "_token" },
                             domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
                           })
                         ]
                       ),
@@ -84797,7 +84907,21 @@ var render = function() {
                           on: { click: _vm.selectFiles }
                         },
                         [_vm._v("Upload Photo")]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("v-progress-linear", {
+                        attrs: {
+                          active: _vm.uploading,
+                          indeterminate: _vm.uploading
+                        },
+                        model: {
+                          value: _vm.percentCompleted,
+                          callback: function($$v) {
+                            _vm.percentCompleted = $$v
+                          },
+                          expression: "percentCompleted"
+                        }
+                      })
                     ],
                     1
                   )
@@ -84987,7 +85111,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ChangelogSettingsComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ChangelogSettingsComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_UserAvatarComponent__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_UserAvatarComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__ui_UserAvatarComponent__);
-//
 //
 //
 //
@@ -86651,7 +86774,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { color: "secondary" } },
+        { attrs: { color: "primary" } },
         [
           _c(
             "v-menu",
@@ -86736,7 +86859,7 @@ var render = function() {
               attrs: {
                 flat: false,
                 icon: "settings",
-                color: "secondary",
+                color: "primary",
                 title: "Canviar la configuració del registre de canvis"
               },
               model: {
@@ -89107,31 +89230,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NotificationsWidget',
   data: function data() {
-    return {
-      data: ''
-    };
-  },
-
-  methods: {
-    notify: function notify() {
-      if (!('Notification' in window)) {
-        this.$snackbar.showError('asda');
-      } else {
-        if (Notification.permission === 'default') {
-          Notification.requestPermission().then(function (result) {
-            console.log(result);
-            new Notification('Hola caracola');
-          });
-        }
-        if (Notification.permission === 'granted') {
-          new Notification('Hola caracola');
-        }
-      }
-    }
+    return {};
   }
 });
 
@@ -89144,26 +89261,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "span",
+    "v-menu",
+    { attrs: { "offset-y": "" } },
     [
       _c(
-        "v-menu",
+        "v-list",
+        { attrs: { "two-line": "" } },
         [
           _c(
-            "v-badge",
-            {
-              attrs: { slot: "activator", left: "", color: "red", overlap: "" },
-              slot: "activator"
-            },
+            "v-list-tile",
+            { attrs: { avatar: "" } },
             [
-              _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
-                _vm._v("6")
-              ]),
+              _c(
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
+                1
+              ),
               _vm._v(" "),
               _c(
-                "v-btn",
-                { attrs: { fab: "", small: "", color: "primary" } },
-                [_c("v-icon", [_vm._v("notifications")])],
+                "v-list-tile-content",
+                [
+                  _c("v-list-tile-title", [_vm._v("Notification 1")]),
+                  _vm._v(" "),
+                  _c("v-list-tile-title", [_vm._v("Notification 1")])
+                ],
                 1
               )
             ],
@@ -89171,31 +89292,71 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-list",
+            "v-list-tile",
+            { attrs: { avatar: "" } },
             [
               _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", { on: { click: _vm.notify } })],
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
                 1
               ),
               _vm._v(" "),
               _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", [_vm._v("Notification 2")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", [_vm._v("Notification 3")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile",
-                [_c("v-list-tile-title", [_vm._v("Notification 4")])],
+                "v-list-tile-content",
+                [
+                  _c("v-list-tile-title", [_vm._v("Notification 2")]),
+                  _vm._v(" "),
+                  _c("v-list-tile-title", [_vm._v("Notification 2")])
+                ],
                 1
               )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            { attrs: { avatar: "" } },
+            [
+              _c(
+                "v-list-tile-avatar",
+                [_c("v-icon", [_vm._v("notifications")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-tile-content",
+                [
+                  _c("v-list-tile-title", [_vm._v("Notification 3")]),
+                  _vm._v(" "),
+                  _c("v-list-tile-title", [_vm._v("Notification 3")])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticStyle: { "margin-left": "-80%" },
+          attrs: { slot: "activator", flat: "", icon: "" },
+          slot: "activator"
+        },
+        [
+          _c(
+            "v-badge",
+            { attrs: { right: "", color: "red" } },
+            [
+              _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
+                _vm._v("6")
+              ]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("notifications")])
             ],
             1
           )

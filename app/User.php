@@ -19,7 +19,7 @@ class User extends Authenticatable
     const DEFAULT_PHOTO_PATH = 'app/' . self::DEFAULT_PHOTO_PATH1;
 
     const DEFAULT_AVATAR = 'default.png';
-    const DEFAULT_AVATAR_PATH1 = 'avatar/' . self::DEFAULT_AVATAR;
+    const DEFAULT_AVATAR_PATH1 = 'avatars/' . self::DEFAULT_AVATAR;
     const DEFAULT_AVATAR_PATH = 'app/' . self::DEFAULT_AVATAR_PATH1;
 
     use HasRoles,Notifiable,HasApiTokens,Impersonate;
@@ -55,6 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Avatar::class);
     }
+
+    public function lastAvatar()
+    {
+        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url;
+    }
+
     public function addAvatar(Avatar $avatar)
     {
         $this->avatars()->save($avatar);

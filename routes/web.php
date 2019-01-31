@@ -38,9 +38,9 @@ Route::middleware(['auth'])->group(function (){
     Route::impersonate();
     Route::get('/tags', 'TagsController@index');
     Route::get('/profile', '\\'. ProfileController::class . '@show');
+
     Route::post('/photo', '\\'. PhotoController::class . '@store');
     Route::post('/avatar', '\\'. AvatarController::class . '@store');
-
     Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
     Route::get('/user/avatar', '\\'. LoggedUserAvatarController::class . '@show');
 

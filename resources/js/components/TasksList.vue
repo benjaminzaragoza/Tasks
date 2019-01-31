@@ -81,7 +81,7 @@
                                      <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                         </td>
                           <td>
-                            <tasks-tags :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
+                            <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)" @removed="searchForTasks"
                             ></tasks-tags>
                         </td>
                         <td class="text-xs-left">
@@ -158,7 +158,7 @@
                         <v-spacer light></v-spacer>
 
                          <v-card-actions class="justify-center">
-                       <tasks-tags   :task="task" :tags="tags"  @added="task.tags.push($event)" @removed="searchForTasks"
+                       <tasks-tags   :task="task"  :task-tags="task.tags" :tags="tags" @change="refresh(false)" @removed="searchForTasks"
                        ></tasks-tags></v-card-actions>
 
                   <footer class="card-footer">
@@ -305,12 +305,12 @@ export default {
     updateTask (task) {
       this.refresh()
     },
-    refresh () {
+    refresh (message = true) {
       this.loading = true
       window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
         this.loading = false
-        this.$snackbar.showMessage('Tasques actualitzades correctament')
+        if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
       }).catch(error => {
         console.log(error)
         this.loading = false

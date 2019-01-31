@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar color="secondary">
+        <v-toolbar color="primary">
             <v-menu bottom>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -27,7 +27,7 @@
                     class="white--text"
                     icon="settings"
                     v-model="settingsDialog"
-                    color="secondary"
+                    color="primary"
                     title="Canviar la configuració del registre de canvis">
                         <changelog-settings module="changelog" @close="settingsDialog = false"></changelog-settings>
             </fullscreen-dialog>
@@ -47,7 +47,6 @@
                           class="mb-2"
                   ></v-text-field>
                 <v-timeline dense clipped>
-                    <!--<v-slide-x-transition group> // TODO NO VA!! -->
                         <v-data-iterator
                                 :search="search"
                                 :items="timeline"
@@ -107,7 +106,7 @@
                         </v-layout>
                     </v-timeline-item>
                  </v-data-iterator>
-                     <!--</v-slide-x-transition>-->
+                    <!--</v-slide-x-transition>-->
                 </v-timeline>
               </v-container>
         </v-card>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\TasksTagsController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Changelog\ChangelogController;
@@ -58,6 +59,7 @@ Route::get('/v1/git/info','\\' . GitController::class . '@index');
 Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
 
     Route::post('/v1/user/photo', '\\' . PhotoController::class . '@store');
+    Route::post('/v1/user/avatar', '\\' . AvatarController::class . '@store');
 
 });
 //
