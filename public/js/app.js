@@ -84056,6 +84056,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       uploadingAvatar: false,
       userAvatarPermisions: window.laravel_user.permissions,
       userAvatarRole: window.laravel_user.admin,
+      userAvatarRoles: window.laravel_user.roles,
       percentCompletedAvatar: 0,
       percentCompleted: 0,
       name: this.user.name,
@@ -84691,7 +84692,7 @@ var render = function() {
                                 "v-flex",
                                 { attrs: { xs12: "", md6: "" } },
                                 [
-                                  _vm.userAvatarRole == false
+                                  _vm.userAvatarRole == true
                                     ? _c(
                                         "v-chip",
                                         {
@@ -84718,7 +84719,7 @@ var render = function() {
                                       )
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _vm.userAvatarRole == true
+                                  _vm.userAvatarRole == false
                                     ? _c(
                                         "v-chip",
                                         {
@@ -84750,7 +84751,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Roles" }
+                                    attrs: { label: "Roles" },
+                                    model: {
+                                      value: _vm.userAvatarRoles,
+                                      callback: function($$v) {
+                                        _vm.userAvatarRoles = $$v
+                                      },
+                                      expression: "userAvatarRoles"
+                                    }
                                   })
                                 ],
                                 1
@@ -88585,7 +88593,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     user: function user(prop) {
       return window.laravel_user[prop];
+    },
+    setSelectedItem: function setSelectedItem() {
+      console.log(window.laravel_user);
+      var currentPath = window.location.pathname;
+      var selected = this.items.indexOf(this.items.find(function (item) {
+        return item.url === currentPath;
+      }));
+      this.items[selected].selected = true;
+    },
+    selectedStyle: function selectedStyle(item) {
+      if (item.selected) {
+        return {
+          'border-left': '5px solid #4828d7',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        };
+      }
     }
+  },
+  created: function created() {
+    this.setSelectedItem();
   }
 });
 
@@ -88810,7 +88838,11 @@ var render = function() {
                     )
                   : _c(
                       "v-list-tile",
-                      { key: item.text, attrs: { href: item.url } },
+                      {
+                        key: item.text,
+                        style: _vm.selectedStyle(item),
+                        attrs: { href: item.url }
+                      },
                       [
                         _c(
                           "v-list-tile-action",
@@ -88984,8 +89016,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   watch: {
     drawerRight: function drawerRight(newvalue) {
-      // console.log(this.impersonate)
-      console.log(window.laravel_user);
       this.dataDrawerRight = newvalue;
     },
     dataDrawerRight: function dataDrawerRight(newdrawer) {

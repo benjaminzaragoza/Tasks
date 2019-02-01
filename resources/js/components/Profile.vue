@@ -47,13 +47,13 @@
                                     <!--<v-text-field-->
                                     <!--label="Admin"-->
                                      <!--class="purple-input"/>-->
-                                    <v-chip   v-if="userAvatarRole==false" color="success darken3" text-color="white" >
+                                    <v-chip   v-if="userAvatarRole==true" color="success darken3" text-color="white" >
                                         <v-avatar>
                                             <v-icon>check_circle</v-icon>
                                         </v-avatar>
                                         Super Administrador
                                     </v-chip>
-                                    <v-chip v-if="userAvatarRole==true" color="error darken3" text-color="white">
+                                    <v-chip v-if="userAvatarRole==false" color="error darken3" text-color="white">
                                         <v-avatar>
                                             <v-icon>close</v-icon>
                                         </v-avatar>
@@ -65,10 +65,10 @@
                                         md6
                                 >
                                     <v-text-field
-
                                             label="Roles"
-                                            class="purple-input"/>
-                                </v-flex>
+                                            class="purple-input"
+                                    v-model="userAvatarRoles"/>
+                                                                    </v-flex>
                                 <v-flex
                                         xs12
                                         md12
@@ -185,6 +185,7 @@ export default {
       uploadingAvatar: false,
       userAvatarPermisions: window.laravel_user.permissions,
       userAvatarRole: window.laravel_user.admin,
+      userAvatarRoles: window.laravel_user.roles,
       percentCompletedAvatar: 0,
       percentCompleted: 0,
       name: this.user.name,

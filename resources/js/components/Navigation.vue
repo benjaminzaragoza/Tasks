@@ -78,7 +78,7 @@
                     </v-list-tile>
                 </v-list-group>
 
-                <v-list-tile v-else :key="item.text" :href="item.url">
+                <v-list-tile :style="selectedStyle(item)" v-else :key="item.text" :href="item.url">
                     <v-list-tile-action >
                         <v-icon >{{ item.icon }}</v-icon>
                     </v-list-tile-action>
@@ -146,7 +146,25 @@ export default {
   methods: {
     user (prop) {
       return window.laravel_user[prop]
+    },
+    setSelectedItem () {
+      console.log(window.laravel_user)
+      const currentPath = window.location.pathname
+      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
+      this.items[selected].selected = true
+    },
+    selectedStyle (item) {
+      if (item.selected) {
+        return {
+          'border-left': '5px solid #4828d7',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        }
+      }
     }
+  },
+  created () {
+    this.setSelectedItem()
   }
 }
 </script>

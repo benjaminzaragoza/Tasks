@@ -75,8 +75,6 @@ export default {
   },
   watch: {
     drawerRight (newvalue) {
-      // console.log(this.impersonate)
-      console.log(window.laravel_user)
       this.dataDrawerRight = newvalue
     },
     dataDrawerRight (newdrawer) {
