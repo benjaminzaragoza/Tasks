@@ -55,9 +55,9 @@
                         :prepend-icon="item.model ? item.icon : item['icon-alt']"
                         append-icon=""
                 >
-                    <v-list-tile slot="activator" :href="item.url" >
+                    <v-list-tile slot="activator" :href="item.url"  >
                         <v-list-tile-content>
-                            <v-list-tile-title  >
+                            <v-list-tile-title>
                                 {{ item.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>
@@ -66,12 +66,13 @@
                             v-for="(child, i) in item.children"
                             :key="i"
                             :href="child.url"
+                            :style="selectedStyle(child)"
                     >
-                        <v-list-tile-action v-if="child.icon">
+                        <v-list-tile-action v-if="child.icon"  >
                             <v-icon >{{ child.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content :href="item.url">
-                            <v-list-tile-title>
+                            <v-list-tile-title >
                                 {{ child.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>
@@ -147,14 +148,12 @@ export default {
     user (prop) {
       return window.laravel_user[prop]
     },
-    setSelectedItem () {
-      console.log(window.laravel_user)
+    isSelectedItem (item) {
       const currentPath = window.location.pathname
-      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
-      this.items[selected].selected = true
+      return currentPath === item.url
     },
     selectedStyle (item) {
-      if (item.selected) {
+      if (this.isSelectedItem(item)) {
         return {
           'border-left': '5px solid #4828d7',
           'background-color': '#F0F4F8',

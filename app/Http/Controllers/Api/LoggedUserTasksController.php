@@ -7,6 +7,7 @@ use App\Http\Requests\IndexUserTask;
 use App\Http\Requests\StoreUserTask;
 use App\Http\Requests\UpdateUserTask;
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class LoggedUserTasksController extends Controller
     public function index(IndexUserTask $request)
     {
 //        return Auth::user()->tasks;
-        return map_collection($request->user()->tasks);
+        return map_collection(User::regular()->with('roles', 'permissions')->get());
 
     }
     public function store(StoreUserTask $request)

@@ -88553,6 +88553,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Navigation',
@@ -88594,16 +88595,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     user: function user(prop) {
       return window.laravel_user[prop];
     },
-    setSelectedItem: function setSelectedItem() {
-      console.log(window.laravel_user);
+    isSelectedItem: function isSelectedItem(item) {
       var currentPath = window.location.pathname;
-      var selected = this.items.indexOf(this.items.find(function (item) {
-        return item.url === currentPath;
-      }));
-      this.items[selected].selected = true;
+      return currentPath === item.url;
     },
     selectedStyle: function selectedStyle(item) {
-      if (item.selected) {
+      if (this.isSelectedItem(item)) {
         return {
           'border-left': '5px solid #4828d7',
           'background-color': '#F0F4F8',
@@ -88803,7 +88800,11 @@ var render = function() {
                         _vm._l(item.children, function(child, i) {
                           return _c(
                             "v-list-tile",
-                            { key: i, attrs: { href: child.url } },
+                            {
+                              key: i,
+                              style: _vm.selectedStyle(child),
+                              attrs: { href: child.url }
+                            },
                             [
                               child.icon
                                 ? _c(

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Task;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -57,4 +58,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prova_cua', function(){
     \App\Jobs\SleepJob::dispatch();
+});
+Route::get('/omplir', function(){
+    //10 000
+    for ($i=0;$i<=1000;$i++) {
+        Task::create([
+            'name'=>'Prova'
+        ]);
+    }
 });
