@@ -131,6 +131,10 @@ export default {
       Type: Boolean,
       default: false
     }
+    // url: {
+    //   Type: String,
+    //   required: true
+    // }
   },
   watch: {
     dataDrawer (drawer) {
@@ -161,9 +165,6 @@ export default {
         }
       }
     }
-  },
-  created () {
-    this.setSelectedItem()
   }
 }
 </script>

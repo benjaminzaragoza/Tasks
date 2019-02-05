@@ -88577,8 +88577,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     drawer: {
       Type: Boolean,
       default: false
-    }
-  },
+      // url: {
+      //   Type: String,
+      //   required: true
+      // }
+    } },
   watch: {
     dataDrawer: function dataDrawer(drawer) {
       this.$emit('input', drawer);
@@ -88608,9 +88611,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
       }
     }
-  },
-  created: function created() {
-    this.setSelectedItem();
   }
 });
 
