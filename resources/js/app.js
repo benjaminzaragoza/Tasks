@@ -26,7 +26,7 @@ import TasksTags from './components/TasksTags'
 import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRight'
-import NotificationsWidget from './components/NotificationsWidget'
+import NotificationsWidget from './components/notifications/NotificationsWidget'
 import Notifications from './components/notifications/Notifications'
 
 window.Vue = Vue
