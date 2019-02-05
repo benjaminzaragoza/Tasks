@@ -232,6 +232,10 @@
                 </v-flex>
             </v-layout>
         </v-footer>
+
+
+
+
     </v-content>
     </v-app>
 @endsection
