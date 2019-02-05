@@ -108,7 +108,7 @@
                              :loading="loading"
                              :pagination.sync="pagination"
             >
-<v-flex
+    <v-flex
         slot="item"
         slot-scope="{item:task}"
         xs12
@@ -162,11 +162,11 @@
                        ></tasks-tags></v-card-actions>
 
                   <footer class="card-footer">
-                  <v-spacer light></v-spacer>
+                    <v-spacer light></v-spacer>
 
                     <v-card-actions  class="justify-center" >
                            <task-show :task="task" :uri="uri" :users="users"></task-show>
-                            <task-update :task="task" @updated="updateTask" :uri="uri" :users="users"></task-update>
+                            <task-update :task="task" @updated="updateTask" :uri="uri" :users="users" :tags="tags"></task-update>
                             <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
                     </v-card-actions>
 
@@ -178,14 +178,13 @@
                       </v-card-actions >
                     </footer>
                 </section>
-                <div class="content">
-                </div>
+                            <div class="content"></div>
                     </v-card>
 
-                 </div>
-                </v-container>
-            </v-flex>
-            </v-data-iterator>
+                     </div>
+                    </v-container>
+                </v-flex>
+          </v-data-iterator>
         </v-card>
     </span>
 </template>
@@ -209,7 +208,7 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        { name: 'Totes', value: 'TotesF' },
+        { name: 'Totes', value: 'Totes' },
         { name: 'Completades', value: true },
         { name: 'Pendents', value: false }
       ],

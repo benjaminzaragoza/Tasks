@@ -131,10 +131,6 @@ export default {
       Type: Boolean,
       default: false
     }
-    // url: {
-    //   Type: String,
-    //   required: true
-    // }
   },
   watch: {
     dataDrawer (drawer) {

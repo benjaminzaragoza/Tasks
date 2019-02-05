@@ -46,7 +46,6 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/avatar', '\\'. LoggedUserAvatarController::class . '@show');
 
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
-
 });
 Route::get('/', function () {
     return view('welcome');

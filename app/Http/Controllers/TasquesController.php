@@ -14,7 +14,7 @@ class TasquesController extends Controller
     {
 
         if (Auth::user()->can('tasks.manage')) {
-            $tasks = map_collection(Task::with('user','tags')->orderBy('created_at', 'desc')->get());
+            $tasks =  map_collection(Task::with('user','tags')->orderBy('created_at','desc')->get());
             $uri = '/api/v1/tasks';
         }else{
             $tasks= map_collection($request->user()->tasks);

@@ -15,8 +15,7 @@ class LoggedUserTasksController extends Controller
 {
     public function index(IndexUserTask $request)
     {
-//        return Auth::user()->tasks;
-        return map_collection(User::regular()->with('roles', 'permissions')->get());
+        return Auth::user()->tasks;
 
     }
     public function store(StoreUserTask $request)
@@ -42,6 +41,5 @@ class LoggedUserTasksController extends Controller
     {
         Auth::user()->tasks()->findOrFail($task->id);
         $task->delete();
-//        $user->removeTask();
     }
 }

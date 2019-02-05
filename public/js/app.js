@@ -76019,7 +76019,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -76038,7 +76037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       dataUsers: this.users,
       filter: 'Totes',
       filterUser: null,
-      filters: [{ name: 'Totes', value: 'TotesF' }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
+      filters: [{ name: 'Totes', value: 'Totes' }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
@@ -77496,7 +77495,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
-//
 //
 //
 //
@@ -79272,9 +79270,9 @@ var render = function() {
                                               ]
                                             ),
                                             _vm._v(
-                                              "\n                                 " +
+                                              "\n                             " +
                                                 _vm._s(task.user_name) +
-                                                "\n                        "
+                                                "\n                    "
                                             )
                                           ],
                                           1
@@ -79330,7 +79328,8 @@ var render = function() {
                                               attrs: {
                                                 task: task,
                                                 uri: _vm.uri,
-                                                users: _vm.users
+                                                users: _vm.users,
+                                                tags: _vm.tags
                                               },
                                               on: { updated: _vm.updateTask }
                                             }),
@@ -88577,11 +88576,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     drawer: {
       Type: Boolean,
       default: false
-      // url: {
-      //   Type: String,
-      //   required: true
-      // }
-    } },
+    }
+  },
   watch: {
     dataDrawer: function dataDrawer(drawer) {
       this.$emit('input', drawer);
