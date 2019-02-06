@@ -70,11 +70,9 @@ class NotificationsControllerTest extends TestCase
         $user = $this->login();
         set_sample_notifications_to_user($user);
         sample_notifications();
-
         $response = $this->get('/notifications');
         $response->assertSuccessful();
-
-        $response->assertViewIs('tenants.notifications.index');
+        $response->assertViewIs('notifications.index');
         $response->assertViewHas('userNotifications', function ($returnedUserNotifications) {
             return
                 count($returnedUserNotifications) === 3 &&
@@ -91,6 +89,7 @@ class NotificationsControllerTest extends TestCase
                 count($returnedUsers) === 0;
         });
     }
+
 
     /**
      * @test
