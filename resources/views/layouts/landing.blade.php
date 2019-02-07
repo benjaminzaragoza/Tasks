@@ -25,7 +25,7 @@
     <meta property="og:image:height" content="628">
     <meta property="og:title" content="Tasques i Tags amb Vue">
     <meta property="og:description" content="create task with by Benjamin Zaragoza Pla">
-    <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
+    <meta property="og:url" content="https://tasks.benjaminzaragoza.scool.cat">
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
     <title>@yield('title')</title>
     <style>
