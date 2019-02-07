@@ -8,10 +8,10 @@
             left
     >
         <v-toolbar flat class="transparent " >
-            <v-list class="pa-0 hidden-sm-and-down" >
+            <v-list class="pa-0 " >
                 <v-list-tile avatar >
                     <v-list-tile-avatar >
-                        <img src="https://www.gravatar.com/avatar/" alt="avatar">
+                        <img :src=userAvatar alt="avatar">
                     </v-list-tile-avatar>
                     <v-list-tile-content>
                         <v-list-tile-title>{{ user('name') }}</v-list-tile-title>
@@ -55,9 +55,9 @@
                         :prepend-icon="item.model ? item.icon : item['icon-alt']"
                         append-icon=""
                 >
-                    <v-list-tile slot="activator" :href="item.url" >
+                    <v-list-tile slot="activator" :href="item.url"  >
                         <v-list-tile-content>
-                            <v-list-tile-title  >
+                            <v-list-tile-title>
                                 {{ item.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>
@@ -66,19 +66,20 @@
                             v-for="(child, i) in item.children"
                             :key="i"
                             :href="child.url"
+                            :style="selectedStyle(child)"
                     >
-                        <v-list-tile-action v-if="child.icon">
+                        <v-list-tile-action v-if="child.icon"  >
                             <v-icon >{{ child.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content :href="item.url">
-                            <v-list-tile-title>
+                            <v-list-tile-title >
                                 {{ child.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
 
-                <v-list-tile v-else :key="item.text" :href="item.url">
+                <v-list-tile :style="selectedStyle(item)" v-else :key="item.text" :href="item.url">
                     <v-list-tile-action >
                         <v-icon >{{ item.icon }}</v-icon>
                     </v-list-tile-action>
@@ -99,6 +100,7 @@ export default {
   name: 'Navigation',
   data () {
     return {
+      userAvatar: window.laravel_user.gravatar,
       dataDrawer: this.drawer,
       mini: this.mini,
       nom: '',
@@ -118,6 +120,7 @@ export default {
         { icon: 'local_offer', text: 'Tags', url: '/tags' },
         { icon: 'help', text: 'Sabem mes', url: '/about' },
         { icon: 'camera', text: 'Perfil', url: '/profile' },
+        { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
         { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' },
         { icon: 'photo', text: 'Imatges', url: '/contact' }
 
@@ -145,6 +148,19 @@ export default {
   methods: {
     user (prop) {
       return window.laravel_user[prop]
+    },
+    isSelectedItem (item) {
+      const currentPath = window.location.pathname
+      return currentPath === item.url
+    },
+    selectedStyle (item) {
+      if (this.isSelectedItem(item)) {
+        return {
+          'border-left': '5px solid #4828d7',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        }
+      }
     }
   }
 }

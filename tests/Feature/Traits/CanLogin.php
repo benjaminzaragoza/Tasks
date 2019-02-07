@@ -10,6 +10,10 @@ trait CanLogin
         $this->actingAs($user,$guard);
         return $user;
     }
+    protected function loginAsNotificationsManager($guard = null)
+    {
+        return $this->loginAsUsingRole($guard, ['NotificationsManager']);
+    }
     /**
      * @param null $guard
      * @return mixed

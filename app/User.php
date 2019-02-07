@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function lastAvatar()
     {
-        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url;
+        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url ?? null;
     }
 
     public function addAvatar(Avatar $avatar)
@@ -149,8 +149,30 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
-            'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray()
-        ];
+            'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray(),
+            'hash_id' => $this->hash_id,
+            ];
+    }
+
+    /**
+     * Hashed key.
+     * @return string
+     */
+    protected function hashedKey()
+    {
+        $hashids = new \Hashids\Hashids(config('tasks.salt'));
+        return $hashids->encode($this->getKey());
+    }
+
+    /**
+     * Get the photo path prefix.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getHashIdAttribute($value)
+    {
+        return $this->hashedKey();
     }
     /**
      * Get the user's full name.
@@ -185,5 +207,16 @@ class User extends Authenticatable
     {
         if ($this->isImpersonated()) return User::findOrFail(Session::get('impersonated_by'));
         return null;
+    }
+    public function mapSimple()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'gravatar' => $this->gravatar,
+            'admin' => (boolean) $this->admin,
+            'hash_id' => $this->hash_id,
+        ];
     }
 }

@@ -4,7 +4,6 @@
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció"></v-textarea>
         <user-select v-if="$hasRole('TaskManager' || 'Tasks')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
-
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-1">exit_to_app</v-icon>

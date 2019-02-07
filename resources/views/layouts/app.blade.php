@@ -18,8 +18,7 @@
     <meta name="theme-color" content="#ffffff">
     <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
-    <meta name="user_impersonating" content="{{ app('impersonate')->getImpersonatorId() }}">
-    {{--<meta name="user_impersonating" content="{{ app('impersonate')->getImpersonatorId() }}">--}}
+    <meta name="user_impersonating" content="{{ app('impersonate')->getImpersonatorId()}}">
     <meta name="git" content="{{ git() }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -128,7 +127,7 @@
                 </v-btn>
         </v-form>
         </v-toolbar>
-    <v-content style="background-color:  #f2f2f2">
+    <v-content style="background-color:  #f2f2f2F">
         <v-container fluid fill-height  >
             <v-layout
                     justify-center

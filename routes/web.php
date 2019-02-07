@@ -5,11 +5,22 @@ use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\UserPhotoController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Task;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
+
+Route::bind('hashuser', function($value, $route)
+{
+    $hashids = new Hashids\Hashids(config('scool.salt'));
+    $id = $hashids->decode($value)[0];
+    return User::findOrFail($id);
+});
 
 //TODO
 Route::post('login_alt','Auth\LoginAltController@login');
@@ -45,6 +56,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/avatar', '\\'. LoggedUserAvatarController::class . '@show');
 
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
+    Route::get('/notifications', '\\' . NotificationController::class . '@index');
 
 });
 Route::get('/', function () {
@@ -53,8 +65,18 @@ Route::get('/', function () {
 Route::get('/auth/{provider}', '\\'. LoginController::class . '@redirectToProvider');
 Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
 Auth::routes();
+Route::get('/user/{hashuser}/photo','\\' . UserPhotoController::class . '@show')->name('user.photo.show');
+Route::get('/user/{hashuser}/photo/download', '\\' . UserPhotoController::class . '@download')->name('user.photo.download');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prova_cua', function(){
     \App\Jobs\SleepJob::dispatch();
+});
+Route::get('/omplir', function(){
+    //10 000
+    for ($i=0;$i<=1000;$i++) {
+        Task::create([
+            'name'=>'Prova'
+        ]);
+    }
 });

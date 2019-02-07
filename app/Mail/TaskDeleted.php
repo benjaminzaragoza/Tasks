@@ -13,12 +13,14 @@ class TaskDeleted extends Mailable
     use Queueable, SerializesModels;
 
     public $task;
+    public $completed;
 
     /**
      * Create a new message instance.
      *
      * @param Task $task
      */
+//    public function __construct($oldTask,array $newTask)
     public function __construct(Task $task)
     {
         $this->task = $task;
