@@ -52,6 +52,7 @@
                 @endif
 
     </v-toolbar>
+        <share-fab></share-fab>
     <v-content>
                 <v-parallax class="article" height="720" >
                 <v-layout column align-center justify-center class="white--text justify-center" >

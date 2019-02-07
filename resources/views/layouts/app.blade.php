@@ -22,16 +22,19 @@
     <meta name="git" content="{{ git() }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <meta property="og:type" content="website" />
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">
     <meta property="og:title" content="App Tasques">
     <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla">
     <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
+    <meta property="og:sitename" content="tasks.benjaminzaragoza.scool.cat" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@nytimesbits" />
     <meta name="twitter:creator" content="@nickbilton" />
+
     <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat" />
     <meta property="og:title" content="App Tasques" />
     <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla" />
