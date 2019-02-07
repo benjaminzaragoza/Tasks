@@ -24,8 +24,8 @@
 
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">
-    <meta property="og:title" content="An awesome page">
-    <meta property="og:description" content="Everything you need to know about the topic you are looking for">
+    <meta property="og:title" content="Tasques i Tags amb Vue">
+    <meta property="og:description" content="create task with by Benjamin Zaragoza Pla">
     <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
 
