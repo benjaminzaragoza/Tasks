@@ -21,6 +21,12 @@
     <meta name="user" content="{{ logged_user() }}">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4828d7"/>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="628">
+    <meta property="og:title" content="An awesome page">
+    <meta property="og:description" content="Everything you need to know about the topic you are looking for">
+    <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
+    <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}

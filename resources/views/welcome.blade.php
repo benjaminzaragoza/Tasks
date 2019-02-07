@@ -344,6 +344,15 @@
     .dos:before {
         background: rgba(0,0,0,.4)
     }
+    /*@media only screen and (max-width: 480px) {*/
+
+        /*h1 {*/
+            /*color: #fff;*/
+            /*font-size: 5vw;*/
+            /*font-weight: 20;*/
+            /*text-align: center;*/
+        /*}*/
+    /*}*/
     h1 {
         color: #fff;
         font-size: 4vw;
