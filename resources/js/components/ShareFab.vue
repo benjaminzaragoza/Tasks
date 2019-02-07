@@ -11,7 +11,7 @@
             large
             @click="share"
     >
-        <v-icon>share</v-icon>
+    <v-icon>share</v-icon>
     </v-btn>
 </template>
 
@@ -32,7 +32,6 @@ export default {
       if (!('share' in navigator)) {
         return
       }
-
       navigator.share({
         title: "L'app de l'Institut de l'Ebre",
         text: "L'app per a tota la comunitat educativa de l'Institut de l'Ebre",
@@ -42,5 +41,6 @@ export default {
         .catch(error => console.log('Error sharing:', error))
     }
   }
+
 }
 </script>

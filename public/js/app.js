@@ -27611,8 +27611,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_notifications_NotificationsWidget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_notifications_NotificationsWidget__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ShareFab__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ShareFab___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_ShareFab__);
 
 
  // Ensure you are using css-loader
@@ -27767,7 +27767,7 @@ window.Vue.component('navigation', __WEBPACK_IMPORTED_MODULE_26__components_Navi
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('navigation-right', __WEBPACK_IMPORTED_MODULE_27__components_NavigationRight___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('notifications-widget', __WEBPACK_IMPORTED_MODULE_28__components_notifications_NotificationsWidget___default.a);
 window.Vue.component('notifications', __WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications___default.a);
-window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab___default.a);
+window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_30__components_ShareFab___default.a);
 
 window.Vue.component('login-form', __WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tags', __webpack_require__(28));
@@ -92695,7 +92695,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/ui/ShareFab.vue"
+Component.options.__file = "resources/js/components/ShareFab.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -92704,9 +92704,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-55023968", Component.options)
+    hotAPI.createRecord("data-v-7fdf77da", Component.options)
   } else {
-    hotAPI.reload("data-v-55023968", Component.options)
+    hotAPI.reload("data-v-7fdf77da", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -92757,7 +92757,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!('share' in navigator)) {
         return;
       }
-
       navigator.share({
         title: "L'app de l'Institut de l'Ebre",
         text: "L'app per a tota la comunitat educativa de l'Institut de l'Ebre",
@@ -92769,6 +92768,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     }
   }
+
 });
 
 /***/ }),
@@ -92812,7 +92812,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-55023968", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7fdf77da", module.exports)
   }
 }
 
