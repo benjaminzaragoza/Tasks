@@ -27546,7 +27546,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(33);
-module.exports = __webpack_require__(300);
+module.exports = __webpack_require__(303);
 
 
 /***/ }),
@@ -27611,10 +27611,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_notifications_NotificationsWidget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_notifications_NotificationsWidget__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab__);
 
 
  // Ensure you are using css-loader
  // Ensure you are using css-loader
+
 
 
 
@@ -27659,7 +27662,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(297)
+    'ca': __webpack_require__(300)
   }
 });
 window.Vue.use(window.Vuetify, {
@@ -27764,6 +27767,7 @@ window.Vue.component('navigation', __WEBPACK_IMPORTED_MODULE_26__components_Navi
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('navigation-right', __WEBPACK_IMPORTED_MODULE_27__components_NavigationRight___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('notifications-widget', __WEBPACK_IMPORTED_MODULE_28__components_notifications_NotificationsWidget___default.a);
 window.Vue.component('notifications', __WEBPACK_IMPORTED_MODULE_29__components_notifications_Notifications___default.a);
+window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_30__components_ui_ShareFab___default.a);
 
 window.Vue.component('login-form', __WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tags', __webpack_require__(28));
@@ -92669,8 +92673,155 @@ if (false) {
 /* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(298)
-var buildFormatLocale = __webpack_require__(299)
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(298)
+/* template */
+var __vue_template__ = __webpack_require__(299)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ui/ShareFab.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-55023968", Component.options)
+  } else {
+    hotAPI.reload("data-v-55023968", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 298 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ShareFab',
+  data: function data() {
+    return {
+      fab: false
+    };
+  },
+
+  methods: {
+    show: function show() {
+      if ('share' in navigator) return true;
+      return false;
+    },
+    share: function share() {
+      if (!('share' in navigator)) {
+        return;
+      }
+
+      navigator.share({
+        title: "L'app de l'Institut de l'Ebre",
+        text: "L'app per a tota la comunitat educativa de l'Institut de l'Ebre",
+        url: 'https://iesebre.scool.cat'
+      }).then(function () {
+        return console.log('Successful share');
+      }).catch(function (error) {
+        return console.log('Error sharing:', error);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 299 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.show()
+    ? _c(
+        "v-btn",
+        {
+          attrs: {
+            color: "accent",
+            dark: "",
+            fab: "",
+            fixed: "",
+            bottom: "",
+            right: "",
+            large: ""
+          },
+          on: { click: _vm.share },
+          model: {
+            value: _vm.fab,
+            callback: function($$v) {
+              _vm.fab = $$v
+            },
+            expression: "fab"
+          }
+        },
+        [_c("v-icon", [_vm._v("share")])],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-55023968", module.exports)
+  }
+}
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(301)
+var buildFormatLocale = __webpack_require__(302)
 
 /**
  * @category Locales
@@ -92684,7 +92835,7 @@ module.exports = {
 
 
 /***/ }),
-/* 298 */
+/* 301 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -92789,7 +92940,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 299 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(30)
@@ -92879,7 +93030,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 300 */
+/* 303 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

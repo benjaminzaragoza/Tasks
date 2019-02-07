@@ -28,6 +28,7 @@ import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import Notifications from './components/notifications/Notifications'
+import ShareFab from './components/ui/ShareFab'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -151,6 +152,7 @@ window.Vue.component('navigation', Navigation)
 Vue.component('navigation-right', NavigationRight)
 Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('notifications', Notifications)
+window.Vue.component('share-fab', ShareFab)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))

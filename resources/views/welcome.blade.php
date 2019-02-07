@@ -52,6 +52,7 @@
                 @endif
 
     </v-toolbar>
+        <share-fab></share-fab>
     <v-content>
                 <v-parallax class="article" height="720" >
                 <v-layout column align-center justify-center class="white--text justify-center" >
@@ -232,6 +233,9 @@
                 {{--</v-flex>--}}
             {{--</v-layout>--}}
         {{--</v-footer>--}}
+
+
+
         <v-footer    height="auto" class="primary">
             <v-container grid-list-sm class="primary">
                 <v-layout row wrap pt-7 pb-0 style="text-align: center">
