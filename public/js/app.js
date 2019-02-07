@@ -76166,6 +76166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -79202,7 +79203,8 @@ var render = function() {
                 { text: "Tots", value: -1 }
               ],
               loading: _vm.loading,
-              pagination: _vm.pagination
+              pagination: _vm.pagination,
+              app: ""
             },
             on: {
               "update:pagination": function($event) {

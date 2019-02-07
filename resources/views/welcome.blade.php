@@ -239,11 +239,11 @@
                         <div class="pb-2">
                             <v-icon color="secondary" >help</v-icon>
                         </div>
-                        <div class="pb-2">
+                        <div class="pb-2 pt-4">
                             <p class="white--text">Poser une question</p>
                         </div>
                         <v-divider dark></v-divider>
-                        <div class="pb-2 pt-4">
+                        <div class="pb-2 pt-4 hidden-md-and-down ">
                             <p class="white--text">FAQ</p>
                             <p class="white--text">CGU / CGV / Mentions légales</p>
                             <p class="white--text">Espace carrière</p>
@@ -251,7 +251,7 @@
                         </div>
                     </v-flex>
                     <v-flex offset-xs1 offset-sm0 xs10 sm5 md3 lg2>
-                        <div class="pb-2">
+                        <div class="pb-2 pt-4">
                             <v-icon color="secondary" >info</v-icon>
                         </div>
                         <div class="pb-2">
@@ -259,11 +259,11 @@
                         </div>
                         <v-divider dark></v-divider>
                         <div class="pb-2 pt-4">
-                            <p class="white--text">Bienvenue</p>
-                            <p class="white--text">Accueil</p>
-                            <p class="white--text">À propos</p>
-                            <p class="white--text">Notre équipe</p>
-                            <p class="white--text">Notre vision</p>
+                            <p class="white--text hidden-md-and-down">Bienvenue</p>
+                            <p class="white--text hidden-md-and-down">Accueil</p>
+                            <p class="white--text hidden-md-and-down" >À propos</p>
+                            <p class="white--text hidden-md-and-down">Notre équipe</p>
+                            <p class="white--text hidden-md-and-down">Notre vision</p>
                         </div>
                     </v-flex>
                     <v-flex offset-xs1 offset-sm1 offset-md0 xs10 sm5 md3 lg2>
@@ -274,10 +274,10 @@
                             <p class="white--text">Nos outils</p>
                         </div>
                         <v-divider dark></v-divider>
-                        <div class="pb-2 pt-4">
-                            <p class="white--text">Gestion de biens patrimoniaux</p>
-                            <p class="white--text">Investissement immobilier</p>
-                            <p class="white--text">Syndic de copropriété</p>
+                        <div class="pb-2 pt-4" >
+                            <p class="white--text hidden-md-and-down">Gestion de biens patrimoniaux</p>
+                            <p class="white--text hidden-md-and-down">Investissement immobilier</p>
+                            <p class="white--text hidden-md-and-down">Syndic de copropriété</p>
                         </div>
                     </v-flex>
                     <v-flex offset-xs1 offset-sm0 xs10 sm5 md3 lg2>
