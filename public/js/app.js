@@ -76166,7 +76166,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -79188,7 +79187,7 @@ var render = function() {
           _c("v-data-iterator", {
             staticClass: "hidden-lg-and-up",
             attrs: {
-              items: _vm.dataTasks,
+              items: _vm.getFilteredTasks,
               search: _vm.search,
               "no-results-text": "No s'ha trobat cap registre coincident",
               "no-data-text": "No hi han dades disponibles",
@@ -79202,9 +79201,7 @@ var render = function() {
                 200,
                 { text: "Tots", value: -1 }
               ],
-              loading: _vm.loading,
-              pagination: _vm.pagination,
-              app: ""
+              pagination: _vm.pagination
             },
             on: {
               "update:pagination": function($event) {

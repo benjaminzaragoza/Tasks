@@ -99,15 +99,14 @@
                 </template>
             </v-data-table>
             <v-data-iterator class="hidden-lg-and-up"
-                             :items="dataTasks"
+                             :items="getFilteredTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
                              no-data-text="No hi han dades disponibles"
                              rows-per-page-text="Tasques per pàgina"
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
-                             :loading="loading"
                              :pagination.sync="pagination"
-                             app
+
             >
     <v-flex
         slot="item"
