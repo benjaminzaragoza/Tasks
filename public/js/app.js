@@ -88697,7 +88697,7 @@ var render = function() {
         [
           _c(
             "v-list",
-            { staticClass: "pa-0 hidden-sm-and-down" },
+            { staticClass: "pa-0 " },
             [
               _c(
                 "v-list-tile",
