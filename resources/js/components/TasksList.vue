@@ -107,6 +107,7 @@
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
+                             app
             >
     <v-flex
         slot="item"
