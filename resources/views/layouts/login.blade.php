@@ -20,10 +20,18 @@
     <meta name="theme-color" content="#4828d7"/>
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">
-    <meta property="og:title" content="Tasques i Tags amb Vue">
-    <meta property="og:description" content="create task with by Benjamin Zaragoza Pla">
+    <meta property="og:title" content="App Tasques">
+    <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla">
     <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@nytimesbits" />
+    <meta name="twitter:creator" content="@nickbilton" />
+    <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat" />
+    <meta property="og:title" content="App Tasques" />
+    <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla" />
+    <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png" />
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}
