@@ -232,6 +232,9 @@
                 {{--</v-flex>--}}
             {{--</v-layout>--}}
         {{--</v-footer>--}}
+
+
+
         <v-footer    height="auto" class="primary">
             <v-container grid-list-sm class="primary">
                 <v-layout row wrap pt-7 pb-0 style="text-align: center">
