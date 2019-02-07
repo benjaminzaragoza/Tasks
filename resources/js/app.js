@@ -28,7 +28,7 @@ import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import Notifications from './components/notifications/Notifications'
-import ShareFab from './components/ui/ShareFab'
+import ShareFab from './components/ShareFab'
 
 window.Vue = Vue
 window.Vue.use(permissions)

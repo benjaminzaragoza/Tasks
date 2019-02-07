@@ -37,7 +37,7 @@
 
     <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat" />
     <meta property="og:title" content="App Tasques" />
-    <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla" />
+    <meta property="og:description" content="Creació de tasques by Benjamin Zaragoza Pla" />
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png" />
 
     <title>@yield('title')</title>
