@@ -11,12 +11,17 @@ use App\Http\Requests\ShowTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 class TasksController extends Controller
 {
     public function index(IndexTask $request)
     {
-        return map_collection(Task::orderBy('created_at','desc')->get());
+        $tasks = Cache::rememberForever(Task::INCIDENTS_CACHE_KEY, function () {
+            return Task::orderBy('created_at', 'desc')->get();
+        });
+        return view('tasks', ['tasks' => $tasks]);
+
     }
     public function show(ShowTask $request, Task $task) // Route Model Binding
     {

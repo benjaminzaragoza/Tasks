@@ -92749,26 +92749,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    show: function show() {
-      if ('share' in navigator) return true;
-      return false;
-    },
+    // show () {
+    //   if (('share' in navigator)) return true
+    //   return false
+    // },
     share: function share() {
       if (!('share' in navigator)) {
         return;
       }
       navigator.share({
-        title: "L'app de l'Institut de l'Ebre",
-        text: "L'app per a tota la comunitat educativa de l'Institut de l'Ebre",
-        url: 'https://iesebre.scool.cat'
+        title: 'App de Tasques',
+        text: 'Creació de tasques by Benjamin Zaragoza Pla',
+        url: 'https://tasks.benjaminzaragoza.scool.cat'
       }).then(function () {
         return console.log('Successful share');
       }).catch(function (error) {
         return console.log('Error sharing:', error);
       });
     }
+  },
+  computed: {
+    show: function show() {
+      return 'share' in navigator;
+    }
   }
-
 });
 
 /***/ }),
@@ -92779,7 +92783,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.show()
+  return _vm.show
     ? _c(
         "v-btn",
         {
