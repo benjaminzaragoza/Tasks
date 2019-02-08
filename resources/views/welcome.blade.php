@@ -1,6 +1,6 @@
 @extends('layouts.landing')
 @section('title')
-    Benvingut a Tasques
+    Benvingut a Tasques1
 @endsection
 @section('content')
     <v-app light>
