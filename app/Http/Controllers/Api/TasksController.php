@@ -13,11 +13,13 @@ use App\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+
 class TasksController extends Controller
 {
     public function index(IndexTask $request)
     {
-        $tasks = Cache::rememberForever(Task::INCIDENTS_CACHE_KEY, function () {
+        $tasks = Cache::rememberForever(Task::TASKS_CACHE_KEY, function () {
             return Task::orderBy('created_at', 'desc')->get();
         });
         return view('tasks', ['tasks' => $tasks]);

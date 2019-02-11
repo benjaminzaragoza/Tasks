@@ -40,7 +40,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            AddRolesToRegisterUser::class
+            AddRolesToRegisterUser::class,
+            ForgetTaskCache::class
+
         ],
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
@@ -50,8 +52,9 @@ class EventServiceProvider extends ServiceProvider
         ],
          TaskCompleted::class => [
             LogTaskCompleted::class,
-            SendMailTaskCompleted::class
-        ],
+            SendMailTaskCompleted::class,
+            ForgetTaskCache::class
+         ],
         TaskDelete::class => [
             LogTaskDelete::class,
             SendMailTaskDelete::class,
