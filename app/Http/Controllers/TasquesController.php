@@ -21,7 +21,7 @@ class TasquesController extends Controller
             $uri = '/api/v1/user/tasks';
         }
         // Agafa de la base de dades i ho passa a la vista
-        $users = map_simple_collection(User::with('roles','permissions')->get());
+        $users = map_collection(User::with('roles','permissions')->get());
         $tags = map_collection(Tag::all());
         Cache::rememberForever(Task::TASKS_CACHE_KEY, function () {
             if (Auth::user()->can('tasks.manage')) {
