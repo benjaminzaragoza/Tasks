@@ -6,7 +6,7 @@
     <v-app light>
     <v-toolbar class="white">
             @auth
-            <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" style="font-size:20px ;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img src="img/task.png" height="40">
+            <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img src="img/task.png" height="40">
             @else
             <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
@@ -225,16 +225,6 @@
     </v-content>
     </v-app>
 @endsection
-<script>
-  import VInput from "vuetify/lib/components/VInput/VInput"
-  export default {
-    components: {VInput}
-  }
-  import VToolbar from "vuetify/src/components/VToolbar/VToolbar"
-  export default {
-    components: {VToolbar}
-  }
-</script>
 <style>
     .article {
         {{--background: url(<?php echo "img/image.jpg"; ?>);--}}
@@ -267,10 +257,20 @@
         font-weight: 20;
         text-align: center;
     }
+    .cortar{
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        transition: all 1s;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .cortar:hover {
+        white-space: initial;
+        overflow:visible;
+        cursor: pointer;
+    }
 </style>
-<script>
-  import VContent from "vuetify/src/components/VGrid/VContent"
-  export default {
-    components: {VContent}
-  }
-</script>
