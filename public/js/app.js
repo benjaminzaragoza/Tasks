@@ -91688,7 +91688,7 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: "pb-2" },
+                    { staticClass: "pb-2 pt-4" },
                     [
                       _c("v-icon", { attrs: { color: "secondary" } }, [
                         _vm._v("help")
@@ -91697,36 +91697,13 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "pb-2 pt-4" }, [
+                  _c("div", { staticClass: "pb-2" }, [
                     _c("p", { staticClass: "white--text" }, [
-                      _vm._v("Poser une question")
+                      _vm._v("Descobreix")
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { dark: "" } }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "pb-2 pt-4 hidden-md-and-down " },
-                    [
-                      _c("p", { staticClass: "white--text" }, [_vm._v("FAQ")]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "white--text" }, [
-                        _vm._v("CGU / CGV / Mentions légales")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "white--text" }, [
-                        _vm._v("Espace carrière")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        { staticClass: "ml-0", attrs: { color: "primary" } },
-                        [_vm._v("Nous contacter")]
-                      )
-                    ],
-                    1
-                  )
+                  _c("v-divider", { attrs: { dark: "" } })
                 ],
                 1
               ),
@@ -91757,33 +91734,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "pb-2" }, [
                     _c("p", { staticClass: "white--text" }, [
-                      _vm._v("Mieux nous connaître")
+                      _vm._v("Interactua")
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { dark: "" } }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "pb-2 pt-4" }, [
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Bienvenue")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Accueil")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("À propos")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Notre équipe")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Notre vision")
-                    ])
-                  ])
+                  _c("v-divider", { attrs: { dark: "" } })
                 ],
                 1
               ),
@@ -91804,7 +91759,7 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: "pb-2" },
+                    { staticClass: "pb-2 pt-4 " },
                     [
                       _c("v-icon", { attrs: { color: "secondary" } }, [
                         _vm._v("extension")
@@ -91813,27 +91768,11 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "pb-2" }, [
-                    _c("p", { staticClass: "white--text" }, [
-                      _vm._v("Nos outils")
-                    ])
+                  _c("div", { staticClass: "pb-2 " }, [
+                    _c("p", { staticClass: "white--text" }, [_vm._v("Composa")])
                   ]),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { dark: "" } }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "pb-2 pt-4" }, [
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Gestion de biens patrimoniaux")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Investissement immobilier")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "white--text hidden-md-and-down" }, [
-                      _vm._v("Syndic de copropriété")
-                    ])
-                  ])
+                  _c("v-divider", { attrs: { dark: "" } })
                 ],
                 1
               ),
@@ -91853,7 +91792,7 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: "pb-2" },
+                    { staticClass: "pb-2 pt-4" },
                     [
                       _c("v-icon", { attrs: { color: "secondary" } }, [
                         _vm._v("email")
@@ -91863,9 +91802,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "pb-2" }, [
-                    _c("p", { staticClass: "white--text" }, [
-                      _vm._v("S’abonner ")
-                    ])
+                    _c("p", { staticClass: "white--text" }, [_vm._v("Coneix")])
                   ]),
                   _vm._v(" "),
                   _c("v-divider", { attrs: { dark: "" } }),
@@ -91874,13 +91811,13 @@ var render = function() {
                     "div",
                     {
                       staticClass: "pb-2 pt-4",
-                      staticStyle: { "margin-left": "4%" }
+                      staticStyle: { "margin-left": "-80%" }
                     },
                     [
                       _c("v-text-field", {
                         attrs: {
                           name: "input-1-3",
-                          label: "Votre E-mail",
+                          label: "Email de contacte",
                           dark: ""
                         }
                       }),
@@ -91891,7 +91828,7 @@ var render = function() {
                           staticClass: "right mr-0",
                           attrs: { color: "secondary", bottom: "" }
                         },
-                        [_vm._v("Envoyer")]
+                        [_vm._v("Enviar")]
                       )
                     ],
                     1
