@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport;
@@ -21,6 +22,7 @@ class User extends Authenticatable
     const DEFAULT_AVATAR = 'default.png';
     const DEFAULT_AVATAR_PATH1 = 'avatars/' . self::DEFAULT_AVATAR;
     const DEFAULT_AVATAR_PATH = 'app/' . self::DEFAULT_AVATAR_PATH1;
+    const USERS_CACHE_KEY = 'tasks.benjaminzaragoza.scool.cat.user';
 
     use HasRoles,Notifiable,HasApiTokens,Impersonate;
 
@@ -151,6 +153,7 @@ class User extends Authenticatable
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
             'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray(),
             'hash_id' => $this->hash_id,
+            'online' => $this->isOnline()
             ];
     }
 
@@ -217,6 +220,19 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
+            'online' => $this->isOnline()
         ];
+    }
+    public function getOnlineAttribute()
+    {
+        return $this->$this->isOnline();
+    }
+    public function getOnlineAttributed()
+    {
+        return $this->isOnline();
+    }
+    public function isOnline()
+    {
+        return Cache::has(User::USERS_CACHE_KEY . '-user-is-online-' . $this->id);
     }
 }

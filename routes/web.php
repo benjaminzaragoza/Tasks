@@ -64,7 +64,7 @@ Route::get('/', function () {
 });
 Route::get('/auth/{provider}', '\\'. LoginController::class . '@redirectToProvider');
 Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
-Auth::routes();
+
 Route::get('/user/{hashuser}/photo','\\' . UserPhotoController::class . '@show')->name('user.photo.show');
 Route::get('/user/{hashuser}/photo/download', '\\' . UserPhotoController::class . '@download')->name('user.photo.download');
 Route::get('/home', 'HomeController@index')->name('home');

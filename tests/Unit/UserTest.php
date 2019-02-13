@@ -9,6 +9,7 @@
 namespace Tests\Unit;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use App\Avatar;
 use App\Photo;
 use Spatie\Permission\Models\Permission;
@@ -167,6 +168,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->create([
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com',
+//           Accessors i mutators
         ]);
         $mappedUser = $user->map();
         $this->assertEquals($mappedUser['id'],1);
@@ -202,7 +204,9 @@ class UserTest extends TestCase
         $this->assertEquals($mappedUser['roles'][1],'Rol2');
         $this->assertEquals($mappedUser['permissions'][0],'Permission1');
         $this->assertEquals($mappedUser['permissions'][1],'Permission2');
+        $this->assertEquals(false,$mappedUser['online']);
     }
+
     /**
      * @test
      */
@@ -226,6 +230,17 @@ class UserTest extends TestCase
         $this->assertCount(2,$regularusers = User::regular()->get());
         $this->assertEquals($regularusers[0]->name,'Pepe Pardo Jeans');
         $this->assertEquals($regularusers[1]->name, 'Pepa Parda Jeans');
+    }
+    /** @test */
+    public function mapOnline()
+    {
+        $user = factory(User::class)->create();
+//        Cache::shouldReceive('rememberForever')
+//            ->andReturn(Permission::all());
+        Cache::shouldReceive('has')
+            ->andReturn(true);
+        $mappedUser = $user->map();
+        $this->assertEquals(true, $mappedUser['online']);
     }
     /** @test */
     public function hash_id()

@@ -11,7 +11,10 @@ use App\Http\Requests\ShowTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+
 class TasksController extends Controller
 {
     public function index(IndexTask $request)

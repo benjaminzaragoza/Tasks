@@ -4,6 +4,7 @@ namespace Tests\Feature;
 use App\Task;
 use App\User;
 use Tests\Feature\Traits\CanLogin;
+use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksTest extends TestCase
@@ -14,8 +15,13 @@ class TasksTest extends TestCase
      */
     public function can_show_tasks()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         //1 Prepare
+        Cache::shouldReceive('remember')
+            ->once()
+            ->with('git_info',5,\Closure::class)
+            ->andReturn(collect());
+
         create_example_tasks();
         $this->login();
         // 2 execute

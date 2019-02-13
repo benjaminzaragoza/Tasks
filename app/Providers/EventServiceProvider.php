@@ -11,6 +11,7 @@ use App\Events\TaskStored;
 use App\Events\TaskUncompleted;
 use App\Events\TaskUpdate;
 use App\Listeners\AddRolesToRegisterUser;
+use App\Listeners\ForgetTaskCache;
 use App\Listeners\LogTagDelete;
 use App\Listeners\LogTagStored;
 use App\Listeners\LogTagUpdated;
@@ -39,27 +40,35 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            AddRolesToRegisterUser::class
+            AddRolesToRegisterUser::class,
+            ForgetTaskCache::class
+
         ],
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
-            SendMailTaskUncompleted::class
+            SendMailTaskUncompleted::class,
+            ForgetTaskCache::class
+
         ],
          TaskCompleted::class => [
             LogTaskCompleted::class,
-            SendMailTaskCompleted::class
-        ],
+            SendMailTaskCompleted::class,
+            ForgetTaskCache::class
+         ],
         TaskDelete::class => [
             LogTaskDelete::class,
-            SendMailTaskDelete::class
+            SendMailTaskDelete::class,
+            ForgetTaskCache::class
         ],
         TaskStored::class => [
             LogTaskStored::class,
-            SendMailTaskStored::class
+            SendMailTaskStored::class,
+            ForgetTaskCache::class
         ],
         TaskUpdate::class => [
             LogTaskUpdated::class,
-            SendMailTaskUpdated::class
+            SendMailTaskUpdated::class,
+            ForgetTaskCache::class
         ],
         TagDelete::class => [
             LogTagDelete::class,
