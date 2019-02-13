@@ -23,6 +23,7 @@ import Changelog from './components/changelog/ChangelogComponent.vue'
 import VueTimeago from 'vue-timeago'
 import TreeView from 'vue-json-tree-view'
 import TasksTags from './components/TasksTags'
+import vFooter from './components/vFooter'
 import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRight'
@@ -153,6 +154,7 @@ Vue.component('navigation-right', NavigationRight)
 Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('notifications', Notifications)
 window.Vue.component('share-fab', ShareFab)
+window.Vue.component('fo', vFooter)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
