@@ -252,7 +252,7 @@
             /*text-align: center;*/
         /*}*/
     /*}*/
-    @media  only screen and (min-width: 1200px) {
+    @media  only screen and (min-width: 1000px) {
         h1 {
             color: #fff;
             font-size: 450%;
@@ -261,7 +261,7 @@
         }
     }
 
-    @media  only screen and (max-width: 800px) {
+    @media  only screen and (max-width: 750px) {
         h1 {
             color: #fff;
             font-size: 8vw;
