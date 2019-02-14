@@ -252,12 +252,24 @@
             /*text-align: center;*/
         /*}*/
     /*}*/
-    h1 {
-        color: #fff;
-        font-size: 4vw;
-        font-weight: 20;
-        text-align: center;
+    @media  only screen and (min-width: 1200px) {
+        h1 {
+            color: #fff;
+            font-size: 450%;
+            font-weight: 20;
+            text-align: center;
+        }
     }
+
+    @media  only screen and (max-width: 800px) {
+        h1 {
+            color: #fff;
+            font-size: 8vw;
+            font-weight: 20;
+            text-align: center;
+        }
+    }
+
     .cortar{
         text-overflow:ellipsis;
         white-space:nowrap;
