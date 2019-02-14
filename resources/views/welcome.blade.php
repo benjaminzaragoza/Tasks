@@ -11,7 +11,8 @@
             <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
             @endauth
         <v-spacer></v-spacer>
-                @if (Route::has('login'))
+        <service-worker></service-worker>
+            @if (Route::has('login'))
                 @auth
                         <div style="margin-left: 40%">
                     <v-layout >
