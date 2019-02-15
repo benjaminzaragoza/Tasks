@@ -115,7 +115,7 @@
             sm11
             md11
             justify-center
-            class="text-xs-center"
+            class="hola2"
     >
 
         <v-container
@@ -152,7 +152,7 @@
                      <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%" >{{ task.name }}</h3>
 
                          <v-card-actions class="justify-center">
-                         <v-chip style="text-align:center;height: 12%;margin-top: 10%;margin-bottom: 10%;">
+                         <v-chip class="adeu">
                                 <v-avatar  :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : 'Usuari no assignat'">
                                     <img height="30%" :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
                                  </v-avatar>
@@ -532,12 +532,19 @@ export default {
             font-weight: 20;
             text-align: center;
         }
+        .adeu{
+            text-align:center;
+            height: 12%;
+            margin-top: 10%;
+            margin-bottom: 10%;
+        }
     }
     @media  only screen and (min-width: 375px) {
         .tipo {
             margin-left: 35%  ;
             margin-top: 20%  ;
         }
+
     }
     @media  only screen and (min-width: 575px) {
         .tipo {
@@ -546,6 +553,9 @@ export default {
         }
         .top{
             margin-top: -4%;
+        }
+        .hola2{
+            margin-left:4%;
         }
         .hola{
 
