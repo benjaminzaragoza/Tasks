@@ -112,8 +112,8 @@
             slot="item"
             slot-scope="{item:task}"
             xs12
-            sm6
-            md6
+            sm11
+            md11
             justify-center
             class="text-xs-center"
     >
@@ -128,18 +128,18 @@
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
 
                   <v-flex xs5 color="primary darken-1 " >
-                      <img style="margin-left:50%;margin-top: 20%;width: 180px;height: 180px;border-radius: 160px;"
+                      <img class="tipo" style="width: 180px;height: 180px;border-radius: 160px;"
                            contain :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
                   </v-flex>
                     <footer class="card-footer" >
-                        <h6>{{ task.user_name }}</h6>
+                        <h6 >{{ task.user_name }}</h6>
                         <h4 class="headline text-capitalize" >{{ task.name }}</h4>
-                        <p>{{ task.description }}</p>
+                        <p >{{ task.description }}</p>
                         <v-spacer></v-spacer>
-                        <v-card-actions class="py-0">
-                          <p style="margin-left: -4%;margin-top: 11%;">{{ task.updated_at_human}}</p>
-                        <v-flex class="text-xs-right">
-                        <v-btn  icon @click="clickFlip(task)" >
+                        <v-card-actions class="top">
+                          <p>{{ task.updated_at_human}}</p>
+                        <v-flex class="text-xs-right hola">
+                        <v-btn   icon @click="clickFlip(task)" >
                         <v-icon color="#0d47a1">sync</v-icon>
                         </v-btn>
                         </v-flex>
@@ -531,6 +531,29 @@ export default {
             font-size: 8vw;
             font-weight: 20;
             text-align: center;
+        }
+    }
+    @media  only screen and (min-width: 375px) {
+        .tipo {
+            margin-left: 35%  ;
+            margin-top: 20%  ;
+        }
+    }
+    @media  only screen and (min-width: 575px) {
+        .tipo {
+            margin-left: 80%  ;
+            margin-top: 12%  ;
+        }
+        .top{
+            margin-top: -4%;
+        }
+        .hola{
+
+            margin-bottom: 10%;
+        }
+        .h{
+            margin-bottom: 4px;
+            margin-left: -4%;
         }
     }
 

@@ -6,6 +6,7 @@ use App\User;
 use Tests\Feature\Traits\CanLogin;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksTest extends TestCase
 {
