@@ -255,7 +255,7 @@
     @media  only screen and (min-width: 1000px) {
         h1 {
             color: #fff;
-            font-size: 450%;
+            font-size: 65px;
             font-weight: 20;
             text-align: center;
         }
