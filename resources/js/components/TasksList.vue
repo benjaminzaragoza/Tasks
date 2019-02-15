@@ -112,29 +112,34 @@
             slot="item"
             slot-scope="{item:task}"
             xs12
-            sm6
-            md4
+            sm11
+            md11
+            justify-center
+            class="text-xs-center"
     >
+
         <v-container
                 fluid
                 grid-list-lg
+
         >
             <div class="flipper" :class="task.flipperClass == true ? 'flip-class' : false">
                 <v-card class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
+
                   <v-flex xs5 color="primary darken-1 " >
-                      <img style="margin-left: 53%;margin-top: 30%;width: 150px;height: 150px;border-radius: 160px;"
+                      <img class="tipo" style="width: 180px;height: 180px;border-radius: 160px;"
                            contain :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
                   </v-flex>
                     <footer class="card-footer" >
-                        <h6>{{ task.user_name }}</h6>
+                        <h6 >{{ task.user_name }}</h6>
                         <h4 class="headline text-capitalize" >{{ task.name }}</h4>
-                        <p>{{ task.description }}</p>
+                        <p >{{ task.description }}</p>
                         <v-spacer></v-spacer>
-                        <v-card-actions class="py-0">
-                          <p style="margin-left: -4%;margin-top: 11%;">{{ task.updated_at_human}}</p>
-                        <v-flex class="text-xs-right">
-                        <v-btn  icon @click="clickFlip(task)" >
+                        <v-card-actions class="top">
+                          <p>{{ task.updated_at_human}}</p>
+                        <v-flex class="text-xs-right hola">
+                        <v-btn   icon @click="clickFlip(task)" >
                         <v-icon color="#0d47a1">sync</v-icon>
                         </v-btn>
                         </v-flex>
@@ -183,140 +188,142 @@
 
                      </div>
                     </v-container>
+
                 </v-flex>
+
           </v-data-iterator>
         </v-card>
     </span>
 </template>
 
 <script>
-  import TaskCompletedToggle from './TaskCompletedToggle'
-  import TaskDestroy from './TaskDestroy'
-  import TaskUpdate from './TaskUpdate'
-  import TaskShow from './TaskShow'
-  import TasksTags from './TasksTags'
+import TaskCompletedToggle from './TaskCompletedToggle'
+import TaskDestroy from './TaskDestroy'
+import TaskUpdate from './TaskUpdate'
+import TaskShow from './TaskShow'
+import TasksTags from './TasksTags'
 
-  export default {
-    name: 'TasksList',
-    data () {
-      return {
-        user: '',
-        user_id: '',
-        loading: false,
-        dataTasks: this.tasks,
-        dataUsers: this.users,
-        filter: 'Totes',
-        filterUser: null,
-        filters: [
-          { name: 'Totes', value: 'Totes' },
-          { name: 'Completades', value: true },
-          { name: 'Pendents', value: false }
-        ],
-        statusBy: { name: 'Totes', value: 'Totes' },
-        search: '',
-        pagination: {
-          rowsPerPage: 5
-        },
-        colorCache: {},
-        headers: [
-          { text: 'Id', value: 'id' },
-          { text: 'Name', value: 'name' },
-          { text: 'User', value: 'user_id' },
-          { text: 'Completat', value: 'completed' },
-          { text: 'Etiquetes', value: 'tags' },
-          { text: 'Creat', value: 'created_at_timestamp' },
-          { text: 'Modificat', value: 'updated_at_timestamp' },
-          { text: 'Accions', sortable: false, value: 'full_search' }
-        ]
-      }
+export default {
+  name: 'TasksList',
+  data () {
+    return {
+      user: '',
+      user_id: '',
+      loading: false,
+      dataTasks: this.tasks,
+      dataUsers: this.users,
+      filter: 'Totes',
+      filterUser: null,
+      filters: [
+        { name: 'Totes', value: 'Totes' },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
+      ],
+      statusBy: { name: 'Totes', value: 'Totes' },
+      search: '',
+      pagination: {
+        rowsPerPage: 5
+      },
+      colorCache: {},
+      headers: [
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'User', value: 'user_id' },
+        { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
+      ]
+    }
+  },
+  components: {
+    'task-completed-toggle': TaskCompletedToggle,
+    'task-destroy': TaskDestroy,
+    'task-show': TaskShow,
+    'task-update': TaskUpdate,
+    'tasks-tags': TasksTags
+  },
+  props: {
+    tasks: {
+      type: Array,
+      required: true
     },
-    components: {
-      'task-completed-toggle': TaskCompletedToggle,
-      'task-destroy': TaskDestroy,
-      'task-show': TaskShow,
-      'task-update': TaskUpdate,
-      'tasks-tags': TasksTags
+    tags: {
+      type: Array
     },
-    props: {
-      tasks: {
-        type: Array,
-        required: true
-      },
-      tags: {
-        type: Array
-      },
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
+    users: {
+      type: Array,
+      required: true
     },
-    computed: {
-      getFilteredTasks () {
-        let filterUser = this.filterUser
-        let statusBy = this.statusBy
-        let tasks = this.dataTasks
-        if (filterUser == null) {
-          tasks = this.dataTasks
-        } else if (filterUser !== null) {
-          tasks = tasks.filter((task) => {
-            if (task.user_id == filterUser.id) return true
-            else return false
-          })
-        }
-        if (statusBy.value != 'Totes') {
-          tasks = tasks.filter((task) => {
-            if (task.completed == statusBy.value) return true
-            else return false
-          })
-        }
-        return tasks
-      }
-    },
-    watch: {
-      tasks (newTasks) {
-        this.dataTasks = newTasks
-      }
-    },
-    methods: {
-      clickFlip: function (task) {
-        task.flipperClass = !task.flipperClass
-      },
-      searchForTasks () {
-        this.loading = true
-        window.axios.get(this.uri).then((response) => {
-          this.loading = false
-          this.dataTasks = response.data
-        }).catch((error) => {
-          this.$snackbar.showError(error.response.data.message)
-        })
-      },
-      randomColor (id) {
-        const r = () => Math.floor(256 * Math.random())
-        return this.colorCache[id] || (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
-      },
-      removeTask (task) {
-        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-      },
-      updateTask (task) {
-        this.refresh()
-      },
-      refresh (message = true) {
-        this.loading = true
-        window.axios.get(this.uri).then(response => {
-          this.dataTasks = response.data
-          this.loading = false
-          if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
-        }).catch(error => {
-          console.log(error)
-          this.loading = false
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    getFilteredTasks () {
+      let filterUser = this.filterUser
+      let statusBy = this.statusBy
+      let tasks = this.dataTasks
+      if (filterUser == null) {
+        tasks = this.dataTasks
+      } else if (filterUser !== null) {
+        tasks = tasks.filter((task) => {
+          if (task.user_id == filterUser.id) return true
+          else return false
         })
       }
+      if (statusBy.value != 'Totes') {
+        tasks = tasks.filter((task) => {
+          if (task.completed == statusBy.value) return true
+          else return false
+        })
+      }
+      return tasks
+    }
+  },
+  watch: {
+    tasks (newTasks) {
+      this.dataTasks = newTasks
+    }
+  },
+  methods: {
+    clickFlip: function (task) {
+      task.flipperClass = !task.flipperClass
+    },
+    searchForTasks () {
+      this.loading = true
+      window.axios.get(this.uri).then((response) => {
+        this.loading = false
+        this.dataTasks = response.data
+      }).catch((error) => {
+        this.$snackbar.showError(error.response.data.message)
+      })
+    },
+    randomColor (id) {
+      const r = () => Math.floor(256 * Math.random())
+      return this.colorCache[id] || (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
+    },
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    updateTask (task) {
+      this.refresh()
+    },
+    refresh (message = true) {
+      this.loading = true
+      window.axios.get(this.uri).then(response => {
+        this.dataTasks = response.data
+        this.loading = false
+        if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
+      }).catch(error => {
+        console.log(error)
+        this.loading = false
+      })
     }
   }
+}
 </script>
 <style>
     @font-face {
@@ -340,6 +347,7 @@
         margin: 20px 0;
         text-align: center;
     }
+
     .concord > header {
         width: 90%;
         padding: 0px 15px 0px 15px;
@@ -356,6 +364,11 @@
     }
     .concord > header time:first-child {
         color: #8f8f91;
+    }
+    @media (min-width: 0) {
+        .text-xs-center {
+            text-align: -webkit-center;
+        }
     }
     .concord > header time h3 {
         color: black;
@@ -502,6 +515,46 @@
         transition: 0.6s;
         transform-style: preserve-3d;
         position: relative;
+    }
+    @media  only screen and (min-width: 1000px) {
+        h1 {
+            color: #fff;
+            font-size: 450%;
+            font-weight: 20;
+            text-align: center;
+        }
+    }
+
+    @media  only screen and (max-width: 750px) {
+        h1 {
+            color: #fff;
+            font-size: 8vw;
+            font-weight: 20;
+            text-align: center;
+        }
+    }
+    @media  only screen and (min-width: 375px) {
+        .tipo {
+            margin-left: 35%  ;
+            margin-top: 20%  ;
+        }
+    }
+    @media  only screen and (min-width: 575px) {
+        .tipo {
+            margin-left: 80%  ;
+            margin-top: 12%  ;
+        }
+        .top{
+            margin-top: -4%;
+        }
+        .hola{
+
+            margin-bottom: 10%;
+        }
+        .h{
+            margin-bottom: 4px;
+            margin-left: -4%;
+        }
     }
 
 </style>
