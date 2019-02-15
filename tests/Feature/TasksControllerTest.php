@@ -14,27 +14,32 @@ class TasksTest extends TestCase
     /**
      * @test
      */
+    /**
+     * @test
+     */
     public function can_show_tasks()
     {
         $this->withoutExceptionHandling();
         //1 Prepare
-        Cache::shouldReceive('remember')
-            ->once()
-            ->with('git_info',5,\Closure::class)
-            ->andReturn(collect());
-
         create_example_tasks();
         $this->login();
         // 2 execute
         $response = $this->get('/tasks');
+        // TODO
+//        Cache::shouldReceive('remember')
+//            ->once()
+//            ->with('git_info',5, \Closure::class)
+//            ->andReturn(collect([]));
+//        Cache::shouldReceive('rememberForever')
+//            ->once()
+//            ->with('user_all_permissions', \Closure::class)
+//            ->andReturn(Task::orderBy('created_at', 'desc')->get());
         //3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('Tasques');
         $response->assertSee('comprar pa');
         $response->assertSee('comprar llet');
         $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
     }
     /**
      * @test

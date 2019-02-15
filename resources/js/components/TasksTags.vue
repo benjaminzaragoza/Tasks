@@ -125,4 +125,5 @@ export default {
     .btn-dark-sm { background: #222; }
     .btn-dark-sm i.v-icon{ color:#ddd; }
 }
+
 </style>
