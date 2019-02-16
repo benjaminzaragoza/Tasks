@@ -60,7 +60,8 @@
             <v-card-text>
                 <h3 style=" margin-left: 2%;text-align: center">
                     <v-avatar  @click="drawerRight=!drawerRight" style="margin-top: 2%;margin-right: 5%;" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
-                        <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar" style="margin-left: 15%;margin-right: 40%;margin-top: -11%;">
+                        <img v-if="{{ Auth::user()->online }}" style="border: lawngreen 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+                        <img v-else style="border: red 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
                     </v-avatar>{{ Auth::user()->name }}</h3>
 
                 <v-list-tile-title style="margin-top: 11%;margin-bottom: 10%; text-align: center" class="font-weight-black font-italic">{{ Auth::user()->email }}</v-list-tile-title>
@@ -125,8 +126,9 @@
         <notifications-widget></notifications-widget>
 
         <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-        <v-avatar @click="drawerRight=!drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}} )">
-            <img src="https://www.gravatar.com/avatar/{{md5(Auth::user()->email)}} " alt="avatar">
+        <v-avatar @click.stop="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
+            <img v-if="{{ Auth::user()->online }}" style="border: lawngreen 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            <img v-else style="border: red 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
         </v-avatar>
             <v-spacer class="hidden-sm-and-up"></v-spacer>
         <v-spacer class="hidden-lg-only"></v-spacer>
