@@ -58,13 +58,13 @@
                 <v-parallax class="article" height="720" >
                 <v-layout column align-center justify-center class="white--text justify-center" >
                     <img src="img/task.png" height="200">
-                    <h1 class="dos" style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
+                    <h1 class="dos white--text text--ligthen-2 mb-2 display-4 text-xs-center " style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
                     >Tasques i Tags amb Vue</h1>
                     @auth
-                        <h4 class="white--text subheading mb-3 text-xs-center dos" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
+                        <h4 class="white--text subheading mb-2 text-xs-center dos display-2" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
                     @else
-                        <h4 class="white--text subheading mb-3 text-xs-center dos"style="text-shadow:  black 0.1em 0.1em 1em"><strong>by Benjamin Zaragoza Pla<strong></strong></h4>
+                        <h4 class="white--text subheading mb-2  text-xs-center dos display-2"style="text-shadow:  black 0.1em 0.1em 1em;margin-top: 2%"><strong>by Benjamin Zaragoza Pla<strong></strong></h4>
                     @endauth
                     <div class="text-xs-center">
                     <v-btn
@@ -254,14 +254,14 @@
             /*text-align: center;*/
         /*}*/
     /*}*/
-    @media  only screen and (min-width: 1000px) {
-        h1 {
-            color: #fff;
-            font-size: 65px;
-            font-weight: 20;
-            text-align: center;
-        }
-    }
+    /*@media  only screen and (min-width: 1000px) {*/
+        /*h1 {*/
+            /*color: #fff;*/
+            /*font-size: 65px;*/
+            /*font-weight: 20;*/
+            /*text-align: center;*/
+        /*}*/
+    /*}*/
 
     /*@media  only screen and (max-width: 750px) {*/
         /*h1 {*/
