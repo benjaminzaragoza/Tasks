@@ -60,11 +60,11 @@
                     <img src="img/task.png" height="200">
                     <h1 class="dos white--text text--ligthen-2 mb-2 display-4 text-xs-center " style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
-                    >Tasques i Tags amb Vue</h1>
+                    >Tasques amb Vue</h1>
                     @auth
-                        <h4 class="white--text subheading mb-2 text-xs-center dos display-2" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
+                        <h3 class="dos white--text hidden-md-and-down  display-1 text-xs-center" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h3>
                     @else
-                        <h4 class="white--text subheading mb-2  text-xs-center dos display-2"style="text-shadow:  black 0.1em 0.1em 1em;margin-top: 2%"><strong>by Benjamin Zaragoza Pla<strong></strong></h4>
+                        <h3 class="dos white--text  hidden-md-and-down display-1 text-xs-center "style="text-shadow:  black 0.1em 0.1em 1em;margin-top: 2%"><strong>by Benjamin Zaragoza Pla<strong></strong></h3>
                     @endauth
                     <div class="text-xs-center">
                     <v-btn
