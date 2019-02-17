@@ -96408,12 +96408,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShareFab',
   data: function data() {
     return {
-      fab: false
+      fab: false,
+      loading: false
     };
   },
 
@@ -96424,6 +96427,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // },
     share: function share() {
       if (!('share' in navigator)) {
+        this.loading = true;
         return;
       }
       navigator.share({
@@ -96463,7 +96467,9 @@ var render = function() {
             fixed: "",
             bottom: "",
             right: "",
-            large: ""
+            large: "",
+            disabled: _vm.loading,
+            loading: _vm.loading
           },
           on: { click: _vm.share },
           model: {
