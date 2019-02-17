@@ -1,4 +1,4 @@
-<template>
+<template style="">
     <span>
         <v-toolbar color="secondary" style="margin-top: -2.5%">
             <v-menu>

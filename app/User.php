@@ -153,7 +153,7 @@ class User extends Authenticatable
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
             'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray(),
             'hash_id' => $this->hash_id,
-            'online' => $this->isOnline()
+            'online' => $this->online
             ];
     }
 
@@ -220,17 +220,17 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
-            'online' => $this->isOnline()
+            'online' => $this->online
         ];
     }
     public function getOnlineAttribute()
     {
-        return $this->$this->isOnline();
-    }
-    public function getOnlineAttributed()
-    {
         return $this->isOnline();
     }
+//    public function getOnlineAttributed()
+//    {
+//        return $this->isOnline();
+//    }
     public function isOnline()
     {
         return Cache::has(User::USERS_CACHE_KEY . '-user-is-online-' . $this->id);

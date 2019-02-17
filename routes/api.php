@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
+use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Task;
 
@@ -73,6 +74,8 @@ Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     Route::delete('/v1/user/unread_notifications/all','\\' . UserUnreadNotificationsController::class . '@destroyAll');
     Route::delete('/v1/user/unread_notifications/{notification}','\\' . UserUnreadNotificationsController::class . '@destroy');
     // Simple notifications
+    Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
+
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 });
 //
