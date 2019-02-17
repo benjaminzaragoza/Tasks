@@ -131,7 +131,7 @@
             <img v-else style="border: red 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
         </v-avatar>
             <v-spacer class="hidden-sm-and-up"></v-spacer>
-        <v-spacer class="hidden-lg-only"></v-spacer>
+        <v-spacer class="hidden-md-and-up"></v-spacer>
 
         <v-btn large style="margin-left: 2%"flat icon color="white " href="/"  type="submit">
                 <v-icon large>home</v-icon>
