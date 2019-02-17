@@ -1,17 +1,19 @@
 <template >
-    <v-layout row>
+<span>
             <v-card>
                 <snackbar></snackbar>
         <tasks-list v-show="dataTasks.length > 0" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
             </v-card>
-            <no-data-cta
+
+        <no-data-cta
             v-show="dataTasks.length == 0"
             btn-text="Crea nova tasca"
             main-text="No hi ha tasques disponibles"
             img="img/list.svg"
     ></no-data-cta>
-    </v-layout>
+
+    </span>
 </template>
 
 <script>

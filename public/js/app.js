@@ -77324,7 +77324,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -77341,6 +77341,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TasksList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__TasksList__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__NoDataCTAComponent__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__NoDataCTAComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__NoDataCTAComponent__);
+//
+//
 //
 //
 //
@@ -82436,11 +82438,19 @@ var render = function() {
                                           "v-card-actions",
                                           { staticClass: "top" },
                                           [
-                                            _c("p", [
-                                              _vm._v(
-                                                _vm._s(task.updated_at_human)
-                                              )
-                                            ]),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticStyle: {
+                                                  "margin-left": "-2.5%"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(task.updated_at_human)
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
@@ -82859,8 +82869,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-layout",
-    { attrs: { row: "" } },
+    "span",
     [
       _c(
         "v-card",

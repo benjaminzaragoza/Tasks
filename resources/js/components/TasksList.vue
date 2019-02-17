@@ -137,7 +137,7 @@
                         <p >{{ task.description }}</p>
                         <v-spacer></v-spacer>
                         <v-card-actions class="top">
-                          <p>{{ task.updated_at_human}}</p>
+                          <p style="margin-left: -2.5%">{{ task.updated_at_human}}</p>
                         <v-flex class="text-xs-right hola">
                         <v-btn   icon @click="clickFlip(task)" >
                         <v-icon color="#0d47a1">sync</v-icon>
