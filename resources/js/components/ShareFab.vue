@@ -10,6 +10,8 @@
             right
             large
             @click="share"
+            :disabled="loading"
+            :loading="loading"
     >
     <v-icon>share</v-icon>
     </v-btn>
@@ -20,7 +22,8 @@ export default {
   name: 'ShareFab',
   data () {
     return {
-      fab: false
+      fab: false,
+      loading: false
     }
   },
   methods: {
@@ -30,6 +33,7 @@ export default {
     // },
     share () {
       if (!('share' in navigator)) {
+        this.loading = true
         return
       }
       navigator.share({

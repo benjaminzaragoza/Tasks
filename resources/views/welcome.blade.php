@@ -58,7 +58,9 @@
                 <v-parallax class="article" height="720" >
                 <v-layout column align-center justify-center class="white--text justify-center" >
                     <img src="img/task.png" height="200">
-                        <h1 style="margin-top: 4%;text-shadow: black 0.1em 0.1em 0.8em" class="dos" >Tasques i Tags amb Vue</h1>
+                    <h1 class="dos" style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
+                        :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
+                    >Tasques i Tags amb Vue</h1>
                     @auth
                         <h4 class="white--text subheading mb-3 text-xs-center dos" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h4>
                     @else
@@ -271,6 +273,7 @@
         }
     }
 
+<<<<<<< HEAD
     @media  only screen and (max-width: 750px) {
         h1 {
             color: #fff;
@@ -280,6 +283,16 @@
         }
 >>>>>>> master
     }
+=======
+    /*@media  only screen and (max-width: 750px) {*/
+        /*h1 {*/
+            /*color: #fff;*/
+            /*font-size: 8px;*/
+            /*font-weight: 20;*/
+            /*text-align: center;*/
+        /*}*/
+    /*}*/
+>>>>>>> master
 
     .cortar{
         text-overflow:ellipsis;
