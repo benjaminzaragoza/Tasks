@@ -3,6 +3,12 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 import './bootstrap'
+import 'typeface-montserrat/index.css'
+import 'typeface-roboto/index.css'
+// import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+import 'font-awesome/css/font-awesome.min.css'
+
 import AppComponent from './components/App.vue'
 import ExempleComponent from './components/ExampleComponent.vue'
 import tasks from './components/Tasks.vue'
@@ -30,6 +36,7 @@ import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
+
 
 window.Vue = Vue
 window.Vue.use(permissions)
