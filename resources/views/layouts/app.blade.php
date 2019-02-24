@@ -40,6 +40,20 @@
     </style>
 </head>
 <body>
+<noscript>
+    <style>
+        #enable-js {
+            margin: 0;
+            padding: 12px 15px;
+            background-color: #FFC107;
+            color: #000;
+            text-align: center;
+            font-family: "Arial";
+            font-size: 13px;
+        }
+    </style>
+    <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
+</noscript>
 <v-app id="app" v-cloak >
     <snackbar></snackbar>
     <service-worker></service-worker>
@@ -175,7 +189,7 @@
     </v-footer>
 </v-app>
 
-<script src="{{mix('/js/app.js')}}"></script>
+<script defer src="{{mix('js/app.js')}}"></script>
 
 </body>
 </html>
