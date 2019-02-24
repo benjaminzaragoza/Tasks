@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -38,11 +37,11 @@
     </style>
 </head>
 <body>
-<div id="app">
-    <v-app v-cloak>
-@yield('content')
-        </v-app>
+<div id="app" v-cloak>
+    <v-app>
+        @yield('content')
+    </v-app>
 </div>
-<script src="{{mix('/js/app.js')}}"></script>
+<script defer src="{{mix('js/app.js')}}"></script>
 </body>
 </html>
