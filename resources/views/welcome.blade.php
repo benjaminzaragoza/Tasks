@@ -171,7 +171,7 @@
         </section>
 
         <section>
-            <v-parallax src="img/task2.jpg" height="480">
+            <v-parallax-webp src="img/task2.webp" height="480">
                 <v-layout column align-center justify-center>
                     <v-btn large color="primary"
                             href="/home"
@@ -180,7 +180,7 @@
                         Start Experience
                     </v-btn>
                 </v-layout>
-            </v-parallax>
+            </v-parallax-webp>
         </section>
 
         <section>
