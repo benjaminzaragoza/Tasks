@@ -5,6 +5,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 import './bootstrap'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
+
 // import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'font-awesome/css/font-awesome.min.css'
