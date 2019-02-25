@@ -20,9 +20,9 @@
     <v-app light>
     <v-toolbar class="white">
             @auth
-            <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img src="img/task.png" height="40">
+            <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img-webp src="img/task.webp" height="40">
             @else
-            <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" src="img/task.png" height="40">
+            <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img-webp style="padding-left: 2%" src="img/task.webp" height="40">
             @endauth
         <v-spacer></v-spacer>
         <service-worker></service-worker>
@@ -71,7 +71,7 @@
     <v-content>
                 <v-parallax class="article" height="720" >
                 <v-layout column align-center justify-center class="white--text justify-center" >
-                    <img src="img/task.png" height="200">
+                    <img src="img/task.webp" height="200">
                     <h1 class="dos white--text text--ligthen-2 mb-2 display-4 text-xs-center " style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
                     >Tasques amb Vue</h1>
@@ -95,7 +95,7 @@
                            style="height: 6.2%"
                            target="_blank"
                            href="https://github.com/benjaminzaragoza/Tasks"
-                    ><img src="img/github.png" alt="Github" height="65">
+                    ><img src="img/github.webp" alt="Github" height="65">
                     </v-btn>
                     </div>
                 </v-layout>
@@ -259,7 +259,7 @@
         {{--background: url(<?php echo "img/image.jpg"; ?>);--}}
         display: compact;
         text-align: center;
-        background-image: url('img/image.jpg');
+        background-image: url('img/image.webp');
         background-size: cover;
     }
     .article:before {
