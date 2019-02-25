@@ -23,6 +23,7 @@ then
 exit
 fi
 git merge master
+npm run production
 git status
 echo -n "Esperant correció status MERGE, vols continuar?(s/n): "
 read TECLA
