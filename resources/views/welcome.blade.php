@@ -20,9 +20,9 @@
     <v-app light>
         <v-toolbar class="white">
             @auth
-                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img-webp src="img/task.webp" height="40"></img-webp>
+                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img-webp src="img/task.webp" height="40" alt-format="jpg"></img-webp>
             @else
-                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img-webp style="padding-left: 2%" src="img/task.webp" height="40"></img-webp>
+                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img-webp style="padding-left: 2%" src="img/task.webp" height="40" alt-format="jpg"></img-webp>
             @endauth
             <v-spacer></v-spacer>
             <service-worker></service-worker>
@@ -69,9 +69,9 @@
         </v-toolbar>
         <share-fab></share-fab>
         <v-content>
-            <v-parallax class="article" height="720" >
+            <v-parallax class="article" height="720" alt-format="jpg">
                 <v-layout column align-center justify-center class="white--text justify-center" >
-                    <img-webp src="img/task.webp" height="200"></img-webp>
+                    <img-webp src="img/task.webp" height="200" alt-format="jpg"></img-webp>
                     <h1 class="dos white--text text--ligthen-2 mb-2 display-4 text-xs-center " style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
                     >Tasques amb Vue</h1>
@@ -95,7 +95,7 @@
                                style="height: 6.2%"
                                target="_blank"
                                href="https://github.com/benjaminzaragoza/Tasks"
-                        ><img src="img/github.webp" alt="Github" height="65">
+                        ><img src="img/github.webp"  alt="Github" height="65" alt-format="png">
                         </v-btn>
                     </div>
                 </v-layout>
@@ -171,7 +171,7 @@
             </section>
 
             <section>
-                <v-parallax-webp src="img/task2.webp" height="480">
+                <v-parallax-webp src="img/task2.webp" height="480 " alt-format="jpg">
                     <v-layout column align-center justify-center>
                         <v-btn large color="primary"
                                href="/home"
