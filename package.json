@@ -30,6 +30,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "moment": "^2.24.0",
+    "replace-in-file": "^3.4.3",
     "roboto-fontface": "^0.10.0",
     "typeface-montserrat": "0.0.54",
     "typeface-roboto": "0.0.54",

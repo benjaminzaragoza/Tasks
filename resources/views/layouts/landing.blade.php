@@ -36,6 +36,7 @@
     <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla" />
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png" />
 
+    <script defer src="{{mix('js/app.js')}}"></script>
     <title>@yield('title')</title>
     <style>
         [v-cloak] > * { display:none; }
@@ -71,6 +72,5 @@
     <service-worker></service-worker>
     @yield('content')
 </div>
-<script defer src="{{mix('js/app.js')}}"></script>
 </body>
  </html>

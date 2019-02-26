@@ -3,20 +3,6 @@
     Benvingut a Tasques
 @endsection
 @section('content')
-    <noscript>
-        <style>
-            #enable-js {
-                margin: 0;
-                padding: 12px 15px;
-                background-color: #FFC107;
-                color: #000;
-                text-align: center;
-                font-family: "Arial";
-                font-size: 13px;
-            }
-        </style>
-        <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
-    </noscript>
     <v-app light>
         <v-toolbar class="white">
             @auth
@@ -77,9 +63,9 @@
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
                     >Tasques amb Vue</h1>
                     @auth
-                        <h3 class="dos white--text hidden-md-and-down  display-1 text-xs-center" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}<strong></strong></h3>
+                        <h3 class="dos white--text hidden-md-and-down  display-1 text-xs-center" style="text-shadow:  black 0.1em 0.1em 1em"><strong>{{(Auth::user()->name)}}</h3>
                     @else
-                        <h3 class="dos white--text  hidden-md-and-down display-1 text-xs-center "style="text-shadow:  black 0.1em 0.1em 1em;margin-top: 2%"><strong>by Benjamin Zaragoza Pla<strong></strong></h3>
+                        <h3 class="dos white--text  hidden-md-and-down display-1 text-xs-center "style="text-shadow:  black 0.1em 0.1em 1em;margin-top: 2%"><strong>by Benjamin Zaragoza Pla</h3>
                     @endauth
                     <div class="text-xs-center">
                         <v-btn
