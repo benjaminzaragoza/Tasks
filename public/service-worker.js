@@ -1,122 +1,36 @@
-(() => {
-  'use strict'
+// importScripts('/service-worker/precache-manifest.fc21ecfebb4853d725aa822e2382fb14.js', 'https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js')
 
-  const AddToHomeScreen = {
-    init () {
-      self.addEventListener('fetch', function (event) {
-        console.log('WORKER: fetch event in progress.')
+workbox.skipWaiting()
+workbox.clientsClaim()
 
-        // console.log('Request -->', event.request.url)
-        if (event.request.method != 'GET') return
+// workbox.routing.registerRoute(
+//   new RegExp('https://hacker-news.firebaseio.com'),
+//   workbox.strategies.staleWhileRevalidate()
+// );
 
-        // To tell browser to evaluate the result of event
-        // event.respondWith(
-        //   caches.match(event.request) //To match current request with cached request it
-        //     .then(function(response) {
-        //       //If response found return it, else fetch again.
-        //       return response || fetch(event.request);
-        //     })
-        //     .catch(function(error) {
-        //       console.error("Error: ", error);
-        //     })
+// self.addEventListener('push', (event) => {
+//   const title = 'TODO CANVIAR TITOL'
+//   const options = {
+//     body: event.data.text()
+//   }
+//   event.waitUntil(self.registration.showNotification(title, options))
+// })
+
+workbox.precaching.precacheAndRoute(self.__precacheManifest)
+
+workbox.routing.registerRoute(
+  new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'images',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 20,
+        purgeOnQuotaError: true
       })
-    }
-  }
-  // const WebPush = {
-  //   init () {
-  //     self.addEventListener('push', this.notificationPush.bind(this))
-  //     self.addEventListener('notificationclick', this.notificationClick.bind(this))
-  //     self.addEventListener('notificationclose', this.notificationClose.bind(this))
-  //   },
-  //
-  //   /**
-  //    * Handle notification push event.
-  //    *
-  //    * https://developer.mozilla.org/en-US/docs/Web/Events/push
-  //    *
-  //    * @param {NotificationEvent} event
-  //    */
-  //   notificationPush (event) {
-  //     console.log(event)
-  //     if (!(self.Notification && self.Notification.permission === 'granted')) {
-  //       return
-  //     }
-  //
-  //     // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
-  //     if (event.data) {
-  //       event.waitUntil(
-  //         this.sendNotification(event.data.json())
-  //       )
-  //     }
-  //   },
-  //
-  //   /**
-  //    * Handle notification click event.
-  //    *
-  //    * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
-  //    *
-  //    * @param {NotificationEvent} event
-  //    */
-  //   notificationClick (event) {
-  //     // console.log(event.notification)
-  //
-  //     if (event.action === 'some_action') {
-  //       // Do something...
-  //       // self.clients.openWindow(event.action)
-  //     } else {
-  //       self.clients.openWindow('/')
-  //     }
-  //   },
-  //
-  //   /**
-  //    * Handle notification close event (Chrome 50+, Firefox 55+).
-  //    *
-  //    * https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/onnotificationclose
-  //    *
-  //    * @param {NotificationEvent} event
-  //    */
-  //   notificationClose (event) {
-  //     self.registration.pushManager.getSubscription().then(subscription => {
-  //       if (subscription) {
-  //         this.dismissNotification(event, subscription)
-  //       }
-  //     })
-  //   },
-  //
-  //   /**
-  //    * Send notification to the user.
-  //    *
-  //    * https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
-  //    *
-  //    * @param {PushMessageData|Object} data
-  //    */
-  //   sendNotification (data) {
-  //     return self.registration.showNotification(data.title, data)
-  //   },
-  //
-  //   /**
-  //    * Send request to server to dismiss a notification.
-  //    *
-  //    * @param  {NotificationEvent} event
-  //    * @param  {String} subscription.endpoint
-  //    * @return {Response}
-  //    */
-  //   dismissNotification ({ notification }, { endpoint }) {
-  //     if (!notification.data || !notification.data.id) {
-  //       return
-  //     }
-  //
-  //     const data = new FormData()
-  //     data.append('endpoint', endpoint)
-  //
-  //     // Send a request to the server to mark the notification as read.
-  //     fetch(`/notifications/${notification.data.id}/dismiss`, {
-  //       method: 'POST',
-  //       body: data
-  //     })
-  //   }
-  // }
-
-  // WebPush.init()
-  AddToHomeScreen.init()
-})()
+    ]
+  })
+)
+workbox.routing.registerRoute(
+  '/',
+  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+)
