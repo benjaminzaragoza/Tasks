@@ -39,6 +39,8 @@ import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
+import Vibrate from './components/Vibrate'
+import Geolocation from './components/Geolocation'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -166,6 +168,8 @@ window.Vue.component('share-fab', ShareFab)
 window.Vue.component('fo', vFooter)
 window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
+window.Vue.component('vibrate', Vibrate)
+window.Vue.component('geolocation', Geolocation)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
