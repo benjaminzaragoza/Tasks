@@ -20,6 +20,7 @@
     <meta name="user" content="{{ logged_user() }}">
     <meta name="user_impersonating" content="{{ app('impersonate')->getImpersonatorId()}}">
     <meta name="git" content="{{ git() }}">
+    <link rel="stylesheet" type="text/css" href="css/function.css">
 
     <meta property="og:type" content="website" />
     <meta property="og:image:width" content="1200">

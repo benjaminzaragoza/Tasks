@@ -122,7 +122,8 @@ export default {
         { icon: 'camera', text: 'Perfil', url: '/profile' },
         { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
         { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' },
-        { icon: 'photo', text: 'Imatges', url: '/contact' }
+        { icon: 'photo', text: 'Imatges', url: '/contact' },
+        { icon: 'phonelink_setup', text: 'Functions', url: '/functions' }
 
       ]
     }
