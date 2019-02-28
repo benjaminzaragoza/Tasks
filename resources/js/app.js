@@ -5,7 +5,9 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 import './bootstrap'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
-
+// import '../../resources/img/tenants/iesebre/iesebre_cellular-education-classroom-159844.jpeg'
+// import '../../resources/img/tenants/iesebre/iesebre_cellular-education-classroom-159844.webp'
+import '../../public/img/task.png'
 // import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'font-awesome/css/font-awesome.min.css'
