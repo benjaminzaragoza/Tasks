@@ -47,7 +47,7 @@
                     </div>
 
                 @else
-                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
+                    <v-btn color="primary" class=" font-weight-bold text-xs-center " href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
                     <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}"><v-icon  left>person_add</v-icon>Register</v-btn>
                 @endauth
             @endif

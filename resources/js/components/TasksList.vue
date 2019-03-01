@@ -28,7 +28,6 @@
             <v-card-title>
                 <v-layout row wrap>
                     <v-flex lg3 class="pr-2">
-                        <v-extenv
                         <v-select
                                 label="Filtres"
                                 :items="filters"
