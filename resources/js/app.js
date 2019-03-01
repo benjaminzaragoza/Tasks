@@ -10,7 +10,7 @@ import 'typeface-roboto/index.css'
 import '../../public/img/task.png'
 // import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-import 'font-awesome/css/font-awesome.min.css'
+// import 'font-awesome/css/font-awesome.min.css'
 
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
