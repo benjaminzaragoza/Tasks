@@ -26,15 +26,24 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
-                    <v-flex lg3 class="pr-2">
+                 <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
+    <v-expansion-panel-content>
+        <template v-slot:header>
+                        <v-icon>filter_list</v-icon>
+        <div>Filtres</div>
+            <v-spacer></v-spacer>
+                  </template>
+                <v-card-text class="justify-content-center">
+                <v-flex xs12>
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="statusBy"
+                                v-model="filter"
                                 item-text="name"
                                 :return-object="true"
-                        ></v-select>
+
+                        >
+                        </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
                         <user-select
@@ -51,7 +60,34 @@
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
-                </v-layout>
+                </v-card-text>
+            </v-expansion-panel-content>
+                    </v-expansion-panel>
+                <v-flex  v-else lg3 class="pr-2">
+                        <v-select
+                                label="Filtres"
+                                :items="filters"
+                                v-model="filter"
+                                item-text="name"
+                                :return-object="true"
+                        >
+                        </v-select>
+                    </v-flex>
+                    <v-flex v-else lg4 class="pr-2">
+                        <user-select
+                                url="/api/v1/users"
+                                label="Usuari"
+                                v-model="filterUser"
+                                :users="dataUsers"
+                        ></user-select>
+                    </v-flex>
+                    <v-flex v-else lg5>
+                        <v-text-field
+                                append-icon="search"
+                                label="Buscar"
+                                v-model="search"
+                        ></v-text-field>
+                    </v-flex>
             </v-card-title>
             <v-data-table
                     :headers="headers"
