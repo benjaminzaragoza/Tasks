@@ -1,5 +1,5 @@
-<template>
-        <i class="color material-icons" @click="vibrate">vibration</i>
+<template >
+        <i class="color material-icons btn btn-default" @click="vibrate">vibration</i>
 </template>
 
 <script>

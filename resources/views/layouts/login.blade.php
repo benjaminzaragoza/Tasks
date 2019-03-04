@@ -23,6 +23,7 @@
     <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla">
     <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
+    <meta name="Description" content="App">
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@nytimesbits" />
@@ -43,5 +44,7 @@
     </v-app>
 </div>
 <script defer src="{{mix('js/app.js')}}"></script>
+{{--<script defer src="{{mix('/js/manifest.js') }}" type="text/javascript"></script>--}}
+{{--<script defer src="{{mix('/js/vendor.js') }}" type="text/javascript"></script>--}}
 </body>
 </html>

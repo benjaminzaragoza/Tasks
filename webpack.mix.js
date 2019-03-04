@@ -3,6 +3,7 @@ const mix = require('laravel-mix')
 const replace = require('replace-in-file')
 const path = require('path')
 const publicDir = 'public/'
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -23,8 +24,14 @@ mix.js('resources/js/app.js', 'public/js').then(() => {
     from: /\/\//gu,
     to: '/'
   })
-}).sourceMaps()
+})
+  .extract()
+  .sourceMaps(false)
   .sass('resources/sass/app.scss', 'public/css')
+
+if (mix.inProduction()) {
+  mix.version()
+}
 
 mix.webpackConfig({
   plugins: [

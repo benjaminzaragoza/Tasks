@@ -45,7 +45,7 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex lg4 class="pr-2">
+                    <v-flex xs12>
                         <user-select
                                 url="/api/v1/users"
                                 label="Usuari"
@@ -53,7 +53,7 @@
                                 :users="dataUsers"
                         ></user-select>
                     </v-flex>
-                    <v-flex lg5>
+                    <v-flex xs12>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
@@ -63,7 +63,9 @@
                 </v-card-text>
             </v-expansion-panel-content>
                     </v-expansion-panel>
-                <v-flex  v-else lg3 class="pr-2">
+                                <v-layout v-else>
+
+                <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
@@ -73,7 +75,7 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex v-else lg4 class="pr-2">
+                    <v-flex lg4 class="pr-2">
                         <user-select
                                 url="/api/v1/users"
                                 label="Usuari"
@@ -81,13 +83,14 @@
                                 :users="dataUsers"
                         ></user-select>
                     </v-flex>
-                    <v-flex v-else lg5>
+                    <v-flex  lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
+               </v-layout>
             </v-card-title>
             <v-data-table
                     :headers="headers"
