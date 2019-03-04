@@ -45,7 +45,7 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex lg4 class="pr-2">
+                    <v-flex xs12>
                         <user-select
                                 url="/api/v1/users"
                                 label="Usuari"
@@ -53,7 +53,7 @@
                                 :users="dataUsers"
                         ></user-select>
                     </v-flex>
-                    <v-flex lg5>
+                    <v-flex xs12>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
@@ -63,7 +63,9 @@
                 </v-card-text>
             </v-expansion-panel-content>
                     </v-expansion-panel>
-                <v-flex  v-else lg3 class="pr-2">
+                                <v-layout v-else>
+
+                <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
@@ -73,7 +75,7 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex v-else lg4 class="pr-2">
+                    <v-flex lg4 class="pr-2">
                         <user-select
                                 url="/api/v1/users"
                                 label="Usuari"
@@ -81,13 +83,14 @@
                                 :users="dataUsers"
                         ></user-select>
                     </v-flex>
-                    <v-flex v-else lg5>
+                    <v-flex  lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
+               </v-layout>
             </v-card-title>
             <v-data-table
                     :headers="headers"
@@ -233,133 +236,133 @@
 </template>
 
 <script>
-import TaskCompletedToggle from './TaskCompletedToggle'
-import TaskDestroy from './TaskDestroy'
-import TaskUpdate from './TaskUpdate'
-import TaskShow from './TaskShow'
-import TasksTags from './TasksTags'
+  import TaskCompletedToggle from './TaskCompletedToggle'
+  import TaskDestroy from './TaskDestroy'
+  import TaskUpdate from './TaskUpdate'
+  import TaskShow from './TaskShow'
+  import TasksTags from './TasksTags'
 
-export default {
-  name: 'TasksList',
-  data () {
-    return {
-      user: '',
-      user_id: '',
-      loading: false,
-      dataTasks: this.tasks,
-      dataUsers: this.users,
-      filter: 'Totes',
-      filterUser: null,
-      filters: [
-        { name: 'Totes', value: 'Totes' },
-        { name: 'Completades', value: true },
-        { name: 'Pendents', value: false }
-      ],
-      statusBy: { name: 'Totes', value: 'Totes' },
-      search: '',
-      pagination: {
-        rowsPerPage: 5
+  export default {
+    name: 'TasksList',
+    data () {
+      return {
+        user: '',
+        user_id: '',
+        loading: false,
+        dataTasks: this.tasks,
+        dataUsers: this.users,
+        filter: 'Totes',
+        filterUser: null,
+        filters: [
+          { name: 'Totes', value: 'Totes' },
+          { name: 'Completades', value: true },
+          { name: 'Pendents', value: false }
+        ],
+        statusBy: { name: 'Totes', value: 'Totes' },
+        search: '',
+        pagination: {
+          rowsPerPage: 5
+        },
+        colorCache: {},
+        headers: [
+          { text: 'Id', value: 'id' },
+          { text: 'Name', value: 'name' },
+          { text: 'User', value: 'user_id' },
+          { text: 'Completat', value: 'completed' },
+          { text: 'Etiquetes', value: 'tags' },
+          { text: 'Creat', value: 'created_at_timestamp' },
+          { text: 'Modificat', value: 'updated_at_timestamp' },
+          { text: 'Accions', sortable: false, value: 'full_search' }
+        ]
+      }
+    },
+    components: {
+      'task-completed-toggle': TaskCompletedToggle,
+      'task-destroy': TaskDestroy,
+      'task-show': TaskShow,
+      'task-update': TaskUpdate,
+      'tasks-tags': TasksTags
+    },
+    props: {
+      tasks: {
+        type: Array,
+        required: true
       },
-      colorCache: {},
-      headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'User', value: 'user_id' },
-        { text: 'Completat', value: 'completed' },
-        { text: 'Etiquetes', value: 'tags' },
-        { text: 'Creat', value: 'created_at_timestamp' },
-        { text: 'Modificat', value: 'updated_at_timestamp' },
-        { text: 'Accions', sortable: false, value: 'full_search' }
-      ]
-    }
-  },
-  components: {
-    'task-completed-toggle': TaskCompletedToggle,
-    'task-destroy': TaskDestroy,
-    'task-show': TaskShow,
-    'task-update': TaskUpdate,
-    'tasks-tags': TasksTags
-  },
-  props: {
-    tasks: {
-      type: Array,
-      required: true
+      tags: {
+        type: Array
+      },
+      users: {
+        type: Array,
+        required: true
+      },
+      uri: {
+        type: String,
+        required: true
+      }
     },
-    tags: {
-      type: Array
+    computed: {
+      getFilteredTasks () {
+        let filterUser = this.filterUser
+        let statusBy = this.statusBy
+        let tasks = this.dataTasks
+        if (filterUser == null) {
+          tasks = this.dataTasks
+        } else if (filterUser !== null) {
+          tasks = tasks.filter((task) => {
+            if (task.user_id == filterUser.id) return true
+            else return false
+          })
+        }
+        if (statusBy.value != 'Totes') {
+          tasks = tasks.filter((task) => {
+            if (task.completed == statusBy.value) return true
+            else return false
+          })
+        }
+        return tasks
+      }
     },
-    users: {
-      type: Array,
-      required: true
+    watch: {
+      tasks (newTasks) {
+        this.dataTasks = newTasks
+      }
     },
-    uri: {
-      type: String,
-      required: true
-    }
-  },
-  computed: {
-    getFilteredTasks () {
-      let filterUser = this.filterUser
-      let statusBy = this.statusBy
-      let tasks = this.dataTasks
-      if (filterUser == null) {
-        tasks = this.dataTasks
-      } else if (filterUser !== null) {
-        tasks = tasks.filter((task) => {
-          if (task.user_id == filterUser.id) return true
-          else return false
+    methods: {
+      clickFlip: function (task) {
+        task.flipperClass = !task.flipperClass
+      },
+      searchForTasks () {
+        this.loading = true
+        window.axios.get(this.uri).then((response) => {
+          this.loading = false
+          this.dataTasks = response.data
+        }).catch((error) => {
+          this.$snackbar.showError(error.response.data.message)
+        })
+      },
+      randomColor (id) {
+        const r = () => Math.floor(256 * Math.random())
+        return this.colorCache[id] || (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
+      },
+      removeTask (task) {
+        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      },
+      updateTask (task) {
+        this.refresh()
+      },
+      refresh (message = true) {
+        this.loading = true
+        window.axios.get(this.uri).then(response => {
+          this.dataTasks = response.data
+          this.loading = false
+          if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
+        }).catch(error => {
+          console.log(error)
+          this.loading = false
         })
       }
-      if (statusBy.value != 'Totes') {
-        tasks = tasks.filter((task) => {
-          if (task.completed == statusBy.value) return true
-          else return false
-        })
-      }
-      return tasks
-    }
-  },
-  watch: {
-    tasks (newTasks) {
-      this.dataTasks = newTasks
-    }
-  },
-  methods: {
-    clickFlip: function (task) {
-      task.flipperClass = !task.flipperClass
-    },
-    searchForTasks () {
-      this.loading = true
-      window.axios.get(this.uri).then((response) => {
-        this.loading = false
-        this.dataTasks = response.data
-      }).catch((error) => {
-        this.$snackbar.showError(error.response.data.message)
-      })
-    },
-    randomColor (id) {
-      const r = () => Math.floor(256 * Math.random())
-      return this.colorCache[id] || (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
-    },
-    removeTask (task) {
-      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-    },
-    updateTask (task) {
-      this.refresh()
-    },
-    refresh (message = true) {
-      this.loading = true
-      window.axios.get(this.uri).then(response => {
-        this.dataTasks = response.data
-        this.loading = false
-        if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
-      }).catch(error => {
-        console.log(error)
-        this.loading = false
-      })
     }
   }
-}
 </script>
 <style>
     @font-face {

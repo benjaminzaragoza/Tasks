@@ -1,6 +1,6 @@
 <template>
 <span>
-     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="dialog=false">
+     <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.smAndDown" transition="dialog-bottom-transition" @keydown.esc="dialog=false">
             <v-toolbar color="success lighten-2" class="white--text">
                 <v-btn flat icon class="white--text" @click="dialog=false">
                     <v-icon>close</v-icon>
@@ -26,35 +26,35 @@
 </template>
 
 <script>
-import TaskUpdateForm from './TaskUpdateForm'
-export default {
-  name: 'TaskUpdate',
-  components: {
-    'task-update-form': TaskUpdateForm
-  },
-  data () {
-    return {
-      dialog: false
-    }
-  },
-  props: {
-    users: {
-      type: Array,
-      required: true
+  import TaskUpdateForm from './TaskUpdateForm'
+  export default {
+    name: 'TaskUpdate',
+    components: {
+      'task-update-form': TaskUpdateForm
     },
-    task: {
-      type: Object,
-      required: true
+    data () {
+      return {
+        dialog: false
+      }
     },
-    uri: {
-      type: String,
-      required: true
-    }
-  },
-  methods: {
-    updated (task) {
-      this.$emit('updated', task)
+    props: {
+      users: {
+        type: Array,
+        required: true
+      },
+      task: {
+        type: Object,
+        required: true
+      },
+      uri: {
+        type: String,
+        required: true
+      }
+    },
+    methods: {
+      updated (task) {
+        this.$emit('updated', task)
+      }
     }
   }
-}
 </script>

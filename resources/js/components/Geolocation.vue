@@ -1,58 +1,66 @@
 <template>
-        <span>
+    <div>
+        <v-layout >
+            <v-flex  xs6 sm2 lg2>
+                <i class="color material-icons btn btn-default" slot="activator"
+                   @click="show"
+                   :loading="gps"
+                   @click.stop="dialog = true"
+                   id="askButton">location_on</i>
+            </v-flex>
     <v-dialog
             v-model="dialog"
             width="500"
     >
-    <i class="color material-icons btn btn-default" slot="activator"
-       @click="show"
-       :loading="gps"
-       id="askButton">location_on</i>
-    <v-card>
-        <v-card-title
-                class="headline grey lighten-2"
-                primary-title
-        >
-            Coordenades<v-spacer></v-spacer>
+      <v-card>
+          <v-card-title
+                  class="headline primary white--text"
+                  primary-title
+
+          >
+          Trobat  <v-icon class="white--text" style="margin-left: 2%">location_on</v-icon><v-spacer></v-spacer>
             <v-tooltip bottom>
                 <v-btn
                         icon
+                        class=" white--text"
                         @click="show"
                         :loading="gps"
                         id="askButton"
                         slot="activator"
                 ><v-icon>cached</v-icon>
                 </v-btn>
-                <span>Actualitzar</span>
-            </v-tooltip>
+        <span>Actualitzar</span>
+        </v-tooltip>
         </v-card-title>
-    <v-card-text class="text-xs-center list-style-type:none">
 
-        <div id="target"></div>
-        <p class="font-weight-light font-italic">Fent clic sobre les coordenades obtindreu la posició al google maps.</p>
+        <v-card-text class="text-xs-center list-style-type:none">
+
+            <div id="target"></div>
+                    <p class="font-weight-light font-italic">Fent clic sobre les coordenades obtindreu la posició al google maps.</p>
         <p class="font-weight-light font-italic">Si no veieu les coordenades, si us plau premeu el botó de refresc.</p>
-    </v-card-text>
+        </v-card-text>
 
-    <v-divider></v-divider>
+        <v-divider></v-divider>
 
-    <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-                color="primary"
-                flat
-                @click="dialog = false"
-        >
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+                  color="primary"
+                  flat
+                  @click="dialog = false"
+          >
             Sortir
-        </v-btn>
-    </v-card-actions>
-    </v-card>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
     </v-dialog>
-    </span>
+        </v-layout>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'Geolocation',
+  name: 'GpsFeature',
   data () {
     return {
       gps: false,

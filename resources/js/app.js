@@ -50,6 +50,11 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import Vibrate from './components/Vibrate'
 import Geolocation from './components/Geolocation'
+import Battery from './components/Battery'
+import Memory from './components/Memory'
+import Network from './components/Network'
+import OnlineStatus from './components/OnlineStatus'
+import Orientation from './components/Orientation'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -179,6 +184,11 @@ window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('geolocation', Geolocation)
+window.Vue.component('battery', Battery)
+window.Vue.component('orientation', Orientation)
+window.Vue.component('network', Network)
+window.Vue.component('memory', Memory)
+window.Vue.component('onlinestatus', OnlineStatus)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
