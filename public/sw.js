@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.40555becdf5a3b4891e4b9380ea3051f.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.bab77b3f3af7d77bd079228230069cd8.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 // importScripts('/service-worker/precache-manifest.fc21ecfebb4853d725aa822e2382fb14.js', 'https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js')
 
@@ -34,4 +34,8 @@ workbox.routing.registerRoute(
   '/public/favicon-32x32',
   workbox.strategies.cacheFirst({ cacheName: 'favicon' })
 )
+workbox.routing.registerRoute(
+  new RegExp('/tasques'),
+  new workbox.strategies.NetworkFirst()
+);
 

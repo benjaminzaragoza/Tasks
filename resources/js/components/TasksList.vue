@@ -163,7 +163,7 @@
 
         >
             <div class="flipper" :class="task.flipperClass == true ? 'flip-class' : false">
-                <v-card class="card xl front" >
+                <v-card  v-touch="{ left: () => dialog = updated }" class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
 
                   <v-flex xs5 color="primary darken-1 " >
@@ -186,7 +186,7 @@
                     </footer>
                 </section>
                 </v-card>
-                <v-card class="card xl back">
+                <v-card  class="card xl back">
                      <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                      <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%" >{{ task.name }}</h3>
 
@@ -236,133 +236,133 @@
 </template>
 
 <script>
-  import TaskCompletedToggle from './TaskCompletedToggle'
-  import TaskDestroy from './TaskDestroy'
-  import TaskUpdate from './TaskUpdate'
-  import TaskShow from './TaskShow'
-  import TasksTags from './TasksTags'
+import TaskCompletedToggle from './TaskCompletedToggle'
+import TaskDestroy from './TaskDestroy'
+import TaskUpdate from './TaskUpdate'
+import TaskShow from './TaskShow'
+import TasksTags from './TasksTags'
 
-  export default {
-    name: 'TasksList',
-    data () {
-      return {
-        user: '',
-        user_id: '',
-        loading: false,
-        dataTasks: this.tasks,
-        dataUsers: this.users,
-        filter: 'Totes',
-        filterUser: null,
-        filters: [
-          { name: 'Totes', value: 'Totes' },
-          { name: 'Completades', value: true },
-          { name: 'Pendents', value: false }
-        ],
-        statusBy: { name: 'Totes', value: 'Totes' },
-        search: '',
-        pagination: {
-          rowsPerPage: 5
-        },
-        colorCache: {},
-        headers: [
-          { text: 'Id', value: 'id' },
-          { text: 'Name', value: 'name' },
-          { text: 'User', value: 'user_id' },
-          { text: 'Completat', value: 'completed' },
-          { text: 'Etiquetes', value: 'tags' },
-          { text: 'Creat', value: 'created_at_timestamp' },
-          { text: 'Modificat', value: 'updated_at_timestamp' },
-          { text: 'Accions', sortable: false, value: 'full_search' }
-        ]
-      }
+export default {
+  name: 'TasksList',
+  data () {
+    return {
+      user: '',
+      user_id: '',
+      loading: false,
+      dataTasks: this.tasks,
+      dataUsers: this.users,
+      filter: 'Totes',
+      filterUser: null,
+      filters: [
+        { name: 'Totes', value: 'Totes' },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
+      ],
+      statusBy: { name: 'Totes', value: 'Totes' },
+      search: '',
+      pagination: {
+        rowsPerPage: 5
+      },
+      colorCache: {},
+      headers: [
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'User', value: 'user_id' },
+        { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
+      ]
+    }
+  },
+  components: {
+    'task-completed-toggle': TaskCompletedToggle,
+    'task-destroy': TaskDestroy,
+    'task-show': TaskShow,
+    'task-update': TaskUpdate,
+    'tasks-tags': TasksTags
+  },
+  props: {
+    tasks: {
+      type: Array,
+      required: true
     },
-    components: {
-      'task-completed-toggle': TaskCompletedToggle,
-      'task-destroy': TaskDestroy,
-      'task-show': TaskShow,
-      'task-update': TaskUpdate,
-      'tasks-tags': TasksTags
+    tags: {
+      type: Array
     },
-    props: {
-      tasks: {
-        type: Array,
-        required: true
-      },
-      tags: {
-        type: Array
-      },
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
+    users: {
+      type: Array,
+      required: true
     },
-    computed: {
-      getFilteredTasks () {
-        let filterUser = this.filterUser
-        let statusBy = this.statusBy
-        let tasks = this.dataTasks
-        if (filterUser == null) {
-          tasks = this.dataTasks
-        } else if (filterUser !== null) {
-          tasks = tasks.filter((task) => {
-            if (task.user_id == filterUser.id) return true
-            else return false
-          })
-        }
-        if (statusBy.value != 'Totes') {
-          tasks = tasks.filter((task) => {
-            if (task.completed == statusBy.value) return true
-            else return false
-          })
-        }
-        return tasks
-      }
-    },
-    watch: {
-      tasks (newTasks) {
-        this.dataTasks = newTasks
-      }
-    },
-    methods: {
-      clickFlip: function (task) {
-        task.flipperClass = !task.flipperClass
-      },
-      searchForTasks () {
-        this.loading = true
-        window.axios.get(this.uri).then((response) => {
-          this.loading = false
-          this.dataTasks = response.data
-        }).catch((error) => {
-          this.$snackbar.showError(error.response.data.message)
-        })
-      },
-      randomColor (id) {
-        const r = () => Math.floor(256 * Math.random())
-        return this.colorCache[id] || (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
-      },
-      removeTask (task) {
-        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-      },
-      updateTask (task) {
-        this.refresh()
-      },
-      refresh (message = true) {
-        this.loading = true
-        window.axios.get(this.uri).then(response => {
-          this.dataTasks = response.data
-          this.loading = false
-          if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
-        }).catch(error => {
-          console.log(error)
-          this.loading = false
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    getFilteredTasks () {
+      let filterUser = this.filterUser
+      let statusBy = this.statusBy
+      let tasks = this.dataTasks
+      if (filterUser == null) {
+        tasks = this.dataTasks
+      } else if (filterUser !== null) {
+        tasks = tasks.filter((task) => {
+          if (task.user_id == filterUser.id) return true
+          else return false
         })
       }
+      if (statusBy.value != 'Totes') {
+        tasks = tasks.filter((task) => {
+          if (task.completed == statusBy.value) return true
+          else return false
+        })
+      }
+      return tasks
+    }
+  },
+  watch: {
+    tasks (newTasks) {
+      this.dataTasks = newTasks
+    }
+  },
+  methods: {
+    clickFlip: function (task) {
+      task.flipperClass = !task.flipperClass
+    },
+    searchForTasks () {
+      this.loading = true
+      window.axios.get(this.uri).then((response) => {
+        this.loading = false
+        this.dataTasks = response.data
+      }).catch((error) => {
+        this.$snackbar.showError(error.response.data.message)
+      })
+    },
+    randomColor (id) {
+      const r = () => Math.floor(256 * Math.random())
+      return this.colorCache[id] || (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
+    },
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    updateTask (task) {
+      this.refresh()
+    },
+    refresh (message = true) {
+      this.loading = true
+      window.axios.get(this.uri).then(response => {
+        this.dataTasks = response.data
+        this.loading = false
+        if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
+      }).catch(error => {
+        console.log(error)
+        this.loading = false
+      })
     }
   }
+}
 </script>
 <style>
     @font-face {

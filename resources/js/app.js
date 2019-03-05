@@ -192,7 +192,6 @@ window.Vue.component('memory', Memory)
 window.Vue.component('onlinestatus', OnlineStatus)
 window.Vue.component('memory', Memory)
 window.Vue.component('speed', SpeedTest)
-
 window.Vue.component('login-form', LoginForm)
-Vue.component('tags', require('./components/Tags'))
+// Vue.component('tags', require('./components/Tags'))
 const app = new window.Vue(AppComponent)

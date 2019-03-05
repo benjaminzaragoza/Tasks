@@ -26,35 +26,35 @@
 </template>
 
 <script>
-  import TaskUpdateForm from './TaskUpdateForm'
-  export default {
-    name: 'TaskUpdate',
-    components: {
-      'task-update-form': TaskUpdateForm
+import TaskUpdateForm from './TaskUpdateForm'
+export default {
+  name: 'TaskUpdate',
+  components: {
+    'task-update-form': TaskUpdateForm
+  },
+  data () {
+    return {
+      dialog: false
+    }
+  },
+  props: {
+    users: {
+      type: Array,
+      required: true
     },
-    data () {
-      return {
-        dialog: false
-      }
+    task: {
+      type: Object,
+      required: true
     },
-    props: {
-      users: {
-        type: Array,
-        required: true
-      },
-      task: {
-        type: Object,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
-    },
-    methods: {
-      updated (task) {
-        this.$emit('updated', task)
-      }
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    updated (task) {
+      this.$emit('updated', task)
     }
   }
+}
 </script>
