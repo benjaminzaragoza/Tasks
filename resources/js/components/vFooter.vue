@@ -3,8 +3,8 @@
         <v-container grid-list-sm class="primary">
             <v-layout row wrap pt-7 pb-0 style="text-align: center">
                 <v-flex offset-xs1 offset-md0 offset-lg2 xs10 sm5 md3 lg2>
-                    <a class="footer-icons" target="_blank" href="https://www.facebook.com/benjamin.zaragozapla?ref=bookmarks">
-                        <img alt="facebook"  rel="noopener" src="/img/welcome/facebook.svg">
+                    <a class="footer-icons" rel="noopener" target="_blank" href="https://www.facebook.com/benjamin.zaragozapla?ref=bookmarks">
+                        <img alt="facebook"   src="/img/welcome/facebook.svg">
                     </a>
                     <div class="pb-2" >
                         <p class="white--text">Descobreix</p>
@@ -49,7 +49,7 @@
                                 label="Email de contacte"
                                 dark
                         ></v-text-field>
-                        <v-btn class="right mr-0" color='secondary' bottom>Enviar</v-btn>
+                        <v-btn class="right  text-secondary" color='yellow ' bottom><v-icon>send</v-icon></v-btn>
                     </div>
                 </v-flex>
             </v-layout>
@@ -61,7 +61,7 @@
             <v-layout row pb-2>
                 <v-flex lg8 offset-lg2>
                     <div class="text-xs-center white--text">
-                        © Vuetify 2018
+                        © Vuetify 2019
                     </div>
                 </v-flex>
             </v-layout>
