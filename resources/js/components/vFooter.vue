@@ -4,7 +4,7 @@
             <v-layout row wrap pt-7 pb-0 style="text-align: center">
                 <v-flex offset-xs1 offset-md0 offset-lg2 xs10 sm5 md3 lg2>
                     <a class="footer-icons" target="_blank" href="https://www.facebook.com/benjamin.zaragozapla?ref=bookmarks">
-                        <img alt="facebook"  src="/img/welcome/facebook.svg">
+                        <img alt="facebook"  rel="noopener" src="/img/welcome/facebook.svg">
                     </a>
                     <div class="pb-2" >
                         <p class="white--text">Descobreix</p>
@@ -16,7 +16,7 @@
 
                 </v-flex>
                 <v-flex offset-xs1 offset-sm0 xs10 sm5 md3 lg2>
-                    <a class="footer-icons" target="_blank" href="https://twitter.com/Benja__97">
+                    <a class="footer-icons" rel="noopener" target="_blank" href="https://twitter.com/Benja__97">
                         <img alt="twitter"  src="/img/welcome/gorjeo.svg">
                     </a>
                     <div class="pb-2">
@@ -25,7 +25,7 @@
                     <v-divider dark class="hidden-lg-and-down"></v-divider>
                 </v-flex>
                 <v-flex offset-xs1 offset-sm1 offset-md0 xs10 sm5 md3 lg2>
-                    <a class="footer-icons" target="_blank" href="https://www.instagram.com/benjaminzaragoza">
+                    <a class="footer-icons" rel="noopener" target="_blank" href="https://www.instagram.com/benjaminzaragoza">
                         <img alt="instagram"  src="/img/welcome/instagram.svg">
                     </a>
                     <div class="pb-2 ">
@@ -35,7 +35,7 @@
 
                 </v-flex>
                 <v-flex offset-xs1 offset-sm0 xs10 sm5 md3 lg2>
-                    <a class="footer-icons" target="_blank" href="https://github.com/benjaminzaragoza">
+                    <a class="footer-icons" rel="noopener" target="_blank" href="https://github.com/benjaminzaragoza">
                         <img alt="github"  src="/img/welcome/git.svg">
                     </a>
                     <div class="pb-2">

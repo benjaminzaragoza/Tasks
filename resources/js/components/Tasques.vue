@@ -1,10 +1,10 @@
 <template >
 <span>
-            <v-card>
-                <snackbar></snackbar>
+     <v-card>
+        <snackbar></snackbar>
         <tasks-list v-show="dataTasks.length > 0" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
-            </v-card>
+     </v-card>
 
         <no-data-cta
             v-show="dataTasks.length == 0"

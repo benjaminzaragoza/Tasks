@@ -47,7 +47,7 @@
                     </div>
 
                 @else
-                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
+                    <v-btn color="primary" class=" font-weight-bold text-xs-center " href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
                     <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}"><v-icon  left>person_add</v-icon>Register</v-btn>
                 @endauth
             @endif
@@ -81,8 +81,9 @@
                                class="dark mt-5"
                                style="height: 6.2%"
                                target="_blank"
+                               rel="noopener"
                                href="https://github.com/benjaminzaragoza/Tasks"
-                        ><img src="img/github.webp"  alt="Github" height="65" alt-format="png">
+                        ><img-webp src="img/github.webp"  alt="Github" height="65" alt-format="png"></img-webp>
                         </v-btn>
                     </div>
                 </v-layout>
@@ -110,7 +111,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="secondary--text text--lighten-2">color_lens</v-icon>
+                                            <v-icon x-large class="primary--text ">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Material Design</div>
@@ -125,7 +126,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="secondary--text text--lighten-2">assignment_turned_in</v-icon>
+                                            <v-icon x-large class="primary--text ">assignment_turned_in</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline">Fast development</div>
@@ -140,7 +141,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="secondary--text text--lighten-2">assessment</v-icon>
+                                            <v-icon x-large class="primary--text ">assessment</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Completely Open Sourced</div>
@@ -197,7 +198,7 @@
                                 <v-list class="transparent">
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="secondary--text text--lighten-2">phone</v-icon>
+                                            <v-icon class="primary--text ">phone</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>777-867-5309</v-list-tile-title>
@@ -205,7 +206,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="secondary--text text--lighten-2">place</v-icon>
+                                            <v-icon class="primary--text ">place</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>Chicago, US</v-list-tile-title>
@@ -213,7 +214,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="secondary--text text--lighten-2">email</v-icon>
+                                            <v-icon class="primary--text ">email</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>

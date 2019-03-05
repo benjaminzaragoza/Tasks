@@ -26,15 +26,54 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
-                    <v-flex lg3 class="pr-2">
+                 <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
+    <v-expansion-panel-content>
+        <template v-slot:header>
+                        <v-icon>filter_list</v-icon>
+        <div>Filtres</div>
+            <v-spacer></v-spacer>
+                  </template>
+                <v-card-text class="justify-content-center">
+                <v-flex xs12>
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="statusBy"
+                                v-model="filter"
                                 item-text="name"
                                 :return-object="true"
-                        ></v-select>
+
+                        >
+                        </v-select>
+                    </v-flex>
+                    <v-flex xs12>
+                        <user-select
+                                url="/api/v1/users"
+                                label="Usuari"
+                                v-model="filterUser"
+                                :users="dataUsers"
+                        ></user-select>
+                    </v-flex>
+                    <v-flex xs12>
+                        <v-text-field
+                                append-icon="search"
+                                label="Buscar"
+                                v-model="search"
+                        ></v-text-field>
+                    </v-flex>
+                </v-card-text>
+            </v-expansion-panel-content>
+                    </v-expansion-panel>
+                                <v-layout v-else>
+
+                <v-flex lg3 class="pr-2">
+                        <v-select
+                                label="Filtres"
+                                :items="filters"
+                                v-model="filter"
+                                item-text="name"
+                                :return-object="true"
+                        >
+                        </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
                         <user-select
@@ -44,14 +83,14 @@
                                 :users="dataUsers"
                         ></user-select>
                     </v-flex>
-                    <v-flex lg5>
+                    <v-flex  lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
-                </v-layout>
+               </v-layout>
             </v-card-title>
             <v-data-table
                     :headers="headers"
@@ -124,7 +163,7 @@
 
         >
             <div class="flipper" :class="task.flipperClass == true ? 'flip-class' : false">
-                <v-card class="card xl front" >
+                <v-card  v-touch="{ left: () => dialog = updated }" class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
 
                   <v-flex xs5 color="primary darken-1 " >
@@ -147,7 +186,7 @@
                     </footer>
                 </section>
                 </v-card>
-                <v-card class="card xl back">
+                <v-card  class="card xl back">
                      <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
                      <h3  class="headline text-capitalize" style="text-align:center;margin-top: 10%" >{{ task.name }}</h3>
 

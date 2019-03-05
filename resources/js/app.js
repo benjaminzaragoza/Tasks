@@ -5,10 +5,19 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 import './bootstrap'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
-
+// import '../../resources/img/tenants/iesebre/iesebre_cellular-education-classroom-159844.jpeg'
+// import '../../resources/img/tenants/iesebre/iesebre_cellular-education-classroom-159844.webp'
+import '../../resources/img/task.png'
+import '../../resources/img/task.webp'
+import '../../resources/img/github.png'
+import '../../resources/img/github.webp'
+import '../../resources/img/image.webp'
+import '../../resources/img/image.jpg'
+import '../../resources/img/task2.jpg'
+import '../../resources/img/task2.webp'
 // import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-import 'font-awesome/css/font-awesome.min.css'
+// import 'font-awesome/css/font-awesome.min.css'
 
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
@@ -41,6 +50,12 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import Vibrate from './components/Vibrate'
 import Geolocation from './components/Geolocation'
+import Battery from './components/Battery'
+import Memory from './components/Memory'
+import Network from './components/Network'
+import OnlineStatus from './components/OnlineStatus'
+import Orientation from './components/Orientation'
+import SpeedTest from './components/SpeedTest'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -170,7 +185,13 @@ window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('geolocation', Geolocation)
-
+window.Vue.component('battery', Battery)
+window.Vue.component('orientation', Orientation)
+window.Vue.component('network', Network)
+window.Vue.component('memory', Memory)
+window.Vue.component('onlinestatus', OnlineStatus)
+window.Vue.component('memory', Memory)
+window.Vue.component('speed', SpeedTest)
 window.Vue.component('login-form', LoginForm)
-Vue.component('tags', require('./components/Tags'))
+// Vue.component('tags', require('./components/Tags'))
 const app = new window.Vue(AppComponent)
