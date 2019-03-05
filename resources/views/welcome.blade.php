@@ -58,7 +58,7 @@
             <section>
             <v-parallax class="article" height="720" alt-format="jpg">
                 <v-layout column align-center justify-center class="white--text justify-center" >
-                    <img-webp src="img/task.webp" height="200" alt-format="jpg"></img-webp>
+                    <img-webp src="img/task.webp" height="200" alt="task" alt-format="jpg"></img-webp>
                     <h1 class="dos white--text text--ligthen-2 mb-2 display-4 text-xs-center " style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
                     >Tasques amb Vue</h1>
