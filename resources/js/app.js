@@ -55,6 +55,7 @@ import Memory from './components/Memory'
 import Network from './components/Network'
 import OnlineStatus from './components/OnlineStatus'
 import Orientation from './components/Orientation'
+import SpeedTest from './components/SpeedTest'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -189,6 +190,8 @@ window.Vue.component('orientation', Orientation)
 window.Vue.component('network', Network)
 window.Vue.component('memory', Memory)
 window.Vue.component('onlinestatus', OnlineStatus)
+window.Vue.component('memory', Memory)
+window.Vue.component('speed', SpeedTest)
 
 window.Vue.component('login-form', LoginForm)
 Vue.component('tags', require('./components/Tags'))
