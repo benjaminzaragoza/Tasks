@@ -49,7 +49,8 @@
                                 label="Email de contacte"
                                 dark
                         ></v-text-field>
-                        <v-btn class="right  text-secondary" color='yellow ' alt="Enviar"><v-icon>send</v-icon></v-btn>
+                        <v-btn class="right  text-secondary" color='yellow ' role="presentation" className="control-arrow control-prev control-disabled"
+                               type="button" aria-label="aa" alt="Enviar"><v-icon>send</v-icon></v-btn>
                     </div>
                 </v-flex>
             </v-layout>
