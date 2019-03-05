@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "replace-in-file": "^3.4.3",
     "roboto-fontface": "^0.10.0",
