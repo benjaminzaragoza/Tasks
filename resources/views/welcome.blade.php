@@ -6,9 +6,9 @@
     <v-app light>
         <v-toolbar class="white">
             @auth
-                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img-webp src="img/task.webp" height="40" alt-format="jpg"></img-webp>
+                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img-webp alt="task" src="img/task.webp" height="40" alt-format="jpg"></img-webp>
             @else
-                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img-webp style="padding-left: 2%" src="img/task.webp" height="40" alt-format="jpg"></img-webp>
+                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img-webp style="padding-left: 2%" alt="task" src="img/task.webp" height="40" alt-format="jpg"></img-webp>
             @endauth
             <v-spacer></v-spacer>
             <service-worker></service-worker>
