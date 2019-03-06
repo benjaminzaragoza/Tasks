@@ -56,6 +56,7 @@ import Network from './components/Network'
 import OnlineStatus from './components/OnlineStatus'
 import Orientation from './components/Orientation'
 import SpeedTest from './components/SpeedTest'
+import MainToolbar from './components/MainToolbar'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -192,6 +193,8 @@ window.Vue.component('memory', Memory)
 window.Vue.component('onlinestatus', OnlineStatus)
 window.Vue.component('memory', Memory)
 window.Vue.component('speed', SpeedTest)
+window.Vue.component('main-toolbar', MainToolbar)
+
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))
 const app = new window.Vue(AppComponent)

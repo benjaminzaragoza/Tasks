@@ -162,9 +162,8 @@
 
         >
             <div class="flipper" :class="task.flipperClass == true ? 'flip-class' : false">
-                <v-card  v-touch="{ left: () => dialog = updated }" class="card xl front" >
+                <v-card v-touch="{ left: () => call('delete', task)}" class="card xl front" >
                 <section class="wrapper" :style="{backgroundColor: randomColor(task.user_id)}">
-
                   <v-flex xs5 color="primary darken-1 " >
                       <img class="tipo" style="width: 180px;height: 180px;border-radius: 160px;"
                            contain :src="(task.user !== null) ? task.user_gravatar : 'http://icons.iconarchive.com/icons/hopstarter/halloween-avatar/256/Minion-Pig-icon.png'">
@@ -210,7 +209,7 @@
                     <v-card-actions  class="justify-center" >
                            <task-show :task="task" :uri="uri" :users="users"></task-show>
                             <task-update :task="task" @updated="updateTask" :uri="uri" :users="users" :tags="tags"></task-update>
-                            <task-destroy :task="task" @deleted="removeTask" :uri="uri"></task-destroy>
+                            <task-destroy :task="task" :mobile="true" @deleted="removeTask" :uri="uri"></task-destroy>
                     </v-card-actions>
 
                       <v-card-actions>
@@ -240,7 +239,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
-
+import EventBus from './../eventBus'
 export default {
   name: 'TasksList',
   data () {
@@ -359,6 +358,9 @@ export default {
         console.log(error)
         this.loading = false
       })
+    },
+    call (action, object) {
+      EventBus.$emit('touch-' + action, object)
     }
   }
 }

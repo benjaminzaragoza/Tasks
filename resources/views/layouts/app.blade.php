@@ -73,7 +73,7 @@
     <snackbar></snackbar>
     <service-worker></service-worker>
     <navigation v-model="drawer" :mini="mini" ></navigation>
-    {{--<navigation-right :drawer-right="drawerRight" @changed="drawerRight = $event"></navigation-right>--}}
+    <navigation-right :drawer-right="drawerRight" @changed="drawerRight = $event"></navigation-right>
     <v-navigation-drawer
             v-model="drawerRight"
             fixed
@@ -145,6 +145,9 @@
         </v-card>
 
     </v-navigation-drawer>
+
+    {{--<main-toolbar :drawer="drawer" :user="{{ Auth::user() }}" @toggleLeft="drawer=!drawer" @toggleRight="toggleRight=!toggleRight"></main-toolbar>--}}
+
     <v-toolbar color="primary" dark app clipped-left clipped-right fixed >
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="hidden-sm-and-down" class="font-weight-bold " >Menú</v-toolbar-title>
@@ -164,7 +167,7 @@
         <v-btn large style="margin-left: 2%"flat icon color="white " href="/"  type="submit">
                 <v-icon large>home</v-icon>
             </v-btn>
-            {{--<v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>--}}
+            <v-btn color="primary" href="/" type="submit" medium dark><v-icon large>home</v-icon></v-btn>
             <v-form  action="logout" method="POST" >
             @csrf
                 <v-btn  type="submit" large style="margin-right: 50%" flat icon color="white " >
@@ -172,6 +175,8 @@
                 </v-btn>
         </v-form>
         </v-toolbar>
+
+
     <v-content style="background-color:  #f2f2f2F">
         <v-container fluid fill-height  >
             <v-layout
