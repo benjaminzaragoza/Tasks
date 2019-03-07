@@ -169,6 +169,7 @@
                             <v-icon large left>favorite</v-icon>
                             Start Experience
                         </v-btn>
+                        <newsletter-subscription-card></newsletter-subscription-card>
                     </v-layout>
                 </v-parallax-webp>
             </section>

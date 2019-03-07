@@ -29,6 +29,8 @@ import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
+import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard'
+
 import Tags from './components/Tags.vue'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
@@ -194,6 +196,7 @@ window.Vue.component('onlinestatus', OnlineStatus)
 window.Vue.component('memory', Memory)
 window.Vue.component('speed', SpeedTest)
 window.Vue.component('main-toolbar', MainToolbar)
+window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))
