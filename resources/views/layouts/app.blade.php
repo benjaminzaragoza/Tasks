@@ -36,7 +36,7 @@
     <meta name="twitter:site" content="@nytimesbits" />
     <meta name="twitter:creator" content="@nickbilton" />
 
-    <title>@yield('title','Tasques'))</title>
+    <title>@yield('title','Tasques')</title>
     <style>
         [v-cloak] > * { display:none; }
         [v-cloak]::before {
