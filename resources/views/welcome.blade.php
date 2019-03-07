@@ -6,9 +6,9 @@
     <v-app light>
         <v-toolbar class="white">
             @auth
-                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img-webp alt="task" src="img/task.webp" height="40" alt-format="jpg"></img-webp>
+                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img alt="task" src="img/task.webp" height="40" alt-format="jpg"></img>
             @else
-                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img-webp style="padding-left: 2%" alt="task" src="img/task.webp" height="40" alt-format="jpg"></img-webp>
+                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" alt="task" src="img/task.webp" height="40" alt-format="jpg"></img>
             @endauth
             <v-spacer></v-spacer>
             <service-worker></service-worker>
@@ -58,7 +58,7 @@
             <section>
             <v-parallax class="article" height="720" alt-format="jpg">
                 <v-layout column align-center justify-center class="white--text justify-center" >
-                    <img-webp src="img/task.webp" height="200" alt="task" alt-format="jpg"></img-webp>
+                    <img src="img/task.webp" height="200" alt="task" alt-format="jpg"></img>
                     <h1 class="dos white--text text--ligthen-2 mb-2 display-4 text-xs-center " style="margin-top: 3%;text-shadow: black 0.1em 0.1em 0.8em"
                         :class="{'display-2': $vuetify.breakpoint.md, 'display-1': $vuetify.breakpoint.xs}"
                     >Tasques amb Vue</h1>
@@ -83,7 +83,7 @@
                                target="_blank"
                                rel="noopener"
                                href="https://github.com/benjaminzaragoza/Tasks"
-                        ><img-webp src="img/github.webp"  alt="Github" height="65" alt-format="png"></img-webp>
+                        ><img src="img/github.webp"  alt="Github" height="65" alt-format="png"></img>
                         </v-btn>
                     </div>
                 </v-layout>
