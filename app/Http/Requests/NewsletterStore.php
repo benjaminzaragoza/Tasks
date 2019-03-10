@@ -1,10 +1,7 @@
 <?php
-
-namespace App\Http\Requests\Newsletter;
-
+namespace App\Http\Requests;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
-
 /**
  * Class NewsletterStore
  * @package App\Http\Requests\Newsletters
@@ -20,7 +17,6 @@ class NewsletterStore extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *

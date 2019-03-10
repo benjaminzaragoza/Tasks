@@ -2,7 +2,7 @@
     <v-card class="elevation-0 text-xs-center" style="width: 400px;">
         <v-card-title style="align-items: center;justify-content: center;">
             <span class="title">Llista de correu electrònic</span>
-            <em class="subheading">Apunta't i sigues el primer en rebre tota la informació sobre l'Institut de l'Ebre!</em>
+            <em class="subheading">Apunta't i sigues el primer en rebre tota la informació sobre Tasques!</em>
         </v-card-title>
         <v-card-text>
             <v-form v-model="valid">
@@ -20,7 +20,7 @@
             <v-btn
                     :loading="loading"
                     :disabled="loading"
-                    class="primary"
+                    class="primary "
                     dark
                     large
                     @click.native="subscribe"
@@ -62,7 +62,6 @@ export default {
         navigator.serviceWorker.ready
           .then(function (registration) {
             console.log('A service worker is active:', registration.active)
-
             document.getElementById('submitForm').addEventListener('click', (event) => {
               if (registration.sync) {
                 registration.sync.register('example-sync')

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\Newsletter;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\Newsletter\NewsletterStore;
+use App\Http\Requests\NewsletterStore;
 use Response;
 use App\Http\Controllers\Controller;
 use Spatie\Newsletter\Newsletter;

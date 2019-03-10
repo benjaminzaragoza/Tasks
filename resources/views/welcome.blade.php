@@ -162,13 +162,13 @@
             <section>
                 <v-parallax-webp src="img/task2.webp" height="380" alt-format="jpg">
                     <v-layout column align-center justify-center>
-                        <v-btn large color="primary"
-                               href="/home"
+                        {{--<v-btn large color="primary"--}}
+                               {{--href="/home"--}}
 
-                        >
-                            <v-icon large left>favorite</v-icon>
-                            Start Experience
-                        </v-btn>
+                        {{-->--}}
+                            {{--<v-icon large left>favorite</v-icon>--}}
+                            {{--Start Experience--}}
+                        {{--</v-btn>--}}
                         <newsletter-subscription-card></newsletter-subscription-card>
                     </v-layout>
                 </v-parallax-webp>
