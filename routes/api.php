@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
@@ -77,6 +78,9 @@ Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
 
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
+    Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
+
+
 });
 //
 //return App\Task::all();

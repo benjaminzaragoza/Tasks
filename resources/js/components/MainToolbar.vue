@@ -8,7 +8,7 @@
         <notifications-widget></notifications-widget>
 
         <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ user('email') }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-        <v-avatar  @click="$emit('toggle-right')"  :title="user('email')">
+        <v-avatar  @click="$emit('toggle-right')"  :title="user('name')">
             <img v-if="user('online')" style="border: lawngreen 2px solid; margin: 20px;" :src=userAvatar alt="avatar">
             <img v-else style="border: red 2px solid; margin: 20px;" :src=userAvatar alt="avatar">
         </v-avatar>
