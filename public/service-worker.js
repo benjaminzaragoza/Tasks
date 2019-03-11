@@ -3,10 +3,12 @@ workbox.setConfig({
   debug: true
 })
 
-workbox.skipWaiting()
-workbox.clientsClaim()
-// workbox.core.skipWaiting()
-// workbox.core.clientsClaim()
+// workbox.skipWaiting()
+// workbox.clientsClaim()
+workbox.core.skipWaiting()
+workbox.core.clientsClaim()
+
+workbox.precaching.cleanupOutdatedCacjes();
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
@@ -22,22 +24,35 @@ workbox.routing.registerRoute(
     ]
   })
 )
+const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
+  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
+  callbacks: {
+    queueDidReplay: showNotification
+  }
+})
 
 workbox.routing.registerRoute(
   '/',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  new workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
 )
 
 workbox.routing.registerRoute(
   '/public/css/*',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
+  new workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
 )
 
 workbox.routing.registerRoute(
   '/public/favicon-32x32',
-  workbox.strategies.cacheFirst({ cacheName: 'favicon' })
+  new workbox.strategies.cacheFirst({ cacheName: 'favicon' })
 )
 workbox.routing.registerRoute(
   new RegExp('/tasques'),
   new workbox.strategies.NetworkFirst()
-);
+)
+workbox.routing.registerRoute(
+  '/api/v1/newsletter',
+  new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin]
+  }),
+  'POST'
+)
