@@ -4,11 +4,11 @@
 @endsection
 @section('content')
     <v-app light>
-        <v-toolbar class="white">
+        <v-toolbar class="white" dark color="primary darken-1 " >
             @auth
-                <p class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style="font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img alt="task" src="img/task.webp" height="40" alt-format="jpg"></img>
+                <p class="white--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down cortar" style=";font-size:20px ;text-overflow:ellipsis;margin-right: 1%">Tasques de {{(Auth::user()->name)}}</p><img alt="task" src="img/task.webp" height="40" alt-format="jpg"></img>
             @else
-                <v-toolbar-title class="primary--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down" >Tasques</v-toolbar-title><img style="padding-left: 2%" alt="task" src="img/task.webp" height="40" alt-format="jpg"></img>
+                <v-toolbar-title class="white--text mb-2 font-weight-bold font-italic text-xs-center hidden-sm-and-down">Tasques</v-toolbar-title><img style="padding-left: 2%" alt="task" src="img/task.webp" height="40" alt-format="jpg"></img>
             @endauth
             <v-spacer></v-spacer>
             <service-worker></service-worker>
@@ -35,7 +35,7 @@
                             <a class="hidden-sm-and-down" style="margin-top: 3%;" href="impersonate/leave">Abandonar la suplantació</a>
                             @endImpersonating
                             <v-form style="margin-top: 1%">
-                                <v-btn class=" font-weight-bold text-xs-center hidden-sm-and-down" color="primary" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
+                                <v-btn class="primary--text font-weight-bold text-xs-center hidden-sm-and-down" color="white" href="{{ url('home') }}"><v-icon>assignment</v-icon>&nbsp;Tasques</v-btn>
                             </v-form>
                             <v-form style="margin-top: 1%" action="logout" method="POST" >
                                 @csrf
@@ -47,8 +47,8 @@
                     </div>
 
                 @else
-                    <v-btn color="primary" class=" font-weight-bold text-xs-center " href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
-                    <v-btn color="primary" class=" font-weight-bold text-xs-center" href="{{ route('register') }}"><v-icon  left>person_add</v-icon>Register</v-btn>
+                    <v-btn color="white" class=" primary--text font-weight-bold text-xs-center " href="{{ route('login') }}"><v-icon  left>person</v-icon>Login</v-btn>
+                    <v-btn color="white" class=" primary--text font-weight-bold text-xs-center" href="{{ route('register') }}"><v-icon  left>person_add</v-icon>Register</v-btn>
                 @endauth
             @endif
 

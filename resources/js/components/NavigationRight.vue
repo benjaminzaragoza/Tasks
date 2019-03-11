@@ -34,7 +34,7 @@
                 </p>
                 <h4>Permisos</h4>
                 <template >
-                <v-list style="margin-top: 5%;">{{ user('permissions').join() }}</v-list>
+                    <v-list style="margin-top: 5%;">{{ user('permissions').join() }}</v-list>
                 </template>
                 <p> </p>
                 <h4>Colors Tema</h4>
@@ -61,35 +61,35 @@
 </template>
 
 <script>
-export default {
-  name: 'NavigationRight',
-  props: ['drawerRight'],
-  data () {
-    return {
-      userAvatar: window.laravel_user.gravatar,
-      userAvatarName: window.laravel_user.name,
-      userAvatarEmail: window.laravel_user.email,
-      dataDrawerRight: this.drawerRight,
-      impersonate: false
-    }
-  },
-  watch: {
-    drawerRight (newvalue) {
-      this.dataDrawerRight = newvalue
+  export default {
+    name: 'NavigationRight',
+    props: ['drawerRight'],
+    data () {
+      return {
+        userAvatar: window.laravel_user.gravatar,
+        userAvatarName: window.laravel_user.name,
+        userAvatarEmail: window.laravel_user.email,
+        dataDrawerRight: this.drawerRight,
+        impersonate: false
+      }
     },
-    dataDrawerRight (newdrawer) {
-      if (newdrawer !== this.drawerRight) this.$emit('changed', newdrawer)
-    }
-  },
-  computed: {
-    impersonating () {
-      return window.laravel_user_impersonating
-    }
-  },
-  methods: {
-    user (prop) {
-      return window.laravel_user[prop]
+    watch: {
+      drawerRight (newvalue) {
+        this.dataDrawerRight = newvalue
+      },
+      dataDrawerRight (newdrawer) {
+        if (newdrawer !== this.drawerRight) this.$emit('changed', newdrawer)
+      }
+    },
+    computed: {
+      impersonating () {
+        return window.laravel_user_impersonating
+      }
+    },
+    methods: {
+      user (prop) {
+        return window.laravel_user[prop]
+      }
     }
   }
-}
 </script>

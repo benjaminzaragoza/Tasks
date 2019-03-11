@@ -1,6 +1,7 @@
 
 window._ = require('lodash')
 window.Popper = require('popper.js').default
+window.md5 = require('md5')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -38,6 +39,9 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
+
+let impersonatedby = document.head.querySelector('meta[name="impersonatedBy"]')
+if (impersonatedby) if (impersonatedby.content) window.impersonatedBy = JSON.parse(impersonatedby.content)
 
 let user = document.head.querySelector('meta[name="user"]')
 if (user) {
