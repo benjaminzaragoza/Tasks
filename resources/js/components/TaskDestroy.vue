@@ -48,7 +48,6 @@ export default {
           this.$emit('deleted', task)
           this.removing = false
         }).catch(error => {
-          this.$snackbar.showError(error.message)
           this.removing = false
         })
       }

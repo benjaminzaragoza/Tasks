@@ -97,7 +97,6 @@ export default {
         this.reset()
       }).catch((error) => {
         this.loading = false
-        this.$snackbar.showError(error.message)
       }).finally(() => {
         this.loading = false
       })

@@ -1,16 +1,37 @@
-// importScripts('/service-worker/precache-manifest.fc21ecfebb4853d725aa822e2382fb14.js', 'https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js')
 workbox.setConfig({
   debug: true
 })
 
-// workbox.skipWaiting()
-// workbox.clientsClaim()
 workbox.core.skipWaiting()
 workbox.core.clientsClaim()
-
-workbox.precaching.cleanupOutdatedCacjes();
+// workbox.core.skipWaiting()
+// workbox.core.clientsClaim()
+workbox.precaching.cleanupOutdatedCaches()
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
+
+const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
+  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
+  callbacks: {
+    queueDidReplay: showNotification
+  }
+})
+
+const showNotification = () => {
+  self.registration.showNotification('Post Sent', {
+    body: 'You are back online and your post was successfully sent!'
+    // icon: 'assets/icon/256.png',
+    // badge: 'assets/icon/32png.png'
+  })
+}
+
+workbox.routing.registerRoute(
+  '/api/v1/newsletter',
+  new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin]
+  }),
+  'POST'
+)
 
 workbox.routing.registerRoute(
   new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
@@ -24,35 +45,23 @@ workbox.routing.registerRoute(
     ]
   })
 )
-const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
-  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
-  callbacks: {
-    queueDidReplay: showNotification
-  }
-})
 
 workbox.routing.registerRoute(
   '/',
-  new workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
 )
 
 workbox.routing.registerRoute(
   '/public/css/*',
-  new workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'css' })
 )
 
 workbox.routing.registerRoute(
   '/public/favicon-32x32',
-  new workbox.strategies.cacheFirst({ cacheName: 'favicon' })
+  new workbox.strategies.CacheFirst({ cacheName: 'favicon' })
 )
+
 workbox.routing.registerRoute(
   new RegExp('/tasques'),
   new workbox.strategies.NetworkFirst()
-)
-workbox.routing.registerRoute(
-  '/api/v1/newsletter',
-  new workbox.strategies.NetworkOnly({
-    plugins: [bgSyncPlugin]
-  }),
-  'POST'
 )

@@ -104,7 +104,6 @@ export default {
         this.loading = false
         this.$emit('change', this.selectedTags)
       }).catch(error => {
-        this.$snackbar.showError(error)
       })
       this.loading = false
     },
@@ -113,7 +112,6 @@ export default {
         this.$snackbar.showMessage(tag.name + ' eliminat correcatment')
         this.$emit('removed', response.data)
       }).catch((error) => {
-        this.$snackbar.showError(error.response.data.exception)
       })
     }
   }

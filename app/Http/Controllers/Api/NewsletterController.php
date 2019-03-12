@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\NewsletterStore;
 use Response;
+use Log;
 use App\Http\Controllers\Controller;
-use Spatie\Newsletter\Newsletter;
+use Newsletter;
 
 /**
  * Class NewsletterController.
@@ -22,6 +23,7 @@ class NewsletterController extends Controller
      */
     public function store(NewsletterStore $request)
     {
+        Log::debug('Subscribing user email: ' . $request->email);
         $result = Newsletter::subscribePending($request->email);
 
         if ($result) return $result;

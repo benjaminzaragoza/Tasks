@@ -41,7 +41,6 @@ export default {
       window.axios.get(this.url).then(response => {
         this.dataUsers = response.data
       }).catch(error => {
-        this.$snackbar.showError(error)
       })
     }
   }
