@@ -18,7 +18,7 @@ class TagsControllerTest extends TestCase
         // 2 execute
         $response = $this->get('/tags');
         //3 Comprovar
-        $response->assertRedirect('/login');
+        $response->assertRedirect('login?back=tags');
     }
     /**
      * @test
