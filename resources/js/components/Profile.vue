@@ -252,7 +252,6 @@ export default {
           this.$snackbar.showMessage('El avatar ha estat pujat correctament!')
         })
         .catch(error => {
-          console.log(error)
           this.uploadingAvatar = false
         })
     },

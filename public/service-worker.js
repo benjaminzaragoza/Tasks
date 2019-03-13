@@ -17,6 +17,14 @@ const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
   }
 })
 
+workbox.routing.registerRoute(
+  '/api/v1/newsletter',
+  new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin]
+  }),
+  'POST'
+)
+
 const showNotification = () => {
   self.registration.showNotification('Post Sent', {
     body: 'You are back online and your post was successfully sent!'

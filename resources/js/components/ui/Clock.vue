@@ -1,5 +1,5 @@
 <template>
-    <canvas id="canvas" ref="canvas" width="400" height="400" style="background-color: #333"></canvas>
+<canvas id="canvas" ref="canvas" width="400" height="400" style="background-color: #333"></canvas>
 </template>
 
 <script>
@@ -34,7 +34,6 @@ export default {
       second = (second * Math.PI / 30)
       // console.log(second)
       // this.drawHand(ctx, second, radius * 0.9, radius * 0.02)
-
       millis = (millis * Math.PI / 30000) + second
       this.drawHand(ctx, millis, radius * 0.9, radius * 0.02)
     },
@@ -67,12 +66,10 @@ export default {
     },
     drawFace (ctx, radius) {
       var grad
-
       ctx.beginPath()
       ctx.arc(0, 0, radius, 0, 2 * Math.PI)
       ctx.fillStyle = 'white'
       ctx.fill()
-
       grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05)
       grad.addColorStop(0, '#333')
       grad.addColorStop(0.5, 'white')
@@ -80,7 +77,6 @@ export default {
       ctx.strokeStyle = grad
       ctx.lineWidth = radius * 0.1
       ctx.stroke()
-
       ctx.beginPath()
       ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI)
       ctx.fillStyle = '#333'
@@ -91,8 +87,8 @@ export default {
     this.canvas = this.$refs.canvas
     let ctx = this.canvas.getContext('2d')
     var radius = this.canvas.height / 2
-    radius = radius * 0.90
     ctx.translate(radius, radius)
+    radius = radius * 0.90
     ctx.arc(0, 0, radius, 0, 2 * Math.PI)
     ctx.fillStyle = 'white'
     ctx.fill()

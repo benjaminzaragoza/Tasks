@@ -24,12 +24,6 @@ class Authenticate extends Middleware
         $loginUrl = $this->validBackPath($request->path()) ? route('login') . '?back=' . $request->path() : route('login');
         return $loginUrl;
     }
-    /**
-     * Valid back path.
-     *
-     * @param $path
-     * @return bool
-     */
     private function validBackPath($path) {
         if ($path) {
             if (collect(self::INVALID_PATHS)->first(function ($value) use ($path) {

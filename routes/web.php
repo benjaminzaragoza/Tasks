@@ -61,8 +61,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
     Route::get('/notifications', '\\' . NotificationController::class . '@index');
     Route::get('/functions','\\'. FunctionsController::class . '@index');
-    Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
 
+    Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
     Route::get('/clock','\\'. ClockController::class.'@index');
 });
 Route::get('/', function () {

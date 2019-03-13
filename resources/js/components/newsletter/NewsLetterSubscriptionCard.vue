@@ -2,7 +2,7 @@
     <v-card class="elevation-0 text-xs-center" style="width: 400px;">
         <v-card-title style="align-items: center;justify-content: center;">
             <span class="title">Llista de correu electrònic</span>
-            <em class="subheading">Apunta't i sigues el primer en rebre tota la informació sobre Tasques!</em>
+            <em class="subheading">Apunta't i sigues el primer en rebre tota la informació sobre aquesta aplicació de tasques!</em>
         </v-card-title>
         <v-card-text>
             <v-form v-model="valid">
@@ -50,8 +50,6 @@ export default {
       window.axios.post('/api/v1/newsletter', { 'email': this.email }).then(() => {
         this.$snackbar.showMessage("La subscripció s'ha realitzar correctament")
       }).catch(error => {
-        console.log(error)
-        this.$snackbar.showError(error)
       }).then(() => {
         this.loading = false
       })

@@ -75,7 +75,8 @@
     <snackbar></snackbar>
     <service-worker></service-worker>
     <navigation v-model="drawer" :mini="mini" ></navigation>
-    <main-toolbar @toggle-right="drawerRight=!drawerRight" @toggle-left="drawer=!drawer"></main-toolbar>
+    <main-toolbar @toggle-right="drawerRight=!drawerRight" @toggle-left="drawer=!drawer" csrf-token="{{ csrf_token() }}"
+    ></main-toolbar>
     {{--<navigation-right :drawer-right="drawerRight" @changed="drawerRight = $event"></navigation-right>--}}
     <v-navigation-drawer
             v-model="drawerRight"

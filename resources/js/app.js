@@ -59,7 +59,7 @@ import OnlineStatus from './components/OnlineStatus'
 import Orientation from './components/Orientation'
 import SpeedTest from './components/SpeedTest'
 import MainToolbar from './components/MainToolbar'
-import Clock from './components/Clock'
+import Clock from './components/ui/Clock.vue'
 
 window.Vue = Vue
 window.Vue.use(permissions)
