@@ -124,8 +124,8 @@ export default {
         { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' },
         { icon: 'photo', text: 'Imatges', url: '/contact' },
         { icon: 'phonelink_setup', text: 'Functions', url: '/functions' },
-        { icon: 'view_headline', text: 'Newsletter', url: '/newsletters' },
-        { icon: 'clock', text: 'Clock', url: '/clock' }
+        { icon: 'contact_mail', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'watch_later', text: 'Clock', url: '/clock' }
       ]
     }
   },

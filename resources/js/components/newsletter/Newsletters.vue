@@ -15,7 +15,7 @@
                 <v-flex xs12 sm6 offset-sm3 style="margin-top: 3%">
                     <v-card>
                         <v-toolbar color="primary" dark>
-                            <v-toolbar-title class="text-xs-center" style="margin-right: 5%;font-size: 30px"> <v-icon color="yellow" large >account_circle</v-icon> Perfil</v-toolbar-title>
+                            <v-toolbar-title class="text-xs-center" style="margin-right: 5%;font-size: 30px"> <v-icon color="white" large >account_circle</v-icon> Perfil</v-toolbar-title>
 
                             <v-spacer></v-spacer>
 
@@ -59,7 +59,7 @@
 
                 <v-card style="margin-top: 5%">
                         <v-toolbar color="primary" dark>
-                            <v-toolbar-title class="text-xs-center" style="margin-right: 5%;font-size: 30px"> <v-icon color="yellow" large >view_list</v-icon> Llista Usuaris</v-toolbar-title>
+                            <v-toolbar-title class="text-xs-center" style="margin-right: 5%;font-size: 30px"> <v-icon color="white" large >view_list</v-icon> Llista Usuaris</v-toolbar-title>
 
                             <v-spacer></v-spacer>
 
