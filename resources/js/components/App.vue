@@ -1,4 +1,4 @@
-<script>
+cd<script>
 export default
 {
   el: '#app',

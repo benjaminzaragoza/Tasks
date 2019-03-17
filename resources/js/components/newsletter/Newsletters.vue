@@ -1,14 +1,4 @@
 <template>
-    <!--<span>-->
-        <!--<ul style="list-style:none">-->
-            <!--<li><a href="https://mailchimp.com/">https://mailchimp.com/</a></li>-->
-            <!--<li>Usuari: benjaminzaragoza@iesebre.com</li>-->
-            <!--<li>Password: Personal (mireu fitxer .env)</li>-->
-            <!--<li><a href="https://us20.admin.mailchimp.com/lists/">https://us20.admin.mailchimp.com/lists/</a></li>-->
-            <!--<li>Nom de la llista: Ies del Ebre</li>-->
-            <!--<li>Id de la llista: Vegeu .env file</li>-->
-        <!--</ul>-->
-    <!--</span>-->
     <div id="app">
         <v-app id="inspire">
             <v-layout row>
@@ -55,7 +45,6 @@
 
                         </v-list>
                     </v-card>
-
 
                 <v-card style="margin-top: 5%">
                         <v-toolbar color="primary" dark>
