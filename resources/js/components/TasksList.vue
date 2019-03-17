@@ -335,7 +335,6 @@ export default {
         this.loading = false
         this.dataTasks = response.data
       }).catch((error) => {
-        this.$snackbar.showError(error.response.data.message)
       })
     },
     randomColor (id) {

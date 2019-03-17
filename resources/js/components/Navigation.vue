@@ -123,8 +123,9 @@ export default {
         { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
         { icon: 'add_alert', text: 'Registre Activitats', url: '/changelog' },
         { icon: 'photo', text: 'Imatges', url: '/contact' },
-        { icon: 'phonelink_setup', text: 'Functions', url: '/functions' }
-
+        { icon: 'phonelink_setup', text: 'Functions', url: '/functions' },
+        { icon: 'contact_mail', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'watch_later', text: 'Clock', url: '/clock' }
       ]
     }
   },

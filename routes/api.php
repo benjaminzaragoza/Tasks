@@ -78,10 +78,10 @@ Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
 
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
-    Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
-
 
 });
+Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
+
 //
 //return App\Task::all();
 //});

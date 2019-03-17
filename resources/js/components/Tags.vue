@@ -373,7 +373,6 @@ export default {
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
       }).catch((error) => {
-        this.$snackbar.showError(error)
       }).finally(() => {
         this.creating = false
         this.selectedTag.name = ''
@@ -402,7 +401,6 @@ export default {
         this.$snackbar.showMessage("S'ha esborrat correctament el tag")
         this.removing = false
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.removing = false
       })
     },
@@ -422,7 +420,6 @@ export default {
         this.loading = false
         this.$snackbar.showMessage("S'han actualitzat correctament els tags ")
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.loading = false
       })
     }

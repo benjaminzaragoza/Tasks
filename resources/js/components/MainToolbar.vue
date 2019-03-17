@@ -19,6 +19,7 @@
             <v-icon large>home</v-icon>
         </v-btn>
         <v-form  action="logout" method="POST" >
+            <input type="hidden" name="_token" :value="csrfToken">
             <v-btn  type="submit" large style="margin-right: 50%" flat icon color="white " >
                 <v-icon large>exit_to_app</v-icon>
             </v-btn>
@@ -38,6 +39,12 @@ export default {
   data () {
     return {
       userAvatar: window.laravel_user.gravatar
+    }
+  },
+  props: {
+    csrfToken: {
+      Type: String,
+      required: true
     }
   },
   methods: {
