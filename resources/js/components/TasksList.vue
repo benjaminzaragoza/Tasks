@@ -207,6 +207,7 @@
                     <v-spacer light></v-spacer>
 
                     <v-card-actions  class="justify-center" >
+                           <share-task :task="task"></share-task>
                            <task-show :task="task" :uri="uri" :users="users"></task-show>
                             <task-update :task="task" @updated="updateTask" :uri="uri" :users="users" :tags="tags"></task-update>
                             <task-destroy :task="task" :mobile="true" @deleted="removeTask" :uri="uri"></task-destroy>
@@ -238,6 +239,7 @@ import TaskCompletedToggle from './TaskCompletedToggle'
 import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
+import ShareTask from './ShareTask'
 import TasksTags from './TasksTags'
 import EventBus from './../eventBus'
 export default {
@@ -279,7 +281,8 @@ export default {
     'task-destroy': TaskDestroy,
     'task-show': TaskShow,
     'task-update': TaskUpdate,
-    'tasks-tags': TasksTags
+    'tasks-tags': TasksTags,
+    'share-task': ShareTask
   },
   props: {
     tasks: {

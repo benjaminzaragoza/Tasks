@@ -12,6 +12,7 @@ use App\Http\Controllers\UserPhotoController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TasquesController;
 use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,7 @@ Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleP
 
 Route::get('/user/{hashuser}/photo','\\' . UserPhotoController::class . '@show')->name('user.photo.show');
 Route::get('/user/{hashuser}/photo/download', '\\' . UserPhotoController::class . '@download')->name('user.photo.download');
+Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prova_cua', function(){
