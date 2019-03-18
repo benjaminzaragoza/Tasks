@@ -21,14 +21,14 @@
     <meta name="git" content="{{ git() }}">
     <link rel="stylesheet" type="text/css" href="css/function.css">
 
-    <meta property="og:image" content="/img/task.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">
-    <meta property="og:description" content="Creació de tasques by Benjamin Zaragoza Pla" />
     <meta property="og:title" content="App Tasques">
-    <meta property="og:url" content="https://tasks.benjaminzaragoza.scool.cat">
-
     <meta property="og:type" content="website" />
+    <meta property="og:description" content="Creació de tasques by Benjamin Zaragoza Pla" />
+    <meta property="og:url" content="https://tasks.benjaminzaragoza.scool.cat">
+    <meta property="og:image" content="/img/task.png">
+
     <meta name="Description" content="App Tasques">
 
     <meta name="twitter:card" content="summary" />

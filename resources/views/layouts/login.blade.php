@@ -21,17 +21,14 @@
     <meta property="og:image:height" content="628">
     <meta property="og:title" content="App Tasques">
     <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla">
-    <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
+    <meta property="og:url" content="https://tasks.benjaminzaragoza.scool.cat">
     <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png">
     <meta name="Description" content="App Tasques">
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@nytimesbits" />
     <meta name="twitter:creator" content="@nickbilton" />
-    <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat" />
-    <meta property="og:title" content="App Tasques" />
-    <meta property="og:description" content="Creació de tasques by Benjamin Zaragoza Pla" />
-    <meta property="og:image" content="https://tasks.benjaminzaragoza.scool.cat/img/task.png" />
+
     <title>@yield('title')</title>
     <style>
         [v-cloak] > * { display:none; }
