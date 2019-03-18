@@ -60,6 +60,7 @@ import Orientation from './components/Orientation'
 import SpeedTest from './components/SpeedTest'
 import MainToolbar from './components/MainToolbar'
 import Clock from './components/ui/Clock.vue'
+import ShowOneTask from './components/ShowOneTask.vue'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -305,6 +306,7 @@ window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
+window.Vue.component('show-one-task', ShowOneTask)
 
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))
