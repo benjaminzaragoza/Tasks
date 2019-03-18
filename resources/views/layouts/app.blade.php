@@ -16,20 +16,19 @@
     <meta name="application-name" content="Tasques">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
-    <link rel=" shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Antu_task-complete.svg/2000px-Antu_task-complete.svg.png" type="image/png">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="user_impersonating" content="{{ app('impersonate')->getImpersonatorId()}}">
     <meta name="git" content="{{ git() }}">
     <link rel="stylesheet" type="text/css" href="css/function.css">
 
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/img/task.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">
+    <meta property="og:description" content="Creació de tasques by Benjamin Zaragoza Pla" />
     <meta property="og:title" content="App Tasques">
-    <meta property="og:description" content="creació de tasques by Benjamin Zaragoza Pla">
-    <meta property="og:url" content="http://tasks.benjaminzaragoza.scool.cat">
-    <meta property="og:image" content="/img/task.png">
-    <meta property="og:sitename" content="tasks.benjaminzaragoza.scool.cat" />
+    <meta property="og:url" content="https://tasks.benjaminzaragoza.scool.cat">
+
+    <meta property="og:type" content="website" />
     <meta name="Description" content="App Tasques">
 
     <meta name="twitter:card" content="summary" />
