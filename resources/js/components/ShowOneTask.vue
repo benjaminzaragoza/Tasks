@@ -1,7 +1,5 @@
 <template>
-
     <span>
-
         <v-form class="hidden-sm-and-down">
             <v-text-field v-model="task.name" label="Nom" hint="Nom de la tasca"
                           readonly></v-text-field>
