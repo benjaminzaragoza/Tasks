@@ -3,7 +3,7 @@
 </v-container>
 </v-content>
 <v-footer color="indigo" app>
-    <span class="white--text"> Created by Marc Mestre Algueró &copy;2018 All rights reserved</span>
+    <span class="white--text"> Created by  &copy;2018 All rights reserved</span>
 </v-footer>
 </v-app>
 </div>
