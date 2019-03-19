@@ -19,7 +19,7 @@
             <v-btn
                     :loading="loading"
                     :disabled="loading"
-                    class="primary "
+                    class="primary"
                     dark
                     large
                     @click.native="subscribe"

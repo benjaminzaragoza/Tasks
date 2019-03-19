@@ -160,7 +160,7 @@
             </section>
 
             <section>
-                <v-parallax-webp src="img/task2.webp" height="380" alt-format="jpg">
+                <v-parallax-webp src="img/adeu.webp" height="380"  alt-format="jpg">
                     <v-layout column align-center justify-center>
                         {{--<v-btn large color="primary"--}}
                                {{--href="/home"--}}
