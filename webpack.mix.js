@@ -24,14 +24,25 @@ mix.js('resources/js/app.js', 'public/js').then(() => {
     from: /\/\//gu,
     to: '/'
   })
-})
+}).sass('resources/sass/app.scss', 'public/css')
+
   .extract()
-  .sourceMaps(false)
-  .sass('resources/sass/app.scss', 'public/css')
+  .sourceMaps(false) // .sourceMaps(false) -> Disable source maps in production
 
 if (mix.inProduction()) {
   mix.version()
 }
+
+mix.webpackConfig({
+  plugins: [
+    // Options: https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+    new workboxPlugin.InjectManifest({
+      swSrc: 'public/service-worker.js', // more control over the caching
+      swDest: 'sw.js', // the service-worker file name
+      importsDirectory: 'service-worker' // have a dedicated folder for sw files
+    })
+  ]
+})
 
 mix.webpackConfig({
   module: {
@@ -47,7 +58,7 @@ mix.webpackConfig({
                   return (
                     Config.fileLoaderDirs.images +
                     '/[name].[ext]'
-                  )
+                  );
                 }
 
                 return (
@@ -59,7 +70,7 @@ mix.webpackConfig({
                       /((.*(node_modules|bower_components))|images|image|img|assets)\//g,
                       ''
                     )
-                )
+                );
               },
               publicPath: Config.resourceRoot
             }
@@ -76,7 +87,7 @@ mix.webpackConfig({
         options: {
           name: path => {
             if (!/node_modules|bower_components/.test(path)) {
-              return Config.fileLoaderDirs.fonts + '/[name].[ext]'
+              return Config.fileLoaderDirs.fonts + '/[name].[ext]';
             }
 
             return (
@@ -88,7 +99,7 @@ mix.webpackConfig({
                   /((.*(node_modules|bower_components))|fonts|font|assets)\//g,
                   ''
                 )
-            )
+            );
           },
           publicPath: Config.resourceRoot
         }
