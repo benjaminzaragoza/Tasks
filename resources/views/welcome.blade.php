@@ -162,13 +162,6 @@
             <section>
                 <v-parallax-webp src="img/adeu.webp" height="380"  alt-format="jpg">
                     <v-layout column align-center justify-center>
-                        {{--<v-btn large color="primary"--}}
-                               {{--href="/home"--}}
-
-                        {{-->--}}
-                            {{--<v-icon large left>favorite</v-icon>--}}
-                            {{--Start Experience--}}
-                        {{--</v-btn>--}}
                         <newsletter-subscription-card></newsletter-subscription-card>
                     </v-layout>
                 </v-parallax-webp>

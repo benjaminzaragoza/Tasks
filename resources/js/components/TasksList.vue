@@ -583,7 +583,21 @@ export default {
     }
     @media  only screen and (min-width: 375px) {
         .tipo {
-            margin-left: 35%  ;
+            margin-left: 45%  ;
+            margin-top: 20%  ;
+        }
+
+    }
+    @media  only screen and (min-width: 470px) {
+        .tipo {
+            margin-left: 60%  ;
+            margin-top: 20%  ;
+        }
+
+    }
+    @media  only screen and (max-width: 375px) {
+        .tipo {
+            margin-left: 32%  ;
             margin-top: 20%  ;
         }
 
