@@ -18,7 +18,6 @@ import '../../resources/img/task2.webp'
 // import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 // import 'font-awesome/css/font-awesome.min.css'
-
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
 import AppComponent from './components/App.vue'
@@ -61,6 +60,7 @@ import SpeedTest from './components/SpeedTest'
 import MainToolbar from './components/MainToolbar'
 import Clock from './components/ui/Clock.vue'
 import ShowOneTask from './components/ShowOneTask.vue'
+import Chat from './components/chat/Chat'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -307,6 +307,7 @@ window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
 window.Vue.component('show-one-task', ShowOneTask)
+window.Vue.component('chat', Chat)
 
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))

@@ -8,6 +8,7 @@ use App\Http\Controllers\FunctionsController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\NewslettersController;
+use App\Http\Controllers\Tenant\Web\ChatController;
 use App\Http\Controllers\UserPhotoController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
@@ -65,6 +66,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
     Route::get('/clock','\\'. ClockController::class.'@index');
+    Route::get('/chat', '\\' . ChatController::class . '@index');
+    Route::get('/xat', '\\' . ChatController::class . '@index');
 });
 Route::get('/', function () {
     return view('welcome');
