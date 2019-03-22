@@ -1,15 +1,7 @@
 <?php
-
-namespace App\Http\Requests\Chat;
-
-use Auth;
+namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
-
-/**
- * Class ChatIndex.
- *
- * @package App\Http\Requests
- */
+use Illuminate\Support\Facades\Auth;
 class ChatIndex extends FormRequest
 {
     /**
@@ -21,7 +13,6 @@ class ChatIndex extends FormRequest
     {
         return Auth::user()->can('chat.index');
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,6 +20,8 @@ class ChatIndex extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            //
+        ];
     }
 }

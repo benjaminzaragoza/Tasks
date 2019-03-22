@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+
+
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport;
 use Laravel\Passport\HasApiTokens;
@@ -222,6 +224,10 @@ class User extends Authenticatable
             'hash_id' => $this->hash_id,
             'online' => $this->online
         ];
+    }
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
     }
     public function getOnlineAttribute()
     {

@@ -1,27 +1,13 @@
 <?php
-
-namespace App\Http\Controllers\Tenant\Web;
-
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Chat\ChatIndex;
-
-/**
- * Class ChatController.
- *
- * @package App\Http\Controllers\Tenant\Web
- */
+namespace App\Http\Controllers;
+use App\Http\Requests\ChatIndex;
+use App\User;
 class ChatController extends Controller
 {
-    /**
-     * Index.
-     *
-     * @param ChatIndex $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index(ChatIndex $request)
     {
+        $user = map_simple_collection(User::with('roles', 'permissions')->get());
         $channels = $request->user()->channels;
-        return view('tenants.chat.index', compact('channels'));
+        return view('chat.index', compact('channels', 'user'));
     }
 }

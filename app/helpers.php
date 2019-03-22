@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Channel;
+use App\Channel;
 use App\Notifications\SimpleNotification;
 use App\Tag;
 use Carbon\Carbon;
@@ -27,27 +27,18 @@ if (!function_exists('chat_permissions')) {
 }
 if (! function_exists('get_admin_user')) {
     function get_admin_user() {
-        return User::where('email',config('tasks.admin_user_email_on_tenant'))->first();
-    }
-}
-if (! function_exists('add_random_timestamps')) {
-    function add_random_timestamps($array)
-    {
-        return array_merge($array,get_random_timestamps());
+        return User::where('email',config('tasks.admin_user_email_on_tasks'))->first();
     }
 }
 if (! function_exists('get_random_timestamps')) {
     function get_random_timestamps($backwardDays = null)
     {
-
         if ( is_null($backwardDays) )
         {
             $backwardDays = -800;
         }
-
         $backwardCreatedDays = rand($backwardDays, 0);
         $backwardUpdatedDays = rand($backwardCreatedDays + 1, 0);
-
         return [
             'created_at' => \Carbon\Carbon::now()->addDays($backwardCreatedDays)->addMinutes(rand(0,
                 60 * 23))->addSeconds(rand(0, 60)),
@@ -56,20 +47,28 @@ if (! function_exists('get_random_timestamps')) {
         ];
     }
 }
+if (! function_exists('add_random_timestamps')) {
+    function add_random_timestamps($array)
+    {
+        return array_merge($array,get_random_timestamps());
+    }
+}
 if (! function_exists('create_admin_user')) {
-    /**
-     *
-     */
     function create_admin_user()
     {
         if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
-            App\User::forceCreate([
+            User::forceCreate([
                 'name' => config('tasks.admin_user_name'),
                 'email' => config('tasks.admin_user_email'),
-                'password' => bcrypt(config('tasks.admin_user_password')),
+                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
                 'admin' => true
             ]);
         }
+    }
+}
+if (! function_exists('is_sha1')) {
+    function is_sha1($str) {
+        return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
     }
 }
 if (! function_exists('tenant_connect')) {
@@ -662,7 +661,6 @@ if (!function_exists('sample_users')) {
         try {
             $bartsimpson->assignRole('Tasks');
             $bartsimpson->assignRole('Tags');
-
         } catch (exception $e) {
         }
         Task::create([
@@ -683,10 +681,10 @@ if (!function_exists('sample_users')) {
             $homersimpson->assignRole('TagsManager');
         } catch (exception $e) {
         }try {
-            $homersimpson->assignRole('Tasks');
-            $homersimpson->assignRole('Tags');
+        $homersimpson->assignRole('Tasks');
+        $homersimpson->assignRole('Tags');
     } catch (exception $e) {
-        }
+    }
         Task::create([
             'name' => 'Tasca Homer',
             'completed' => true,

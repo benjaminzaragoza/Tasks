@@ -33,16 +33,15 @@ class ChatControllerTest extends TestCase
     /** @test */
     public function chat_user_can_see_chats()
     {
-        initialize_sample_chat_channels();
-        $this->loginAsSuperAdmin('web',get_admin_user());
-
+        $user = $this->loginAsSuperAdmin('web');
+        initialize_sample_chat_channels($user);
+//        $this->loginAsSuperAdmin('web',get_admin_user());
         $response = $this->get('/chat');
-
         $response->assertSuccessful();
-        $response->assertViewIs('tenants.chat.index');
+        $response->assertViewIs('chat.index');
         $response->assertViewHas('channels', function($channels) {
             return is_array($channels->toArray()) &&
-                $channels[0]->value === 'Pepe Pardo Jeans';
+                $channels[0]->name === 'Pepe Pardo Jeans';
         });
     }
 }

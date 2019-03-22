@@ -8,7 +8,7 @@ use App\Http\Controllers\FunctionsController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\NewslettersController;
-use App\Http\Controllers\Tenant\Web\ChatController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UserPhotoController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
