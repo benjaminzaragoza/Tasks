@@ -1,7 +1,9 @@
 <template>
     <span>
-        <v-toolbar color="primary">
-            <v-avatar :src="user.avatar" size="52px" @click="$emit('toggleright')"></v-avatar>
+        <v-toolbar color="primary" class="ml-2">
+            <v-avatar :src="user.avatar" size="52px" @click="$emit('toggleright')">
+                <img :src=userAvatar alt="avatar">
+            </v-avatar>
             <v-toolbar-title>Channels</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
@@ -39,15 +41,16 @@
                             @click=""
                     >
                       <v-list-tile-avatar>
-                        <img :src="channel.avatar">
+                        <img style="width: 45px;height: 120%;margin-left: 25%;" :src="channel.avatar">
                       </v-list-tile-avatar>
 
                       <v-list-tile-content>
-                        <v-list-tile-title v-html="channel.name"></v-list-tile-title>
+                        <v-list-tile-title class="name" v-html="channel.name"></v-list-tile-title>
+                         <v-list-tile-title class="message" v-html="channel.message"></v-list-tile-title>
                       </v-list-tile-content>
 
                       <v-list-tile-action>
-                        <v-icon color="primary">chat_bubble</v-icon>
+                        <v-list-tile-title class="time" v-html="channel.time"></v-list-tile-title>
                       </v-list-tile-action>
                     </v-list-tile>
                   </v-list>
@@ -58,133 +61,124 @@
 </template>
 
 <script>
-  export default {
-    name: 'ChatChannels',
-    data () {
-      return {
-        dataChannels:
+export default {
+  name: 'ChatChannels',
+  data () {
+    return {
+      userAvatar: window.laravel_user.gravatar,
+      dataChannels:
           [
             {
               id: 1,
               name: 'Channel 1',
-              avatar: 'http://i.pravatar.cc/300'
+              avatar: 'http://i.pravatar.cc/300',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 2,
               name: 'Channel 2',
-              avatar: 'http://i.pravatar.cc/300?sadsda'
+              avatar: 'http://i.pravatar.cc/300?sadsda',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 3,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 4,
               name: 'Channel 2',
-              avatar: 'http://i.pravatar.cc/300?sadsda'
+              avatar: 'http://i.pravatar.cc/300?sadsda',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 5,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 6,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 7,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 8,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 9,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 10,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             },
             {
               id: 11,
               name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 12,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 13,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 14,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 15,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 16,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 17,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 18,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 19,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 20,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 21,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-            },
-            {
-              id: 22,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
+              message: 'hola',
+              time:'18:21'
             }
           ]
-      }
-    },
-    props: {
-      channels: {
-        type: Array,
-        required: true
-      }
-    },
-    created () {
-      this.user = window.laravel_user
     }
+  },
+  props: {
+    channels: {
+      type: Array,
+      required: true
+    }
+  },
+  created () {
+    this.user = window.laravel_user
   }
+}
 </script>
+<style>
+
+    .edit *{
+        color: #555;
+        float: right;
+        margin: 10px;
+        font-size: 30px;
+    }
+    .name{
+        display: block;
+    }
+    .time{
+        float: right;
+        margin-top: -15px;
+        font-size: 10px;
+        color: grey;
+    }
+
+    .details .message{
+        color: grey;
+    }
+
+</style>

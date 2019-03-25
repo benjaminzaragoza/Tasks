@@ -1,28 +1,29 @@
 <template>
     <div id="dsadsasadasdasddsadsa">
-        <v-toolbar color="primary">
-            <v-avatar
-                    color="grey lighten-4"
-            >
-                <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
-            </v-avatar>
-            <v-toolbar-title>Channel 1</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-tooltip bottom>
-                <v-btn icon slot="activator">
-                    <v-icon>channel</v-icon>
-                </v-btn>
-                <span>Nova conversació</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-                <v-btn icon slot="activator">
-                    <v-icon>more_vert</v-icon>
-                </v-btn>
-                <span>Menú</span>
-            </v-tooltip>
-        </v-toolbar>
         <v-container fluid text-xs-center class="ma-0 pa-0" >
-            <v-layout row wrap>
+            <v-layout row wrap class="mx-0">
+                <v-toolbar color="primary" class="ml-3">
+                    <v-avatar
+                            color="grey lighten-4"
+                    >
+                        <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
+                    </v-avatar>
+                    <v-toolbar-title>Channel 1</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-tooltip bottom>
+                        <v-btn icon slot="activator">
+                            <v-icon>channel</v-icon>
+                        </v-btn>
+                        <span>Nova conversació</span>
+                    </v-tooltip>
+                    <v-tooltip bottom>
+                        <v-btn icon slot="activator">
+                            <v-icon>more_vert</v-icon>
+                        </v-btn>
+                        <span>Menú</span>
+                    </v-tooltip>
+                </v-toolbar>
+
                 <v-flex xs12 style="height: calc(100vh - 64px - 64px - 64px);" class="bg-pattern">
                     <v-list subheader style="background-color: transparent;">
                         <v-subheader>Recent messages</v-subheader>
@@ -51,6 +52,7 @@
                             label="Solo"
                             placeholder="Nou missatge"
                             solo
+                            class="ml-4 mr-3 mt-3"
                     ></v-text-field>
                 </v-flex>
             </v-layout>
@@ -59,58 +61,58 @@
 </template>
 
 <script>
-export default {
-  name: 'ChatChannel',
-  data () {
-    return {
-      dataMessages: [],
-      loading: false
-    }
-  },
-  props: {
-    channel: {}
-  },
-  watch: {
-    channel () {
+  export default {
+    name: 'ChatChannel',
+    data () {
+      return {
+        dataMessages: [],
+        loading: false
+      }
+    },
+    props: {
+      channel: {}
+    },
+    watch: {
+      channel () {
+        this.fetchMessages()
+      }
+    },
+    methods: {
+      fetchMessages () {
+        // TODO esborrar seguent línia quan estigui feta l'API
+        this.dataMessages = [
+          {
+            id: 1,
+            title: 'Hey man!'
+          },
+          {
+            id: 2,
+            title: 'How are you?'
+          },
+          {
+            id: 3,
+            title: 'bla bla bla....'
+          },
+          {
+            id: 4,
+            title: 'bla bla bla....'
+          }
+        ]
+        if (this.channel) {
+          this.loading = true
+          window.axios('/api/v1/channel/' + this.channel.id + '/messages').then((response) => {
+            this.dataMessages = response.data
+            this.loading = false
+          }).catch(() => {
+            this.loading = false
+          })
+        }
+      }
+    },
+    created () {
       this.fetchMessages()
     }
-  },
-  methods: {
-    fetchMessages () {
-      // TODO esborrar seguent línia quan estigui feta l'API
-      this.dataMessages = [
-        {
-          id: 1,
-          title: 'Hey man!'
-        },
-        {
-          id: 2,
-          title: 'How are you?'
-        },
-        {
-          id: 3,
-          title: 'bla bla bla....'
-        },
-        {
-          id: 4,
-          title: 'bla bla bla....'
-        }
-      ]
-      if (this.channel) {
-        this.loading = true
-        window.axios('/api/v1/channel/' + this.channel.id + '/messages').then((response) => {
-          this.dataMessages = response.data
-          this.loading = false
-        }).catch(() => {
-          this.loading = false
-        })
-      }
-    }
-  },
-  created () {
-    this.fetchMessages()
   }
-}
 </script>
 
 <style>
