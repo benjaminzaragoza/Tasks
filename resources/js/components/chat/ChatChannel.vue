@@ -24,7 +24,6 @@
                     </v-tooltip>
                 </v-toolbar>
 
-
                 <v-flex xs12 style="height: calc(100vh - 64px - 64px - 64px);" class="bg-pattern">
                     <v-list subheader style="background-color: transparent;">
                         <v-subheader>Recent messages</v-subheader>
@@ -61,58 +60,58 @@
 </template>
 
 <script>
-  export default {
-    name: 'ChatChannel',
-    data () {
-      return {
-        dataMessages: [],
-        loading: false
-      }
-    },
-    props: {
-      channel: {}
-    },
-    watch: {
-      channel () {
-        this.fetchMessages()
-      }
-    },
-    methods: {
-      fetchMessages () {
-        // TODO esborrar seguent línia quan estigui feta l'API
-        this.dataMessages = [
-          {
-            id: 1,
-            title: 'Hey man!'
-          },
-          {
-            id: 2,
-            title: 'How are you?'
-          },
-          {
-            id: 3,
-            title: 'bla bla bla....'
-          },
-          {
-            id: 4,
-            title: 'bla bla bla....'
-          }
-        ]
-        if (this.channel) {
-          this.loading = true
-          window.axios('/api/v1/channel/' + this.channel.id + '/messages').then((response) => {
-            this.dataMessages = response.data
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
-        }
-      }
-    },
-    created () {
+export default {
+  name: 'ChatChannel',
+  data () {
+    return {
+      dataMessages: [],
+      loading: false
+    }
+  },
+  props: {
+    channel: {}
+  },
+  watch: {
+    channel () {
       this.fetchMessages()
     }
+  },
+  methods: {
+    fetchMessages () {
+      // TODO esborrar seguent línia quan estigui feta l'API
+      this.dataMessages = [
+        {
+          id: 1,
+          title: 'Hey man!'
+        },
+        {
+          id: 2,
+          title: 'How are you?'
+        },
+        {
+          id: 3,
+          title: 'bla bla bla....'
+        },
+        {
+          id: 4,
+          title: 'bla bla bla....'
+        }
+      ]
+      if (this.channel) {
+        this.loading = true
+        window.axios('/api/v1/channel/' + this.channel.id + '/messages').then((response) => {
+          this.dataMessages = response.data
+          this.loading = false
+        }).catch(() => {
+          this.loading = false
+        })
+      }
+    }
+  },
+  created () {
+    this.fetchMessages()
   }
+}
 </script>
 
 <style>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Channel;
+use App\ChatMessage;
 use App\Notifications\SimpleNotification;
 use App\Tag;
 use Carbon\Carbon;
@@ -22,6 +23,8 @@ if (!function_exists('chat_permissions')) {
     {
         return [
             'chat.index',
+            'chat.store',
+            'chat.destroy'
         ];
     }
 }
@@ -540,6 +543,60 @@ if (!function_exists('initialize_gates')) {
         Gate::define('changelog.list', function ($user) {
             return $user->hasRole('ChangelogManager');
         });
+        Gate::define('chat.store', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+        Gate::define('chat.destroy', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+        Gate::define('chat.index', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+    }
+}
+
+if (! function_exists('create_sample_channel')) {
+    function create_sample_channel($user = null) {
+        create_admin_user();
+        if(!$user) $user = get_admin_user();
+        $channel = Channel::create(add_random_timestamps([
+            'name' => 'Pepe Pardo Jeans',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Bla bla bla'
+        ]))->addUser($user);
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Hola que tal!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Whats up?'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Dude your are so cool!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'WTF are you fool?'
+        ]));
+        return $channel;
+    }
+}
+if (!function_exists('initialize_chat_role')) {
+    function initialize_chat_role()
+    {
+        $role = Role::firstOrCreate(['name' => ScoolRole::CHAT['name']]);
+        $permissions = chat_permissions();
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+            $role->givePermissionTo($permission);
+        }
     }
 }
 if (!function_exists('initialize_roles')) {

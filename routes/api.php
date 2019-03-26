@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\Tenant\Api\Chat\ChatMessagesController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\Changelog\ChangelogController;
@@ -78,7 +79,9 @@ Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
 
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
-
+    Route::get('/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
+    Route::post('/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
+    Route::delete('/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
 });
 Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
 

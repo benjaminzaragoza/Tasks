@@ -33,43 +33,41 @@
               </v-card>
             </v-flex>
             <v-flex xs12 class="scroll-y ml-4" style="max-height: calc(100vh - 64px - 64px - 64px - 64px)">
-          <v-list subheader two-line>
-             <v-subheader>Recent channels</v-subheader>
-            <template v-for="(item, index) in items">
-              <v-list-tile
-                      :key="item.title"
-                      avatar
-                      ripple
-                      @click="toggle(index)"
-              >
-                <v-list-tile-avatar>
-              <img style="margin-left: 0%;height: 131%;width: 131%" :src="item.avatar">
-            </v-list-tile-avatar>
+              <v-list subheader two-line>
+                  <v-subheader>Recent channels</v-subheader>
+                    <template v-for="(item, index) in items">
+                      <v-list-tile
+                              :key="item.title"
+                              avatar
+                              ripple
+                              @click="toggle(index)"
+                      >
+                          <v-list-tile-avatar>
+                                <img style="margin-left: 25%;height: 120%;width: 120%" :src="item.avatar">
+                          </v-list-tile-avatar>
 
-                <v-list-tile-content style="margin-left: 1%">
-                  <v-list-tile-title style="margin-top: -2%">{{ item.title }}</v-list-tile-title>
-                  <v-list-tile-sub-title style="margin-top: 1%;">{{ item.subtitle }}</v-list-tile-sub-title>
-                </v-list-tile-content>
+                        <v-list-tile-content style="margin-left: 1%">
+                            <v-list-tile-title style="margin-top: -2%">{{ item.title }}</v-list-tile-title>
+                            <v-list-tile-sub-title style="margin-top: 1%;">{{ item.subtitle }}</v-list-tile-sub-title>
+                        </v-list-tile-content>
 
-                <v-list-tile-action>
-                  <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
+                        <v-list-tile-action>
+                          <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
+                            <v-badge color="green accent-4" class="mr-4 ml-3 mb-4 ">
+                                <span slot="badge">{{ item.msgcount }}</span>
+                            </v-badge>
+                        </v-list-tile-action>
 
-                   <v-badge color="green accent-4" class="mr-4 ml-3 mb-4 ">
-      <span slot="badge">{{ item.msgcount }}</span>
-    </v-badge>
-                </v-list-tile-action>
-
-              </v-list-tile>
-              <v-divider
-                      class="grey lighten-5"
-                      style="margin-top: 0;margin-bottom: 0;margin-right: 8px;margin-left: 75px"
-                      v-if="index + 1 < items.length"
-                      :inset="inset"
-              ></v-divider>
-            </template>
-          </v-list>
+                      </v-list-tile>
+                      <v-divider
+                              class="grey lighten-5"
+                              style="margin-top: 0;margin-bottom: 0;margin-right: 8px;margin-left: 75px"
+                              v-if="index + 1 < items.length"
+                              :inset="inset"
+                      ></v-divider>
+                    </template>
+              </v-list>
             </v-flex>
-
           </v-layout>
         </v-container>
     </span>

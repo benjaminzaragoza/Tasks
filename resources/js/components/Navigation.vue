@@ -126,7 +126,7 @@ export default {
         { icon: 'phonelink_setup', text: 'Functions', url: '/functions' },
         { icon: 'contact_mail', text: 'Newsletter', url: '/newsletters' },
         { icon: 'watch_later', text: 'Clock', url: '/clock' },
-        { icon: 'widgets', text: 'Chat', url: '/chat' }
+        { icon: 'chat', text: 'Chat', url: '/chat' }
       ]
     }
   },
