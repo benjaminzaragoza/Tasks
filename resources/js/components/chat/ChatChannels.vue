@@ -1,14 +1,16 @@
 <template>
     <span>
-        <v-toolbar color="primary" class="ml-2">
-            <v-avatar :src="user.avatar" size="52px" @click="$emit('toggleright')">
-                <img :src=userAvatar alt="avatar">
-            </v-avatar>
+         <v-container fluid text-xs-center class="ma-0 pa-0">
+          <v-layout row wrap>
+        <v-toolbar color="primary" class="ml-3">
+            <v-avatar>
+                    <img :src="user.gravatar">
+                </v-avatar>
             <v-toolbar-title>Channels</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
                 <v-btn icon slot="activator">
-                    <v-icon>channel</v-icon>
+                    <v-icon color="secondary">channel</v-icon>
                 </v-btn>
                 <span>Nova conversació</span>
             </v-tooltip>
@@ -19,8 +21,7 @@
                 <span>Menú</span>
             </v-tooltip>
         </v-toolbar>
-        <v-container fluid text-xs-center class="ma-0 pa-0">
-          <v-layout row wrap>
+
             <v-flex xs12 style="height: 64px;">
               <v-card dark color="cyan" style="height: 64px;">
                 <v-card-text class="px-0">TODO activar notificacions d'escriptori</v-card-text>
@@ -31,30 +32,44 @@
                   search here
               </v-card>
             </v-flex>
-            <v-flex xs12 class="scroll-y" style="max-height: calc(100vh - 64px - 64px - 64px - 64px)">
-                <v-list subheader>
-                    <v-subheader>Recent channels</v-subheader>
-                    <v-list-tile
-                            v-for="channel in dataChannels"
-                            :key="channel.id"
-                            avatar
-                            @click=""
-                    >
-                      <v-list-tile-avatar>
-                        <img style="width: 45px;height: 120%;margin-left: 25%;" :src="channel.avatar">
-                      </v-list-tile-avatar>
+            <v-flex xs12 class="scroll-y ml-4" style="max-height: calc(100vh - 64px - 64px - 64px - 64px)">
+          <v-list subheader two-line>
+             <v-subheader>Recent channels</v-subheader>
+            <template v-for="(item, index) in items">
+              <v-list-tile
+                      :key="item.title"
+                      avatar
+                      ripple
+                      @click="toggle(index)"
+              >
+                <v-list-tile-avatar>
+              <img style="margin-left: 0%;height: 131%;width: 131%" :src="item.avatar">
+            </v-list-tile-avatar>
 
-                      <v-list-tile-content>
-                        <v-list-tile-title class="name" v-html="channel.name"></v-list-tile-title>
-                         <v-list-tile-title class="message" v-html="channel.message"></v-list-tile-title>
-                      </v-list-tile-content>
+                <v-list-tile-content style="margin-left: 1%">
+                  <v-list-tile-title style="margin-top: -2%">{{ item.title }}</v-list-tile-title>
+                  <v-list-tile-sub-title style="margin-top: 1%;">{{ item.subtitle }}</v-list-tile-sub-title>
+                </v-list-tile-content>
 
-                      <v-list-tile-action>
-                        <v-list-tile-title class="time" v-html="channel.time"></v-list-tile-title>
-                      </v-list-tile-action>
-                    </v-list-tile>
-                  </v-list>
+                <v-list-tile-action>
+                  <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
+
+                   <v-badge color="green accent-4" class="mr-4 ml-3 mb-4 ">
+      <span slot="badge">{{ item.msgcount }}</span>
+    </v-badge>
+                </v-list-tile-action>
+
+              </v-list-tile>
+              <v-divider
+                      class="grey lighten-5"
+                      style="margin-top: 0;margin-bottom: 0;margin-right: 8px;margin-left: 75px"
+                      v-if="index + 1 < items.length"
+                      :inset="inset"
+              ></v-divider>
+            </template>
+          </v-list>
             </v-flex>
+
           </v-layout>
         </v-container>
     </span>
@@ -65,86 +80,50 @@ export default {
   name: 'ChatChannels',
   data () {
     return {
+      index: true,
+      inset: true,
       userAvatar: window.laravel_user.gravatar,
-      dataChannels:
-          [
-            {
-              id: 1,
-              name: 'Channel 1',
-              avatar: 'http://i.pravatar.cc/300',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 2,
-              name: 'Channel 2',
-              avatar: 'http://i.pravatar.cc/300?sadsda',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 3,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 4,
-              name: 'Channel 2',
-              avatar: 'http://i.pravatar.cc/300?sadsda',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 5,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 6,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 7,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 8,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 9,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 10,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            },
-            {
-              id: 11,
-              name: 'Channel 3',
-              avatar: 'http://i.pravatar.cc/300?sadsdasadsad',
-              message: 'hola',
-              time:'18:21'
-            }
+      items:
+          [ {
+            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+            msgcount: 6,
+            action: '15 min ago',
+            headline: 'Brunch this weekend?',
+            title: 'Ali Connors',
+            subtitle: "I'll be in your neighborho?"
+          },
+          {
+            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+            msgcount: 2,
+            action: '18:50',
+            headline: 'Summer BBQ',
+            title: 'Jennifer',
+            subtitle: 'Wish I couldeekend.'
+          },
+          {
+            avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
+            msgcount: 4,
+            action: '19:00',
+            headline: 'Oui oui',
+            title: 'Sandra Adams',
+            subtitle: 'Do youever been?'
+          },
+          {
+            avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
+            msgcount: 9,
+            action: '20:10',
+            headline: 'Birthday gift',
+            title: 'Trevor Hansen',
+            subtitle: 'Have her birthday?'
+          },
+          {
+            avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
+            msgcount: 6,
+            action: 'Ahir',
+            headline: 'Recipe to try',
+            title: 'Britta Holt',
+            subtitle: 'We should eat this: , Squash, Corn, and tomatillo Tacos.'
+          }
           ]
     }
   },
@@ -160,25 +139,5 @@ export default {
 }
 </script>
 <style>
-
-    .edit *{
-        color: #555;
-        float: right;
-        margin: 10px;
-        font-size: 30px;
-    }
-    .name{
-        display: block;
-    }
-    .time{
-        float: right;
-        margin-top: -15px;
-        font-size: 10px;
-        color: grey;
-    }
-
-    .details .message{
-        color: grey;
-    }
 
 </style>

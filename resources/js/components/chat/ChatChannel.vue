@@ -1,8 +1,8 @@
 <template>
-    <div id="dsadsasadasdasddsadsa">
+    <div class="ml-4 mr-5" id="dsadsasadasdasddsadsa">
         <v-container fluid text-xs-center class="ma-0 pa-0" >
-            <v-layout row wrap class="mx-0">
-                <v-toolbar color="primary" class="ml-3">
+            <v-layout row wrap class="ml-1">
+                <v-toolbar color="primary" class="ma-0 pa-0 xs12">
                     <v-avatar
                             color="grey lighten-4"
                     >
@@ -23,6 +23,7 @@
                         <span>Menú</span>
                     </v-tooltip>
                 </v-toolbar>
+
 
                 <v-flex xs12 style="height: calc(100vh - 64px - 64px - 64px);" class="bg-pattern">
                     <v-list subheader style="background-color: transparent;">
@@ -47,12 +48,11 @@
                         </v-list-tile>
                     </v-list>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 class="mt-3">
                     <v-text-field
                             label="Solo"
                             placeholder="Nou missatge"
                             solo
-                            class="ml-4 mr-3 mt-3"
                     ></v-text-field>
                 </v-flex>
             </v-layout>
