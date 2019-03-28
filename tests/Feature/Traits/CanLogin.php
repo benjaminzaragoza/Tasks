@@ -78,9 +78,9 @@ trait CanLogin
         return $user;
     }
 
-    protected function loginAsSuperAdmin($guard = null, $user = null)
+    protected function loginAsSuperAdmin($guard = null)
     {
-        if (!$user) $user = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $user->admin = true;
         $user->save();
         $this->actingAs($user,$guard);

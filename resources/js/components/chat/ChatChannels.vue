@@ -53,7 +53,30 @@
 
                         <v-list-tile-action>
                           <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
-                            <v-badge color="green accent-4" class="mr-4 ml-3 mb-4 ">
+
+                                <v-menu class="mt-0 " offset-y transition="slide-y-transition" v-if="item.msgcount==0" color="grey">
+                                    <v-btn style="margin-top: -50%" slot="activator" icon>
+                                        <v-icon color="grey">keyboard_arrow_down</v-icon>
+                                    </v-btn>
+                                    <v-list class="pr-lg-5 pl-2">
+                                        <v-list-tile>
+                                            <v-list-tile-title>Arxivar xat</v-list-tile-title>
+                                        </v-list-tile>
+                                        <v-list-tile >
+                                            <v-list-tile-title>Silenciar</v-list-tile-title>
+                                        </v-list-tile>
+                                        <v-list-tile >
+                                            <v-list-tile-title>Esborrar Chat</v-list-tile-title>
+                                        </v-list-tile>
+                                        <v-list-tile >
+                                            <v-list-tile-title>Ancorar Chat</v-list-tile-title>
+                                        </v-list-tile>
+                                        <v-list-tile >
+                                            <v-list-tile-title>Marcar com a llegit</v-list-tile-title>
+                                        </v-list-tile>
+                                    </v-list>
+                                </v-menu>
+                            <v-badge v-else color="green accent-4" class="mr-4 ml-3 mb-4 ">
                                 <span slot="badge">{{ item.msgcount }}</span>
                             </v-badge>
                         </v-list-tile-action>
@@ -84,7 +107,7 @@ export default {
       items:
           [ {
             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            msgcount: 6,
+            msgcount: 0,
             action: '15 min ago',
             headline: 'Brunch this weekend?',
             title: 'Ali Connors',

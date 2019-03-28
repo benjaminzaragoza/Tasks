@@ -203,8 +203,6 @@ class TaskTest extends TestCase
         ]);
 
         $task  = create_sample_task($user);
-
-
         $mappedTask = $task->map();
         $this->assertEquals($mappedTask['id'],1);
         $this->assertEquals($mappedTask['name'],'Comprar pa');

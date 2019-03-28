@@ -15,24 +15,10 @@ use Tests\TestCase;
 class ChatControllerTest extends TestCase
 {
     use RefreshDatabase,CanLogin;
-
-    /**
-     * Refresh the in-memory database.
-     *
-     * @return void
-     */
-    protected function refreshInMemoryDatabase()
-    {
-        $this->artisan('migrate',[
-            '--path' => 'database/migrations/tenant'
-        ]);
-
-        $this->app[Kernel::class]->setArtisan(null);
-    }
-
     /** @test */
     public function chat_user_can_see_chats()
     {
+        $this->withoutExceptionHandling();
         $user = $this->loginAsSuperAdmin('web');
         initialize_sample_chat_channels($user);
 //        $this->loginAsSuperAdmin('web',get_admin_user());
@@ -44,4 +30,5 @@ class ChatControllerTest extends TestCase
                 $channels[0]->name === 'Pepe Pardo Jeans';
         });
     }
+
 }
