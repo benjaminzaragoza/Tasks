@@ -492,6 +492,12 @@ if (!function_exists('initialize_gates')) {
         Gate::define('changelog.list', function ($user) {
             return $user->hasRole('ChangelogManager');
         });
+        Gate::define('chat.index', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
         Gate::define('chat.store', function ($loggedUser, $chat) {
             $result = $chat->users->search(function ($user) use ($loggedUser) {
                 return $loggedUser->id  === $user->id;
@@ -499,12 +505,6 @@ if (!function_exists('initialize_gates')) {
             return $result === false ? false : true;
         });
         Gate::define('chat.destroy', function ($loggedUser, $chat) {
-            $result = $chat->users->search(function ($user) use ($loggedUser) {
-                return $loggedUser->id === $user->id;
-            });
-            return $result === false ? false : true;
-        });
-        Gate::define('chat.index', function ($loggedUser, $chat) {
             $result = $chat->users->search(function ($user) use ($loggedUser) {
                 return $loggedUser->id  === $user->id;
             });
@@ -550,7 +550,7 @@ if (! function_exists('create_sample_channel')) {
 if (!function_exists('initialize_chat_role')) {
     function initialize_chat_role()
     {
-        $role = Role::firstOrCreate(['name' => ScoolRole::CHAT['name']]);
+        $role = Role::firstOrCreate(['name' => 'ChatManager']);
         $permissions = chat_permissions();
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);

@@ -91,9 +91,10 @@ trait CanLogin
         return $this->loginAsUsingRole($guard, ['NotificationsManager']);
     }
 
+
     public function loginAsChatUser($guard = 'web')
     {
         initialize_chat_role();
-        return $this->loginAsUsingRole($guard, ScoolRole::CHAT['name']);
+        return $this->loginAsUsingRole($guard,['ChatManager']);
     }
 }

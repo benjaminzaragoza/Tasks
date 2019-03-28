@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Channel.
  *
- * @package App\Models
+ * @package App
  */
 class Channel extends Model
 {

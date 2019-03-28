@@ -81,6 +81,7 @@ Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
 
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
+
     Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
     Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
