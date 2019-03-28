@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class TaskUncompleted extends Notification
+class TaskUncompleted extends Notification implements ShouldQueue
 {
     use Queueable;
 

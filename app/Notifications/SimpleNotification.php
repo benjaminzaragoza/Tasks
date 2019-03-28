@@ -50,6 +50,12 @@ class SimpleNotification extends Notification
             'title' => $this->title
         ];
     }
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
     public function toDatabase($notifiable)
     {
         return [

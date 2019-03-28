@@ -1,12 +1,8 @@
 <?php
-
 namespace App;
-
-use App\Channel;
 use App\Traits\ApiURI;
 use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class ChatMessage.
  *
@@ -15,9 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChatMessage extends Model
 {
     use FormattedDates, ApiURI;
-
     protected $guarded = [];
-
     /**
      * Get the channel that owns the chat message.
      */
@@ -25,7 +19,6 @@ class ChatMessage extends Model
     {
         return $this->belongsTo(Channel::class);
     }
-
     public function map()
     {
         return [

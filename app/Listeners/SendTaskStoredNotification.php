@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Listeners;
-
 use App\Notifications\TaskStored;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
-class SendTaskStoredNotification implements ShouldQueue
+class SendTaskStoredNotification
 {
     /**
      * Create the event listener.
@@ -16,7 +14,6 @@ class SendTaskStoredNotification implements ShouldQueue
     {
         //
     }
-
     /**
      * Handle the event.
      *
@@ -25,7 +22,6 @@ class SendTaskStoredNotification implements ShouldQueue
      */
     public function handle($event)
     {
-//            Notify::send($event->incident->user);
-            $event->task->user->notify(new TaskStored($event->task));
+        $event->task->user->notify(new TaskStored($event->task));
     }
 }

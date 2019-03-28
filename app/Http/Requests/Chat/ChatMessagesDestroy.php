@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Requests\Chat;
-
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
-
 /**
  * Class ChatMessagesDestroy.
  *
@@ -21,7 +18,6 @@ class ChatMessagesDestroy extends FormRequest
     {
         return Auth::user()->can('chat.destroy',$this->channel);
     }
-
     /**
      * Get the validation rules that apply to the request.
      *

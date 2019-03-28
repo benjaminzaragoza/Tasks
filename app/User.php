@@ -225,10 +225,12 @@ class User extends Authenticatable
             'online' => $this->online
         ];
     }
+
     public function channels()
     {
         return $this->belongsToMany(Channel::class);
     }
+
     public function getOnlineAttribute()
     {
         return $this->isOnline();

@@ -17,6 +17,8 @@ use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Role as ScoolRole;
+
 
 if (!function_exists('chat_permissions')) {
     function chat_permissions()
@@ -74,61 +76,8 @@ if (! function_exists('is_sha1')) {
         return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
     }
 }
-if (! function_exists('tenant_connect')) {
-    /**
-     * Establish a tenant database connection.
-     *
-     * @param $hostname
-     * @param $username
-     * @param $password
-     * @param $database
-     */
-    function tenant_connect($hostname, $username, $password, $database)
-    {
-        // Erase the tenant connection, thus making Laravel get the default values all over again.
-        DB::purge('tenant');
 
-        // Make sure to use the database name we want to establish a connection.
-        Config::set('database.connections.tenant.host', $hostname);
-        Config::set('database.connections.tenant.database', $database);
-        Config::set('database.connections.tenant.username', $username);
-        Config::set('database.connections.tenant.password', $password);
 
-        // Rearrange the connection data
-        DB::reconnect('tenant');
-
-        // Ping the database. This will throw an exception in case the database does not exists.
-        Schema::connection('tenant')->getConnection()->reconnect();
-    }
-}
-if (! function_exists('create_admin_user')) {
-    /**
-     * @param $user
-     * @param $tenant
-     */
-    function create_admin_user_on_tenant($user, $tenant, $password = null)
-    {
-        tenant_connect(
-            $tenant->hostname,
-            $tenant->username,
-            $tenant->password,
-            $tenant->database
-        );
-
-        if(!$password) $password = Str::random();
-
-        $existingUser = App\User::where('email',$user->email)->first();
-        if (!$existingUser) {
-            User::forceCreate([
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => sha1($password),
-                'admin' => true
-            ]);
-        }
-        DB::purge('tenant');
-    }
-}
 if (! function_exists('initialize_sample_chat_channels')) {
     function initialize_sample_chat_channels($user = null)	{
         create_admin_user();
@@ -565,14 +514,24 @@ if (!function_exists('initialize_gates')) {
 }
 
 if (! function_exists('create_sample_channel')) {
-    function create_sample_channel($user = null) {
+    function create_sample_channel($user = null, $name = 'Pepe Pardo Jeans', $randomTimestamps = true)
+    {
         create_admin_user();
-        if(!$user) $user = get_admin_user();
-        $channel = Channel::create(add_random_timestamps([
-            'name' => 'Pepe Pardo Jeans',
-            'image' => 'http://i.pravatar.cc/300',
-            'last_message' => 'Bla bla bla'
-        ]))->addUser($user);
+        if (!$user) $user = get_admin_user();
+        if ($randomTimestamps) {
+            $channelData = add_random_timestamps([
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ]);
+        } else {
+            $channelData = [
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ];
+        }
+        $channel = Channel::create($channelData)->addUser($user);
         $channel->addMessage(ChatMessage::create([
             'text' => 'Hola que tal!'
         ]));

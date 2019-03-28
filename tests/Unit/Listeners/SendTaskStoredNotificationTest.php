@@ -1,33 +1,30 @@
 <?php
-
+namespace Tests\Unit;
 use App\Listeners\SendTaskStoredNotification;
-use App\Mail\TaskUncompleted;
 use App\Notifications\TaskStored;
 use App\Events\TaskStored as TaskStoredEvent;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+use Notification;
 use Tests\TestCase;
-
 class SendTaskStoredNotificationTest extends TestCase
 {
     use RefreshDatabase;
-
     /**
      * @test
      */
     public function send_task_stored_notification()
     {
-        $listener=new SendTaskStoredNotification();
-        $user=factory(User::class)->create();
-        $task=factory(Task::class)->create([
-            'user_id'=>$user->id
+        $listener = new SendTaskStoredNotification();
+        $user = factory(User::class)->create();
+        $task = Task::create([
+            'name' => 'Pepito',
+            'user_id' => $user->id
         ]);
-        $event= new TaskStoredEvent($task,$user);
+        $event  = new TaskStoredEvent($task, $user);
         Notification::fake();
-        $listener -> handle();
+        $listener->handle($event);
         Notification::assertSentTo(
             $user,
             TaskStored::class,
