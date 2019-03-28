@@ -15,21 +15,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class TaskDelete implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
     public $task, $user;
-
     /**
      * Create a new event instance.
      *
-     * @param Task $task
-     * @param User $user
+     * @return void
      */
     public function __construct(Task $task, User $user)
     {
         $this->task = $task;
         $this->user = $user;
     }
-
     /**
      * Get the channels the event should broadcast on.
      *
@@ -37,8 +33,9 @@ class TaskDelete implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return[
-            new PrivateChannel('App.User.' . $this->task['user_id']),
+        return [
+            new PrivateChannel('App.User.' . $this->task->user_id),
             new PrivateChannel('Tasques')
-        ];    }
+        ];
+    }
 }
