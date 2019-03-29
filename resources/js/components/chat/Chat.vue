@@ -12,24 +12,24 @@
 </template>
 
 <script>
-  import ChatChannels from './ChatChannels'
-  import ChatChannel from './ChatChannel'
-  export default {
-    name: 'Chat',
-    components: {
-      'chat-channels': ChatChannels,
-      'chat-channel': ChatChannel
-    },
-    data () {
-      return {
-        channel: null
-      }
-    },
-    props: {
-      channels: {
-        type: Array,
-        required: true
-      }
+import ChatChannels from './ChatChannels'
+import ChatChannel from './ChatChannel'
+export default {
+  name: 'Chat',
+  components: {
+    'chat-channels': ChatChannels,
+    'chat-channel': ChatChannel
+  },
+  data () {
+    return {
+      channel: null
+    }
+  },
+  props: {
+    channels: {
+      type: Array,
+      required: true
     }
   }
+}
 </script>

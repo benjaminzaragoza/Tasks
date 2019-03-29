@@ -53,11 +53,16 @@
 
                         <v-list-tile-action>
                           <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
+                            <v-list-tile-action>
+                            <v-badge v-if="item.msgcount>0" color="green accent-4">
+                                <span slot="badge">{{ item.msgcount }}</span>
+                            </v-badge>
+                                </v-list-tile-action>
 
-                                <v-menu class="mt-0 " offset-y transition="slide-y-transition" v-if="item.msgcount==0" color="grey">
-                                    <v-btn style="margin-top: -50%" slot="activator" icon>
-                                        <v-icon color="grey">keyboard_arrow_down</v-icon>
-                                    </v-btn>
+                                <v-menu  offset-y transition="slide-y-transition"  color="grey">
+                                        <v-card-actions style="margin-top: -50%" slot="activator" icon>
+                                        <v-icon color="grey light-4" medium>keyboard_arrow_down</v-icon>
+                                        </v-card-actions>
                                     <v-list class="pr-lg-5 pl-2">
                                         <v-list-tile>
                                             <v-list-tile-title>Arxivar xat</v-list-tile-title>
@@ -76,9 +81,7 @@
                                         </v-list-tile>
                                     </v-list>
                                 </v-menu>
-                            <v-badge v-else color="green accent-4" class="mr-4 ml-3 mb-4 ">
-                                <span slot="badge">{{ item.msgcount }}</span>
-                            </v-badge>
+
                         </v-list-tile-action>
 
                       </v-list-tile>
@@ -97,8 +100,10 @@
 </template>
 
 <script>
+import VListTileAction from 'vuetify/src/components/VList/VListTileAction'
 export default {
   name: 'ChatChannels',
+  components: { VListTileAction },
   data () {
     return {
       index: true,

@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Events\TagDelete;
 use App\Events\TagStored;
+use Illuminate\Notifications\Events\NotificationSent;
+use App\Listeners\SendDatabaseNotificationStore;
+use App\Listeners\LogNotification;
 use App\Events\TagUpdate;
 use App\Events\TaskCompleted;
 use App\Events\TaskDelete;
@@ -66,6 +69,12 @@ class EventServiceProvider extends ServiceProvider
             ForgetTaskCache::class,
             SendTaskStoredNotification::class
         ],
+
+        NotificationSent::class => [
+            LogNotification::class,
+            SendDatabaseNotificationStore::class
+        ],
+
         TaskUpdate::class => [
             LogTaskUpdated::class,
             SendMailTaskUpdated::class,
