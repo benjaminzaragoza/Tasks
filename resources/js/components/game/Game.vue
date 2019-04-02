@@ -1,6 +1,6 @@
 <template>
 <span>
-    <p>Conecta un mando!</p>
+    <p class="font-weight-bold text-xs-center mt-5 headline">Press any button for play!</p>
     <div id="ball"></div>
 </span>
 </template>
@@ -8,7 +8,7 @@
 <script>
 var ball
 export default {
-  name: 'Game',
+  name: 'Gamepad',
   data () {
     return {
       gamepads: []
