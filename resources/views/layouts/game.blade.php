@@ -53,8 +53,6 @@
     <script defer src="{{mix('js/app.js')}}" type="text/javascript"></script>
     <script defer src="{{mix('/js/manifest.js') }}" type="text/javascript"></script>
     <script defer src="{{mix('/js/vendor.js') }}" type="text/javascript"></script>
-    <script defer src="{{mix('/js/script.js') }}" type="text/javascript"></script>
-
 </head>
 <body>
 <noscript>
@@ -72,8 +70,6 @@
     <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
 </noscript>
 <v-app id="app" v-cloak >
-    <snackbar></snackbar>
-    <service-worker></service-worker>
     @yield('content')
 </v-app>
 
