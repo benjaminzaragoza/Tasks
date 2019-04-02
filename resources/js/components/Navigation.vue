@@ -127,6 +127,7 @@ export default {
         { icon: 'contact_mail', text: 'Newsletter', url: '/newsletters' },
         { icon: 'watch_later', text: 'Clock', url: '/clock' },
         { icon: 'chat', text: 'Chat', url: '/chat' },
+        { icon: 'person', text: 'Users', url: '/users' },
         { icon: 'games', text: 'Game', url: '/game' }
       ]
     }

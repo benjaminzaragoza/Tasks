@@ -15,6 +15,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasquesController;
+use App\Http\Controllers\UsersController;
 use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +69,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
     Route::get('/clock','\\'. ClockController::class.'@index');
     Route::get('/chat', '\\' . ChatController::class . '@index');
+    Route::get('/users', '\\' . UsersController::class . '@index');
     Route::get('/game', '\\' . GameController::class . '@index');
 });
 Route::get('/', function () {

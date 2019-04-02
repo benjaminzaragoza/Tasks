@@ -35,7 +35,7 @@ import Tags from './components/Tags.vue'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
-import Users from './components/Users.vue'
+import UsersList from './components/users/UsersList.vue'
 import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/Color'
@@ -311,7 +311,7 @@ window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
 window.Vue.component('show-one-task', ShowOneTask)
 window.Vue.component('chat', Chat)
-window.Vue.component('users', Users)
+window.Vue.component('users-list', UsersList)
 window.Vue.component('game', Game)
 
 window.Vue.component('login-form', LoginForm)
