@@ -26,7 +26,8 @@
             </v-list-tile-action>
             <div class="headline"></div>
             <span class="grey--text" :class="{'selected': hover || open}">
-                                  </span>
+                                </span>
+
             <v-menu offset-y @input="open=false" transition="slide-y-transition" color="grey">
                 <v-card-actions slot="activator" icon>
                     <v-icon class="iconkey" :class="{'selected': hover || open}" @click="open=true" color="grey light-4" medium>keyboard_arrow_down</v-icon>
