@@ -33,66 +33,7 @@
               </v-card>
             </v-flex>
             <v-flex xs12 class="scroll-y ml-4" style="max-height: calc(100vh - 64px - 64px - 64px - 64px)">
-              <v-list subheader two-line>
-                  <v-subheader>Recent channels</v-subheader>
-                    <template v-for="(item, index) in items">
-                      <v-list-tile
-                              :key="item.title"
-                              avatar
-                              ripple
-                              @click="toggle(index)"
-                      >
-                          <v-list-tile-avatar>
-                                <img style="margin-left: 25%;height: 120%;width: 120%" :src="item.avatar">
-                          </v-list-tile-avatar>
-
-                        <v-list-tile-content style="margin-left: 1%">
-                            <v-list-tile-title style="margin-top: -2%">{{ item.title }}</v-list-tile-title>
-                            <v-list-tile-sub-title style="margin-top: 1%;">{{ item.subtitle }}</v-list-tile-sub-title>
-                        </v-list-tile-content>
-
-                        <v-list-tile-action>
-                          <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
-                            <v-list-tile-action>
-                            <v-badge v-if="item.msgcount>0" color="green accent-4">
-                                <span slot="badge">{{ item.msgcount }}</span>
-                            </v-badge>
-                                </v-list-tile-action>
-
-                                <v-menu  offset-y transition="slide-y-transition"  color="grey">
-                                        <v-card-actions style="margin-top: -50%" slot="activator" icon>
-                                        <v-icon color="grey light-4" medium>keyboard_arrow_down</v-icon>
-                                        </v-card-actions>
-                                    <v-list class="pr-lg-5 pl-2">
-                                        <v-list-tile>
-                                            <v-list-tile-title>Arxivar xat</v-list-tile-title>
-                                        </v-list-tile>
-                                        <v-list-tile >
-                                            <v-list-tile-title>Silenciar</v-list-tile-title>
-                                        </v-list-tile>
-                                        <v-list-tile >
-                                            <v-list-tile-title>Esborrar Chat</v-list-tile-title>
-                                        </v-list-tile>
-                                        <v-list-tile >
-                                            <v-list-tile-title>Ancorar Chat</v-list-tile-title>
-                                        </v-list-tile>
-                                        <v-list-tile >
-                                            <v-list-tile-title>Marcar com a llegit</v-list-tile-title>
-                                        </v-list-tile>
-                                    </v-list>
-                                </v-menu>
-
-                        </v-list-tile-action>
-
-                      </v-list-tile>
-                      <v-divider
-                              class="grey lighten-5"
-                              style="margin-top: 0;margin-bottom: 0;margin-right: 8px;margin-left: 75px"
-                              v-if="index + 1 < items.length"
-                              :inset="inset"
-                      ></v-divider>
-                    </template>
-              </v-list>
+                <contacts-list :channels="items"></contacts-list>
             </v-flex>
           </v-layout>
         </v-container>
@@ -100,63 +41,55 @@
 </template>
 
 <script>
-import VListTileAction from 'vuetify/src/components/VList/VListTileAction'
+import ContactsList from './ContactsList'
+
 export default {
   name: 'ChatChannels',
-  components: { VListTileAction },
+  components: { ContactsList },
   data () {
     return {
-      index: true,
-      inset: true,
-      userAvatar: window.laravel_user.gravatar,
       items:
-          [ {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            msgcount: 0,
-            action: '15 min ago',
-            headline: 'Brunch this weekend?',
-            title: 'Ali Connors',
-            subtitle: "I'll be in your neighborho?"
-          },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-            msgcount: 2,
-            action: '18:50',
-            headline: 'Summer BBQ',
-            title: 'Jennifer',
-            subtitle: 'Wish I couldeekend.'
-          },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-            msgcount: 4,
-            action: '19:00',
-            headline: 'Oui oui',
-            title: 'Sandra Adams',
-            subtitle: 'Do youever been?'
-          },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-            msgcount: 9,
-            action: '20:10',
-            headline: 'Birthday gift',
-            title: 'Trevor Hansen',
-            subtitle: 'Have her birthday?'
-          },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-            msgcount: 6,
-            action: 'Ahir',
-            headline: 'Recipe to try',
-            title: 'Britta Holt',
-            subtitle: 'We should eat this: , Squash, Corn, and tomatillo Tacos.'
-          }
-          ]
-    }
-  },
-  props: {
-    channels: {
-      type: Array,
-      required: true
+        [ {
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+          msgcount: 0,
+          action: '15 min ago',
+          headline: 'Brunch this weekend?',
+          title: 'Ali Connors',
+          subtitle: "I'll be in your neighborho?"
+        },
+        {
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+          msgcount: 2,
+          action: '18:50',
+          headline: 'Summer BBQ',
+          title: 'Jennifer',
+          subtitle: 'Wish I couldeekend.'
+        },
+        {
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
+          msgcount: 4,
+          action: '19:00',
+          headline: 'Oui oui',
+          title: 'Sandra Adams',
+          subtitle: 'Do youever been?'
+        },
+        {
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
+          msgcount: 9,
+          action: '20:10',
+          headline: 'Birthday gift',
+          title: 'Trevor Hansen',
+          subtitle: 'Have her birthday?'
+        },
+        {
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
+          msgcount: 6,
+          action: 'Ahir',
+          headline: 'Recipe to try',
+          title: 'Britta Holt',
+          subtitle: 'We should eat this: , Squash, Corn, and tomatillo Tacos.'
+        }
+        ]
     }
   },
   created () {
@@ -164,6 +97,6 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 
 </style>
