@@ -25,6 +25,7 @@
                          :href="notification.data.url"
                          target="_blank"
             >
+
                 <v-list-tile-content>
                     <v-list-tile-title style="max-width: 450px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <v-icon v-if="notification.data.icon" :color="notification.data.iconColor">{{ notification.data.icon }}</v-icon>

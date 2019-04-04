@@ -20,7 +20,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::bind('hashuser', function($value, $route)
 {

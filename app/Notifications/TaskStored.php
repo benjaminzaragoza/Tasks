@@ -27,7 +27,7 @@ class TaskStored extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -38,32 +38,17 @@ class TaskStored extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toDatabase($notifiable)
     {
         return [
-            // La eliipsis millor a javascript
-//            'title' => "S'ha creat una nova incidència " . ellipsis($this->incident->subject, 25),
             'title' => "S'ha creat una nova tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
             'icon' => 'build',
             'iconColor' => 'accent',
             'task' => $this->task->map()
-        ];
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
         ];
     }
 }

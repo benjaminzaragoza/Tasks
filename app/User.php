@@ -14,7 +14,7 @@ use Laravel\Passport;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     const DEFAULT_PHOTO = 'default.png';
 //    const PHOTOS_PATH = 'user_photos';
@@ -113,6 +113,7 @@ class User extends Authenticatable
     public function addTag(Tag $tag){
         $this->tags()->save($tag);
     }
+
     /**
      * @param $tags
      */
@@ -159,6 +160,10 @@ class User extends Authenticatable
             ];
     }
 
+    public function routeNotificationForNexmo()
+    {
+        return $this->mobile;
+    }
     /**
      * Hashed key.
      * @return string
