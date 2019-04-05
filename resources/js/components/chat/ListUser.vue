@@ -25,8 +25,7 @@
                 </v-badge>
             </v-list-tile-action>
             <div class="headline"></div>
-            <span class="grey--text" :class="{'selected': hover || open}">
-                                </span>
+            <span class="grey--text" :class="{'selected': hover || open}"></span>
 
             <v-menu offset-y @input="open=false" transition="slide-y-transition" color="grey">
                 <v-card-actions slot="activator" icon>
@@ -50,29 +49,6 @@
                     </v-list-tile>
                 </v-list>
             </v-menu>
-
-            <!--<v-menu  offset-y transition="slide-y-transition"  color="grey">
-                    <v-card-actions style="margin-top: -50%" slot="activator" icon>
-                    <v-icon color="grey light-4" medium>keyboard_arrow_down</v-icon>
-                    </v-card-actions>
-                <v-list class="pr-lg-5 pl-2">
-                    <v-list-tile>
-                        <v-list-tile-title>Arxivar xat</v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile >
-                        <v-list-tile-title>Silenciar</v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile >
-                        <v-list-tile-title>Esborrar Chat</v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile >
-                        <v-list-tile-title>Ancorar Chat</v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile >
-                        <v-list-tile-title>Marcar com a llegit</v-list-tile-title>
-                    </v-list-tile>
-                </v-list>
-            </v-menu>-->
         </v-list-tile-action>
     </v-list-tile>
 </template>

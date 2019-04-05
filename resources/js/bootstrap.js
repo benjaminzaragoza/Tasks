@@ -50,6 +50,15 @@ if (token) {
 let impersonatedby = document.head.querySelector('meta[name="impersonatedBy"]')
 if (impersonatedby) if (impersonatedby.content) window.impersonatedBy = JSON.parse(impersonatedby.content)
 
+let vapidPublicKey = document.head.querySelector('meta[name="vapidPublicKey"]')
+
+if (vapidPublicKey) {
+  window.vapidPublicKey = vapidPublicKey.content
+} else {
+  console.error('vapidPublicKey not found')
+}
+
+
 let user = document.head.querySelector('meta[name="user"]')
 if (user) {
   // TODO

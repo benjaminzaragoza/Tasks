@@ -12,7 +12,7 @@ return [
     */
     'manager_email' => env('TASKS_MANAGER_EMAIL', 'tasksmanager@miempresa.com'),
     'admin_user_email' => env('ADMIN_USER_EMAIL','benjaminzaragoza@iesebre.com'),
-    'admin_user_mobile' => env('ADMIN_USER_MOBILE'),
+    'admin_user_mobile' => env('ADMIN_USER_MOBILE',''),
     'admin_user_name' => env('ADMIN_USER_NAME','Benjamin Zaragoza Pla'),
     'admin_user_password' => env('ADMIN_USER_PASSWORD','7c4a8d09ca3762af61e59520943dc26494f8941b'),
     'admin_user_name_on_tasks' => env('ADMIN_USER_NAME_ON_TASKS','Benjamin Zaragoza Pla'),

@@ -211,7 +211,7 @@ if (!function_exists('create_primary_user')) {
            $user= User::firstOrCreate([
                 'name' => 'Benjamin Zaragoza Pla',
                 'email' => 'benjaminzaragoza@iesebre.com',
-                'mobile' => 'task.admin_user.mobile',
+                'mobile' => config('tasks.admin_user_mobile'),
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
             $user->admin=true;

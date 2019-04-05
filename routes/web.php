@@ -13,6 +13,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UserPhotoController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
@@ -71,6 +72,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/users', '\\' . UsersController::class . '@index');
     Route::get('/game', '\\' . GameController::class . '@index');
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
 });
 Route::get('/', function () {
     return view('welcome');

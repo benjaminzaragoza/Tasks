@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Illuminate\Support\Facades\Session;
 
 
@@ -26,7 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
     const DEFAULT_AVATAR_PATH = 'app/' . self::DEFAULT_AVATAR_PATH1;
     const USERS_CACHE_KEY = 'tasks.benjaminzaragoza.scool.cat.user';
 
-    use HasRoles,Notifiable,HasApiTokens,Impersonate;
+    use HasRoles, Notifiable, HasApiTokens, Impersonate, HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.

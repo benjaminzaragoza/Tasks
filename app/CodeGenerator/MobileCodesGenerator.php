@@ -11,7 +11,7 @@ namespace App\Notifications;
 
 class MobileCodesGenerator
 {
-    public function generate()
+    public static function generate()
     {
         return '123456';
     }

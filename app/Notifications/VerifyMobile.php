@@ -31,9 +31,9 @@ class VerifyMobile extends Notification
      */
     public function toNexmo($notifiable)
     {
-        $code=MobileCodesGenerator::generate();
+        $code = MobileCodesGenerator::generate();
         return (new NexmoMessage)
-            ->content($code.'es el teu codi de verificació de la aplicació Tasques')
+            ->content( $code . ' és el teu codi de verificació de la app de Tasques')
             ->unicode();
     }
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4828d7"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
