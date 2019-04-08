@@ -49,6 +49,7 @@ import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import Vibrate from './components/Vibrate'
@@ -291,6 +292,7 @@ Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 Vue.component('navigation-right', NavigationRight)
 Vue.component('notifications-widget', NotificationsWidget)
+Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('notifications', Notifications)
 window.Vue.component('share-fab', ShareFab)
 window.Vue.component('fo', vFooter)

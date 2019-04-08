@@ -46,7 +46,6 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             AddRolesToRegisterUser::class,
             ForgetTaskCache::class
-
         ],
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
