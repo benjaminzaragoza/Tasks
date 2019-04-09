@@ -7,7 +7,7 @@
             </v-btn>
         </v-badge>
         <v-list>
-            TODO
+            todo
         </v-list>
     </v-menu>
 
@@ -19,7 +19,6 @@ export default {
   data () {
     return {
       loading: false,
-      counter: 0,
       users: []
     }
   },
@@ -35,13 +34,18 @@ export default {
       return 0
     }
   },
-  created () {
+  mounted () {
     window.Echo.join(this.channel)
       .here((users) => {
         this.users = users
       })
-      // .joining(user => this.counter++)
-      // .leaving(user => this.counter--)
+      .joining((user) => {
+        // TODO -> USER ALREADY EXISTS?
+        if (!this.users.find(u => u.id === user.id)) this.users.push(user)
+      })
+      .leaving((user) => {
+        this.users.splice(this.users.indexOf(user), 1)
+      })
   }
 }
 </script>
