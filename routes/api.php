@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Api\Notifications\HelloNotificationsController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
+
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\Api\Chat\ChatMessagesController;
 use Illuminate\Http\Request;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
+
 use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 
@@ -54,6 +57,9 @@ Route::post('/v1/user/tasks/','Api\LoggedUserTasksController@store');//Route::ge
 Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');//Route::get('/v1/tasks',function (){
 Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');//Route::get('/v1/tasks',function (){
 Route::put('/v1/tasks/inline/{task}', 'Api\TasksControllerInLine@update');
+
+Route::post('/v1/notifications/hello','\\' . HelloNotificationsController::class . '@store');
+
 
 Route::get('/v1/users','Api\UsersController@index');
 Route::get('/v1/regular_users','Api\RegularUsersController@index');

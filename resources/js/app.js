@@ -47,6 +47,7 @@ import TasksTags from './components/TasksTags'
 import vFooter from './components/vFooter'
 import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
+import PushNotificationButton from './components/PushNotificationButton'
 import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import UsersOnlineWidget from './components/users/UsersOnlineWidget'
@@ -70,7 +71,7 @@ window.Vue = Vue
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
-
+window.eventBus = new Vue()
 window.Vuetify = Vuetify
 
 const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
@@ -315,6 +316,7 @@ window.Vue.component('show-one-task', ShowOneTask)
 window.Vue.component('chat', Chat)
 window.Vue.component('users-list', UsersList)
 window.Vue.component('game', Game)
+window.Vue.component('push-notifications-button', PushNotificationButton)
 
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))
