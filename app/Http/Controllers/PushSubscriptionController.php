@@ -2,7 +2,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\Notifications\PushSubscriptionDelete;
+use App\Http\Requests\Notifications\PushSubscriptionUpdate;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+
 class PushSubscriptionController extends Controller
 {
     use ValidatesRequests;
@@ -20,7 +23,7 @@ class PushSubscriptionController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(PushSubscriptionUpdate $request)
     {
         $this->validate($request, ['endpoint' => 'required']);
         $request->user()->updatePushSubscription(
@@ -35,7 +38,7 @@ class PushSubscriptionController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(PushSubscriptionDelete $request)
     {
         $this->validate($request, ['endpoint' => 'required']);
         $request->user()->deletePushSubscription($request->endpoint);

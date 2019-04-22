@@ -19,6 +19,7 @@ use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
 use App\Task;
 use App\User;
+use App\Http\Controllers\MultimediaController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['verify' => true]);
@@ -74,6 +75,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/game', '\\' . GameController::class . '@index');
     Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
     Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
+    Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
+
 });
 Route::get('/', function () {
     return view('welcome');

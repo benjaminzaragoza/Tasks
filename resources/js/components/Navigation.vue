@@ -128,7 +128,8 @@ export default {
         { icon: 'watch_later', text: 'Clock', url: '/clock' },
         { icon: 'chat', text: 'Chat', url: '/chat' },
         { icon: 'person', text: 'Users', url: '/users' },
-        { icon: 'games', text: 'Game', url: '/game' }
+        { icon: 'games', text: 'Game', url: '/game' },
+        { icon: 'play_arrow', text: 'Multimedia', url: '/multimedia' }
       ]
     }
   },

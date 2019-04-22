@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\Notifications\HelloNotificationsController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\Api\Notifications\UnreadNotificationsController;
 
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\Api\Chat\ChatMessagesController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
-
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 
@@ -91,6 +92,14 @@ Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
     Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
+
+    Route::post('/v1/notifications/hello','\\' . HelloNotificationsController::class . '@store');
+    Route::post('/v1/unread_notifications/{notification}','\\' . UnreadNotificationsController::class . '@destroy');
+    // Push Subscriptions
+    Route::put('/v1/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/v1/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
+
+
 });
 Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
 
