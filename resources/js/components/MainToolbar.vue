@@ -5,6 +5,9 @@
         <img class="hidden-sm-and-down" src="img/task.png" style="margin-left: 1%;height:50%">
         <span class="hidden-sm-and-down" v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>
         <v-spacer class="hidden-sm-and-down"></v-spacer>
+
+        <users-online-widget></users-online-widget>
+
         <notifications-widget></notifications-widget>
 
         <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ user('email') }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>

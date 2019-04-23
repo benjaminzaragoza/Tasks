@@ -6,13 +6,16 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Illuminate\Support\Facades\Session;
+
+
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     const DEFAULT_PHOTO = 'default.png';
 //    const PHOTOS_PATH = 'user_photos';
@@ -24,7 +27,7 @@ class User extends Authenticatable
     const DEFAULT_AVATAR_PATH = 'app/' . self::DEFAULT_AVATAR_PATH1;
     const USERS_CACHE_KEY = 'tasks.benjaminzaragoza.scool.cat.user';
 
-    use HasRoles,Notifiable,HasApiTokens,Impersonate;
+    use HasRoles, Notifiable, HasApiTokens, Impersonate, HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.
@@ -111,6 +114,7 @@ class User extends Authenticatable
     public function addTag(Tag $tag){
         $this->tags()->save($tag);
     }
+
     /**
      * @param $tags
      */
@@ -157,6 +161,10 @@ class User extends Authenticatable
             ];
     }
 
+    public function routeNotificationForNexmo()
+    {
+        return $this->mobile;
+    }
     /**
      * Hashed key.
      * @return string
@@ -223,6 +231,12 @@ class User extends Authenticatable
             'online' => $this->online
         ];
     }
+
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
+
     public function getOnlineAttribute()
     {
         return $this->isOnline();

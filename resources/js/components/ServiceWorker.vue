@@ -7,6 +7,8 @@
 </style>
 
 <script>
+import pushSubscriptions from '../../api/pushSubscriptions'
+
 export default {
   name: 'ServiceWorker',
   methods: {
@@ -27,39 +29,53 @@ export default {
       navigator.serviceWorker.register('/sw.js')
         .then(function (registration) {
           console.log('Registration successful, scope is:', registration.scope)
-          // navigator.serviceWorker.ready
-          //   .then(function (serviceWorkerRegistration) {
-          //     return serviceWorkerRegistration.pushManager.subscribe({
-          //       userVisibleOnly: true
-          //     })
-          //   })
-          // // .then(function (subscription) { console.log(subscription.endpoint) })
-          //   .catch(function (error) {
-          //     if (Notification.permission === 'denied') {
-          //       console.log('Permission for Notifications was denied')
-          //       // subscribeButton.disabled = true
-          //     } else {
-          //       console.log('TODO ################################ Unable to subscribe to push.', error)
-          //       // subscribeButton.disabled = false
-          //     }
-          //   })
-          // navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-          //   serviceWorkerRegistration.pushManager.subscribe()
-          //     .then(function (subscription) {
-          //       // The subscription was successful
-          //       // subscribeButton.disabled = true
-          //       // return sendSubscriptionToServer(subscription)
-          //     })
-          //     .catch(function (error) {
-          //       if (Notification.permission === 'denied') {
-          //         console.log('Permission for Notifications was denied')
-          //         // subscribeButton.disabled = true
-          //       } else {
-          //         console.log('Unable to subscribe to push.', error)
-          //         // subscribeButton.disabled = false
-          //       }
-          //     })
-          // })
+          if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
+            console.log('Notifications aren\'t supported.')
+            return
+          }
+          console.log('Notifications supported!')
+          if (Notification.permission === 'denied') {
+            console.log('The user has blocked notifications.')
+            return
+          }
+          console.log('The user has allowed notifications.')
+          if (!('PushManager' in window)) {
+            console.log('Push messaging isn\'t supported.')
+            return
+          }
+          console.log('PushManager supported')
+          navigator.serviceWorker.ready.then(registration => {
+            // https://developer.mozilla.org/es/docs/Web/API/PushManager
+            // Retrieves an existing push subscription.
+            // It returns a Promise that resolves to a PushSubscription object containing details of an existing subscription.
+            // If no existing subscription exists, this resolves to a null value.
+            registration.pushManager.getSubscription()
+              .then(subscription => {
+                // Si s'arriba aquí és que el sistema suporta les notificacions i no cal desactivar el botó
+                // this.pushButtonDisabled = false TODO ESBORRAR
+                console.log('SENDING EVENT pushEnabled')
+                window.eventBus.$emit('pushEnabled')
+                console.log('SUBSCRIPTION GETTTED:')
+                console.log(subscription)
+                if (!subscription) { // no subscription exists
+                  return
+                }
+                // TODO REMOVE
+                // pushSubscriptions.updateSubscription(subscription)
+                // console.log('XIVATO')
+                // TODO GLOBAL STATE:
+                // this.isPushEnabled = true
+                // window.eventBus.$emit('enableNotifications')
+                console.log('UPDATING SUBSCRIPTION!')
+                pushSubscriptions.updateSubscription(subscription).then(() => {
+                  // this.isPushEnabled = true
+                  window.eventBus.$emit('enableNotifications')
+                })
+              })
+              .catch(e => {
+                console.log('Error during getSubscription()', e)
+              })
+          })
         })
         .catch(function (error) {
           console.log('Service worker registration failed, error:', error)

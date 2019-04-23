@@ -8,6 +8,7 @@ use App\Http\Requests\DestroyUserTask;
 use App\Http\Requests\IndexUserTask;
 use App\Http\Requests\StoreUserTask;
 use App\Http\Requests\UpdateUserTask;
+use App\Mail\TaskDeleted;
 use App\Task;
 use App\User;
 use Illuminate\Http\Request;

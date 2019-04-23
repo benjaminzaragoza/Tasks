@@ -29,11 +29,4 @@ trait FormattedDates
     {
         return optional($this->updated_at)->timestamp;
     }
-
-//$this->assertNotNull($mappedTask['created_at']);
-//$this->assertNotNull($mappedTask['update_at']);
-//$this->assertNotNull($mappedTask['created_at_formatted']);
-//$this->assertNotNull($mappedTask['updated_at_formatted']);
-//$this->assertNotNull($mappedTask['created_at_human']);
-//$this->assertNotNull($mappedTask['updated_at_human']);
 }

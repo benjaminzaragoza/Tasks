@@ -125,7 +125,11 @@ export default {
         { icon: 'photo', text: 'Imatges', url: '/contact' },
         { icon: 'phonelink_setup', text: 'Functions', url: '/functions' },
         { icon: 'contact_mail', text: 'Newsletter', url: '/newsletters' },
-        { icon: 'watch_later', text: 'Clock', url: '/clock' }
+        { icon: 'watch_later', text: 'Clock', url: '/clock' },
+        { icon: 'chat', text: 'Chat', url: '/chat' },
+        { icon: 'person', text: 'Users', url: '/users' },
+        { icon: 'games', text: 'Game', url: '/game' },
+        { icon: 'play_arrow', text: 'Multimedia', url: '/multimedia' }
       ]
     }
   },

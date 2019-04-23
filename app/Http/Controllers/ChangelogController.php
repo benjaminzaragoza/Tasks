@@ -9,7 +9,8 @@ use App\User;
 /**
  * Class ChangelogController.
  *
- * @package App\Http\Controllers\Tenant\Web
+ * @package App\Http\Controllers\
+ *
  */
 class ChangelogController extends Controller
 {

@@ -5,6 +5,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 import './bootstrap'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
+
 // import '../../resources/img/tenants/iesebre/iesebre_cellular-education-classroom-159844.jpeg'
 // import '../../resources/img/tenants/iesebre/iesebre_cellular-education-classroom-159844.webp'
 import '../../resources/img/task.png'
@@ -18,7 +19,6 @@ import '../../resources/img/task2.webp'
 // import 'material-design-icons-iconfont/node_modules/material-design-icons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 // import 'font-awesome/css/font-awesome.min.css'
-
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
 import AppComponent from './components/App.vue'
@@ -35,6 +35,7 @@ import Tags from './components/Tags.vue'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
+import UsersList from './components/users/UsersList.vue'
 import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/Color'
@@ -46,8 +47,10 @@ import TasksTags from './components/TasksTags'
 import vFooter from './components/vFooter'
 import ServiceWorker from './components/ServiceWorker'
 import Navigation from './components/Navigation'
+import PushNotificationButton from './components/PushNotificationButton'
 import NavigationRight from './components/NavigationRight'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import Vibrate from './components/Vibrate'
@@ -61,12 +64,15 @@ import SpeedTest from './components/SpeedTest'
 import MainToolbar from './components/MainToolbar'
 import Clock from './components/ui/Clock.vue'
 import ShowOneTask from './components/ShowOneTask.vue'
+import Chat from './components/chat/Chat'
+import Game from './components/game/Game'
+import Multimedia from './components/Multimedia.vue'
 
 window.Vue = Vue
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
-
+window.eventBus = new Vue()
 window.Vuetify = Vuetify
 
 const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
@@ -288,6 +294,7 @@ Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 Vue.component('navigation-right', NavigationRight)
 Vue.component('notifications-widget', NotificationsWidget)
+Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('notifications', Notifications)
 window.Vue.component('share-fab', ShareFab)
 window.Vue.component('fo', vFooter)
@@ -307,6 +314,11 @@ window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
 window.Vue.component('show-one-task', ShowOneTask)
+window.Vue.component('chat', Chat)
+window.Vue.component('users-list', UsersList)
+window.Vue.component('game', Game)
+window.Vue.component('push-notifications-button', PushNotificationButton)
+window.Vue.component('multimedia', Multimedia)
 
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))

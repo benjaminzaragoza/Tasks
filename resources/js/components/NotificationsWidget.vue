@@ -37,25 +37,25 @@
 </template>
 
 <script>
-  export default {
-    name: 'NotificationsWidget',
-    methods: {
-      notify () {
-        if (!('Notification' in window)) {
-          this.$snackbar.showError('This browser does not support desktop notification')
-        } else {
-          if (Notification.permission === 'default') {
-            Notification.requestPermission().then(function (result) {
-              console.log(result)
-              new Notification('Hi there!')
-            })
-          }
-          console.log(Notification.permission)
-          if (Notification.permission === 'granted') {
+export default {
+  name: 'NotificationsWidget',
+  methods: {
+    notify () {
+      if (!('Notification' in window)) {
+        this.$snackbar.showError('This browser does not support desktop notification')
+      } else {
+        if (Notification.permission === 'default') {
+          Notification.requestPermission().then(function (result) {
+            console.log(result)
             new Notification('Hi there!')
-          }
+          })
+        }
+        console.log(Notification.permission)
+        if (Notification.permission === 'granted') {
+          new Notification('Hi there!')
         }
       }
     }
   }
+}
 </script>
