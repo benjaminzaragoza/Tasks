@@ -58,7 +58,6 @@ if (vapidPublicKey) {
   console.error('vapidPublicKey not found')
 }
 
-
 let user = document.head.querySelector('meta[name="user"]')
 if (user) {
   // TODO
