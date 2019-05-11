@@ -8,8 +8,10 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class TaskUncompleted extends Notification implements ShouldQueue
-{
+use NotificationChannels\WebPush\WebPushChannel;
+use NotificationChannels\WebPush\WebPushMessage;
+
+class TaskUncompleted extends Notification{
     use Queueable;
 
     public $task;
@@ -32,7 +34,7 @@ class TaskUncompleted extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        return ['database', WebPushChannel::class];
     }
 
     /**
@@ -41,12 +43,15 @@ class TaskUncompleted extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toDatabase($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification. Task: ' . $this->task->name)
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return [
+            'title' => "S'ha descompletat la tasca: " . $this->task->name,
+            'url' => '/tasques/' . $this->task->id,
+            'icon' => 'assignment',
+            'iconColor' => 'primary',
+            'task' => $this->task->map()
+        ];
     }
 
     /**
@@ -55,10 +60,13 @@ class TaskUncompleted extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toWebPush($notifiable, $notification)
     {
-        return [
-            //
-        ];
+        return (new WebPushMessage)
+            ->title('Tasca descompletada!')
+            ->icon('/notification-icon.png')
+            ->body('Has descompletat la tasca: ' . $this->task->name)
+            ->action('View app', 'view_app')
+            ->data(['id' => $notification->id]);
     }
 }

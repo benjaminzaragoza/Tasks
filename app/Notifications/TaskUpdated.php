@@ -1,62 +1,46 @@
 <?php
-
 namespace App\Notifications;
-
 use App\Task;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-
+use Illuminate\Notifications\Notification;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
-
-class TaskStored extends Notification implements ShouldQueue
+class TaskUpdated extends Notification
 {
     use Queueable;
-
     public $task;
-
     /**
-     * Create a new notification instance.
-     *
+     * TaskUncompleted constructor.
      * @param $task
      */
     public function __construct(Task $task)
     {
         $this->task = $task;
     }
-
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
     {
         return ['database', WebPushChannel::class];
     }
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-        ->line('The introduction to the notification. Task: ' . $this->task->name)
-        ->action('Notification Action', url('/'))
-        ->line('Thank you for using our application!');
-    }
     /**
-     * Get the mail representation of the notification.
+     * Get the array representation of the notification.
      *
-     * @param  mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param mixed $notifiable
+     * @return array
      */
     public function toDatabase($notifiable)
     {
         return [
-            'title' => "S'ha creat una nova tasca: " . $this->task->name,
+            'title' => "S'ha editat una tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
             'icon' => 'assignment',
-            'iconColor' => 'accent',
+            'iconColor' => 'primary',
             'task' => $this->task->map()
         ];
     }
@@ -70,9 +54,9 @@ class TaskStored extends Notification implements ShouldQueue
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('Tasca creada')
+            ->title('Tasca editada!')
             ->icon('/notification-icon.png')
-            ->body('Has creat la tasca: ' . $this->task->name)
+            ->body('Has editat la tasca: ' . $this->task->name)
             ->action('View app', 'view_app')
             ->data(['id' => $notification->id]);
     }

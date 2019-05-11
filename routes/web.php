@@ -19,6 +19,7 @@ use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
 use App\Task;
 use App\User;
+use App\Http\Controllers\VerifyMobileController;
 use App\Http\Controllers\MultimediaController;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,10 +78,19 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
     Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
 
+    Route::get('/verificar_mobil','\\' . VerifyMobileController::class . '@index');
+    Route::post('/verificar_mobil','\\' . VerifyMobileController::class . '@send');
 });
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+
 Route::get('/auth/{provider}', '\\'. LoginController::class . '@redirectToProvider');
 Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
 
