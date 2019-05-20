@@ -6,15 +6,16 @@
  * Time: 21:12
  */
 
-namespace App\Notifications;
-use Composer\Factory;
+namespace App\CodeGenerator;
+
+use Faker\Factory;
 
 
 class MobileCodesGenerator
 {
     public static function generate()
     {
-        $faker = Factory::create();
-        return $faker->numberBetween($min = 000000, $max = 999999);
+        $code = random_int(100000, 999999);
+        return $code;
     }
 }

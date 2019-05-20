@@ -11,6 +11,12 @@
                 @input="$v.title.$touch()"
                 @blur="$v.title.$touch()"
         ></v-text-field>
+        <v-textarea
+                v-model="body"
+                name="body"
+                label="Cos de la notificació"
+        ></v-textarea>
+        <user-select
         <user-select
                 label="A qui voleu enviar la notificació?"
                 :users="users"
@@ -41,6 +47,7 @@ export default {
   data () {
     return {
       title: '',
+      body: null,
       sending: false,
       user: null
     }
@@ -70,7 +77,8 @@ export default {
       this.sending = true
       window.axios.post('/api/v1/simple_notifications', {
         'user': this.user,
-        'title': this.title
+        'title': this.title,
+        'body': this.body
       }).then(() => {
         this.sending = false
         this.$snackbar.showMessage('Notificació enviada correctament')

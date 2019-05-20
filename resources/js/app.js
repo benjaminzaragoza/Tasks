@@ -67,6 +67,8 @@ import ShowOneTask from './components/ShowOneTask.vue'
 import Chat from './components/chat/Chat'
 import Game from './components/game/Game'
 import Multimedia from './components/Multimedia.vue'
+import UserEmailConfirmation from './components/users/UserEmailsComponent'
+import VerifyMobileForm from './components/users/VerifyMobileForm'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -319,6 +321,8 @@ window.Vue.component('users-list', UsersList)
 window.Vue.component('game', Game)
 window.Vue.component('push-notifications-button', PushNotificationButton)
 window.Vue.component('multimedia', Multimedia)
+window.Vue.component('users-email-component', UserEmailConfirmation)
+window.Vue.component('verify-mobile-form', VerifyMobileForm)
 
 window.Vue.component('login-form', LoginForm)
 // Vue.component('tags', require('./components/Tags'))

@@ -16,7 +16,7 @@ export default {
     }
     return window.axios.put('/api/v1/subscriptions', data).catch(() => {
       window.eventBus.$emit('pushOperationFinished')
-  })
+    })
   },
   /**
    * Send a request to the server to delete user's subscription.
@@ -29,7 +29,7 @@ export default {
 
     return window.axios.post('/api/v1/subscriptions/delete', { endpoint: subscription.endpoint }).catch(() => {
       window.eventBus.$emit('pushOperationFinished')
-  })
+    })
     // TODO ESBORRAR DESPRES EXPLICAT!!!! -> AQUI NO TENIM LOADING
     // window.axios.post('/api/v1/subscriptions/delete', { endpoint: subscription.endpoint })
     //   .then(() => {
@@ -49,27 +49,27 @@ export default {
       }
 
       registration.pushManager.subscribe(options)
-      .then(subscription => {
-      window.eventBus.$emit('pushEnabled')
-    // this.isPushEnabled = true  TODO
-    window.eventBus.$emit('enableNotifications')
-    // this.pushButtonDisabled = false  TODO
-    this.updateSubscription(subscription).then(() => {
-      window.eventBus.$emit('pushOperationFinished')
-  })
-  })
-  .catch(e => {
-      if (Notification.permission === 'denied') {
-      console.log('Permission for Notifications was denied')
-      window.eventBus.$emit('disableNotifications')
-      // this.pushButtonDisabled = true TODO
-    } else {
-      console.log('Unable to subscribe to push.', e)
-      window.eventBus.$emit('enableNotifications')
-      // this.pushButtonDisabled = false  TODO
-    }
-  })
-  })
+        .then(subscription => {
+          window.eventBus.$emit('pushEnabled')
+          // this.isPushEnabled = true  TODO
+          window.eventBus.$emit('enableNotifications')
+          // this.pushButtonDisabled = false  TODO
+          this.updateSubscription(subscription).then(() => {
+            window.eventBus.$emit('pushOperationFinished')
+          })
+        })
+        .catch(e => {
+          if (Notification.permission === 'denied') {
+            console.log('Permission for Notifications was denied')
+            window.eventBus.$emit('disableNotifications')
+            // this.pushButtonDisabled = true TODO
+          } else {
+            console.log('Unable to subscribe to push.', e)
+            window.eventBus.$emit('enableNotifications')
+            // this.pushButtonDisabled = false  TODO
+          }
+        })
+    })
   },
   /**
    * Unsubscribe from push notifications.
@@ -78,35 +78,35 @@ export default {
     console.log('unsubscribe!!!')
     return navigator.serviceWorker.ready.then(registration => {
       registration.pushManager.getSubscription().then(subscription => {
-      console.log('unsubscribe subscription:')
-    console.log(subscription)
-    if (!subscription) {
-      console.log('XITO!')
-      window.eventBus.$emit('pushDisabled')
-      // this.isPushEnabled = false  TODO
-      window.eventBus.$emit('enableNotifications')
-      // this.pushButtonDisabled = false  TODO
-      return
-    }
-    console.log('OK!!!')
-    subscription.unsubscribe().then(() => {
-      console.log('unsubscribe ok')
-    console.log('deleting subscription!')
-    this.deleteSubscription(subscription).then(() => {
-      window.eventBus.$emit('pushOperationFinished')
-    // window.eventBus.$emit('pushDisabled')
-    // this.isPushEnabled = false  TODO
-    window.eventBus.$emit('disableNotifications')
-    // this.pushButtonDisabled = false  TODO
-  })
-  }).catch(e => {
-      console.log('Unsubscription error: ', e)
-    window.eventBus.$emit('disableNotifications')
-    // this.pushButtonDisabled = false  TODO
-  })
-  }).catch(e => {
-      console.log('Error thrown while unsubscribing.', e)
-  })
-  })
+        console.log('unsubscribe subscription:')
+        console.log(subscription)
+        if (!subscription) {
+          console.log('XITO!')
+          window.eventBus.$emit('pushDisabled')
+          // this.isPushEnabled = false  TODO
+          window.eventBus.$emit('enableNotifications')
+          // this.pushButtonDisabled = false  TODO
+          return
+        }
+        console.log('OK!!!')
+        subscription.unsubscribe().then(() => {
+          console.log('unsubscribe ok')
+          console.log('deleting subscription!')
+          this.deleteSubscription(subscription).then(() => {
+            window.eventBus.$emit('pushOperationFinished')
+            // window.eventBus.$emit('pushDisabled')
+            // this.isPushEnabled = false  TODO
+            window.eventBus.$emit('disableNotifications')
+            // this.pushButtonDisabled = false  TODO
+          })
+        }).catch(e => {
+          console.log('Unsubscription error: ', e)
+          window.eventBus.$emit('disableNotifications')
+          // this.pushButtonDisabled = false  TODO
+        })
+      }).catch(e => {
+        console.log('Error thrown while unsubscribing.', e)
+      })
+    })
   }
 }
