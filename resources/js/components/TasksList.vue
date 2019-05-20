@@ -116,7 +116,7 @@
                             </v-avatar>
                         </td>
                         <td class="text-xs-left">
-                                     <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
+                            <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                         </td>
                           <td>
                             <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)" @removed="searchForTasks"
