@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.7934005789ef8fe7f3516ba9f54aa1e7.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.c4ba8fb74a22285ca38c7ed84daa464d.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
@@ -81,17 +81,36 @@ const WebPush = {
    *
    * @param {NotificationEvent} event
    */
-  notificationPush (event) {
-    if (!(self.Notification && self.Notification.permission === 'granted')) {
+  notificationClick (event) {
+    if (!event.action) {
+      if (event.notification.data) {
+        if (event.notification.data.url) {
+          promiseChain = self.clients.openWindow(event.notification.data.url)
+          event.waitUntil(promiseChain)
+          return
+        }
+      }
+      promiseChain = self.clients.openWindow('/')
+      event.waitUntil(promiseChain)
       return
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
-    if (event.data) {
-      event.waitUntil(
-        this.sendNotification(event.data.json())
-      )
-    }
+    switch (event.action) {
+      case 'open_url':
+        if (event.notification.data) {
+          if (event.notification.data.url) {
+            promiseChain = self.clients.openWindow(event.notification.data.url)
+            event.waitUntil(promiseChain)
+            break
+          }
+        }
+        break
+      case 'other_action':
+        break
+      default:
+        console.log(`Unknown action clicked: '${event.action}'`)
+        break
   },
   /**
    * Handle notification click event.
