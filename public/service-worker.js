@@ -1,14 +1,49 @@
+
 workbox.setConfig({
   debug: true
 })
 
 workbox.core.skipWaiting()
 workbox.core.clientsClaim()
-// workbox.core.skipWaiting()
-// workbox.core.clientsClaim()
+
 workbox.precaching.cleanupOutdatedCaches()
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
+// workbox.precaching.precacheAndRoute([]) També funciona i workbox substitueix pel que pertoca -> placeholder
+
+// images
+workbox.routing.registerRoute(
+  new RegExp('/img/*.*(?:jpg|jpeg|png|gif|svg|webp)$'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'images',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 20,
+        purgeOnQuotaError: true
+      })
+    ]
+  })
+)
+
+workbox.routing.registerRoute(
+  '/',
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
+)
+
+workbox.routing.registerRoute(
+  '/css/footer.css',
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
+)
+
+workbox.routing.registerRoute(
+  '/tasques',
+  new workbox.strategies.NetworkFirst()
+)
+
+workbox.routing.registerRoute(
+  '/home',
+  new workbox.strategies.NetworkFirst()
+)
 
 const showNotification = () => {
   self.registration.showNotification('Post Sent', {
@@ -33,46 +68,12 @@ workbox.routing.registerRoute(
   'POST'
 )
 
-workbox.routing.registerRoute(
-  new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
-  workbox.strategies.cacheFirst({
-    cacheName: 'images',
-    plugins: [
-      new workbox.expiration.Plugin({
-        maxEntries: 20,
-        purgeOnQuotaError: true
-      })
-    ]
-  })
-)
-
-workbox.routing.registerRoute(
-  '/',
-  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
-)
-
-workbox.routing.registerRoute(
-  '/public/css/*',
-  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'css' })
-)
-
-workbox.routing.registerRoute(
-  '/public/favicon-32x32',
-  new workbox.strategies.CacheFirst({ cacheName: 'favicon' })
-)
-
-workbox.routing.registerRoute(
-  new RegExp('/tasques'),
-  new workbox.strategies.NetworkFirst()
-)
-
 const WebPush = {
   init () {
     self.addEventListener('push', this.notificationPush.bind(this))
     self.addEventListener('notificationclick', this.notificationClick.bind(this))
     self.addEventListener('notificationclose', this.notificationClose.bind(this))
   },
-
   /**
    * Handle notification push event.
    *
@@ -93,21 +94,60 @@ const WebPush = {
     }
   },
   /**
+   * Handle notification push event.
+   *
+   * https://developer.mozilla.org/en-US/docs/Web/Events/push
+   *
+   * @param {NotificationEvent} event
+   */
+  notificationClick (event) {
+    if (!event.action) {
+      if (event.notification.data) {
+        if (event.notification.data.url) {
+          promiseChain = self.clients.openWindow(event.notification.data.url)
+          event.waitUntil(promiseChain)
+          return
+        }
+      }
+      promiseChain = self.clients.openWindow('/')
+      event.waitUntil(promiseChain)
+      return
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
+    switch (event.action) {
+      case 'open_url':
+        if (event.notification.data) {
+          if (event.notification.data.url) {
+            promiseChain = self.clients.openWindow(event.notification.data.url)
+            event.waitUntil(promiseChain)
+            break
+          }
+        }
+        break
+      case 'other_action':
+        break
+      default:
+        console.log(`Unknown action clicked: '${event.action}'`)
+        break
+    }
+  },
+  /**
    * Handle notification click event.
    *
    * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
    *
    * @param {NotificationEvent} event
    */
-  notificationClick (event) {
-    // console.log(event.notification)
-    if (event.action === 'some_action') {
-      // Do something...
-      // TODO
-    } else {
-      self.clients.openWindow('/')
-    }
-  },
+  // notificationClick (event) {
+  //   // console.log(event.notification)
+  //   if (event.action === 'some_action') {
+  //     // Do something...
+  //     // TODO
+  //   } else {
+  //     self.clients.openWindow('/')
+  //   }
+  // },
 
   /**
    * Handle notification close event (Chrome 50+, Firefox 55+).

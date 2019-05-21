@@ -11,6 +11,9 @@
             <span>Enviar emails</span>
         </v-tooltip>
         <v-list>
+            <!--<v-list-tile >-->
+                <!--<v-list-tile-title>Benvinguda</v-list-tile-title>-->
+            <!--</v-list-tile>-->
             <v-list-tile @click="reset">
                 <v-list-tile-title>Restauració paraula de pas</v-list-tile-title>
             </v-list-tile>
@@ -45,6 +48,7 @@ export default {
     },
     reset () {
       this.loading = true
+
       window.axios.post('/password/email', { 'email': this.user.email }).then((response) => {
         this.loading = false
         this.$snackbar.showMessage('Email enviat correctament')

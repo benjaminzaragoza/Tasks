@@ -21,7 +21,6 @@ class VerifyMobile extends Notification
     {
         $this->code =  $code;
     }
-
     /**
      * Get the notification's delivery channels.
      *

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 
 use Lab404\Impersonate\Models\Impersonate;
@@ -15,7 +16,7 @@ use Laravel\Passport;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
     const DEFAULT_PHOTO = 'default.png';
 //    const PHOTOS_PATH = 'user_photos';
