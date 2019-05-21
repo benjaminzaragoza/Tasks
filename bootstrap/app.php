@@ -14,7 +14,7 @@
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
-
+//ada
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
