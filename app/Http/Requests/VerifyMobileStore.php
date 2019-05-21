@@ -1,7 +1,13 @@
 <?php
 namespace App\Http\Requests;
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
-class VerifyMobileStore extends FormRequest
+/**
+ * Class VerifyMobileStore.
+ *
+ * @package App\Http\Requests\SMS
+ */
+class VerifyMobileStore  extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

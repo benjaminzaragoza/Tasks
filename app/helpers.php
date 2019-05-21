@@ -558,29 +558,35 @@ class DomainObject implements ArrayAccess, JsonSerializable
     {
         $this->data = $data;
     }
-    public function __set($name, $value){
+    public function __set($name, $value)
+    {
         $this->data[$name] = $value;
     }
-    public function __get($name){
-        if(isset($this->data[$name])) {
+    public function __get($name)
+    {
+        if (isset($this->data[$name])) {
             return $this->data[$name];
         }
     }
-    public function offsetExists($offset) {
-        return array_key_exists($offset,$this->data);
+    public function offsetExists($offset)
+    {
+        return array_key_exists($offset, $this->data);
     }
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value)
+    {
         $this->data[$offset] = $value;
     }
-    public function offsetGet($offset) {
+    public function offsetGet($offset)
+    {
         return $this->data[$offset];
     }
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset)
+    {
         unset($this->data[$offset]);
     }
     public function __toString()
     {
-        return (string) collect($this->data);
+        return (string)collect($this->data);
     }
     /**
      * Specify data which should be serialized to JSON
@@ -594,6 +600,7 @@ class DomainObject implements ArrayAccess, JsonSerializable
         return $this->data;
     }
 }
+
 if (! function_exists('objetify')) {
     function objetify($array)
     {

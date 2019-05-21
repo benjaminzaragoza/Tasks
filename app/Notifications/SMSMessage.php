@@ -19,7 +19,7 @@ class SMSMessage extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -29,13 +29,13 @@ class SMSMessage extends Notification
     /**
      * Get the Nexmo / SMS representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return NexmoMessage
      */
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage)
-            ->content($this->message)
+            ->content( $this->message)
             ->unicode();
     }
 }

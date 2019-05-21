@@ -43,7 +43,7 @@ class TaskCompleted extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'title' => "S'ha completat la tasca: " . $this->task->name,
+            'title' => "S'ha completat una tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
             'icon' => 'assignment',
             'iconColor' => 'primary',
@@ -63,7 +63,7 @@ class TaskCompleted extends Notification implements ShouldQueue
             ->title('Tasca completada!')
             ->icon('/notification-icon.png')
             ->body('Has completat la tasca: ' . $this->task->name)
-            ->action('View app', 'view_app')
-            ->data(['id' => $notification->id]);
+            ->action('Visualitza la tasca', 'open_url')
+            ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }
 }
