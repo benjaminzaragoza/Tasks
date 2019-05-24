@@ -38,7 +38,7 @@ class TaskDeleted extends Notification
     {
         return [
             'title' => "S'ha borrat una tasca: " . $this->task['name'],
-            'url' => '/tasques/' . $this->task['id'],
+            'url' => '/tasks',
             'icon' => 'assignment',
             'iconColor' => 'primary',
             'task' => $this->task
