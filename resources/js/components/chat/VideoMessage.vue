@@ -3,12 +3,7 @@
     class="mb-3 message chat-multimedia-dialog"
     :class="{'message-right':owner,'message-left':!owner}"
   >
-    <v-dialog
-      v-model="dialog"
-      @keydown.esc="dialog = false"
-      fullscreen
-      transition="fade-transition"
-    >
+    <v-dialog v-model="dialog" @keydown.esc="hideVideo()" fullscreen transition="fade-transition">
       <v-card flat>
         <v-layout justify-center align-start row class="mx-0">
           <v-flex xs12>
@@ -44,7 +39,7 @@
                   ></path>
                 </svg>
               </v-btn>
-              <v-btn @click="dialog = false" flat icon class="my-0 mx-2">
+              <v-btn @click="hideVideo()" flat icon class="my-0 mx-2">
                 <v-icon>close</v-icon>
               </v-btn>
             </v-toolbar>
@@ -54,7 +49,15 @@
           <v-flex xs12 class="bg-white h-100">
             <v-carousel hide-delimiters class="shadow-none mt-5">
               <v-carousel-item>
-                <img height="100%" style="display: flex;" class="mx-auto" width="auto" :src="src">
+                <video
+                  height="100%"
+                  style="display: flex;"
+                  ref="video-dialog"
+                  class="mx-auto"
+                  width="auto"
+                  controls
+                  :src="src"
+                ></video>
               </v-carousel-item>
             </v-carousel>
           </v-flex>
@@ -70,8 +73,18 @@
           <span dir="auto" class="message-author">Pepe Jeans</span>
         </div>
         <div class="message-body py-2 text-left">
+          <div class="video-overlay" @click="showVideo">
+            <span class="media-play">
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M19.5 10.9l-13-7.5c-1.3-.7-2.4-.1-2.4 1.4v15c0 1.5 1.1 2.1 2.4 1.4l13-7.5c1.3-.9 1.3-2.1 0-2.8z"
+                  fill="#FFF"
+                ></path>
+              </svg>
+            </span>
+          </div>
           <div>
-            <img @click="dialog = true" :src="src">
+            <video :src="src"></video>
           </div>
         </div>
         <div class="message-time">
@@ -87,7 +100,8 @@
 
 <script>
 export default {
-  name: "ImageMessage",
+  name: "VideoMessage",
+
   data() {
     return {
       dialog: false
@@ -100,33 +114,22 @@ export default {
     src: {
       type: String
     }
+  },
+  methods: {
+    showVideo() {
+      this.dialog = true;
+      this.$refs["video-dialog"].play();
+    },
+    hideVideo() {
+      this.dialog = false;
+      this.$refs["video-dialog"].currentTime = 0;
+      this.$refs["video-dialog"].pause();
+    }
   }
 };
 </script>
 
 <style scoped>
-.message-image .message-body {
-  text-align: center;
-}
-.message-image .message-time {
-  color: #fff;
-  z-index: 4;
-}
-.message-image .message-time {
-  position: absolute;
-  right: 10px;
-}
-.message-image img {
-  width: 114%;
-  margin: -10px -5px -12px -6px;
-}
-.message-image img:hover {
-  cursor: pointer;
-}
-.current-img {
-  height: 100%;
-  width: 50px;
-}
 .message {
   border-radius: 7.5px;
   box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
@@ -193,5 +196,55 @@ export default {
   height: 15px;
   line-height: 15px;
   white-space: nowrap;
+}
+.message-image .message-body {
+  text-align: center;
+}
+.message-image .message-time {
+  color: #fff;
+  z-index: 30;
+  bottom: 15px;
+}
+.message-image .message-time {
+  position: absolute;
+  right: 10px;
+}
+.message-image video {
+  width: 109%;
+  margin: -10px -5px -12px -6px;
+}
+.message-image img:hover {
+  cursor: pointer;
+}
+.current-img {
+  height: 100%;
+  width: 50px;
+}
+.video-overlay {
+  position: absolute;
+  z-index: 10;
+  background: #717171b8;
+  height: 94.3%;
+  top: 15.4px;
+  left: -6px;
+  cursor: pointer;
+  width: 102%;
+}
+.media-play {
+  position: relative;
+  top: 44%;
+  left: 43%;
+  font-size: 3rem;
+  z-index: 12;
+  background: black;
+  border-radius: 50%;
+  padding: 3px 15px;
+}
+.media-play svg {
+  overflow: hidden;
+  margin-top: -7px;
+  margin-left: 2px;
+  opacity: 1;
+  color: white;
 }
 </style>

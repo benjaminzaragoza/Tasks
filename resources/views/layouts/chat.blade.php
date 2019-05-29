@@ -21,6 +21,7 @@
     <meta name="user_impersonating" content="{{ app('impersonate')->getImpersonatorId()}}">
     <meta name="git" content="{{ git() }}">
     <link rel="stylesheet" type="text/css" href="css/function.css">
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
 
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">

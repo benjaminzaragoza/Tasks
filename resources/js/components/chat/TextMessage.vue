@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'TextMessage.vue',
+  name: 'TextMessage',
   props: {
     author: {
       type: String,
